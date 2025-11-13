@@ -1,41 +1,41 @@
 ---
 id: sortview
-title: Sort and view
+title: 並べ替えと表示
 sidebar_label: Sort and view
 ---
 
 ## Sort {#sort}
 
-You can temporarily sort your rows by one column. You can sort based on [data type](exploring#data-types):
-*   text alphabetically or reverse
-*   numbers by largest or smallest
-*   dates by earliest or latest
-*   boolean values by false first or true first.
+各列で一時的に行の並べ替えができます。対象となるデータ型（[data type](exploring#data-types)）に応じて次のように並べ替えられます:
+*   テキスト: 昇順 / 降順（大文字小文字の区別も可能で、小文字で始まる値が先頭に来ます）
+*   数値: 大きい順 / 小さい順
+*   日付: 古い順 / 新しい順
+*   真偽値: false を先頭 / true を先頭
 
-You can also choose where to place errors and blank cells in the sorting. Text can be case-sensitive or not: if so, cells that start with lowercase characters will appear ahead of those that start with uppercase characters.
+エラーや null 値をどの位置に置くかも指定可能です。
 
 ![A screenshot of the Sort window.](/img/sort.png)
 
-After you apply a sorting method, you can make it permanent, remove it, reverse it, or apply a subsequent sorting. When it is applied, you’ll find <span class="menuItems">Sort</span> in the project grid header to the right of the rows-display setting, which will show all current sorting settings. 
+並べ替えを適用した後は一時的に維持したり、削除・反転・さらに別の並べ替えを追加できます。適用中はプロジェクトグリッドヘッダーの行数表示右側にある <span class="menuItems">Sort</span> で設定が一覧表示されます。
 
-If you have multiple sorting methods applied, they will work in the order you applied them (represented in order in the <span class="menuItems">Sort</span> menu). For example, you can sort an “authors” column alphabetically, and then sort their books by publication date, for those authors that have more than one book. If you apply those in a different order -  sort all the publication dates in the dataset first, and then alphabetically by author - your dataset will look different. 
+複数の並べ替えを行った場合は、<span class="menuItems">Sort</span> メニューに表示された順番（適用順）に評価されます。たとえば “authors” 列をアルファベット順に並べ、そのあと各著者について出版日順に並べれば、著者内でのソート順が保持されます。逆に日付でまず並べてから著者で並べると表示が異なります。
 
-![Temporarily sorted rows.](/img/sort2.png) 
+![Temporarily sorted rows.](/img/sort2.png)
 
-When the sorting method you've applied is temporary, you will see that the rows retain their original numbering. When you make that sorting method permanent, by selecting <span class="menuItems">Reorder rows permanently</span>, the row numbers will change and the <span class="menuItems">Sort</span> menu in the project grid header will disappear. This will apply all current sorting methods. 
+追加した並べ替えが一時的（temporary）な状態では、行番号は元のままです。<span class="menuItems">Reorder rows permanently</span> を実行して並べ替えを恒久化すると行番号が変わり、グリッドヘッダーの <span class="menuItems">Sort</span> メニューが消えます。これにより現在の並べ替え順がすべて適用されます。
 
 ## View {#view}
 
-You can control what data you view in the grid. On each column, you will see a <span class="menuItems">View</span> menu option. From there, you can “collapse” (hide) that specific column, all other columns, all columns to the left, and all columns to the right. Using the <span class="menuItems">View</span> option that appears in the <span class="menuItems">All</span> column’s dropdown menu, you can collapse all columns, and expand all the columns that you previously collapsed.
+グリッドに表示する列を制御できます。各列には <span class="menuItems">View</span> メニューがあり、特定の列・他の全列・左の列・右の列を折りたたむ（collapse）ことができます。<span class="menuItems">All</span> 列の <span class="menuItems">View</span> からはすべて折りたたんだり、過去に折りたたんだ列をすべて展開したりできます。
 
-### Show/hide “null” {#showhide-null}
+### “null” の表示/非表示 {#showhide-null}
 
-You can find, under <span class="menuItems">All</span> → <span class="menuItems">View</span>, the option to show and hide [“null” values](exploring#data-types). A small grey “null” will appear in each applicable cell. Remember that a null cell is not the same thing as an empty cell. 
+<span class="menuItems">All</span> → <span class="menuItems">View</span> の中に、[“null” 値](exploring#data-types) を表示/非表示にするオプションがあります。対象セルには小さな灰色の “null” が表示されます。null は空文字とは異なる特別な値です。
 
 ![A screenshot of what a null value looks like.](/img/null.png)
 
-## Page navigation {#page-navigation}
+## ページ移動 {#page-navigation}
 
-You can go directly to any page by changing the page number on the right-hand side. Using the up and down arrow keys in this input lets you go to the next and previous pages. You can also change the number of rows or records per page on the left-hand side of this view header bar.
+画面右側のページ番号入力欄に直接数値を入力すると任意のページに移動できます。上下キーを使うと前後のページを移動でき、表示行数/レコード数はビューの左側で変更できます。
 
 ![A screenshot of the Page Navigation Feature.](/img/goto.png)

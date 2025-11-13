@@ -1,4 +1,4 @@
-﻿---
+---
 id: jythonclojure
 title: Jython & Clojure
 sidebar_label: Jython & Clojure
@@ -6,39 +6,39 @@ sidebar_label: Jython & Clojure
 
 ## Jython {#jython}
 
-Jython 2.7.2 comes bundled with the default installation of OpenRefine 3.4.1. You can add libraries and code by following [this tutorial](https://github.com/OpenRefine/OpenRefine/wiki/Extending-Jython-with-pypi-modules). A large number of Python files (`.py` or `.pyc`) are compatible. 
+OpenRefine 3.4.1 以降の標準インストールには Jython 2.7.2 が同梱されています。[このチュートリアル](https://github.com/OpenRefine/OpenRefine/wiki/Extending-Jython-with-pypi-modules) に従えばライブラリやコードを追加できます。多くの Python ファイル（`.py`, `.pyc`）に対応しています。
 
-Python code that depends on C bindings will not work in OpenRefine, which uses Java / Jython only. Since Jython is essentially Java, you can also import Java libraries and utilize those. 
+C 言語のバインディングに依存する Python コードは、Java / Jython 環境の OpenRefine では動作しません。Jython は実質的に Java なので、Java ライブラリをインポートして利用することもできます。
 
-You will need to restart OpenRefine, so that new Jython or Python libraries are initialized during startup.
+新たな Jython/Python ライブラリを使うには OpenRefine を再起動し、起動時に初期化されるようにしてください。
 
-OpenRefine now has [most of the Jsoup.org library built into GREL functions](grelfunctions#jsoup-xml-and-html-parsing-functions) for parsing and working with HTML and XML elements.
+現在 OpenRefine には HTML/XML を扱うための [Jsoup.org ライブラリの大部分](grelfunctions#jsoup-xml-and-html-parsing-functions) が GREL 関数として組み込まれています。
 
 ### Syntax {#syntax}
 
-Expressions in Jython must have a `return` statement:
+Jython 式では `return` 文を使う必要があります:
 
 ```
   return value[1:-1]
 ```
 
 ```
-  return rowIndex%2
+  return rowIndex % 2
 ```
 
-Fields have to be accessed using the bracket operator rather than dot notation:
+フィールドにはドット記法ではなく角括弧でアクセスします:
 
 ```
   return cells["col1"]["value"]
 ```
 
-For example, to access the [edit distance](reconciling#reconciliation-facets) between a reconciled value and an original cell value using [recon variables](expressions#reconciliation):
+たとえば [リコンシリエーション変数](expressions#reconciliation) を使って一致距離（[edit distance](reconciling#reconciliation-facets)）を取得するには:
 
 ```
   return cell["recon"]["features"]["nameLevenshtein"]
 ```
 
-To return the lower case of `value` (if the value is not null):
+`value` が null でなければ小文字化して返す例:
 
 ```
   if value is not None:
@@ -48,29 +48,32 @@ To return the lower case of `value` (if the value is not null):
 ```
 
 ### Tutorials {#tutorials}
-- [Extending Jython with pypi modules](https://github.com/OpenRefine/OpenRefine/wiki/Extending-Jython-with-pypi-modules)
-- [Working with phone numbers using Java libraries inside Python](https://github.com/OpenRefine/OpenRefine/wiki/Jython#tutorial---working-with-phone-numbers-using-java-libraries-inside-python)
 
-Full documentation on the Jython language can be found on its official site: [http://www.jython.org](http://www.jython.org).
+*   [Extending Jython with pypi modules](https://github.com/OpenRefine/OpenRefine/wiki/Extending-Jython-with-pypi-modules)
+*   [Java ライブラリを Python 内で使って電話番号を扱う](https://github.com/OpenRefine/OpenRefine/wiki/Jython#tutorial---working-with-phone-numbers-using-java-libraries-inside-python)
+
+Jython 言語の詳細は公式サイト [http://www.jython.org](http://www.jython.org) をご覧ください。
 
 ## Clojure {#clojure}
 
-Clojure 1.10.1 comes bundled with the default installation of OpenRefine 3.4.1. At this time, not all [variables](expressions#variables) can be used with Clojure expressions: only `value`, `row`, `rowIndex`, `cell`, and `cells` are available.
+OpenRefine 3.4.1 の標準インストールには Clojure 1.10.1 が同梱されています。現時点で [variables](expressions#variables) のうち Jython で利用できるのは `value`, `row`, `rowIndex`, `cell`, `cells` です。
 
-For example, functions can take the form 
+たとえば次のような形式が使えます:
+
 ```
 (.. value (toUpperCase) )
 ```
 
-Or can look like 
+または:
+
 ```
 (-> value (str/split #" ") last )
 ```
 
-which functions like `value.split(" ")` in GREL.
+これは GREL の `value.split(" ")` と同等の動作です。
 
-For help with syntax, see the [Clojure website's guide to syntax](https://clojure.org/guides/learn/syntax).
+構文に関するヘルプは [Clojure 公式の構文ガイド](https://clojure.org/guides/learn/syntax) を参照してください。
 
-User-contributed Clojure recipes can be found on our wiki at [https://github.com/OpenRefine/OpenRefine/wiki/Recipes#11-clojure](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#11-clojure).
+Clojure のユーザー提供レシピは [https://github.com/OpenRefine/OpenRefine/wiki/Recipes#11-clojure](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#11-clojure) にまとめられています。
 
-Full documentation on the Clojure language can be found on its official site: [https://clojure.org/](https://clojure.org/).
+Clojure 言語のドキュメントは公式サイト [https://clojure.org/](https://clojure.org/) にあります。

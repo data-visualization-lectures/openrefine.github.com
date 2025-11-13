@@ -87,243 +87,241 @@ s に sub（文字列または正規表現）が含まれるかどうかを返�
 
 ###### toLowercase(s) {#tolowercases}
 
-Returns string s converted to all lowercase characters.
+文字列 s のすべての文字を小文字に変換します。
 
 ###### toUppercase(s) {#touppercases}
 
-Returns string s converted to all uppercase characters.
+文字列 s のすべての文字を大文字に変換します。
 
 ###### toTitlecase(s, delimiters (optional)) {#totitlecases}
 
-Returns string s converted into titlecase: a capital letter starting each word, and the rest of the letters lowercase. For example, `"Once upon a midnight DREARY".toTitlecase()` returns the string “Once Upon A Midnight Dreary”.
+各単語の先頭文字だけを大文字にするタイトルケースを返します。例: `"Once upon a midnight DREARY".toTitlecase()` は “Once Upon A Midnight Dreary” になります。
 
-Optionally, a string of delimiter characters used to separate words. The first character and the first non-delimiter character after a delimiter will be captialized. For example, `"jean-michel jarre".toTitlecase(" -")` returns "Jean-Michel Jarre".
+任意の区切り文字列を指定すると、その文字の直後の非区切り文字と文字列の最初の文字が大文字になります。例: `"jean-michel jarre".toTitlecase(" -")` は “Jean-Michel Jarre” です。
 
 #### Trimming {#trimming}
 
 ###### trim(s) {#trims}
 
-Returns a copy of the string s with leading and trailing whitespace removed. For example, `" island ".trim()` returns the string “island”. Identical to strip().
+文字列 s の両端の空白を取り除いたコピーを返します。例: `" island ".trim()` は “island”。`strip()` と同じ振る舞いです。
 
 ###### strip(s) {#strips}
 
-Returns a copy of the string s with leading and trailing whitespace removed. For example, `" island ".strip()` returns the string “island”. Identical to trim().
+文字列 s の両端の空白を取り除いたコピーを返します。例: `" island ".strip()` は “island”。`trim()` と同等です。
 
 ###### chomp(s, sep) {#chomps-sep}
 
-Returns a copy of string s with the string sep removed from the end if s ends with sep; otherwise, just returns s. For example, `"barely".chomp("ly")` and `"bare".chomp("ly")` both return the string “bare”.
+s が sep で終わる場合、その末尾を取り除いた文字列を返します。そうでなければ s をそのまま返します。例: `"barely".chomp("ly")` も `"bare".chomp("ly")` も “bare” になります。
 
 #### Substring {#substring}
 
 ###### substring(s, n from, n to (optional)) {#substrings-n-from-n-to-optional}
 
-Returns the substring of s starting from character index from, and up to (excluding) character index to. If the to argument is omitted, substring will output to the end of s. For example, `"profound".substring(3)` returns the string “found”, and `"profound".substring(2, 4)` returns the string “of”.
+インデックス `from` から `to` 未満の部分列を返します。`to` を省略すると末尾までを返します。例: `"profound".substring(3)` は “found”、`"profound".substring(2, 4)` は “of” です。
 
-Remember that character indices start from zero. A negative character index counts from the end of the string. For example, `"profound".substring(0, -1)` returns the string “profoun”.
+インデックスは 0 から始まり、負の値は末尾からの位置を示します。たとえば `"profound".substring(0, -1)` は “profoun” を返します。
 
 ###### slice(s, n from, n to (optional)) {#slices-n-from-n-to-optional}
 
-Identical to substring() in relation to strings. Also works with arrays; see [Array functions section](#slicea-n-from-n-to-optional).
+文字列に対しては substring と同じですが、配列にも使えます（[Array functions](#slicea-n-from-n-to-n-optional) を参照）。負のインデックスも利用可能です。
 
 ###### get(s, n from, n to (optional)) {#gets-n-from-n-to-optional}
 
-Similar to [substring()](#substrings-n-from-n-to-optional) when used in relation to strings, but when using `get` in the case that the second argument `n to` is omitted a single character will be returned. `get()` also works with named fields, for example to retrieve a [JSON property](#parsejsons) or [OpenRefine variable](expressions#variables). Also works with arrays; see [Array functions section](#geta-n-from-n-to-optional).
+文字列では substring と似た挙動ですが、`n to` を省略すると 1 文字を返します。名前付きフィールド（[JSON プロパティ](#parsejsons) や [OpenRefine 変数](expressions#variables)）や配列にも使えます（[Array functions](#geta-n-from-n-to-optional) 参照）。
 
 #### Find and replace {#find-and-replace}
 
 ###### indexOf(s, sub) {#indexofs-sub}
 
-Returns the first character index of sub as it first occurs in s; or, returns -1 if s does not contain sub. For example, `"internationalization".indexOf("nation")` returns 5, whereas `"internationalization".indexOf("world")` returns -1.
+s の中で sub が最初に出現する位置を返します。見つからなければ -1。例: `"internationalization".indexOf("nation")` は 5、`"internationalization".indexOf("world")` は -1 です。
 
 ###### lastIndexOf(s, sub) {#lastindexofs-sub}
 
-Returns the first character index of sub as it last occurs in s; or, returns -1 if s does not contain sub. For example, `"parallel".lastIndexOf("a")` returns 3 (pointing at the second “a”).
+s の中で sub が最後に出現する位置を返します。見つからなければ -1。例: `"parallel".lastIndexOf("a")` は 3（2 番目の “a”）です。
 
 ###### replace(s, s or p find, s replace) {#replaces-s-or-p-find-s-replace}
 
-Returns the string obtained by replacing the find string with the replace string in the inputted string. For example, `"The cow jumps over the moon and moos".replace("oo", "ee")` returns the string “The cow jumps over the meen and mees”. Find can be a regex pattern. For example, `"The cow jumps over the moon and moos".replace(/\s+/, "_")` will return “The_cow_jumps_over_the_moon_and_moos”. 
+find（文字列または正規表現）を replace で置き換えた文字列を返します。例: `"The cow jumps over the moon and moos".replace("oo", "ee")` は “The cow jumps over the meen and mees” を返します。正規表現を渡すこともでき、`"The cow jumps over the moon and moos".replace(/\s+/, "_")` は “The_cow_jumps_over_the_moon_and_moos” になります。
 
-You cannot find or replace nulls with this, as null is not a string. You can instead:
+null は文字列ではないためこの関数では扱えません。代わりに:
 
-1. Facet by null and then bulk-edit them to a string, or
-2. Transform the column with an expression such as `if(value==null,"new",value)`.
+1. null でファセットし、文字列に一括編集する
+2. `if(value==null,"new",value)` のような変換を使って文字列化する
 
 ###### replaceChars(s, s find, s replace) {#replacecharss-s-find-s-replace}
 
-Returns the string obtained by replacing a character in s, identified by find, with the corresponding character identified in replace. For example, `"Téxt thát was optícálly recógnízéd".replaceChars("áéíóú", "aeiou")` returns the string “Text that was optically recognized”. You cannot use this to replace a single character with more than one character.
+find に含まれる各文字を replace の対応位置の文字に置き換えます。例: `"Téxt thát was optícálly recógnízéd".replaceChars("áéíóú", "aeiou")` は “Text that was optically recognized” を返します。1 文字を複数文字に置き換えることはできません。
 
 ###### replaceEach(s, a find, a replace) {#replaceeach-s-a-find-a-replace}
 
-Returns the string obtained by replacing each element in s of a find array with the corresponding element of a replace array, sequentially. For example, `"The cow jumps over the moon and moos".replaceEach(["th", "moo"], ["ex", "mee"])` returns the string “The cow jumps over exe meen and mees”.
+find 配列の要素を順に replace 配列の対応要素で置換します。例: `"The cow jumps over the moon and moos".replaceEach(["th", "moo"], ["ex", "mee"])` は “The cow jumps over exe meen and mees” になります。
 
-The length of the find array must be the same as the length of the replace array. If the length of the find array is greater than the length of the replace array, the last element of the replace array is used for all remaining elements in the find array.
+find と replace の配列長は一致させる必要があります。find の方が長い場合は replace の最後の要素を残りに使います。
 
-This function is available since OpenRefine 3.6.
+この関数は OpenRefine 3.6 以降で利用可能です。
 
 ###### find(s, sub or p) {#finds-sub-or-p}
 
-Outputs an array of all consecutive substrings inside string s that match the substring or [regex](expressions#grel-supported-regex) pattern p. For example, `"abeadsabmoloei".find(/[aeio]+/)` would result in the array [ "a", "ea", "a", "o", "oei" ].
+s の中から sub または [正規表現](expressions#grel-supported-regex) p に一致する連続部分列をすべて配列で返します。例: `"abeadsabmoloei".find(/[aeio]+/)` は `[ "a", "ea", "a", "o", "oei" ]` を返します。
 
-You can supply a substring instead of p, by putting it in quotes, and OpenRefine will compile it into a regex pattern. Anytime you supply quotes, OpenRefine interprets the contents as a string, not regex. If you wish to use any regex notation, wrap the pattern in forward slashes. 
+sub の代わりに引用符付き文字列を渡すと、内部で正規表現に変換されます。引用符ありなら文字列、正規表現を使いたいならスラッシュで囲んでください。
 
 :::tip
 
-See also [match()](grelfunctions#matchs-p)
+[match()](grelfunctions#matchs-p) も参照してください。
 
 :::
 
 ###### match(s, p) {#matchs-p}
 
-Attempts to match the string s in its entirety against the [regex](expressions#grel-supported-regex) pattern p and, if the pattern is found, outputs an array of all [capturing groups](https://www.regular-expressions.info/brackets.html) (found in order). For example, `"230.22398, 12.3480".match(/.*(\d\d\d\d)/)` returns an array of 1 substring: [ "3480" ]. It does not find 2239 as the first sequence with four digits, because the regex indicates the four digits must come at the end of the string.
+正規表現 p が文字列 s 全体に一致するかを調べ、一致するとキャプチャグループを順に格納した配列を返します。例: `"230.22398, 12.3480".match(/.*(\d\d\d\d)/)` は `[ "3480" ]` を返し、末尾の 4 桁以外は対象にしません。
 
-You will need to convert the array to a string to store it in a cell, with a function such as toString(). An empty array [] is returned when there is no match to the desired substrings. A null is output when the entire regex does not match.
+結果をセルに保存するには toString() などで文字列化してください。マッチがなければ空配列 `[]`、正規表現全体が一致しないと null を返します。
 
-Remember to enclose your regex in forward slashes, and to escape characters and use parentheses as needed. Parentheses denote a desired substring (capturing group); for example, “.&#42;(\d\d\d\d)” would return an array containing a single value, while “(.&#42;)(\d\d\d\d)” would return two. So, if you are looking for a desired substring anywhere within a string, use the syntax `value.match(/.*(desired-substring-regex).*/)`.
+正規表現はスラッシュで囲み、必要な文字をエスケープして括弧でグループ化します。たとえば `".*(\d\d\d\d)"` は 1 要素、`"(.*)(\d\d\d\d)"` は 2 要素になります。部分列が任意の場所にある場合は `value.match(/.*(desired-substring-regex).*/)` のようにします。
 
-For example, if `value` is “hello 123456 goodbye”, the following would occur:
+たとえば `value` が “hello 123456 goodbye” なら:
 
 |Expression|Result|
 |-|-|
-|`value.match(/\d{6}/)` |null (does not match the full string)|
-|`value.match(/.*\d{6}.*/)` |[ ] (no indicated substring)|
-|`value.match(/.*(\d{6}).*/)` |[ "123456" ] (array with one value)|
-|`value.match(/(.*)(\d{6})(.*)/)` |[ "hello ", "123456", " goodbye" ] (array with three values)|
+|`value.match(/\d{6}/)` |null（全文一致しない）|
+|`value.match(/.*\d{6}.*/)` |[ ]（キャプチャなし）|
+|`value.match(/.*(\d{6}).*/)` |[ "123456" ]（1 要素）|
+|`value.match(/(.*)(\d{6})(.*)/)` |[ "hello ", "123456", " goodbye" ]（3 要素）|
 
 :::tip
 
-See also [find()](grelfunctions#finds-sub-or-p)
+[find()](grelfunctions#finds-sub-or-p) もどうぞ。
 
 :::
-
 ### String parsing and splitting {#string-parsing-and-splitting}
 
 ###### toNumber(s) {#tonumbers}
 
-Returns a string converted to a number. Will attempt to convert other formats into a string, then into a number. If the value is already a number, it will return the number.
+文字列 s を数値に変換します。まず文字列として解釈し、その後数値に変換する処理が試みられます。すでに数値ならそのまま返ります。
 
 ###### split(s, s or p sep, b preserveTokens (optional)) {#splits-s-or-p-sep-b-preservetokens-optional}
 
-Returns the array of strings obtained by splitting s by sep. The separator can be either a string or a regex pattern. For example, `"fire, water, earth, air".split(",")` returns an array of 4 strings: [ "fire", " water", " earth", " air" ]. Note that the space characters are retained but the separator is removed. If you include “true” for the preserveTokens boolean, empty segments are preserved.
+文字列 s を sep（文字列または正規表現）で分割し、結果の文字列配列を返します。例: `"fire, water, earth, air".split(",")` は `[ "fire", " water", " earth", " air" ]`（区切り文字は除かれますが空白は残ります）。`preserveTokens` を true にすると空の要素も保持します。
 
 ###### splitByLengths(s, n1, n2, ...) {#splitbylengthss-n1-n2}
 
-Returns the array of strings obtained by splitting s into substrings with the given lengths. For example, `"internationalization".splitByLengths(5, 6, 3)` returns an array of 3 strings: [ "inter", "nation", "ali" ]. Excess characters are discarded from the output array.
+指定した長さごとに文字列を分割し、配列で返します。例: `"internationalization".splitByLengths(5, 6, 3)` は `[ "inter", "nation", "ali" ]` になります。余った文字は破棄されます。
 
-Like other functions that return an array, it also allows array slicing on the returned array. In that case, it returns the array consisting of a subset of elements between i1 and (i2 – 1).
-For example,
+配列を返す関数のため、返り値に対して配列スライスも利用できます。例:
 
 |Expression|Result|
 |-|-|
-|`"internationalization".splitByLengths(5, 6, 3)[0,3]` |Returns an array of 3 strings: [ "inter", "nation", “ali” .|
-|`"internationalization".splitByLengths(5, 6, 3)[0,2]` |Returns an array of 2 strings: [ "inter", "nation" ]|
-|`"internationalization".splitByLengths(5, 6, 3)[1,3]` |Returns an array of 2 string: [ "nation", “ali” ]|
-|`"internationalization".splitByLengths(5, 6, 3)[1]` |Returns string at position 1: "nation" |
+|`"internationalization".splitByLengths(5, 6, 3)[0,3]` |3 要素の配列 `[ "inter", "nation", "ali" ]`|
+|`"internationalization".splitByLengths(5, 6, 3)[0,2]` |2 要素の配列 `[ "inter", "nation" ]`|
+|`"internationalization".splitByLengths(5, 6, 3)[1,3]` |2 要素 `[ "nation", "ali" ]`|
+|`"internationalization".splitByLengths(5, 6, 3)[1]` |インデックス 1 の文字列 `"nation"`|
 
 ###### smartSplit(s, s or p sep (optional)) {#smartsplits-s-or-p-sep-optional}
 
-Returns the array of strings obtained by splitting s by sep, or by guessing either tab or comma separation if there is no sep given. Handles quotes properly and understands cancelled characters. The separator can be either a string or a regex pattern. For example, `value.smartSplit("\n")` will split at a carriage return or a new-line character.
+sep が指定されていない場合はタブやカンマを推測し、引用符やエスケープ文字にも対応して文字列を分割し、配列を返します。例: `value.smartSplit("
+")` は改行ごとに分割します。
 
-Note: [`value.escape('javascript')`](#escapes-s-mode) is useful for previewing unprintable characters prior to using smartSplit().
+:::info
+`value.escape('javascript')` を使うと、非表示文字を可視化してから smartSplit() を使うのに便利です。
+:::
 
 ###### splitByCharType(s) {#splitbychartypes}
 
-Returns an array of strings obtained by splitting s into groups of consecutive characters each time the characters change [Unicode categories](https://en.wikipedia.org/wiki/Unicode_character_property#General_Category). For example, `"HenryCTaylor".splitByCharType()` will result in an array of [ "H", "enry", "CT", "aylor" ]. It is useful for separating letters and numbers: `"BE1A3E".splitByCharType()` will result in [ "BE", "1", "A", "3", "E" ].
+文字カテゴリ（Unicode General Category）が切り替わるたびに文字列を分割し、配列として返します。例: `"HenryCTaylor".splitByCharType()` は `[ "H", "enry", "CT", "aylor" ]`、`"BE1A3E".splitByCharType()` は `[ "BE", "1", "A", "3", "E" ]` になります。
 
 ###### partition(s, s or p fragment, b omitFragment (optional)) {#partitions-s-or-p-fragment-b-omitfragment-optional}
 
-Returns an array of strings [ a, fragment, z ] where a is the substring within s before the first occurrence of fragment, and z is the substring after fragment. Fragment can be a string or a regex. For example, `"internationalization".partition("nation")` returns 3 strings: [ "inter", "nation", "alization" ]. If s does not contain fragment, it returns an array of [ s, "", "" ] (the original unpartitioned string, and two empty strings). 
+文字列 s の、最初の fragment の前後と fragment 自体からなる配列 `[ a, fragment, z ]` を返します。fragment は文字列または正規表現です。例: `"internationalization".partition("nation")` は `[ "inter", "nation", "alization" ]` を返します。fragment が見つからないときは `[ s, "", "" ]` です。
 
-If the omitFragment boolean is true, for example with `"internationalization".partition("nation", true)`, the fragment is not returned. The output is [ "inter", "alization" ].
+omitFragment を true にすると fragment は返されず `[ "inter", "alization" ]` になります。
 
-As an example of using a regex for the fragment, the expression `"abcdefgh".partition(/c.e/)` will output  ["ab", "cde", "fgh" ].
+正規表現 fragment の例: `"abcdefgh".partition(/c.e/)` は `[ "ab", "cde", "fgh" ]` を返します。
 
 ###### rpartition(s, s or p fragment, b omitFragment (optional)) {#rpartitions-s-or-p-fragment-b-omitfragment-optional}
 
-Returns an array of strings [ a, fragment, z ] where a is the substring within s before the last occurrence of fragment, and z is the substring after the last instance of fragment. (Rpartition means “reverse partition.”) For example, `"parallel".rpartition("a")` returns 3 strings: [ "par", "a", "llel" ]. Otherwise works identically to partition() above.
+文字列すべてではなく、最後に現れる fragment で分割して `[ a, fragment, z ]` を返します。例: `"parallel".rpartition("a")` は `[ "par", "a", "llel" ]`。他は partition と同じです。
 
+"改善された"partition と考えることができます。
 ### Encoding and hashing {#encoding-and-hashing}
 
 ###### diff(s1, s2, s timeUnit (optional)) {#diffs1-s2-s-timeunit-optional}
 
-Takes two strings and compares them, returning a string. Returns the remainder of s2 starting with the first character where they differ. For example, `"cacti".diff("cactus")` returns "us". Also works with dates; see [Date functions](#diffd1-d2-s-timeunit).
+2 つの文字列を比較し、異なる最初の位置から s2 の残りの部分を返します。例: `"cacti".diff("cactus")` は "us" を返します。日付にも使えます（[Date functions](#diffd1-d2-s-timeunit) 参照）。
 
 ###### escape(s, s mode) {#escapes-s-mode}
 
-Escapes s in the given escaping mode. The mode can be one of: "html", "xml", "csv", "url", "javascript". Note that quotes are required around your mode. See the [recipes](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#question-marks--showing-in-your-data) for examples of escaping and unescaping.
+指定したモード（"html", "xml", "csv", "url", "javascript"）で文字列 s をエスケープします。モード名は引用符で囲んでください。[レシピ](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#question-marks--showing-in-your-data) で escaping/unescaping の例を紹介しています。
 
 ###### unescape(s, s mode) {#unescapes-s-mode}
 
-Unescapes s in the given escaping mode. The mode can be one of: "html", "xml", "csv", "url", "javascript". Note that quotes are required around your mode. See the [recipes](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#atampampt----att) for examples of escaping and unescaping. 
+指定したモードでエスケープされた文字列 s を元に戻します。モードは escape と同じく引用符が必要です。[レシピ](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#atampampt----att) を参照してください。
 
 ###### encode(s, s encoding) {#encodes-s-encoding}
 
-Encodes the string, s in the specified encoding. The encoding can be one of: "base16", "base32", "base32hex", "base64", "base64url". For example, `encode("abc", "base64")` returns "YWJj".
+文字列 s を指定したエンコーディング（"base16", "base32", "base32hex", "base64", "base64url"）でエンコードします。例: `encode("abc", "base64")` は "YWJj" です。
 
-This function is available since OpenRefine 3.6.
+この関数は OpenRefine 3.6 以降で利用できます。
 
 ###### decode(s, s encoding) {#decodes-s-encoding}
 
-Decodes the string, s in the specified encoding. The encoding can be one of: "base16", "base32", "base32hex", "base64", "base64url". For example, `decode("YWJj", "base64")` returns "abc".
+指定したエンコーディングから文字列 s をデコードします。例: `decode("YWJj", "base64")` は "abc" です。
 
-This function is available since OpenRefine 3.6.
+この関数も OpenRefine 3.6 以降で利用可能です。
 
 ###### md5(o) {#md5o}
 
-Returns the [MD5 hash](https://en.wikipedia.org/wiki/MD5) of an object. If fed something other than a string (array, number, date, etc.), md5() will convert it to a string and deliver the hash of the string. For example, `"internationalization".md5()` will return 2c55a1626e31b4e373ceedaa9adc12a3.
+オブジェクトの [MD5 ハッシュ](https://en.wikipedia.org/wiki/MD5) を返します。文字列以外（配列・数値・日付など）でも文字列化したうえでハッシュを計算します。例: `"internationalization".md5()` は `2c55a1626e31b4e373ceedaa9adc12a3` になります。
 
 ###### sha1(o) {#sha1o}
 
-Returns the [SHA-1 hash](https://en.wikipedia.org/wiki/SHA-1) of an object. If fed something other than a string (array, number, date, etc.), sha1() will convert it to a string and deliver the hash of the string. For example, `"internationalization".sha1()` will return cd05286ee0ff8a830dbdc0c24f1cb68b83b0ef36.
+オブジェクトの [SHA-1 ハッシュ](https://en.wikipedia.org/wiki/SHA-1) を返します。同じく文字列以外を文字列化して計算します。例: `"internationalization".sha1()` は `cd05286ee0ff8a830dbdc0c24f1cb68b83b0ef36` です。
 
 ###### phonetic(s, s encoding) {#phonetics-s-encoding}
 
-Returns a phonetic encoding of a string, based on an available phonetic algorithm. See the [section on phonetic clustering](cellediting#clustering-methods) for more information. Can be one of the following supported phonetic methods: [metaphone, doublemetaphone, metaphone3](https://www.wikipedia.org/wiki/Metaphone), [soundex](https://en.wikipedia.org/wiki/Soundex), [cologne-phonetic](https://en.wikipedia.org/wiki/Cologne_phonetics), [daitch-mokotoff](https://en.wikipedia.org/wiki/Daitch%E2%80%93Mokotoff_Soundex), [beider-morse](https://en.wikipedia.org/wiki/Daitch%E2%80%93Mokotoff_Soundex#Beider%E2%80%93Morse_Phonetic_Name_Matching_Algorithm). Quotes are required around your encoding method. For example, `"Ruth Prawer Jhabvala".phonetic("metaphone")` outputs the string “R0PRWRJHBFL”.  
+利用可能な音声アルゴリズムにより、文字列の音声符号を返します。[クラスタリングの音声手法](cellediting#clustering-methods) を参照してください。利用できる手法には [metaphone/doublemetaphone/metaphone3](https://www.wikipedia.org/wiki/Metaphone)、[soundex](https://en.wikipedia.org/wiki/Soundex)、[cologne-phonetic](https://en.wikipedia.org/wiki/Cologne_phonetics)、[daitch-mokotoff](https://en.wikipedia.org/wiki/Daitch%E2%80%93Mokotoff_Soundex)、[beider-morse](https://en.wikipedia.org/wiki/Daitch%E2%80%93Mokotoff_Soundex#Beider%E2%80%93Morse_Phonetic_Name_Matching_Algorithm) などがあります。エンコーディング名は引用符で囲んでください。例: `"Ruth Prawer Jhabvala".phonetic("metaphone")` は “R0PRWRJHBFL” を返します。
 
 ###### reinterpret(s, s encoderTarget, s encoderSource) {#reinterprets-s-encodertarget-s-encodersource}
 
-Returns s reinterpreted through the given character encoders. You must supply one of the [supported encodings](http://java.sun.com/j2se/1.5.0/docs/guide/intl/encoding.doc.html) for each of the original source and the target output. Note that quotes are required around your character encoder.
+文字列 s を指定したエンコーダーで再解釈します。ターゲットとソースの両方に [サポートされるエンコーディング](http://java.sun.com/j2se/1.5.0/docs/guide/intl/encoding.doc.html) を指定し、引用符で囲んでください。
 
-When an OpenRefine project is started, data is imported and interpreted. A specific character encoding is identified or manually selected at that time (such as UTF-8). You can reinterpret a column into another specificed encoding using this function. This function may not fix your data; it may be better to use this in conjunction with new projects to test the interpretation, and pre-format your data as needed. 
+OpenRefine はプロジェクト開始時にデータをインポートしてエンコーディングを解釈します（例: UTF-8）。reinterpret() を使えば、列を別のエンコーディングで再解釈できますが、データ修復の万能薬ではないため、必要なら新しいプロジェクトで試してから使用するのがよいでしょう。
 
 ###### fingerprint(s) {#fingerprints}
 
-Returns the fingerprint of s, a string that is the first step in [fingerprint clustering methods](cellediting#clustering-methods): it will trim whitespaces, convert all characters to lowercase, remove punctuation, sort words alphabetically, etc. For example, `"Ruth  Prawer    Jhabvala".fingerprint()` outputs the string “jhabvala prawer ruth”.
+`s` の fingerprint（クラスタリングで前処理される値）を返します。空白のトリム・小文字化・句読点除去・単語のアルファベット順ソートなどを行います。例: `"Ruth  Prawer    Jhabvala".fingerprint()` は “jhabvala prawer ruth” になります。
 
 ###### ngram(s, n) {#ngrams-n}
 
-Returns an array of the word n-grams of s. That is, it lists all the possible consecutive combinations of n words in the string. For example, `"Ruth Prawer Jhabvala".ngram(2)` would output the array [ "Ruth Prawer", "Prawer Jhabvala" ]. A word n-gram of 1 simply lists all the words in original order; an n-gram larger than the number of words in the string will only return the original string inside an array (e.g. `"Ruth Prawer Jhabvala".ngram(4)` would simply return ["Ruth Prawer Jhabvala"]).
+単語の n-gram 配列を返します。例: `"Ruth Prawer Jhabvala".ngram(2)` は `[ "Ruth Prawer", "Prawer Jhabvala" ]`。n=1 なら単語のリスト、n が単語数を超えると元の文字列をひとつの配列要素として返します。
 
 ###### ngramFingerprint(s, n) {#ngramfingerprints-n}
 
-Returns the [n-gram fingerprint](cellediting#clustering-methods) of s. For example, `"banana".ngram(2)` would output “anbana”, after first generating the 2-grams “ba an na an na”, removing duplicates, and sorting them alphabetically.
+[n-gram fingerprint](cellediting#clustering-methods) を返します。例: `"banana"` は 2-gram を生成し、重複削除・ソート後に “anbana” を返します。
 
 ###### unicode(s) {#unicodes}
 
-Returns an array of strings describing each character of s in their full unicode notation. For example, `"Bernice Rubens".unicode()` outputs [ 66, 101, 114, 110, 105, 99, 101, 32, 82, 117, 98, 101, 110, 115 ].
+文字列 s に含まれる各文字の Unicode 十進コードを配列で返します。例: `"Bernice Rubens".unicode()` は `[ 66, 101, 114, 110, 105, 99, 101, 32, 82, 117, 98, 101, 110, 115 ]`。
 
 ###### unicodeType(s) {#unicodetypes}
 
-Returns an array of strings describing each character of s by their unicode type. For example, `"Bernice Rubens".unicodeType()` outputs [ "uppercase letter", "lowercase letter", "lowercase letter", "lowercase letter", "lowercase letter", "lowercase letter", "lowercase letter", "space separator", "uppercase letter", "lowercase letter", "lowercase letter", "lowercase letter", "lowercase letter", "lowercase letter" ].
-
+各文字の Unicode 型（カテゴリ）を配列で返します。例: `"Bernice Rubens".unicodeType()` は `[ "uppercase letter", "lowercase letter", … ]` などになります。
 ### Translating
 
 ###### detectLanguage(s) {#detectlanguages}
 
-Returns a string locale describing the language of s, with support for 71 languages as stated [here](https://github.com/optimaize/language-detector#71-built-in-language-profiles). For example, `"Hello, world!".detectLanguage()` outputs "en".
-
-This function is available since OpenRefine 3.6.
-
+文字列 s の言語を判定し、ロケール（71 言語対応）を返します。例: `"Hello, world!".detectLanguage()` は `"en"` を返します。
 ## Format-based functions (JSON, HTML, XML) {#format-based-functions-json-html-xml}
 
 ###### jsonize(o) {#jsonizeo}
 
-Quotes a value as a JSON literal value.
+値 o を JSON リテラルとして引用します。
 
 ###### parseJson(s) {#parsejsons}
 
-Parses a string as JSON. get() can then be used with parseJson(): for example, `parseJson(" { 'a' : 1 } ").get("a")` returns 1.
+文字列 s を JSON として解析します。結果に `get()` を使えるため、`parseJson("{ 'a' : 1 }").get("a")` は 1 を返します。
 
-For example, from the following JSON array in `value`, we want to get all instances of “keywords” having the same object string name of “text”, and combine them, using the forEach() function to iterate over the array.
+たとえば `value` に以下の JSON オブジェクトがあり、「text」プロパティを持つ `keywords` をすべて取り出して連結したいとします。`forEach()` で配列を走査できます。
 
 ```json
     {
@@ -347,248 +345,254 @@ For example, from the following JSON array in `value`, we want to get all instan
     }
 ```
 
-The GREL expression `forEach(value.parseJson().keywords,v,v.text).join(":::")` will output “York en route:::Anthony Eden:::President Eisenhower”.
-
+`forEach(value.parseJson().keywords, v, v.text).join(":::")` のように書けば `York en route:::Anthony Eden:::President Eisenhower` を返します。
 ### Jsoup XML and HTML parsing {#jsoup-xml-and-html-parsing}
 
 ###### parseHtml(s) {#parsehtmls}
-Given a cell full of HTML-formatted text, parseHtml() simplifies HTML tags (such as by removing “ /” at the end of self-closing tags), closes any unclosed tags, and inserts linebreaks and indents for cleaner code. You cannot pass parseHtml() a URL, but you can pre-fetch HTML with the <span class="menuItems">[Add column by fetching URLs](columnediting#add-column-by-fetching-urls)</span> menu option. 
 
-A cell cannot store the output of parseHtml() unless you convert it with toString(): for example, `value.parseHtml().toString()`. 
+HTML を含むセルを解析し、自己終了タグの末尾の “ /” を削除したり、閉じていないタグを補完したり、改行・インデントを挿入して整形します。URL を直接渡すことはできませんが、<span class="menuItems">[Add column by fetching URLs](columnediting#add-column-by-fetching-urls)</span> で事前に取得した HTML を解析できます。
 
-When parseHtml() simplifies HTML, it can sometimes introduce errors. When closing tags, it makes its best guesses based on line breaks, indentation, and the presence of other tags. You may need to manually check the results. 
+`parseHtml()` の結果はセルにそのまま保持されないので、`toString()` などで文字列化してください（例: `value.parseHtml().toString()`）。
 
-You can then extract or [select()](#selects-element) which portions of the HTML document you need for further splitting, partitioning, etc. An example of extracting all table rows from a div using parseHtml().select() together is described more in depth at [StrippingHTML](https://github.com/OpenRefine/OpenRefine/wiki/StrippingHTML).
+HTML を整形する過程では推測を行うため、タグの補完で意図しない結果になることもあるので、必要に応じて手動で確認してください。
+
+その後、[select()](#selects-element) を使って必要な要素を抽出し、分割・partition などの処理に渡せます。`parseHtml().select()` で div 以下の tr を抽出する例は [StrippingHTML](https://github.com/OpenRefine/OpenRefine/wiki/StrippingHTML) を参照してください。
 
 ###### parseXml(s) {#parsexmls}
-Given a cell full of XML-formatted text, parseXml() returns a full XML document and adds any missing closing tags. You can then extract or [select()](#selects-element) which portions of the XML document you need for further splitting, partitioning, etc. Functions the same way as parseHtml() is described above. 
+
+XML を含むセルを解析し、不足している閉じタグを補いつつ XML ドキュメントを返します。以後は parseHtml と同様に [select()](#selects-element) と組み合わせて任意の部分を抽出できます。
 
 ###### select(s, element) {#selects-element}
-Returns an array of all the desired elements from an HTML or XML document, if the element exists. Elements are identified using the [Jsoup selector syntax](https://jsoup.org/apidocs/org/jsoup/select/Selector.html). For example, `value.parseHtml().select("img.portrait")[0]` would return the entirety of the first “img” tag with the “portrait” class found in the parsed HTML inside `value`. Returns an empty array if no matching element is found. Use with toString() to capture the results in a cell. A tutorial of select() is shown in [StrippingHTML](https://github.com/OpenRefine/OpenRefine/wiki/StrippingHTML).
 
-You can use select() more than once:
+HTML や XML ドキュメントから Jsoup セレクタ（https://jsoup.org/apidocs/org/jsoup/select/Selector.html）で一致した要素をすべて配列で返します。例: `value.parseHtml().select("img.portrait")[0]` は、parsed HTML 内の最初の `img` タグ（class=portrait）を返します。見つからなければ空配列です。`toString()` と組み合わせてセルに保存します。チュートリアルは [StrippingHTML](https://github.com/OpenRefine/OpenRefine/wiki/StrippingHTML) にあります。
+
+複数回 select() をチェーンできます:
 
 ```
 value.parseHtml().select("div#content")[0].select("tr").toString()
 ```
 
 ###### htmlAttr(s, element) {#htmlattrs-element}
-Returns a string from an attribute on an HTML element. Use it in conjunction with parseHtml() as in the following example: `value.parseHtml().select("a.email")[0].htmlAttr("href")` would retrieve the email address attached to a link with the “email” class.
+
+HTML 要素の属性値を文字列で返します。例: `value.parseHtml().select("a.email")[0].htmlAttr("href")` は email クラスのリンクの href を返します。
 
 ###### xmlAttr(s, element) {#xmlattrs-element}
-Returns a string from an attribute on an XML element. Functions the same way htmlAttr() is described above. Use it in conjunction with parseXml().
+
+XML 要素の属性値を返します。htmlAttr と同様に parseXml() と組み合わせて使います。
 
 ###### htmlText(element) {#htmltextelement}
-Returns a string of the text from within an HTML element (including all child elements), removing HTML tags and line breaks inside the string. Use it in conjunction with parseHtml() and select() to provide an element, as in the following example: `value.parseHtml().select("div.footer")[0].htmlText()`. 
+
+HTML 要素（子要素を含む）のテキストのみを取り出し、HTML タグや改行を除いた文字列を返します。例: `value.parseHtml().select("div.footer")[0].htmlText()`。
 
 ###### xmlText(element) {#xmltextelement}
-Returns a string of the text from within an XML element (including all child elements). Functions the same way htmlText() is described above. Use it in conjunction with parseXml() and select() to provide an element.
+
+XML 要素（子要素含む）のテキストを返します。htmlText と同様に parseXml() と select() で使います。
 
 ###### wholeText(element) {#wholetextelement}
 
-Selects the (unencoded) text of an element and its children, including any new lines and spaces, and returns a string of unencoded, un-normalized text. Use it in conjunction with parseHtml() and select() to provide an element as in the following example: `value.parseHtml().select("div.footer")[0].wholeText()`.
+要素とその子要素に含まれる非エンコードのテキスト（改行・空白を含む）をそのまま返します。例: `value.parseHtml().select("div.footer")[0].wholeText()`。
 
-This function is available since OpenRefine 3.5.
+この関数は OpenRefine 3.5 以降で利用できます。
 
 ###### innerHtml(element) {#innerhtmlelement}
-Returns the [inner HTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) of an HTML element. This will include text and children elements within the element selected. Use it in conjunction with parseHtml() and select() to provide an element.
+
+HTML 要素の [inner HTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) を返します。子要素も含めた HTML コードです。parseHtml() と select() の結果を渡します。
 
 ###### innerXml(element) {#innerxmlelement}
-Returns the inner XML elements of an XML element. Does not return the text directly inside your chosen XML element - only the contents of its children. To select the direct text, use ownText(). To select both, use xmlText(). Use it in conjunction with parseXml() and select() to provide an element.
+
+XML 要素の内側にある子要素（テキストではない）を返します。直接のテキストを取り出すには ownText()、両方を得たいときは xmlText() を使います。
 
 ###### ownText(element) {#owntextelement}
-Returns the text directly inside the selected XML or HTML element only, ignoring text inside children elements (for this, use innerXml()). Use it in conjunction with a parser and select() to provide an element.
+
+指定した HTML/XML 要素の直下にあるテキストだけを返します（子要素内のテキストは含まない）。parseHtml()/parseXml() と select() と組み合わせて使います。
 
 ###### parent(element) {#parentelement}
-Returns the parent node or null if no parent. Use it in conjunction with parseHtml() and select() to provide an element.
 
-This function is available since OpenRefine 3.6.
+要素の親ノードを返します。親がなければ null。
 
+この関数は OpenRefine 3.6 以降で利用できます。
 ### URI parsing {#uri-parsing}
 
 ###### parseUri(s) {#parseUris}
-Given a valid URI string (for example: https://www.openrefine.org:80/documentation#download?format=xml&os=mac), parseUri() returns a JSON object with the following properties:
- - `scheme`: The scheme of the URI, e.g. `http`
- - `host`: the host of the URI (e.g. `www.openrefine.org`)
- - `port`: the port of the URI (e.g. `80`)
- - `path`: the path of the URI (e.g. `/documentation`)
- - `query`: the query of the URI (e.g. `format=xml&os=mac`)
- - `authority`: the authority of the URI (e.g. `www.openrefine.org:80`)
- - `fragment`: the fragment of the URI (e.g. `download`)
- - `query_params`: the query of the URI as an object (e.g. `{format: "xml", os: "mac"}`)
 
-This function is available since OpenRefine 3.6.
-
+有効な URI（例: `https://www.openrefine.org:80/documentation#download?format=xml&os=mac`）を解析し、以下のプロパティを持つ JSON オブジェクトを返します:
+ - `scheme`: URI のスキーム（例: `http`）
+ - `host`: ホスト名（例: `www.openrefine.org`）
+ - `port`: ポート番号（例: `80`）
+ - `path`: パス（例: `/documentation`）
+ - `query`: クエリ文字列（例: `format=xml&os=mac`）
+ - `authority`: 権限部分（例: `www.openrefine.org:80`）
+ - `fragment`: フラグメント（例: `download`）
+ - `query_params`: クエリを JSON オブジェクトにしたもの（例: `{format: "xml", os: "mac"}`）
 ## Array functions {#array-functions}
 
 ###### length(a) {#lengtha}
-Returns the size of an array, meaning the number of objects inside it. Arrays can be empty, in which case length() will return 0. 
+
+配列 a の要素数を返します。
 
 ###### slice(a, n from, n to (optional)) {#slicea-n-from-n-to-optional}
-Returns a sub-array of a given array, from the first index provided and up to and excluding the optional last index provided. Remember that array objects are indexed starting at 0. If the to value is omitted, it is understood to be the end of the array. For example, `[0, 1, 2, 3, 4].slice(1, 3)` returns [ 1, 2 ], and `[ 0, 1, 2, 3, 4].slice(2)` returns [ 2, 3, 4 ]. Also works with strings; see [String functions](#slices-n-from-n-to-optional).
+
+配列 a からインデックス `from` から `to`（未満）までの部分配列を返します。to を省略すると末尾までです。
 
 ###### get(a, n from, n to (optional)) {#geta-n-from-n-to-optional}
-Returns a sub-array of a given array, from the first index provided and up to and excluding the optional last index provided. Remember that array objects are indexed starting at 0. 
 
-If the to value is omitted, only one array item is returned, as a string, instead of a sub-array. To return a sub-array from one index to the end, you can set the to argument to a very high number such as `value.get(2,999)` or you can use something like `with(value,a,a.get(1,a.length()))` to count the length of each array.
-
-Also works with strings; see [String functions](#gets-n-from-n-to-optional).
+配列 a の `from` から `to-1` までの部分配列・要素を返します。文字列と同じく負のインデックスも使えます。
 
 ###### inArray(a, s) {#inarraya-s}
-Returns true if the array contains the desired string, and false otherwise. Will not convert data types; for example, `[ 1, 2, 3, 4 ].inArray("3")` will return false.
+
+文字列 s が配列 a に含まれるかを真偽値で返します。
 
 ###### reverse(a) {#reversea}
-Reverses the array. For example, `[ 0, 1, 2, 3].reverse()` returns the array [ 3, 2, 1, 0 ].
+
+配列 a を逆順にして返します。
 
 ###### sort(a) {#sorta}
-Sorts the array in ascending order. Sorting is case-sensitive, uppercase first and lowercase second. For example, `[ "al", "Joe", "Bob", "jim" ].sort()` returns the array [ "Bob", "Joe", "al", "jim" ]. 
+
+配列 a を昇順に並び替えて返します。
 
 ###### sum(a) {#suma}
-Return the sum of the numbers in the array. For example, `[ 2, 1, 0, 3 ].sum()` returns 6.
+
+数値の配列 a の合計を返します。
 
 ###### join(a, sep) {#joina-sep}
-Joins the items in the array with sep, and returns it all as a string. For example, `[ "and", "or", "not" ].join("/")` returns the string “and/or/not”.
+
+配列 a の要素を sep で連結した文字列を返します。
 
 ###### uniques(a) {#uniquesa}
-Returns the array with duplicates removed. Case-sensitive. For example, `[ "al", "Joe", "Bob", "Joe", "Al", "Bob" ].uniques()` returns the array [ "Joe", "al", "Al", "Bob" ]. 
 
-As of OpenRefine 3.4.1, uniques() reorders the array items it returns; in 3.4 beta 644 and onwards, it preserves the original order (in this case, [ "al", "Joe", "Bob", "Al" ]).
+配列 a の重複を取り除いた要素を返します。
 
 ###### zip(a, b, …) {#zipa-b}
 
-Combines multiple arrays into one array of arrays, where each sub-array contains elements at the same index from the input arrays. Truncates to the shortest input array.
-For example, `[1, 2, 3].zip(['A', 'B', 'C'])` returns [ [1, 'A'], [2, 'B'], [3, 'C'] ].
-
+複数の配列を同じインデックスごとにまとめ、配列の配列として返します。例: `zip([1, 2], ["a", "b"])` は `[ [1, "a"], [2, "b"] ]` を返します。
 ## Date functions {#date-functions}
 
 ###### now() {#now}
 
-Returns the date object according to your system clock. For example, `now()` returns [date 2020-11-26T15:53:00Z] and `now.toString()` returns `"Nov 26, 2020"`.
+システム時刻に基づく日付オブジェクトを返します。`now()` は `[date 2020-11-26T15:53:00Z]` のような値になり、`now.toString()` は `"Nov 26, 2020"` になります。
 
 ###### toDate(o, b monthFirst, s format1, s format2, ...) {#todateo-b-monthfirst-s-format1-s-format2-}
 
-Returns the inputted object converted to a date object. Without arguments, it returns the ISO 8601 extended format. With arguments, you can control the output format:
-*   monthFirst: set false if the date is formatted with the day before the month.
-*   formatN: attempt to parse the date using an ordered list of possible formats. Supply formats based on the [SimpleDateFormat](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) syntax (and see the table below for a handy reference). 
+オブジェクト o を日付オブジェクトに変換します。引数なしなら ISO 8601 拡張形式を返します。引数を指定すると書式を制御できます:
+* `monthFirst`: 月が先の場合は true（デフォルト）、日が先なら false
+* `formatN`: [SimpleDateFormat](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) 構文で指定した候補書式の順にパースを試みます
 
-For example, you can parse a column containing dates in different formats, such as cells with “Nov-09” and “11/09”, using `value.toDate('MM/yy','MMM-yy').toString('yyyy-MM')` and both will output “2009-11”. For another example, “1/4/2012 13:30:00” can be parsed into a date using `value.toDate('d/M/y H&#58;m&#58;s')`. If parsing a date with text components in a language other than your system language you can specify a language code as the format1 argument. For example, a French language date such as "10 janvier 2023" could be parsed with `value.toDate('fr','dd MMM yyyy')`.
+たとえば “Nov-09” や “11/09” の混在する列では `value.toDate('MM/yy','MMM-yy').toString('yyyy-MM')` とすれば両者とも “2009-11” になります。また “1/4/2012 13:30:00” は `value.toDate('d/M/y H\:m\:s')` でパースできます。テキストで言語が異なる場合は `format1` に言語コードを渡します。たとえばフランス語 “10 janvier 2023” は `value.toDate('fr','dd MMM yyyy')` で処理できます。
 
-| Letter | Date or Time Component | Presentation | Examples |
+| 文字 | 日付/時刻要素 | 表示 | 例 |
 |-|-|-|-|
-| G | Era designator | Text | AD |
-| u | Year | Year | 1996; 96 |
-| y | year-of-era | year | 1996; 96 |
-| M/L | Month in year | Number/text |7; 07; Jul; July; J |
-| Q/q | quarter-of-year | number/text | 3; 03; Q3; 3rd quarter |
-| Y | week-based-year | year | 1996;96 | 
-| w | Week in year | Number | 27 |
-| W | Week in month | Number | 2 |
-| D | Day in year | Number | 189 |
-| d | Day in month | Number | 10 |
-| F | Day of week in month | Number | 2 |
-| E | Day name in week | Text | Tuesday; Tue |
-| e/c | localized day-of-week | number/text | 2; 02; tue; tuesday; T |
-| a | AM/PM marker | Text | PM |
-| H | Hour in day (0-23) | Number | 0 |
-| k | Hour in day (1-24) | Number | 24 |
-| K | Hour in AM/PM (0-11) | Number | 0 |
-| h | Hour in AM/PM (1-12) | Number | 12 |
-| m | Minute in hour | Number | 30 |
-| s | Second in minute | Number | 55 |
-| S | Millisecond | Number | 978 |
-| n | Nanosecond | Number | 789000 |
-| z | Time zone | General time zone | Pacific Standard Time; PST; GMT-08:00 |
-| Z | Time zone | RFC 822 time zone | \-0800 |
-| X | Time zone | ISO 8601 time zone | \-08; -0800; -08:00 |
+| G | Era 指示子 | テキスト | AD |
+| u | Year | 年 | 1996; 96 |
+| y | year-of-era | 年 | 1996; 96 |
+| M/L | Month | 数値/テキスト | 7; 07; Jul; July; J |
+| Q/q | quarter-of-year | 数値/テキスト | 3; 03; Q3; 3rd quarter |
+| Y | week-based-year | 年 | 1996; 96 |
+| w | Week in year | 数値 | 27 |
+| W | Week in month | 数値 | 2 |
+| D | Day in year | 数値 | 189 |
+| d | Day in month | 数値 | 10 |
+| F | Day of week in month | 数値 | 2 |
+| E | Day name in week | テキスト | Tuesday; Tue |
+| e/c | localized day-of-week | 数値/テキスト | 2; 02; tue; tuesday; T |
+| a | AM/PM | テキスト | PM |
+| H | Hour in day (0-23) | 数値 | 0 |
+| k | Hour in day (1-24) | 数値 | 24 |
+| K | Hour in AM/PM (0-11) | 数値 | 0 |
+| h | Hour in AM/PM (1-12) | 数値 | 12 |
+| m | Minute in hour | 数値 | 30 |
+| s | Second in minute | 数値 | 55 |
+| S | Millisecond | 数値 | 978 |
+| n | Nanosecond | 数値 | 789000 |
+| z | Time zone | 一般的なタイムゾーン | Pacific Standard Time; PST; GMT-08:00 |
+| Z | Time zone | RFC 822 表記 | -0800 |
+| X | Time zone | ISO 8601 表記 | -08; -0800; -08:00 |
 
 ###### diff(d1, d2, s timeUnit) {#diffd1-d2-s-timeunit}
 
-Given two dates, returns a number indicating the difference in a given time unit (see the table below). For example, `diff(("Nov-11".toDate('MMM-yy')), ("Nov-09".toDate('MMM-yy')), "weeks")` will return 104, for 104 weeks, or two years. The later date should go first. If the output is negative, invert d1 and d2.
+2 つの日付の差を timeUnit（下表参照）で数値として返します。例: `diff(("Nov-11".toDate('MMM-yy')), ("Nov-09".toDate('MMM-yy')), "weeks")` は 104（週）つまり 2 年になります。後の日付を先にし、結果が負なら d1 と d2 を逆にしてください。
 
-Also works with strings; see [diff() in string functions](#diffsd1-sd2-s-timeunit-optional).
+文字列も扱えます（[String functions の diff](#diffsd1-sd2-s-timeunit-optional)）。
 
 ###### inc(d, n, s timeUnit) {#incd-n-s-timeunit}
 
-Returns a date changed by the given amount in the given unit of time (see the table below). The default unit is “hour”. A positive value increases the date, and a negative value moves it back in time. For example, if you want to move a date backwards by two months, use `value.inc(-2,"month")`.
+日付 d を指定した timeUnit だけ増減します（デフォルトは "hour"）。正の値で未来、負の値で過去へ移動します。たとえば 2 か月前に移動するには `value.inc(-2, "month")` を使います。
 
 ###### datePart(d, s timeUnit) {#datepartd-s-timeunit}
 
-Returns part of a date. The data type returned depends on the unit (see the table below). 
+timeUnit に応じた日付要素を返します（下表参照）。戻り値の型は要素によって異なります。
 
-OpenRefine supports the following values for timeUnit:
-
-| Unit | Date part returned | Returned data type | Example using [date 2014-03-14T05:30:04.000789000Z] as value |
+| Unit | 戻り値の要素 | 型 | 例（`[date 2014-03-14T05:30:04.000789000Z]` を value とした場合） |
 |-|-|-|-|
-| years, year | Year | Number | value.datePart("years") → 2014 |
-| months, month | Month | Number | value.datePart("months") → 2 |
-| weeks, week, w | Week of the month | Number | value.datePart("weeks") → 3 |
-| days, day, d | Day of the month | Number | value.datePart("days") → 14 |
-| weekday | Day of the week | String | value.datePart("weekday") → Friday |
-| hours, hour, h | Hour | Number | value.datePart("hours") → 5 |
-| minutes, minute, min | Minute | Number | value.datePart("minutes") → 30 |
-| seconds, sec, s | Seconds | Number | value.datePart("seconds") → 04 |
-| milliseconds, ms, S | Millseconds | Number | value.datePart("milliseconds") → 789 |
-| nanos, nano, n | Nanoseconds | Number | value.datePart("n") → 789000 |
-| time | Milliseconds between input and the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time) | Number | value.datePart("time") → 1394775004000 |
+| years/year | 年 | 数値 | value.datePart("years") → 2014 |
+| months/month | 月 | 数値 | value.datePart("months") → 2 |
+| weeks/week/w | 月内の週 | 数値 | value.datePart("weeks") → 3 |
+| days/day/d | 月の日 | 数値 | value.datePart("days") → 14 |
+| weekday | 曜日 | 文字列 | value.datePart("weekday") → Friday |
+| hours/hour/h | 時 | 数値 | value.datePart("hours") → 5 |
+| minutes/minute/min | 分 | 数値 | value.datePart("minutes") → 30 |
+| seconds/sec/s | 秒 | 数値 | value.datePart("seconds") → 04 |
+| milliseconds/ms/S | ミリ秒 | 数値 | value.datePart("milliseconds") → 789 |
+| nanos/nano/n | ナノ秒 | 数値 | value.datePart("n") → 789000 |
+| time | Unix Epoch からのミリ秒 | 数値 | value.datePart("time") → 1394775004000 |
 
 ###### timeSinceUnixEpochToDate(duration, scale)
 
-Converts a time as measured by the duration since the Unix Epoch (1970-01-01) to a date object. The second parameter indicates the unit of the duration, and can be `"second"`, `"millisecond"` or `"microsecond"`. If the unit is not provided, it is assumed to be `"second"`.
+Unix Epoch（1970-01-01）からの経過時間を日付オブジェクトに変換します。scale には "second", "millisecond", "microsecond" を指定でき、省略時は "second" です。
 
-This function is available since OpenRefine 3.6.
-
+この関数は OpenRefine 3.6 以降で利用できます。
 ## Math functions {#math-functions}
 
-For integer division and precision, you can use simple evaluations such as `1 / 2`, which is equivalent to `floor(1/2)` - that is, it returns only whole number results. If either operand is a floating point number, they both get promoted to floating point and a floating point result is returned. You can use `1 / 2.0` or `1.0 / 2` or `1.0 * x / y` (if you're working with variables of unknown contents).
+整数除算と精度に関しては `1 / 2` のように記述すると `floor(1/2)` と同様に小数点以下を切り捨てた結果になります。いずれかのオペランドが浮動小数点なら両方が浮動小数点に昇格し、浮動小数点の結果になります。変数の型が不明な場合は `1 / 2.0` や `1.0 / 2`、`1.0 * x / y` のように使ってください。
 
 :::caution
-Some of these math functions don't recognize integers when supplied as the first argument in dot notation (e.g., `5.cos()` simply returns 5 instead of the expected result). To ensure operations are successful, always wrap the first argument in brackets, such as `(value).cos()`.
+一部の数学関数はドット記法で整数を直接渡すと整数を返したままになる場合があります（例: `5.cos()` は 5 のまま）。成功させるには括弧で値を囲んで `(value).cos()` のようにしてください。
 :::
 
 |Function|Use|Example|
 |-|-|-|
-|`abs(n)`|Returns the absolute value of a number.|`abs(-6)` returns 6.|
-|`acos(n)`|Returns the arc cosine of an angle, in the range 0 through [PI](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#PI).|`acos(0.345)` returns 1.218557541697832.|
-|`asin(n)`|Returns the arc sine of an angle in the range of -PI/2 through PI/2.|`asin(0.345)` returns 0.35223878509706474.|
-|`atan(n)`|Returns the arc tangent of an angle in the range of -PI/2 through PI/2.|`atan(0.345)` returns 0.3322135507465967.|
-|`atan2(n1, n2)`|Converts rectangular coordinates (n1, n2) to polar (r, theta). Returns number theta.|`atan2(0.345,0.6)` returns 0.5218342798144103.|
-|`ceil(n)`|Returns the ceiling of a number.|`3.7.ceil()` returns 4 and `-3.7.ceil()` returns -3.|
-|`combin(n1, n2)`|Returns the number of combinations for n2 elements as divided into n1.|`combin(20,2)` returns 190.|
-|`cos(n)`|Returns the trigonometric cosine of a value.|`cos(5)` returns 0.28366218546322625.|
-|`cosh(n)`|Returns the hyperbolic cosine of a value.|`cosh(5)` returns 74.20994852478785.|
-|`degrees(n)`|Converts an angle from radians to degrees.|`degrees(5)` returns 286.4788975654116.|
-|`even(n)`|Rounds the number up to the nearest even integer.|`even(5)` returns 6.|
-|`exp(n)`|Returns [e](https://en.wikipedia.org/wiki/E_(mathematical_constant)) raised to the power of n.|`exp(5)` returns 148.4131591025766.|
-|`fact(n)`|Returns the factorial of a number, starting from 1.|`fact(5)` returns 120.|
-|`factn(n1, n2)`|Returns the factorial of n1, starting from n2.|`factn(10,3)` returns 280.|
-|`floor(n)`|Returns the floor of a number.|`3.7.floor()` returns 3 and `-3.7.floor()` returns -4.|
-|`gcd(n1, n2)`|Returns the greatest common denominator of two numbers.|`gcd(95,135)` returns 5.|
-|`lcm(n1, n2)`|Returns the least common multiple of two numbers.|`lcm(95,135)` returns 2565.|
-|`ln(n)`|Returns the natural logarithm of n.|`ln(5)` returns 1.6094379124341003.|
-|`log(n)`|Returns the base 10 logarithm of n.|`log(5)` returns 0.6989700043360189.|
-|`max(n1, n2)`|Returns the larger of two numbers.|`max(3,10)` returns 10.|
-|`min(n1, n2)`|Returns the smaller of two numbers.|`min(3,10)` returns 3.|
-|`mod(n1, n2)`|Returns n1 modulus n2. Note: `value.mod(9)` will work, whereas `74.mod(9)` will not work.|`mod(74, 9)` returns 2. |
-|`multinomial(n1, n2 …(optional))`|Calculates the multinomial of one number or a series of numbers.|`multinomial(2,3)` returns 10.|
-|`odd(n)`|Rounds the number up to the nearest odd integer.|`odd(10)` returns 11.|
-|`pow(n1, n2)`|Returns n1 raised to the power of n2. Note: value.pow(3)` will work, whereas `2.pow(3)` will not work.|`pow(2, 3)` returns 8 (2 cubed) and `pow(3, 2)` returns 9 (3 squared). The square root of any numeric value can be called with `value.pow(0.5)`.|
-|`quotient(n1, n2)`|Returns the integer portion of a division (truncated, not rounded), when supplied with a numerator and denominator.|`quotient(9,2)` returns 4.|
-|`radians(n)`|Converts an angle in degrees to radians.|`radians(10)` returns 0.17453292519943295.|
-|`random(n lowerBound, n upperBound)`|Returns a random integer in the interval between the lower and upper bounds (inclusively). Will output a different random number in each cell in a column. If no arguments are provided, returns a number in the range `0.0 <= x < 1.0`|
-|`round(n)`|Rounds a number to the nearest integer.|`3.7.round()` returns 4 and `-3.7.round()` returns -4.|
-|`sin(n)`|Returns the trigonometric sine of an angle.|`sin(10)` returns -0.5440211108893698.|
-|`sinh(n)`|Returns the hyperbolic sine of an angle.|`sinh(10)` returns 11013.232874703393.|
-|`sum(a)`|Sums the numbers in an array. Ignores non-number items. Returns 0 if the array does not contain numbers.|`sum([ 10, 2, three ])` returns 12.|
-|`tan(n)`|Returns the trigonometric tangent of an angle.|`tan(10)` returns 0.6483608274590866.|
-|`tanh(n)`|Returns the hyperbolic tangent of a value.|`tanh(10)` returns 0.9999999958776927.|
-
+|`abs(n)`|数値の絶対値を返します。|`abs(-6)` は 6。|
+|`acos(n)`|アークコサイン（0〜[PI](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#PI)）。|`acos(0.345)` は 1.218557541697832。|
+|`asin(n)`|アークサイン（-PI/2〜PI/2）。|`asin(0.345)` は 0.35223878509706474。|
+|`atan(n)`|アークタンジェント（-PI/2〜PI/2）。|`atan(0.345)` は 0.3322135507465967。|
+|`atan2(n1, n2)`|直交座標から極座標（θ）を返します。|`atan2(0.345,0.6)` は 0.5218342798144103。|
+|`ceil(n)`|天井関数（切り上げ）。|`3.7.ceil()` は 4、`-3.7.ceil()` は -3。|
+|`combin(n1, n2)`|n2 個から n1 個選ぶ組合せ数。|`combin(20,2)` は 190。|
+|`cos(n)`|コサイン。|`cos(5)` は 0.28366218546322625。|
+|`cosh(n)`|ハイパボリックコサイン。|`cosh(5)` は 74.20994852478785。|
+|`degrees(n)`|ラジアンを度に変換。|`degrees(5)` は 286.4788975654116。|
+|`even(n)`|最も近い偶数に切り上げ。|`even(5)` は 6。|
+|`exp(n)`|e の n 乗。|`exp(5)` は 148.4131591025766。|
+|`fact(n)`|階乗（1 から）。|`fact(5)` は 120。|
+|`factn(n1, n2)`|n1 の階乗を n2 から始めて計算。|`factn(10,3)` は 280。|
+|`floor(n)`|床関数（切り捨て）。|`3.7.floor()` は 3、`-3.7.floor()` は -4。|
+|`gcd(n1, n2)`|最大公約数（Greatest Common Divisor）。|`gcd(95,135)` は 5。|
+|`lcm(n1, n2)`|最小公倍数（Least Common Multiple）。|`lcm(95,135)` は 2565。|
+|`ln(n)`|自然対数。|`ln(5)` は 1.6094379124341003。|
+|`log(n)`|常用対数。|`log(5)` は 0.6989700043360189。|
+|`max(n1, n2)`|大きい方の数。|`max(3,10)` は 10。|
+|`min(n1, n2)`|小さい方の数。|`min(3,10)` は 3。|
+|`mod(n1, n2)`|剰余（`value.mod(9)` は動くが `74.mod(9)` は動かない）。|`mod(74, 9)` は 2。|
+|`multinomial(n1, n2 …(optional))`|多項分布。|`multinomial(2,3)` は 10。|
+|`odd(n)`|最も近い奇数に切り上げ。|`odd(10)` は 11。|
+|`pow(n1, n2)`|n1 の n2 乗（`value.pow(3)` は動くが `2.pow(3)` は動かない）。|`pow(2,3)` は 8、`pow(3,2)` は 9。平方根は `value.pow(0.5)` で得られます。|
+|`quotient(n1, n2)`|割り算の整数部分（切り捨て）。|`quotient(9,2)` は 4。|
+|`radians(n)`|度をラジアンに。|`radians(10)` は 0.17453292519943295。|
+|`random(n lowerBound, n upperBound)`|指定範囲（両端含む）の乱数。各セルごとに異なる結果。引数なしなら `0.0 <= x < 1.0`。|
+|`round(n)`|四捨五入。|`3.7.round()` は 4、`-3.7.round()` は -4。|
+|`sin(n)`|サイン。|`sin(10)` は -0.5440211108893698。|
+|`sinh(n)`|ハイパボリックサイン。|`sinh(10)` は 11013.232874703393。|
+|`sum(a)`|配列内の数値を合計。非数値は無視し、数値がなければ 0。|`sum([ 10, 2, three ])` は 12。|
+|`tan(n)`|タンジェント。|`tan(10)` は 0.6483608274590866。|
+|`tanh(n)`|ハイパボリックタンジェント。|`tanh(10)` は 0.9999999958776927。|
 ## Other functions {#other-functions}
 
 ###### type(o) {#typeo}
-Returns a string with the data type of o, such as undefined, string, number, boolean, etc. For example, a [Transform](cellediting#transform) operation using `value.type()` will convert all cells in a column to strings of their data types.
+
+o のデータ型（undefined、string、number、boolean など）を文字列で返します。例: [Transform](cellediting#transform) で `value.type()` を使うと、列内のセルがデータ型名の文字列に変換されます。
 
 ###### facetCount(choiceValue, s facetExpression, s columnName) {#facetcountchoicevalue-s-facetexpression-s-columnname}
-Returns the facet count corresponding to the given choice value, by looking for the facetExpression in the choiceValue in columnName. For example, to create facet counts for the following table, we could generate a new column based on “Gift” and enter in `value.facetCount("value", "Gift")`. This would add the column we've named “Count”:
+
+columnName 列で facetExpression に一致する choiceValue のカウントを返します。たとえば下の表で “Gift” を基準に新しい列を作り `value.facetCount("value", "Gift")` を使うと、“Count” 列にカウントが追加されます。
 
 | Gift | Recipient | Price | Count |
 |-|-|-|-|
@@ -597,24 +601,26 @@ Returns the facet count corresponding to the given choice value, by looking for 
 | watch | Amit | 80 | 1 |
 | clock | Claire | 62 | 2 |
 
-The facet expression, wrapped in quotes, can be useful to manipulate the inputted values before counting. For example, you could do a textual cleanup using fingerprint(): `(value.fingerprint()).facetCount(value.fingerprint(),"Gift")`.
+facetExpression は引用符で囲むと値の前処理（例: fingerprint()）も可能です。例: `(value.fingerprint()).facetCount(value.fingerprint(), "Gift")`。
 
 ###### hasField(o, s name) {#hasfieldo-s-name}
-Returns a boolean indicating whether o has a member field called [name](expressions#variables). For example, `cell.recon.hasField("match")` will return false if a reconciliation match hasn’t been selected yet, or true if it has. You cannot chain your desired fields: for example, `cell.hasField("recon.match")` will return false even if the above expression returns true).
+
+o が `name` という member field を持っているかどうかを真偽値で返します。例: `cell.recon.hasField("match")` は、リコンシリエーションがまだ選択されていなければ false、選択済みなら true です。ドット付きのフィールド（例: `cell.hasField("recon.match")`）は正しく動作しません。
 
 ###### coalesce(o1, o2, o3, ...) {#coalesceo1-o2-o3-}
-Returns the first non-null from a series of objects. For example, `coalesce(value, "")` would return an empty string “” if `value` was null, but otherwise return `value`.
+
+最初の null でない値を返します。例: `coalesce(value, "")` は `value` が null のときに空文字を返します。
 
 ###### cross(cell, s projectName (optional), s columnName (optional)) {#crosscell-s-projectname-optional-s-columnname-optional}
-Returns an array of zero or more rows in the project projectName for which the cells in their column columnName have the same content as the cell in your chosen column. For example, if two projects contained matching names, and you wanted to pull addresses for people by their names from a project called “People” you would apply the following expression to your column of names: 
+
+他プロジェクト projectName の columnName 列と現在のセルの内容が一致する行をすべて配列で返します。たとえば “People” プロジェクトの “Name” 列を参照して住所を取得したいときは、名前列で次の式を使います:
 ```
 cell.cross("People","Name")[0].cells["Address"].value
 ```
+この式は現在の列と “People” の “Name” を照合し、それに対応する “Address” を取得します。
 
-This would match your current column to the “Name” column in “People” and, using those matches, pull the respective “Address” value into your current project. 
+cross() を使う前にキー列を trim() したり、重複を整理したりすると結果が安定します。
 
-You may need to do some data preparation with cross(), such as using trim() on your key columns or deduplicating values.
+第 1 引数に `cell` を渡すと `cell.value` として扱われます。projectName と columnName を省略すると、現在のプロジェクトとインデックス列（0 番）を使います。
 
-The first argument will be interpreted as `cell.value` if set to `cell`. If you omit projectName and columnName, they will default to the current project and index column (number 0). 
-
-Recipes and more examples for using cross() can be found [on our wiki](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#combining-datasets).
+cross() のレシピや例は [Wiki](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#combining-datasets) を参照してください。

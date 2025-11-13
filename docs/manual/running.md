@@ -1,27 +1,27 @@
-﻿---
+---
 id: running
-title: Running OpenRefine
+title: OpenRefine の起動と終了
 sidebar_label: Running
 ---
 
-## Starting and exiting {#starting-and-exiting}
+## 起動と終了 {#starting-and-exiting}
 
-OpenRefine does not require internet access to run its basic functions. Once you download and install it, it runs as a small web server on your own computer, and you access that local web server by using your browser. 
+OpenRefine は基本機能においてインターネット接続を必要としません。一度ダウンロードしてインストールすると、ローカルに小さなウェブサーバーとして動作し、ブラウザからアクセスします。
 
-You will see a command line window open when you run OpenRefine. Ignore that window while you work on datasets in your browser. 
+OpenRefine を起動するとコマンドラインウィンドウが開きますが、ブラウザで作業している間はそのウィンドウは無視してかまいません。
 
-No matter how you start OpenRefine, it will load its interface in your computer’s default browser. If you would like to use another browser instead, start OpenRefine and then point your chosen browser at the home screen: [http://127.0.0.1:3333/](http://127.0.0.1:3333/).
+起動方法にかかわらず、OpenRefine の UI はお使いの OS のデフォルトブラウザで表示されます。別のブラウザを使いたい場合は OpenRefine を起動した後、[http://127.0.0.1:3333/](http://127.0.0.1:3333/) をそのブラウザで開いてください。
 
-OpenRefine works best on browsers based on WebKit, such as:
+OpenRefine は WebKit ベースのブラウザで最適に動作します。たとえば:
 *   [Google Chrome](https://www.google.com/chrome/)
 *   [Chromium](https://ungoogled-software.github.io/)
 *   [Opera](https://www.opera.com/)
 *   [Microsoft Edge](https://www.microsoft.com/edge)
 *   [Safari](https://www.apple.com/safari/)
 
-We are aware of some minor rendering and performance issues on other browsers such as Firefox. We don't support Internet Explorer.
+Firefox などではレンダリングやパフォーマンスの差が報告されています。Internet Explorer はサポート対象外です。
 
-You can view and work on multiple projects at the same time by simply having multiple tabs or browser windows open. From the <span class="menuItems">Open Project</span> screen, you can right-click on project names and open them in new tabs or windows. 
+複数のプロジェクトを同時に扱いたい場合は、複数のタブやウィンドウで OpenRefine を開くだけです。<span class="menuItems">Open Project</span> 画面でプロジェクト名を右クリックすれば別タブ／別ウィンドウで開けます。
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -38,58 +38,53 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="win">
 
-#### With openrefine.exe {#with-openrefineexe}
-You can run OpenRefine by double-clicking `openrefine.exe` or calling it from the command line. 
+#### openrefine.exe で起動 {#with-openrefineexe}
 
-If you want to [modify the way `openrefine.exe` opens](#starting-with-modifications), you can edit the `openrefine.l4j.ini` file.  
+`openrefine.exe` をダブルクリックするか、コマンドラインから実行できます。
 
-#### With refine.bat {#with-refinebat}
-On Windows, OpenRefine can also be run by using the file `refine.bat` in the program directory. If you start OpenRefine using `refine.bat`, you can do so by opening the file itself, or by calling it from the command line. 
+設定を変更したい場合は `openrefine.l4j.ini` を編集してください（<a href="#starting-with-modifications">後述</a>）。
 
-If you call `refine.bat` from the command line, you can [start OpenRefine with modifications](#starting-with-modifications). 
-If you want to modify the way `refine.bat` opens through double-clicking or using a shortcut, you can edit the `refine.ini` file. 
+#### refine.bat で起動 {#with-refinebat}
 
-#### Exiting {#exiting}
+Windows では `refine.bat` を使って起動することもできます。ダブルクリックするかコマンドラインで呼び出してください。
 
-To exit OpenRefine, close all the browser tabs or windows, then navigate to the command line window. To close this window and ensure OpenRefine exits properly, hold down `Control` and press `C` on your keyboard. This will save any last changes to your projects. 
+コマンドラインから `refine.bat` を起動する場合、<a href="#starting-with-modifications">起動オプション</a>を付けて実行できます。ショートカットやダブルクリック時の動作を変えたい場合は `refine.ini` を編集してください。
+
+#### 終了方法 {#exiting}
+
+OpenRefine を終了するには、開いているブラウザタブ／ウィンドウをすべて閉じ、コマンドラインウィンドウに戻ります。`Control + C` を押すと OpenRefine が正常終了し、最後の変更が保存されます。
 
 </TabItem>
 
 <TabItem value="mac">
 
-You can find OpenRefine in your Applications folder, or you can open it using Terminal. 
+Applications フォルダにある OpenRefine を実行するか、ターミナルから起動できます。
 
-To run OpenRefine using Terminal:
+ターミナルから起動する手順:
+*   “移動”メニューから Utilities を開く
+*   Utilities 内の Terminal を起動
+*   ターミナル内で `/Applications/OpenRefine.app/Contents/MacOS/JavaAppLauncher` を実行
 
-*   Open the Terminal by using the “Go” menu, choose Utilities
-*   In the Utilities window, start the Terminal application.
-*   Inside the terminal, write this: `/Applications/OpenRefine.app/Contents/MacOS/JavaAppLauncher`
+終了するには、OpenRefine のブラウザタブをすべて閉じ、“JavaAppLauncher” アプリを `Command + Q` で終了し、ターミナルも終了します。
 
-To exit, close all your OpenRefine browser tabs, find the applications called “JavaAppLauncher”, press `Command` and `Q` to close it down, and do the same with the Terminal application.
-
-:::caution Problems starting?
-If you are using an older version of OpenRefine or are on an older version of MacOS, [check our Wiki for solutions to problems with MacOS](https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions#macos). 
+:::caution 起動トラブル？
+古いバージョンの OpenRefine や macOS を利用している場合は、[Mac のインストール問題に関する Wiki](https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions#macos) を確認してください。
 :::
 
 </TabItem>
 
 <TabItem value="linux">
 
-Use a terminal to launch OpenRefine. First, navigate to the installation folder. Then call the program:
-
+ターミナルからインストールディレクトリに移動し、次のように実行します:
 ```
 cd openrefine-3.4.1
-  ./refine
+./refine
 ```
 
-This will start OpenRefine and open your browser to the home screen.
+起動後はブラウザがホーム画面を表示します。終了するときはブラウザを閉じ、ターミナルで `Control + C` を押してください。
 
-To exit, close all the browser tabs, and then press `control` and `C` in the terminal window.
-
-:::caution Did you get a JAVA_HOME error?
-“Error: Could not find the ‘java’ executable at ‘’, are you sure your JAVA_HOME environment variable is pointing to a proper java installation?”
-
-If you see this error, you need to [install and configure a JDK package](installing#linux), including setting up `JAVA_HOME`.
+:::caution JAVA_HOME エラー?
+“Error: Could not find the ‘java’ executable at ‘’, are you sure your JAVA_HOME environment variable is pointing to a proper java installation?” と表示される場合は、[JDK のインストールと JAVA_HOME の設定](installing#linux) を行ってください。
 :::
 
 </TabItem>
@@ -98,13 +93,13 @@ If you see this error, you need to [install and configure a JDK package](install
 
 ---
 
-### Troubleshooting {#troubleshooting}
+### トラブルシューティング {#troubleshooting}
 
-If you are having problems connecting to OpenRefine with your browser, [check our Wiki for information about browser settings and operating-system issues](https://github.com/OpenRefine/OpenRefine/wiki/FAQ#i-am-having-trouble-connecting-to-openrefine-with-my-browser).
+ブラウザで OpenRefine に接続できない場合は、[Wiki のブラウザ/OS 設定ガイド](https://github.com/OpenRefine/OpenRefine/wiki/FAQ#i-am-having-trouble-connecting-to-openrefine-with-my-browser) を確認してください。
 
-### Starting with modifications {#starting-with-modifications}
+### オプション付き起動 {#starting-with-modifications}
 
-When you run OpenRefine from a command line, you can change a number of default settings. 
+コマンドラインから起動するときには複数の設定を変更できます。
 
 <Tabs
   groupId="operating-systems"
@@ -118,52 +113,51 @@ When you run OpenRefine from a command line, you can change a number of default 
 
 <TabItem value="win">
 
-On Windows, use a slash:
-
+Windows ではスラッシュ形式でオプションを指定します:
 ```
 C:>refine /i 127.0.0.2 /p 3334
 ```
 
-Get a list of all the commands with `refine /?`. 
+`refine /?` で利用可能なすべてのコマンドを表示できます。
 
-| Command |Use|Syntax example|
+| コマンド | 用途 | 例 |
 |---|---|---|
-|/w|Path to the webapp|refine /w /path/to/openrefine|
-|/m|Memory maximum heap|refine /m 6000M|
-|/p|Port|refine /p 3334|
-|/i|Interface (IP address, or IP and port)|refine /i 127.0.0.2:3334|
-|/H|HTTP host to expect on incoming requests|refine /H openrefine.internal|
-|/d|Path to the workspace|refine /d /where/you/want/the/workspace|
-|/v|Verbosity (from low to high: error,warn,info,debug,trace)|refine /v info|
-|/x|Additional Java configuration parameters (see Java documentation)|refine /x refine.autosave=5 <br/>refine /x refine.data_dir=/ <br/>refine /x refine.development=false <br/>refine /x refine.headless=false <br/>refine /x refine.host=127.0.0.1 <br/>refine /x refine.port=3333 <br/>refine /x refine.webapp=main/webapp <br/>refine /x refine.display.new.version.notice=true|
-|/debug|Enable debugging (on port 8000)|refine /d|
-|/jmx|Enable JMX monitoring for Jconsole and JvisualVM|refine /x|
+| /w | webapp へのパス | `refine /w /path/to/openrefine` |
+| /m | 最大ヒープサイズ（MB） | `refine /m 6000M` |
+| /p | ポート | `refine /p 3334` |
+| /i | インターフェース（IP または IP:Port） | `refine /i 127.0.0.2:3334` |
+| /H | 受信要求に期待する HTTP ホスト | `refine /H openrefine.internal` |
+| /d | ワークスペース | `refine /d /where/you/want/the/workspace` |
+| /v | ログレベル（error→trace） | `refine /v info` |
+| /x | 追加の Java 設定 | `refine /x refine.autosave=5` など |
+| /debug | デバッグを有効化（ポート 8000） | `refine /debug` |
+| /jmx | JMX 監視を有効化 | `refine /x` |
 
 </TabItem>
 
 <TabItem value="mac">
 
-You cannot start the Mac version with modifications using Terminal, but you can modify the way the application starts with [settings within files](#modifications-set-within-files).
+Mac ではターミナルからオプション付き起動を直接行えませんが、[設定ファイルを編集](#modifications-set-within-files)して起動方法を変更できます。
 
 </TabItem>
 
 <TabItem value="linux">
 
-To see the full list of command-line options, run `./refine -h`. 
+フルオプション一覧は `./refine -h` で確認できます。
 
-|Command|Use|Syntax example|
+| コマンド | 用途 | 例 |
 |---|---|---|
-|-w|Path to the webapp|./refine -w /path/to/openrefine|
-|-d|Path to the workspace|./refine -d /where/you/want/the/workspace|
-|-m|Memory maximum heap|./refine -m 6000M|
-|-p|Port|./refine -p 3334|
-|-i|Interface (IP address, or IP and port)|./refine -i 127.0.0.2:3334|
-|-H|HTTP host to expect on incoming requests|./refine -H openrefine.internal|
-|-k|Add a Google API key|./refine -k YOUR_API_KEY|
-|-v|Verbosity (from low to high: error,warn,info,debug,trace)|./refine -v info|
-|-x|Additional Java configuration parameters (see Java documentation)|./refine -x refine.autosave=5 <br/>./refine -x refine.data_dir=/ <br/>./refine -x refine.development=false <br/> ./refine -x refine.headless=false <br/>./refine -x refine.host=127.0.0.1 <br/>./refine -x refine.port=3333 <br/>./refine -x refine.webapp=main/webapp <br/>./refine -x refine.display.new.version.notice=true|
-|--debug|Enable debugging (on port 8000)|./refine --debug|
-|--jmx|Enable JMX monitoring for Jconsole and JvisualVM|./refine --jmx|
+| -w | webapp へのパス | `./refine -w /path/to/openrefine` |
+| -d | ワークスペース | `./refine -d /where/you/want/the/workspace` |
+| -m | 最大ヒープサイズ | `./refine -m 6000M` |
+| -p | ポート | `./refine -p 3334` |
+| -i | インターフェース | `./refine -i 127.0.0.2` |
+| -H | HTTP ホスト | `./refine -H openrefine.internal` |
+| -k | Google API キー | `./refine -k YOUR_API_KEY` |
+| -v | ログレベル | `./refine -v info` |
+| -x | Java 設定 | `./refine -x refine.autosave=5` など |
+| --debug | デバッグ（ポート 8000） | `./refine --debug` |
+| --jmx | JMX 監視 | `./refine --jmx` |
 
 </TabItem>
 
@@ -171,17 +165,15 @@ To see the full list of command-line options, run `./refine -h`.
 
 ---
 
-#### Modifications set within files {#modifications-set-within-files}
+#### 設定ファイル内の変更 {#modifications-set-within-files}
 
-On Windows, you can modify the way `openrefine.exe` runs by editing `openrefine.l4j.ini`; you can modify the way `refine.bat` runs by editing `refine.ini`. 
+Windows では `openrefine.exe` の動作を `openrefine.l4j.ini` で、`refine.bat` の動作を `refine.ini` で制御できます。
 
-You can modify the Mac application by editing `info.plist`. 
+Mac では `Info.plist`、Linux では `refine.ini` を編集します。
 
-On Linux, you can edit `refine.ini`. 
+多くの設定（メモリ割り当てなど）はすでにファイル内に書かれているため、値を変更するだけです。コメントアウトされている行は `#` を外して有効化してください。
 
-Some settings, such as changing memory allocations, are already set inside these files, and all you have to do is change the values. Some lines need to be un-commented to work. 
-
-For example, inside `refine.ini`, you should see: 
+たとえば `refine.ini` には次のような記述があります:
 ```
 no_proxy="localhost,127.0.0.1"
 #REFINE_PORT=3334
@@ -198,32 +190,28 @@ REFINE_MIN_MEMORY=1400M
 ...
 ```
 
-##### JVM preferences {#jvm-preferences}
+##### JVM 設定 {#jvm-preferences}
 
-Further modifications can be performed by using JVM preferences. These JVM preferences are different options and have different syntax than the key/value descriptions used on the command line. 
+さらに細かい JVM 設定を追加することもできます。コマンドラインで利用する key/value とは異なる構文です。
 
-Some of the most common keys (with their defaults) are:
+主要なキー（デフォルト値）例:
 
-|Description|Argument|Syntax example|
+| 説明 | 引数 | 例 |
 |---|---|---|
-|Proxy host or IP|`-Dhttp.proxyHost`|proxy.example.org or 192.168.1.10
-|Proxy port|`-Dhttp.proxyPort`|8080
-|The project [autosave](starting#autosaving) frequency|`-Drefine.autosave`|5 [minutes]
-|The workspace director|`-Drefine.data_dir`|/
-|Development mode|`-Drefine.development`|false
-|Headless mode|`-Drefine.headless`|false
-|IP|`-Drefine.interface`|127.0.0.1
-|Domain name|`-Drefine.host`|mymachine.local
-|Port|`-Drefine.port`|3333
-|The application folder|`-Drefine.webapp`|main/webapp
-|New version notice|`-Drefine.display.new.version.notice`|true
-|Google Data Client ID|`-Dext.gdata.clientid`|000000000000-********************************.apps.googleusercontent.com
-|Google Data Client secret|`-Dext.gdata.clientsecret`|************************
-|Google Data API Key|`-Dext.gdata.apikey`|***************************************
-
-
-
-The syntax is as follows:
+| プロキシホスト | `-Dhttp.proxyHost` | proxy.example.org |
+| プロキシポート | `-Dhttp.proxyPort` | 8080 |
+| [自動保存](starting#autosaving) 間隔（分） | `-Drefine.autosave` | 5 |
+| ワークスペース | `-Drefine.data_dir` | /user/data |
+| 開発モード | `-Drefine.development` | false |
+| ヘッドレス | `-Drefine.headless` | false |
+| IP | `-Drefine.interface` | 127.0.0.1 |
+| ドメイン | `-Drefine.host` | mymachine.local |
+| ポート | `-Drefine.port` | 3333 |
+| アプリフォルダ | `-Drefine.webapp` | main/webapp |
+| 新バージョン通知 | `-Drefine.display.new.version.notice` | true |
+| Google Data Client ID | `-Dext.gdata.clientid` | 000... |
+| Google Data Client secret | `-Dext.gdata.clientsecret` | **** |
+| Google Data API Key | `-Dext.gdata.apikey` | *** |
 
 <Tabs
   groupId="operating-systems"
@@ -237,10 +225,9 @@ The syntax is as follows:
 
 <TabItem value="win">
 
-Locate the `refine.l4j.ini` file, and insert lines in this way:
-
+`refine.l4j.ini` に次のような行を追加できます:
 ```
--Drefine.port=3334 
+-Drefine.port=3334
 -Drefine.interface=127.0.0.2
 -Drefine.host=mymachine.local
 -Drefine.webapp=broker/core
@@ -248,24 +235,16 @@ Locate the `refine.l4j.ini` file, and insert lines in this way:
 -Dhttp.proxyPort=8080
 ```
 
-In `refine.ini`, use a similar syntax, but set multiple parameters within a single line starting with `JAVA_OPTIONS=`:
-
+`refine.ini` では `JAVA_OPTIONS=` 行にスペース区切りで複数指定します:
 ```
 JAVA_OPTIONS=-Drefine.data_dir=C:\Users\user\Documents\OpenRefine\ -Drefine.port=3334
-
 ```
+
 </TabItem>
 
 <TabItem value="mac">
 
-Locate the `info.plist`, and find the `array` element that follows the line
-
-```
-<key>JVMOptions</key>
-```
-
-Typically this looks something like:
-
+`Info.plist` の `JVMOptions` セクションを編集します。例:
 ```
 <key>JVMOptions</key>
 <array>
@@ -276,77 +255,53 @@ Typically this looks something like:
 </array>
 ```
 
-To see this list with the Terminal, use this command:
+追加するコマンド例:
 ```
-export OR_INFO="/Applications/OpenRefine.app/Contents/Info.plist"
-defaults read $OR_INFO JVMOptions
-```
-
-Add in values such as:
-
-```
-<key>JVMOptions</key>
-<array>
-<string>-Xms256M</string>
-<string>-Xmx1024M</string>
-<string>-Drefine.version=3.8.4</string>
-<string>-Drefine.webapp=$APP_ROOT/Contents/Resource/webapp</string>
 <string>-Drefine.autosave=2</string>
 <string>-Dhttp.proxyHost=yourproxyhost</string>
-<string>-Dhttp.proxyPort=8080</string>
-<string>-Drefine.host=mymachine.local</string>
-<string>-Drefine.interface=192.168.0.10</string>
-<string>-Drefine.port=3333</string>
-<string>-Dext.gdata.clientid=000000000000-********************************.apps.googleusercontent.com</string>
-<string>-Dext.gdata.clientsecret=************************</string>
-<string>-Dext.gdata.apikey=***************************************</string>
-</array>
+...
 ```
 
-If the values aren’t already there, you can add them easily with this Terminal command:
+ターミナルで以下を実行すれば追加できます:
 ```
 export OR_INFO="/Applications/OpenRefine.app/Contents/Info.plist"
 defaults write $OR_INFO JVMOptions -array-add "-Drefine.interface=192.168.0.10"
 ```
-This will not work if you already have the value defined, so whatch out for that.
+
+すでに同じ値がある場合は追加されないのでご注意ください。
 
 </TabItem>
 
 <TabItem value="linux">
 
-Locate the `refine.ini` file, and add `JAVA_OPTIONS=` before the `-Drefine.preference` declaration. You can un-comment and edit the existing suggested lines, or add lines:
-
+`refine.ini` に `JAVA_OPTIONS=` を追加します。コメントアウトされた行を利用したり、次のように追記できます:
 ```
 JAVA_OPTIONS=-Drefine.autosave=2
 JAVA_OPTIONS=-Drefine.port=3334
 JAVA_OPTIONS=-Drefine.interface=192.168.0.10
 JAVA_OPTIONS=-Drefine.host=mymachine.local
-JAVA_OPTIONS=-Drefine.data_dir=usr/lib/OpenRefineWorkspace
+JAVA_OPTIONS=-Drefine.data_dir=/usr/lib/OpenRefineWorkspace
 JAVA_OPTIONS=-Dhttp.proxyHost=yourproxyhost
 JAVA_OPTIONS=-Dhttp.proxyPort=8080
-JAVA_OPTIONS=-Dext.gdata.clientid=000000000000-********************************.apps.googleusercontent.com
-JAVA_OPTIONS=-Dext.gdata.clientsecret=************************
-JAVA_OPTIONS=-Dext.gdata.apikey=***************************************
+JAVA_OPTIONS=-Dext.gdata.clientid=000...
+...
 ```
 
 </TabItem>
 
 </Tabs>
 
-  
 ---
 
-Refer to the [official Java documentation](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html) for more preferences that can be set.
+## ホーム画面 {#the-home-screen}
 
-## The home screen {#the-home-screen}
+初回起動時に表示される画面には左側に <span class="menuItems">Create Project</span>、<span class="menuItems">Open Project</span>、<span class="menuItems">Import Project</span>、<span class="menuItems">Language Settings</span> が並びます。これが“ホーム画面”で、プロジェクトの管理や設定を行う入口です。
 
-When you first launch OpenRefine, you will see a screen with a menu on the left hand side that includes <span class="menuItems">Create Project</span>, <span class="menuItems">Open Project</span>, <span class="menuItems">Import Project</span>, and <span class="menuItems">Language Settings</span>. This is called the “home screen,” where you can manage your projects and general settings. 
+左下には <span class="menuItems">Preferences</span>、<span class="menuItems">Help</span>、<span class="menuItems">About</span> があります。
 
-In the lower left-hand corner of the screen, you'll see <span class="menuItems">Preferences</span>, <span class="menuItems">Help</span>, and <span class="menuItems">About</span>.
+### 言語設定 {#language-settings}
 
-### Language settings {#language-settings}
-
-From the home screen, look in the options to the left for <span class="menuItems">Language Settings</span>. You can set your preferred interface language here. This language setting will persist until you change it again in the future. Languages are translated as a community effort; some languages are partially complete and default back to English where unfinished. Currently OpenRefine supports the following languages for 75% or more of the interface: 
+ホーム画面左の <span class="menuItems">Language Settings</span> から使用インターフェース言語を選べます。選択内容は変更するまで保持されます。翻訳はコミュニティによるため、一部の言語は未完了で英語にフォールバックします。現在 75% 以上翻訳済みの言語:
 
 * Cebuano
 * German
@@ -363,202 +318,80 @@ From the home screen, look in the options to the left for <span class="menuItems
 * Tagalog
 * Chinese (简体中文)
 
-To leave the Language Settings screen, click on the diamond “OpenRefine” logo.
+言語設定画面から離れるには、ダイヤモンドの OpenRefine ロゴをクリックしてください。
 
-:::info Help us Translate OpenRefine
-We use Weblate to provide translations for the interface. You can check [our profile on Weblate](https://hosted.weblate.org/projects/openrefine/translations/) to see which languages are in the process of being supported. See [our technical reference if you are interested in contributing translation work](../technical-reference/translating-ui) to make OpenRefine accessible to people in other languages.
+:::info 翻訳への参加
+OpenRefine の翻訳は Weblate を使っており、[Weblate のプロジェクトページ](https://hosted.weblate.org/projects/openrefine/translations/) で支援状況を確認できます。翻訳に貢献したい場合は、[技術リファレンスの翻訳ページ](../technical-reference/translating-ui) をご覧ください。
 :::
 
 ### Preferences {#preferences}
 
-In the bottom left corner of the screen, look for <span class="menuItems">Preferences</span>. At this time you can set preferences using a key/value pair: that is, selecting one of the keys below and setting a value for it. 
+画面左下の <span class="menuItems">Preferences</span> ではキー/バリュー方式で設定できます。
 
-|Setting|Key|Value syntax|Default|Example|Version|
+| 設定項目 | キー | 値の形式 | デフォルト | 例 | バージョン |
 |---|---|---|---|---|---|
-|Interface language|userLang|[ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) two-digit code|en|fr|—|
-|Maximum facets|ui.browsing.listFacet.limit|Number|2000|5000|—|
-|Timeout for Google Drive import|googleReadTimeOut|Number (microseconds)|180000|500000|—|
-|Timeout for Google Drive authorization|googleConnectTimeOut|Number (microseconds)|180000|500000|—|
-|Maximum lag for Wikibase edit retries|wikibase.upload.maxLag|Number (seconds)|5|10|—|
-|Display of the reconciliation preview on hover|cell-ui.previewMatchedCells|Boolean|true|false|v3.2|
-|Values for the choice of the number of rows to display|ui.browsing.pageSize|Array of number (JSON)|[ 5, 10, 25, 50 ]|[ 100, 500, 1000 ]|v3.5|
-|Width of the panel for facets/history|ui.browsing.facetsHistoryPanelWidth|Number (pixel)|300|500|v3.5|
-|Default state of the reconciliation automatch option|ui.reconciliation.automatch|Boolean|true|false|v3.8|
-|Value of clusting choice limit|ui.clustering.choices.limit|Number|5000|8000|v3.8|
-|Warning for a next available version|notification.status|String|enabled|disabled|v3.7|
+| インターフェース言語 | userLang | ISO 639-1 2 桁コード | en | fr | — |
+| 最大ファセット数 | ui.browsing.listFacet.limit | 数値 | 2000 | 5000 | — |
+| Google Drive 読み込みタイムアウト | googleReadTimeOut | マイクロ秒 | 180000 | 500000 | — |
+| Google Drive 認証タイムアウト | googleConnectTimeOut | マイクロ秒 | 180000 | 500000 | — |
+| Wikibase 編集再試行ラグ | wikibase.upload.maxLag | 秒 | 5 | 10 | — |
+| リコンシリエーションプレビュー表示 | cell-ui.previewMatchedCells | 真偽値 | true | false | v3.2 |
+| 表示行数設定 | ui.browsing.pageSize | 数値配列 | [ 5, 10, 25, 50 ] | [ 100, 500, 1000 ] | v3.5 |
+| ファセット/履歴パネル幅 | ui.browsing.facetsHistoryPanelWidth | ピクセル | 300 | 500 | v3.5 |
+| リコンシリエーションの自動マッチ | ui.reconciliation.automatch | 真偽値 | true | false | v3.8 |
+| クラスタリングの選択上限 | ui.clustering.choices.limit | 数値 | 5000 | 8000 | v3.8 |
+| 次バージョン通知 | notification.status | 文字列 | enabled | disabled | v3.7 |
 
-To leave the Preferences screen, click on the diamond “OpenRefine” logo.
+Preferences 画面からはダイヤモンドロゴをクリックして戻ります。
 
-If the preference you’re looking for isn’t here, look at the options you can set from the [command line or in an `.ini` file](#starting-with-modifications).
+ここに目的の設定がない場合は、[コマンドラインや `.ini` ファイル](#starting-with-modifications) で変更できるオプションを確認してください。
 
-## The project screen {#the-project-screen}
+## プロジェクト画面 {#the-project-screen}
 
-The project screen (or work screen) is where you will spend most of your time once you have [begun to work on a project](starting). This is a quick walkthrough of the parts of the interface you should familiarize yourself with.
+プロジェクト画面（作業画面）は [プロジェクトを開いた後](starting) に最も頻繁に使う画面です。主要な UI パーツを以下で説明します。
 
-![A screenshot of the project screen.](/img/projectscreen.png)
+![プロジェクト画面のスクリーンショット](/img/projectscreen.png)
 
-### The project bar {#the-project-bar}
+### プロジェクトバー {#the-project-bar}
 
-The project bar runs across the very top of the project screen. It contains the the OpenRefine logo, the project title, and the project control buttons on the right side. 
+画面上部のバーには OpenRefine ロゴ、プロジェクト名、右側に操作ボタンが並びます。
 
-At any time you can close your current project and go back to the home screen by clicking on the OpenRefine logo. If you’d like to open another project in a new browser tab or window, you can right-click on the logo and use “Open in a new tab.” You will lose [your current facets and view settings](#facetfilter) if you close your project (but data transformations will be saved in the [History](#history-undoredo) of the project).
-
-:::caution
-Don’t click the “back” button on your browser - it will likely close your current project and you will lose your facets and view settings.  
-:::
-
-You can rename a project at any time by clicking inside the project title, which will turn into a text field. Project names don’t have to be unique, as OpenRefine organizes them based on a unique identifier behind the scenes. 
-
-The <span class="menuItems">Permalink</span> allows you to return to a project at a specific view state - that is, with [facets and filters](facets) applied. The <span class="menuItems">Permalink</span> can help you pick up where you left off if you have to close your project while working with facets and filters. It puts view-specific information directly into the URL: clicking on it will load this current-view URL in the existing tab. You can right-click and copy the <span class="menuItems">Permalink</span> URL to copy the current view state to your clipboard, without refreshing the tab you’re using.
-
-The <span class="menuItems">Open…</span> button will open up a new browser tab showing the <span class="menuItems">Create Project</span> screen. From here you can change settings, start a new project, or open an existing project. 
-
-<span class="menuItems">Export</span> is a dropdown menu that allows you to pick a format for exporting a dataset. Many of the export options will only export rows and records that are currently visible - the currently selected facets and filters, not the total data in the project.
-
-<span class="menuItems">Help</span> will open up a new browser tab and bring you to this user manual on the web.
-
-### The grid header {#the-grid-header}
-
-The grid header sits below the project bar and above the project grid (where the data of your project is displayed). The grid header will tell you the total number of rows or records in your project, and indicate whether you are in [rows or records mode](exploring#rows-vs-records). 
-
-It will also tell you if you’re currently looking at a select number of rows via facets or filtering, rather than the entire dataset, by displaying either, for example, “180 rows” or “67 matching rows (180 total).” 
-
-Directly below the row number, you have the ability to switch between [row mode and records mode](exploring#rows-vs-records). OpenRefine stores projects persistently in one of the two modes, and displays your data as records by default if you are. 
-
-To the right of the rows/records selection is the array of options for how many rows/records to view on screen at one time. At the far right of the screen you can navigate through your entire dataset one page at a time. 
-
-### Extensions {#extensions}
-
-The <span class="menuItems">Extensions</span> dropdown offers you options for extending your data - most commonly by uploading your edited statements to Wikidata, or by importing or exporting schema. You can learn more about these functions on the [Wikibase section](wikibase/overview). Other extensions may also add functions to this dropdown menu.
-
-### The grid {#the-grid}
-
-The area of the project screen that displays your dataset is called the “grid” (or the “data grid,” or the “project grid”). The grid presents data in a tabular format, which may look like a normal spreadsheet program to you. 
-
-Columns widths are automatically set based on their contents; some column headers may be cut off, but can be viewed by mousing over the headers. 
-
-In each column header you will see a small arrow. Clicking on this arrow brings up a dropdown menu containing column-specific data exploration and transformation options. You will learn about each of these options in the [Exploring data](exploring) and [Transforming data](transforming) sections.
-
-The first column in every project will always be <span class="menuItems">All</span>, which contains options to flag, star, and do non-column-specific operations. The <span class="menuItems">All</span> column is also where rows/records are numbered. Numbering shows the permanent order of rows and records; a temporary sorting or facet may reorder the rows or show a limited set, but numbering will show you the original identifiers unless you make a permanent change. 
-
-The project grid may display with both vertical and horizontal scrolling, depending on the number and width of columns, and the number of rows/records displayed. You can control the display of the project grid by using [Sort and View options](exploring#sort-and-view).
-
-Mousing over individual cells will allow you to [edit cells individually](cellediting#edit-one-cell-at-a-time).
-
-### Facet/Filter {#facetfilter}
-
-The <span class="tabLabels">Facet/Filter</span> tab is one of the main ways of exploring your data: displaying the patterns and trends in your data, and helping you narrow your focus and modify that data. [Facets](facets) and [filters](facets#text-filter) are explained more in [Exploring data](exploring).
-
-![A screenshot of facets and filters in action.](/img/facetfilter.png) 
-
-In the tab, you will see three buttons: <span class="menuItems">Refresh</span>, <span class="menuItems">Reset all</span>, and <span class="menuItems">Remove all</span>. 
-
-Refreshing your facets will ensure you are looking at the latest information about each facet, for example if you have changed the counts or eliminated some options. 
-
-Resetting your facets will remove any inclusion or exclusion you may have set - the facet options will stay in the sidebar, but your view settings will be undone.
-
-Removing your facets will clear out the sidebar entirely. If you have written custom facets using [expressions](expressions), these will be lost.
-
-You can preserve your facets and filters for future use by copying a <span class="menuItems">[Permalink](#the-project-bar)</span>.
-
-### History (Undo/Redo) {#history-undoredo}
-
-In OpenRefine, any activity that changes the data can be undone. Changes are tracked from the very beginning, when a project is first created. The change history of each project is saved with the project's data, so quitting OpenRefine does not erase the steps you've taken. When you restart OpenRefine, you can view and undo changes that you made before you quit OpenRefine. OpenRefine [autosaves](starting#autosaving) your actions every five minutes by default, and when you close OpenRefine properly (using Ctrl + C). You can [change this interval](running#jvm-preferences).
-
-Project history gets saved when you export a project archive, and restored when you import that archive to a new installation of OpenRefine. 
-
-![A screenshot of the History (Undo/Redo) tab with 13 steps.](/img/history.png "A screenshot of the History (Undo/Redo) tab with 13 steps.")
-
-When you click on the <span class="tabLabels">Undo / Redo</span> tab in the sidebar of any project, that project’s history is shown as a list of changes in order, with the first “change” being the action of creating the project itself. (That first change, indexed as step zero, cannot be undone.) Here is a sample history with 3 changes:
-
-```
-0. Create project
-1. Remove 7 rows
-2. Create new column Last Name based on column Name with grel:value.split(" ") 
-3. Split 230 cell(s) in column Address into several columns by separator
-```
-
-The current state of the project is highlighted with a dark blue background. If you move back and forth on the timeline you will see the current state become highlighted, while the actions that came after that state will be grayed out. 
-
-To revert your data back to an earlier state, simply click on the last action in the timeline you want to keep. In the example above, if we keep the removal of 7 rows but revert everything we did after that, then click on “Remove 7 rows.” The last 2 changes will be undone, in order to bring the project back to state #1.
-
-In this example, changes #2 and #3 will now be grayed out. You can redo a change by clicking on it in the history - everything up to and including it will be redone. 
-
-If you have moved back one or more states, and then you perform a new operation on your data, the later actions (everything that’s greyed out) will be erased and cannot be re-applied. 
-
-The Undo/Redo tab will indicate which step you’re on, and if you’re about to risk erasing work - by saying something like “4/5" or “1/7” at the end.
-
-#### Reusing operations {#reusing-operations}
-
-Operations that you perform in OpenRefine can be reused. For example, a formula you wrote inside one project can be copied and applied to another project later. 
-
-To reuse one or more operations, first extract it from the project where it was first applied. Click to the <span class="tabLabels">Undo/Redo</span> tab and click <span class="menuItems">Extract…</span>. This brings up a box that lists all operations up to the current state (it does not show undone operations). Select the operation or operations you want to extract using the checkboxes on the left, and they will be encoded as JSON on the right. Copy that JSON to the clipboard. 
-
-Move to the second project, go to the <span class="tabLabels">Undo/Redo</span> tab, click <span class="menuItems">Apply…</span> and paste in that JSON.
-
-Not all operations can be extracted. Edits to a single cell, for example, can’t be replicated.
-
-## Advanced OpenRefine uses {#advanced-openrefine-uses}
-
-### Running OpenRefine's Linux version on a Mac {#running-openrefines-linux-version-on-a-mac}
-
-You can run OpenRefine from the command line in Mac by using the Linux installation package. We do not promise support for this method. Follow the instructions in the Linux section.
-
-### Running as a server {#running-as-a-server}
+ロゴをクリックすればいつでも現在のプロジェクトを閉じてホーム画面に戻れます。ロゴを右クリックして「新しいタブで開く」を選べば別タブで開けます。プロジェクトを閉じると [ファセット・ビュー設定](#facetfilter) は失いますが、[History](#history-undoredo) には操作履歴が残ります。
 
 :::caution
-Please note that if your machine has an external IP (is exposed to the Internet), you should not do this, or should protect it behind a proxy or firewall, such as nginx. Proceed at your own risk.
+ブラウザの“戻る”ボタンを押すと現在のプロジェクトが閉じられ、ファセットや表示設定を失うことがあります。
 :::
 
-By default (and for security reasons), OpenRefine only listens to TCP requests coming from localhost (whose interface is 127.0.0.1) on port 3333. If you want to share your OpenRefine instance with colleagues and respond to TCP requests to any IP address of the machine, start it from the command line like these below. Note that you can set either the IP, or the host, or both, but if you set both, you must use the host name to access the web page and the host must resolve to the specified IP. If you use the IP 0.0.0.0, it will bind to all interfaces of your machine, but if you also set the host, than you must use that particular host name. Setting both is more restrictive, but also more secure.
+プロジェクト名はいつでも編集可能で、クリックするとテキスト入力に切り替わります。名前は重複しても構いません（内部では一意 ID で管理）。
 
-In these examples below, `mymachine.local` is used as the hostname, which must be a valid domain name that either resolve through the DNS server, or that is defined in the `hosts` file of your machine.
+<span class="menuItems">Permalink</span> を使えば、現在のファセット/フィルター状態をそのまま URL に埋め込めます。クリックすると現在のビューが同じタブで再読み込みされ、右クリックで URL をコピーすると他の場所で同じ状態を再現できます。
 
-```
-./refine -i 0.0.0.0 -H mymachine.local
-```
+<span class="menuItems">Open…</span> ボタンを押すと新しいタブが開き、<span class="menuItems">Create Project</span> 画面に移動します。ここから新規作成や既存プロジェクトの切り替え、設定変更ができます。
 
-or set this option in `refine.ini`:
-```
-REFINE_INTERFACE=0.0.0.0
-REFINE_HOST=mymachine.local
-```
+<span class="menuItems">Export</span> ドロップダウンではフォーマットを選んでエクスポートできます。多くのオプションは現在表示中の行（ファセット/フィルターで絞った subset）だけを出力し、すべての行ではありません。
 
-or set this JVM option:
-```
--Drefine.interface=0.0.0.0
--Drefine.host=mymachine.local
-```
+<span class="menuItems">Help</span> はこのマニュアルの該当ページを新しいタブで開きます。
 
-On Mac, you can add a specific entry to the `Info.plist` file located within the app bundle (`/Applications/OpenRefine.app/Contents/Info.plist`):
-```
-<key>JVMOptions</key>
+### グリッドヘッダー {#the-grid-header}
 
-<array>
-  <string>-Drefine.interface=0.0.0.0</string>
-  <string>-Drefine.host=mymachine.local</string>
-  …
-</array>
-```
+プロジェクトバーの下にあるグリッドヘッダーには、プロジェクトの行数・レコード数が表示され、[行モード/レコードモード](exploring#rows-vs-records) の状態が確認できます。
 
-:::caution
-OpenRefine has no built-in security or version control for multi-user scenarios. OpenRefine has a single data model that is not shared, so there is a risk of data operations being overwritten by other users. Care must be taken by users. 
-:::
+フィルターが適用された状態では “67 matching rows (180 total)” のように一致行数が表示されます。
 
-### Automating OpenRefine {#automating-openrefine}
+行/レコードボタンの下には表示行数切替オプションがあり、画面右端にはページ送りのナビゲーションがあります。
 
-Some users may wish to employ OpenRefine for batch processing as part of a larger automated pipeline. Not all OpenRefine features can work without human supervision and advancement (such as clustering), but many data transformation tasks can be automated. 
+### 拡張機能 {#extensions}
 
-:::caution
-The following are all third-party extensions and code; the OpenRefine team does not maintain them and cannot guarantee that any of them work. 
-:::
+<span class="menuItems">Extensions</span> ドロップダウンから Wikidata などへのアップロードやスキーマのインポート・エクスポートなどを呼び出せます。詳細は [Wikibase セクション](wikibase/overview) をご覧ください。拡張機能によって他の機能がこのメニューに追加されることもあります。
 
-Some examples:
+### グリッド {#the-grid}
 
-* A Command Line Interface (CLI) for OpenRefine that enables scripts to automate OpenRefine, by Felix Lohmeier: [orcli](https://github.com/opencultureconsulting/orcli)
-* This project allows OpenRefine to be run from the command line using [operations saved in a JSON file](#reusing-operations): [OpenRefine batch processing](https://github.com/opencultureconsulting/openrefine-batch)
-* A Python project for applying a JSON file of operations to a data file, outputting the new file, and deleting the temporary project, written by David Huynh and Max Ogden: [Python client library for Google Refine](https://github.com/maxogden/refine-python)
-* And the same in Ruby: [Refine-Ruby](https://github.com/maxogden/refine-ruby)
-* Another Python client library, by Paul Makepeace: [OpenRefine Python Client Library](https://github.com/PaulMakepeace/refine-client-py) 
+データが表示される中央の領域は「グリッド」（またはデータグリッド、プロジェクトグリッド）です。スプレッドシートのような表示で列幅は自動調整され、一部の見出しはマウスオーバーで全体を確認できます。
 
-To look for other instances, search our former Google Groups [for users](https://groups.google.com/g/openrefine) and [for developers](https://groups.google.com/g/openrefine-dev), where [these projects were originally posted](https://groups.google.com/g/openrefine/c/GfS1bfCBJow/m/qWYOZo3PKe4J).
+各列見出しには小さな矢印があり、クリックするとその列固有の操作（探索や変換）を含むドロップダウンメニューが開きます。詳細は [Exploring data](exploring) / [Transforming data](transforming) を参照してください。
+
+すべてのプロジェクトで最初の列は <span class="menuItems">All</span> で、フラグ/スター付けなど列横断の操作を含みます。ここで行番号／レコード番号も表示されます。番号は一時的なソートやファセットの影響を受けず、元の識別子を示します。
+
+グリッドは表示列数・幅・行数に応じてスクロールバーが現れます。[Sort and View options](exploring#sort-and-view) で表示を調整できます。
+
+マウスをオーバーすると情報が表示され、...（以下省略）

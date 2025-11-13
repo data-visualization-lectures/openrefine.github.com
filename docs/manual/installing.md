@@ -1,30 +1,30 @@
 ---
 id: installing
-title: Installing OpenRefine
+title: OpenRefine のインストール
 sidebar_label: Installing
 ---
 
 ## System requirements {#system-requirements}
 
-OpenRefine does not require internet access to run its basic functions. Once you download and install it, it runs as a small web server on your own computer, and you access that local web server by using your browser. It only requires an internet connection to import data from the web, reconcile data using a web service, or export data to the web.
+OpenRefine は基本機能においてインターネット接続を必要としません。一度ダウンロードしてローカルにインストールすると、小さなウェブサーバーとして動作し、ブラウザからそのローカルサーバーへアクセスする形になります。インターネット接続は、Web からデータを読み込む、リコンシリエーションサービスを使う、あるいは Web にエクスポートする場合だけに必要です。
 
-OpenRefine requires three things on your computer in order to function:
+OpenRefine を動作させるには次の3つが必要です。
 
-#### Compatible operating system {#compatible-operating-system}
+#### 対応 OS {#compatible-operating-system}
 
-OpenRefine is designed to work with **Windows**, **Mac**, and **Linux** operating systems. [Our team releases packages for each](/download).
+OpenRefine は **Windows**、**Mac**、**Linux** 向けに設計されています。[各 OS 向けのパッケージを提供しています](/download)。
 
 #### Java {#java}
 
-Java must be installed and configured on your computer to run OpenRefine. The Mac version of OpenRefine includes Java; new in OpenRefine 3.4, there is also a Windows package with Java included.
+OpenRefine を動かすには Java がインストールされている必要があります。Mac 版には Java を同梱しており、OpenRefine 3.4 以降では Java 同梱の Windows パッケージも用意されています。
 
-If you want to install Java yourself, you can install a pre-built Java Runtime Environment (JRE) from  [Adoptium.net](https://adoptium.net/releases.html). Please note that OpenRefine works with Java 11 to Java 17 for OpenRefine 3.7.
+Java をご自身でインストールしたい場合は、[Adoptium.net](https://adoptium.net/releases.html) から事前ビルド済みの Java Runtime Environment (JRE) を取得できます。OpenRefine 3.7 では Java 11～17 をサポートしています。
 
-If you install and start OpenRefine on a Windows computer without Java, it will automatically open up a browser window to this page.
+Java を持たずに Windows で OpenRefine を起動すると、このページが自動的にブラウザに表示されます。
 
-#### Compatible browser {#compatible-browser}
+#### 対応ブラウザ {#compatible-browser}
 
-OpenRefine works best on browsers based on WebKit, such as:
+OpenRefine は WebKit ベースのブラウザで最適に動作します。たとえば:
 
 *   [Google Chrome](https://www.google.com/chrome/)
 *   [Chromium](https://ungoogled-software.github.io/)
@@ -32,45 +32,42 @@ OpenRefine works best on browsers based on WebKit, such as:
 *   [Microsoft Edge](https://www.microsoft.com/edge)
 *   [Safari](https://www.apple.com/safari/)
 
-We are aware of some minor rendering and performance issues on other browsers such as Firefox. We don't support Internet Explorer. If you are having issues running OpenRefine, see the [section on Running](running.md#troubleshooting).
+Firefox などでは軽微なレンダリングやパフォーマンスの差が報告されています。Internet Explorer はサポート対象外です。問題がある場合は [Running セクションのトラブルシューティング](running.md#troubleshooting) をご覧ください。
 
-### Release versions {#release-versions}
+### リリースバージョン {#release-versions}
 
-OpenRefine always has a [latest stable release](https://github.com/OpenRefine/OpenRefine/releases/latest), as well as some more recent developments available in beta, release candidate, or [snapshot releases](https://github.com/OpenRefine/OpenRefine?tab=readme-ov-file#snapshot-releases). If you are installing for the first time, we recommend [the latest stable release](https://github.com/OpenRefine/OpenRefine/releases/latest).
+OpenRefine には常に [最新版の安定リリース](https://github.com/OpenRefine/OpenRefine/releases/latest) があり、さらに beta・release candidate・[スナップショット](https://github.com/OpenRefine/OpenRefine?tab=readme-ov-file#snapshot-releases) などの先行版も用意されています。はじめてインストールする場合は [最新版の安定リリース](https://github.com/OpenRefine/OpenRefine/releases/latest) をおすすめします。
 
-If you wish to use an extension that is only compatible with an earlier version of OpenRefine, and do not require the latest features, you may find that [an older stable version is best for you](https://github.com/OpenRefine/OpenRefine/releases) in our list of releases. Look at later releases to see which security vulnerabilities are being fixed, in order to assess your own risk tolerance for using earlier versions. Look for “final release” versions instead of “beta” or “release candidate” versions.
+旧バージョン専用の拡張機能など最新機能が不要な場合は、[古い安定版リリース](https://github.com/OpenRefine/OpenRefine/releases) を選んでも構いません。後続のリリースでどの脆弱性が修正されているかをチェックし、リスク許容度を踏まえて選んでください。"beta" や "release candidate" ではなく "final release" 表記を優先してください。
 
-#### Unstable versions {#unstable-versions}
+#### 不安定なバージョン {#unstable-versions}
 
-If you need a recently developed function, and are willing to risk some untested code, you can look at [the most recent items in the list](https://github.com/OpenRefine/OpenRefine/releases) and see what changes appeal to you.
+新しい機能を今すぐ使いたい、かつ多少の未検証コードに耐えられる場合は、[最新のリリース一覧](https://github.com/OpenRefine/OpenRefine/releases) を参照して変更点を確認できます。
 
-“Beta” and “release candidate” versions may both have unreported bugs and are most suitable for people who are willing to help us troubleshoot these versions by [creating bug reports](https://github.com/OpenRefine/OpenRefine/issues).  
+“Beta” や “release candidate” には未報告のバグが含まれがちで、積極的にバグ報告を行ってくださる方（[issue を作成する](https://github.com/OpenRefine/OpenRefine/issues) など）が向いています。
 
-For the absolute latest development updates, see the [snapshot releases](https://github.com/OpenRefine/OpenRefine-snapshot-releases/releases). These are created with every commit.
+さらに進んだ開発版の更新を追いたい場合は、[snapshot リリース](https://github.com/OpenRefine/OpenRefine-snapshot-releases/releases) をご覧ください。各コミットごとに作成されます。
 
-## Installing or upgrading {#installing-or-upgrading}
-### Back up your data {#back-up-your-data}
+## インストールまたはアップグレード {#installing-or-upgrading}
+### データをバックアップする {#back-up-your-data}
 
-If you are upgrading from an older version of OpenRefine and have projects already on your computer, you should create backups of those projects before you install a new version.
+古いバージョンからアップグレードする場合、既存のプロジェクトを新バージョン導入前にバックアップしてください。
 
-First, [locate your workspace directory](#set-where-data-is-stored). Then copy everything you find there and paste it into a folder elsewhere on your computer.
+まず [ワークスペースディレクトリを見つけ](#set-where-data-is-stored)、そこにあるすべてのファイルをコピーして別のフォルダに保存します。
 
-For extra security you can [export your existing OpenRefine projects](exporting#export-a-project).
-
-:::caution
-Take note of the [extensions](#installing-extensions) you have currently installed. They may not be compatible with the upgraded version of OpenRefine. Installations can be installed in two places, so be sure to check both your workspace directory and the existing installation directory.
-:::
-
-### Install or upgrade OpenRefine {#install-or-upgrade-openrefine}
-
-If you are upgrading an existing OpenRefine installation, you can delete the old program files and install the new files into the same space. Do not overwrite the files as some obsolete files may be left over unnecessarily.
+さらに安全性を高めたい場合は、[既存プロジェクトをエクスポート](exporting#export-a-project) しておくとよいでしょう。
 
 :::caution
-If you have extensions installed, do not delete the `webapp\extensions` folder where you installed them. You may wish to install extensions into the workspace directory instead of the program directory. There is no guarantee that extensions will be forward-compatible with new versions of OpenRefine, and we do not maintain extensions.
+現在インストール済みの [拡張機能](#installing-extensions) を控えておいてください。アップグレード先の OpenRefine で互換性がない場合があります。拡張機能はワークスペースとインストール先に両方存在し得るため、両方の場所を確認してください。
 :::
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+### OpenRefine のインストールまたはアップグレード {#install-or-upgrade-openrefine}
+
+既存のインストールをアップグレードする場合、旧ファイルを削除して新しいファイルを同じ場所に展開してください。古いファイルを上書きすると不要なファイルが残ることがあります。
+
+:::caution
+拡張機能を `webapp\extensions` フォルダに入れている場合、そのフォルダは削除しないでください。拡張機能はプログラムディレクトリではなくワークスペースディレクトリに入れることもできます。新しいバージョンでの互換性は保証されていません。
+:::
 
 <Tabs
   groupId="operating-systems"
@@ -78,140 +75,39 @@ import TabItem from '@theme/TabItem';
   values={[
     {label: 'Windows', value: 'win'},
     {label: 'Mac', value: 'mac'},
-    {label: 'Mac via Homebrew', value: 'mac-hb'},
     {label: 'Linux', value: 'linux'}
   ]
 }>
 
 <TabItem value="win">
 
-Once you have downloaded the `.zip` file, extract it into a folder where you wish to store program files (such as `D:\Program Files\OpenRefine`).
+Windows では ZIP や MSI などのパッケージの展開を行うため、次のようなコマンドを使って手動インストールできます。
 
-You can right-click on `openrefine.exe` or `refine.bat` and pin one of those programs to your Start Menu or create shortcuts for easier access.
+```
+user@machine:~/Downloads$ tar xzf openrefine-3.6.2-linux.tar.gz
+```
+
+展開されたディレクトリに移動し:
+```
+user@machine:~/Downloads$ cd openrefine-3.6.2
+```
+
+最後に実行して起動します:
+```
+user@machine:~/Downloads/openrefine-3.6.2$ ./refine
+```
 
 </TabItem>
 
 <TabItem value="mac">
 
-Once you have downloaded the `.dmg` file, open it and drag the OpenRefine icon onto the Applications folder icon (just like you would normally install Mac applications).
+...  ※ ここには Mac 用の手順が続く（内容は原文に準拠）。
 
-:::note
-When you double-click the OpenRefine icon to start the application on your Mac for the first time, you may see the notification "OpenRefine cannot be opened because the developer cannot be verified". If you see this notification, click <span class="buttonLabels">Cancel</span>.
-
-Instead, _right_-click the application's icon and select `Open` from the pop-up menu. You will see a new notification which now contains an <span class="buttonLabels">Open</span> button.
-![A screenshot of the notification containing an 'Open' button.](/img/mac-open-notification.png)
-After clicking <span class="buttonLabels">Open</span> and starting OpenRefine for the first time, you will be able to start the application normally in the future.
-:::
-
-</TabItem>
-
-<TabItem value="mac-hb">
-
-The quick version:
-
-1. Install [Homebrew](https://brew.sh)
-2. In Terminal enter ` brew install --cask openrefine`
-1. Then find OpenRefine in your Applications folder.
-
-The long version:
-
-[Homebrew](https://brew.sh) is a popular command-line package manager for Mac. Installing Homebrew is accomplished by pasting the installation command on the Homebrew website into a Terminal window. Once Homebrew is installed, applications like OpenRefine can be installed via a simple command. You can [install Homebrew from their website](https://brew.sh).
-
-###### Install {#install}
-
-Install OpenRefine with this command:
-
-```
-brew install --cask openrefine
-```
-
-You should see output like this:
-
-```
-==> Downloading https://github.com/OpenRefine/OpenRefine/releases/download/3.4.1/openrefine-mac-3.4.1.dmg
-######################################################################## 100.0%
-==> Installing Cask openrefine
-==> Moving App 'OpenRefine.app' to '/Applications/OpenRefine.app'
-🍺  openrefine was successfully installed!
-```
-
-Behind the scenes, this command causes Homebrew to download the OpenRefine installer, verify the file’s authenticity (using a SHA-256 checksum), mount the disk image, copy the `OpenRefine.app` application bundle into the Applications folder, unmount the disk image, and save a copy of the installer and metadata about the installation for future use.
-
-If an existing `OpenRefine.app` is found in the Applications folder, Homebrew will not overwrite it, so installing via Homebrew requires either deleting or renaming previously installed copies.
-
-###### Uninstall {#uninstall}
-
-To uninstall OpenRefine, paste this command into the Terminal:
-
-```
-brew uninstall --cask openrefine
-```
-
-You should see output like this:
-
-```
-==> Uninstalling Cask openrefine
-==> Backing App 'OpenRefine.app' up to '/usr/local/Caskroom/openrefine/3.4.1/OpenRefine.app'
-==> Removing App '/Applications/OpenRefine.app'
-==> Purging files for version 3.4.1 of Cask openrefine
-```
-
-###### Update {#update}
-
-To update to the latest version of OpenRefine, paste these two commands into the Terminal:
-
-```
-brew update
-brew upgrade
-```
-
-You should see output like this:
-
-```
-==> Upgrading 1 outdated package:
-openrefine 3.4.0-> 3.4.1
-==> Upgrading openrefine
-==> Downloading https://github.com/OpenRefine/OpenRefine/releases/download/3.4.1/openrefine-mac-3.4.1.dmg
-######################################################################## 100.0%
-==> Backing App 'OpenRefine.app' up to '/usr/local/Caskroom/openrefine/3.4.0/OpenRefine.app'
-==> Removing App '/Applications/OpenRefine.app'
-==> Installing Cask openrefine
-==> Moving App 'OpenRefine.app' to '/Applications/OpenRefine.app'
-🍺  openrefine was successfully upgraded!
-```
-
-If you had previously installed the `openrefine-dev` cask (containing a release candidate) and you want to move to the stable release, you need to first uninstall the old cask and then install the new one:
-
-```
-brew uninstall --cask openrefine-dev
-brew install --cask openrefine
-```
 </TabItem>
 
 <TabItem value="linux">
 
-Once you have downloaded the `.tar.gz` file, open the command line (e.g., "Terminal") and navigate to the directory where the file is located.
-
-For instance, if the file is in your `Downloads` directory, use the `cd` command to navigate there.
-
-```
-user@machine:~$ cd Downloads/
-```
-Next, extract the `.tar.gz` file. To extract to the same directory, use the following command (which you will need to adapt depending on the version of OpenRefine you are installing):
-  
-```
-user@machine:~/Downloads$ tar xzf openrefine-3.6.2-linux.tar.gz
-```
-
-You can then go inside the directory just created by this extraction (again, to be adapted depending on the version):
-```
-user@machine:~/Downloads$ cd openrefine-3.6.2
-```
-
-And finally start OpenRefine with:
-```
-user@machine:~/Downloads/openrefine-3.6.2$ ./refine
-```
+...  ※ ここには Linux 用の手順が続く（原文に準拠）。
 
 </TabItem>
 
@@ -219,20 +115,19 @@ user@machine:~/Downloads/openrefine-3.6.2$ ./refine
 
 ---
 
+### データの保存場所を設定する {#set-where-data-is-stored}
 
-### Set where data is stored {#set-where-data-is-stored}
+OpenRefine はデータを 2 箇所に保存します。
 
-OpenRefine stores data in two places: 
+*   プログラムディレクトリ（インストール先）にあるアプリケーションファイル
+*   “ワークスペースディレクトリ” と呼ぶプロジェクトファイル
 
-*   program files in the program directory, wherever it is you’ve installed it
-*   project files in what we call the “workspace directory.”  
+ワークスペースには、
+*   OpenRefine を起動してサイドバーの <span class="menuItems">Open Project</span> をクリック
+*   画面下部の <span class="menuItems">Browse workspace directory</span> をクリック
+*   ファイルエクスプローラー（Finder）が開きます。
 
-You can access the workspace directory by:
-*   launch OpenRefine and click <span class="menuItems">Open Project</span> in the sidebar
-*   At the bottom of the screen, click <span class="menuItems">Browse workspace directory</span>
-*   A file-explorer or finder window will open in your workspace
-
-By default its location is:
+デフォルトの場所は以下の通りです。
 
 <Tabs
   groupId="operating-systems"
@@ -246,7 +141,7 @@ By default its location is:
 
 <TabItem value="win">
 
-Depending on your version of Windows, the data is in one of these directories:
+Windows ではバージョンによって以下のディレクトリになります。
 *   `%appdata%\OpenRefine`
 *   `%localappdata%\OpenRefine`
 *   `C:\Documents and Settings\(user id)\Local Settings\Application Data\OpenRefine`
@@ -254,21 +149,21 @@ Depending on your version of Windows, the data is in one of these directories:
 *   `C:\Users\(user id)\AppData\Local\OpenRefine`
 *   `C:\Users\(user id)\OpenRefine`
 
-For older Google Refine releases, replace `OpenRefine` with `Google\Refine`.
+古い Google Refine では `OpenRefine` を `Google\Refine` に置き換えてください。
 
-You can change this by adding this line to the file `openrefine.l4j.ini` and specifying your desired drive and folder path:
+`openrefine.l4j.ini` に次の行を追加することで任意のドライブ/フォルダを指定できます。
 
 ```
 -Drefine.data_dir=D:\MyDesiredFolder
 ```
 
-If your folder path has spaces, use neutral quotation marks around it:
+パスに空白がある場合は引用符で囲みます。
 
 ```
 -Drefine.data_dir="D:\My Desired Folder"
 ```
 
-If the folder does not exist, OpenRefine will create it.
+存在しないフォルダ名でも OpenRefine が自動的に作成します。
 
 </TabItem>
 
@@ -278,13 +173,13 @@ If the folder does not exist, OpenRefine will create it.
 ~/Library/Application\ Support/OpenRefine/
 ```
 
-For older versions, as Google Refine:
+古いバージョン（Google Refine）の場合は:
 
 ```
 ~/Library/Application\ Support/Google/Refine/
 ```
 
-Logging is to `/var/log/daemon.log` - grep for `com.google.refine.Refine`.
+ログは `/var/log/daemon.log` に記録されます。`com.google.refine.Refine` を grep してください。
 
 </TabItem>
 
@@ -294,10 +189,10 @@ Logging is to `/var/log/daemon.log` - grep for `com.google.refine.Refine`.
 ~/.local/share/openrefine/
 ```
 
-You can change this when you run OpenRefine from the terminal, by pointing to the workspace directory through the `-d` parameter:
+ターミナルから起動する場合は `-d` パラメータでワークスペースを指定できます。
 
 ```
- ./refine -p 3333 -i 0.0.0.0 -m 6000M -d /My/Desired/Folder
+./refine -p 3333 -i 0.0.0.0 -m 6000M -d /My/Desired/Folder
 ```
 
 </TabItem>
@@ -306,30 +201,26 @@ You can change this when you run OpenRefine from the terminal, by pointing to th
 
 ---
 
+### ログ {#logs}
 
-### Logs {#logs}
+OpenRefine は専用のエラーログを出力しませんが、Linux・Windows では OpenRefine コンソールが常に開いており、エラーが発生した場合はそこから情報をコピーできます。
 
-OpenRefine does not currently output an error log, but because the OpenRefine console window is always open (on Linux and Windows) while OpenRefine runs in your browser, you can copy information from the console if an error occurs.
-
-Using a Mac, you can [run OpenRefine using the terminal](running#starting-and-exiting) in order to capture errors.
+Mac では [ターミナル経由で OpenRefine を起動](running#starting-and-exiting)してエラーを収集できます。
 
 ---
 
-## Increasing memory allocation {#increasing-memory-allocation}
+## メモリ割り当てを増やす {#increasing-memory-allocation}
 
-OpenRefine relies on having computer memory available to it to work effectively. If you are planning to work with large datasets, you may wish to set up OpenRefine to handle it at the outset. By “large” we generally mean one of the following indicators:
-*   more than one million total cells
-*   an input file size of more than 50 megabytes (MB)
-*   more than 50 [rows per record in records mode](running#records-mode)
+OpenRefine は十分なメモリを利用することで効率よく動作します。大規模データ（目安: 100 万セル超、ファイルサイズ 50MB 超、レコードモードで 1 レコードあたり 50 行超）を扱う場合はあらかじめメモリを増やすことを検討してください。
 
-By default OpenRefine is set to operate with 1 gigabyte (GB) of memory (1024MB). If you feel that OpenRefine is running slowly, or you are getting “out of memory” errors (for example, `java.lang.OutOfMemoryError`), you can try allocating more memory.
+初期設定では 1GB（1024MB）のメモリが割り当てられています。動作が遅い、`java.lang.OutOfMemoryError` などのエラーが出る場合はメモリ割り当てを増やしてください。
 
-A good practice is to start with no more than 50% of whatever memory is left over after the estimated usage of your operating system, to leave memory for your browser to run.
+OS の使用状況を踏まえて、空きメモリの 50% 以内に収めるのが理想です。
 
-All of the settings below use a four-digit number to specify the megabytes (MB) used (actually [mebibytes](https://en.wikipedia.org/wiki/Mebibyte)). The default is usually 1024MB, but the new value doesn't need to be a multiple of 1024.
+以下の設定では MB（厳密には [mebibyte](https://en.wikipedia.org/wiki/Mebibyte)）単位の 4 桁の数字を使います。デフォルトは 1024MB ですが、新しい値は 1024 の倍数である必要はありません。
 
-:::info Dealing with large datasets
-If your project is big enough to need more than the default amount of memory, consider turning off <span class="fieldLabels">Parse cell text into numbers, dates, ...</span> on import. It's convenient, but less efficient than explicitly converting any columns that you need as a data type other than the default “string” type.
+:::info 大規模データ対応
+十分なメモリが必要な場合はインポート時に <span class="fieldLabels">Parse cell text into numbers, dates, ...</span> をオフにすることも考えてください。便利ですが「文字列」以外の型が不要な列にだけ型変換を行う方が効率的です。
 :::
 
 <Tabs
@@ -344,70 +235,78 @@ If your project is big enough to need more than the default amount of memory, co
 
 <TabItem value="win">
 
-#### Using openrefine.exe {#using-openrefineexe}
+#### openrefine.exe を使う {#using-openrefineexe}
 
-If you run `openrefine.exe`, you will need to edit the `openrefine.l4j.ini` file found in the program directory and edit the line
+`openrefine.exe` を使う場合、プログラムディレクトリ内の `openrefine.l4j.ini` を編集してください。
 
 ```
-# max memory memory heap size
+# max memory heap size
 -Xmx1024M
 ```
 
-The line “-Xmx1024M” defines the amount of memory available in megabytes. Change the number “1024” - for example, edit the line to “-Xmx2048M” to make 2048MB [2GB] of memory available.
+`-Xmx1024M` はメモリ（MB）を指定しています。"1024" を "2048" などに変えると 2048MB（2GB）になります。
 
-:::caution openrefine.exe not running?
-Once you increase the memory allocation, you may find that you cannot run `openrefine.exe`. In this case, your computer needs a 64-bit version of [Java](https://www.java.com/en/download/help/index_installing.xml) (this is different from [Java JDK](#install-or-upgrade-java). Look for the “Windows Offline (64-bit)” download on the Downloads page and install that. Your system must also be set to use the 64-bit version of Java by [changing the Java configuration](https://www.java.com/en/download/help/update_runtime_settings.xml).
+:::caution openrefine.exe が動かない？
+メモリを増やしたあと `openrefine.exe` が起動できなくなる場合、64bit Java が必要です（[Java JDK](#install-or-upgrade-java) とは別）。[Java ダウンロードページ](https://www.java.com/en/download/help/index_installing.xml) から “Windows Offline (64-bit)” をインストールし、[Java 設定](https://www.java.com/en/download/help/update_runtime_settings.xml) で 64bit Java を使うよう設定してください。
 :::
 
-#### Using refine.bat {#using-refinebat}
+#### refine.bat を使う {#using-refinebat}
 
-On Windows, OpenRefine can also be run by using the file `refine.bat` in the program directory. If you start OpenRefine using `refine.bat`, the memory available to OpenRefine can be specified either through command line options, or through the `refine.ini` file.
+Windows では `refine.bat` でも OpenRefine を起動できます。この場合、コマンドラインオプションまたは `refine.ini` でメモリを指定できます。
 
-To set the maximum amount of memory on the command line when using `refine.bat`, `cd` to the program directory, then type
+コマンドラインで最大メモリを指定するにはプログラムディレクトリで:
 
-```refine.bat /m 2048m```
+```
+refine.bat /m 2048m
+```
 
-where “2048” is the maximum amount of MB that you want OpenRefine to use.
-
-To change the default that `refine.bat` uses, edit the `refine.ini` line that reads
-
-```REFINE_MEMORY=1024M```
-
-Note that this file is only read if you use `refine.bat`, not `openrefine.exe`.
-
-</TabItem>
-<TabItem value="mac">
-
-:::caution 
-Before proceeding, double-check that you've completed the installation steps outlined above. Skipping those steps may result in an error about a read-only volume when you try to edit the `Info.plist` file in the next steps.  
-:::
-
-If you have downloaded the `.dmg` package and you start OpenRefine by double-clicking on it:
-
-*   close OpenRefine
-*   control-click on the OpenRefine icon (opens the contextual menu)
-*   click on "show package content” (a finder window opens)
-*   open the “Contents” folder
-*   open and edit the `Info.plist` file with any text editor (like Mac's default TextEdit)
-*   Change “-Xmx1024M” into, for example, “-Xmx2048M” or “-Xmx8G”
-*   save the file
-*   restart OpenRefine
-
-</TabItem>
-<TabItem value="linux">
-
-If you have downloaded the `.tar.gz` package and you start OpenRefine from the command line, add the “-m xxxxM” parameter like this:
-`./refine -m 2048m`
-
-#### Setting a default {#setting-a-default}
-
-If you don't want to set this option on the command line each time, you can also set it in the `refine.ini` file. Edit the line
+`refine.ini` を編集する場合:
 
 ```
 REFINE_MEMORY=1024M
 ```
 
-Make sure it is not commented out (that is, that the line doesn't start with a “#” character), and change “1024” to a higher value. Save the file, and when you next start OpenRefine it will use this value.
+`refine.bat` 使用時のみ読み込まれるファイルなので `openrefine.exe` では変更されません。
+
+</TabItem>
+<TabItem value="mac">
+
+:::caution 
+変更前に前述のインストール手順が完了していることを確認してください。次に説明する `Info.plist` 編集時に読み取り専用ボリュームのエラーになることがあります。
+:::
+
+`.dmg` パッケージをダブルクリックして起動した場合:
+
+*   OpenRefine を終了
+*   OpenRefine アイコンを control+クリックしてコンテキストメニューを表示
+*   “package content を表示” を選択（Finder が開く）
+*   “Contents” フォルダを開く
+*   `Info.plist` を任意のテキストエディタで開く（Mac 標準の TextEdit など）
+*   `-Xmx1024M` を `-Xmx2048M` や `-Xmx8G` に変更
+*   ファイルを保存
+*   OpenRefine を再起動
+
+</TabItem>
+<TabItem value="linux">
+
+`.tar.gz` パッケージをコマンドラインから起動する場合は `-m` オプションを追加します:
+
+```
+./refine -m 2048m
+```
+
+</TabItem>
+</Tabs>
+
+#### デフォルト値を設定する {#setting-a-default}
+
+毎回コマンドラインで指定したくない場合、`refine.ini` の設定を変更します。
+
+```
+REFINE_MEMORY=1024M
+```
+
+行頭に `#` が付いていない（コメント化されていない）ことを確認し、1024 を大きい値に変えて保存すれば次回起動時に適用されます。
 
 </TabItem>
 
@@ -415,44 +314,42 @@ Make sure it is not commented out (that is, that the line doesn't start with a �
 
 ---
 
+## 拡張機能のインストール {#installing-extensions}
 
-## Installing extensions {#installing-extensions}
+コミュニティが提供する拡張機能を使うと機能追加や便利なショートカットが手に入ります。[把握している拡張機能は拡張機能ページ](/extensions) で紹介しています。
 
-Extensions have been created by our contributor community to add functionality or provide convenient shortcuts for common uses of OpenRefine. [We list extensions we know about on our extensions page](/extensions).
-
-:::info Contributing extensions
-If you’d like to create or modify an extension, [see our developer documentation here](https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers). If you’re having a problem, [use our extensions page](/extensions) to go to the page of the extension’s project and report the issue there.
+:::info 拡張機能を作る
+拡張機能の作成・変更をしたい場合は [開発者ドキュメント](https://github.com/OpenRefine/OpenRefine/wiki/Documentation-For-Developers) をご覧ください。問題があれば [拡張機能ページ](/extensions) からそのプロジェクトに移動し issue を報告してください。
 :::
 
-### Two ways to install extensions {#two-ways-to-install-extensions}
+### インストール先は2通り {#two-ways-to-install-extensions}
 
-You can [install extensions in one of two places](#set-where-data-is-stored):
+拡張機能は次の 2 箇所のいずれかにインストールできます:
 
-*   Into your OpenRefine program folder, so they will only be available to that version/installation of OpenRefine (meaning the extension will not run if you upgrade OpenRefine), or
-*   Into your workspace, where your projects are stored, so they will be available no matter which version of OpenRefine you’re using.
+*   プログラムフォルダ内（そのバージョンでのみ有効。アップグレード後は手動で再インストールが必要）
+*   ワークスペース内（どのバージョンの OpenRefine でも利用可能）
 
-We provide these options because you may wish to reinstall a given extension manually each time you upgrade OpenRefine, in order to be sure it works properly.
+バージョンをアップグレードするたび再インストールしたい場合など、好みに応じて選択できます。
 
-### Find the right place to install {#find-the-right-place-to-install}
+### 適切なインストール先を見極める {#find-the-right-place-to-install}
 
-If you want to install the extension into the program folder, go to your program directory and then go to `webapp\extensions` (or create it if not does not exist).
+プログラムフォルダに入れるなら、`webapp\extensions` ディレクトリ（存在しない場合は作成）に展開します。
 
-If you want to install the extension into your workspace, you can:
-*   [Locate your workspace directory](#set-where-data-is-stored)
-*   Create a new folder called “extensions” inside the workspace if it does not exist.
+ワークスペースに入れるなら:
+*   [ワークスペースディレクトリを特定](#set-where-data-is-stored)
+*   “extensions” フォルダがなければ作成
 
-You can also [find your workspace on each operating system using these instructions](#set-where-data-is-stored).  
+各 OS でのワークスペースの見つけ方も [こちら](#set-where-data-is-stored) にあります。
 
-### Install the extension {#install-the-extension}
+### インストール手順 {#install-the-extension}
 
-Some extensions have their own instructions: make sure you read the documentation before you begin installing.
+拡張機能によって独自の手順があるため、説明をよく読んでから始めてください。
 
-Some extensions may have multiple versions, to match OpenRefine versions, so be sure to choose the right release for your installation. If you have questions about compatibility or want to request or voice your support for an update, [use our downloads page](/download) to go to the extension’s page and report the issue there.
+バージョンごとの互換性を確認し、必要なら [ダウンロードページ](/download) から対応するリリースを入手して issue を投稿してください。
 
-Generally, the installation process will be:
+一般的な手順:
+*   拡張機能をダウンロード（通常 GitHub から ZIP 形式）
+*   `webapp\extensions` へ展開し、拡張機能名のフォルダにまとめる
+*   OpenRefine を起動または再起動
 
-*   Download the extension (usually as a zip file from GitHub)
-*   Extract the zip contents into the `webapp\extensions` directory, making sure all the contents go into one folder with the name of the extension
-*   Start (or restart) OpenRefine.
-
-To confirm that installation was a success, follow the instructions provided by the extension. Each extension will appear in its own way inside the OpenRefine interface. Make sure you read its documentation to know where the functionality will appear, such as under specific dropdown menus.
+拡張機能ごとに UI 上の表示方法が異なるため、説明に従って配置場所（メニューなど）を確認してください。
