@@ -1,70 +1,51 @@
 ---
 id: code-contributions
-title: Code contributions
-sidebar_label: Code contributions
+title: コード貢献
+sidebar_label: コード貢献
 ---
 
-## Your first code pull request {#your-first-code-pull-request}
+## 最初のコード PR {#your-first-code-pull-request}
 
-This describes the overall steps to your first code contribution in OpenRefine. If you have trouble with any of these steps feel free to reach out on the [developer forum](https://forum.openrefine.org/c/dev/8) or the [Gitter channel](https://gitter.im/OpenRefine/OpenRefine).
+OpenRefine に初めてコードを貢献するまでの流れをまとめました。各ステップで困ったら [開発者フォーラム](https://forum.openrefine.org/c/dev/8) や [Gitter](https://gitter.im/OpenRefine/OpenRefine) で気軽に相談してください。
 
-First, why do you want to contribute to OpenRefine?
-- Are you an OpenRefine user who wants to fix or improve an aspect of the tool? Great! Before you dive in and make your changes, make sure you discuss what you want to change with the community first. Check if there is a [GitHub issue](https://github.com/OpenRefine/OpenRefine/issues) on this topic already. If there is one, is there consensus around it? If not, it would be worth opening one. You are also welcome to discuss your plans in the [developer forum](https://forum.openrefine.org/c/dev/8).
-- Do you want to contribute to an open source project and picked OpenRefine for that? Great too! It is useful if you first get a sense of what the tool does. [Install OpenRefine](docs/manual/installing.md) and learn to use it by following [some tutorials](/external_resources) or watching [some videos](https://www.youtube.com/watch?v=B70J_H_zAWM&list=PLYMbXPIhZRlVgxgljjZu6rsFl1yeXXLvp). Once you have a basic understanding of the use cases around OpenRefine, browse the [list of issues](https://github.com/OpenRefine/OpenRefine/issues) to find an one that you find interesting. You should pick one where you understand what the problem is as a user, you can see why fixing it would be an improvement to the tool. It is also a good idea to pick an issue that matches your technical skills: some require work on the backend (in Java) or on the frontend (Javascript), or sometimes both. We try to maintain a list of [good first issues](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) which should be easier than others and should not require any difficult design decision.
+まず、なぜ OpenRefine に貢献したいのかを整理しましょう。
+- OpenRefine 利用者としてツールの改善やバグ修正をしたいなら、手を動かす前にコミュニティと話し合うのが大切です。同じテーマの [GitHub Issue](https://github.com/OpenRefine/OpenRefine/issues) があるか探し、合意形成が済んでいるか確認してください。なければ新しく Issue を立てたり、[開発者フォーラム](https://forum.openrefine.org/c/dev/8) で計画を共有しましょう。
+- OSS への貢献先として OpenRefine を選んだ場合は、まずツールの使い方を知ることから始めるとスムーズです。[OpenRefine をインストール](docs/manual/installing.md)し、[チュートリアル](/external_resources) や [動画](https://www.youtube.com/watch?v=B70J_H_zAWM&list=PLYMbXPIhZRlVgxgljjZu6rsFl1yeXXLvp) を参考に操作に慣れましょう。基本的なユースケースを理解したら、[Issue 一覧](https://github.com/OpenRefine/OpenRefine/issues) から興味のあるものを選びます。ユーザーとして問題点が分かり、修正がどのように役立つか想像できるものを選ぶのが理想です。技術スキル（Java のバックエンドか、JavaScript のフロントエンドか、両方か）に合った Issue を選びましょう。難易度が低めで設計判断の少ない [good first issue](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) も用意しています。
 
-### Set up the development environment
+### 開発環境のセットアップ
 
-Once you know what to work on, you can set up a development environment so that you can make changes to OpenRefine and test them.
-We have [detailed instructions for this](technical-reference/build-test-run.md).
+作業内容が決まったら、開発環境を用意して OpenRefine を改造・テストできるようにします。[手順はこちら](technical-reference/build-test-run.md)。
 
-If you want to tackle an existing bug, try to reproduce this bug in your development environment.
-You might need to locate a particular dialog, use a specific importer on a sample file, or follow any other user workflow.
-If you have followed all the steps described in the issue and cannot observe the bug mentioned, write a comment on the issue explaining that you are not able to reproduce it (perhaps it was fixed by another change).
+既知のバグに取り組む場合は、まず開発環境で再現してください。特定のダイアログやインポーター、ワークフローが必要かもしれません。Issue 記載の手順を踏んでも再現できなければ、その旨をコメントして共有しましょう（他の修正で直っている可能性があります）。
 
-### Locating the relevant part of the code to change
+### 該当コードの探し方
 
-OpenRefine being a web app, it consists of a back-end (written in Java) and a front-end (written in Javascript using jQuery). Depending on the issue you want to tackle, you might need to make changes to either part, or sometimes both.
-You do not need to be familiar with the directory structure of OpenRefine to locate which files to work on: you can often use text search across files to find out what to edit.
+OpenRefine は Web アプリなので、Java のバックエンドと jQuery ベースのフロントエンドで構成されています。Issue によって編集する箇所が変わりますが、ディレクトリ構造を覚える必要はなく、全文検索で十分場所を特定できます。
 
-For instance, suppose the issue you want to solve is about a dialog entitled "Columnize by key/values".
-The "columnize" term is likely rather specific and likely to be only used in this dialog or related menu entries, so you can search for this word in the entire repository. You can do so with [GitHub's search
-  engine](https://github.com/OpenRefine/OpenRefine/search?q=columnize) or locally in your git clone, for instance with `grep -iR "columnize" .` (to search in file contents) or `find . | grep columnize` (to search in file names) on UNIX systems.
+例: 「Columnize by key/values」ダイアログに関する Issue なら、比較的固有な語である "columnize" をリポジトリ全体で検索します。[GitHub の検索](https://github.com/OpenRefine/OpenRefine/search?q=columnize)や、ローカルで `grep -iR "columnize" .`（内容検索）や `find . | grep columnize`（ファイル名検索）を使うと、以下のような結果が得られます（2023 年 1 月時点）。
 
-This will give you the following sorts of results, as of January 2023:
-* `main/webapp/modules/core/scripts/views/data-table/key-value-columnize.html`: This file stores the HTML source of the dialog which configures the operation. This would be the place to change the layout of the dialog or add a button inside it, for instance.
-* `main/webapp/modules/core/scripts/views/data-table/menu-edit-cells.js`:
-  This file defines the contents of the "Edit cells" menu in each column, where the columnize operation can be found. It also defines the logic of the corresponding dialog.
-* `main/webapp/modules/core/langs/translation-en.json`:
-  This file defines the translations (here in English) for any text shown in the frontend, such as the menu item for the columnize operation, or text in its dialog.
-* `main/tests/cypress/cypress/e2e/project/grid/column/transpose/columnize.cy.js`:
-   The files under `main/tests/cypress` are [integration tests written in the Cypress framework](technical-reference/functional-tests.md): those describe a user interaction in the web-based UI and check that the expected results are obtained.
-* `main/src/com/google/refine/operations/cell/KeyValueColumnizeOperation.java`: This file is part of the backend and implements the columnize operation itself. This is likely the file you will need to edit if you want to change the behaviour of the operation in some special cases.
-* `main/tests/server/src/com/google/refine/operations/cell/KeyValueColumnizeTests.java`:
-   Such a file defines a set of Java tests, used to check back-end functionality. This file checks that the operation behaves as expected in various scenarios.
-* `main/resources/com/google/refine/operations/OperationDescription.properties`:
-   Such a `.properties` files contains localized strings for the backend, in this case the description of the operation;
-* `main/webapp/modules/core/MOD-INF/controller.js`: This files acts as a central registry which holds links to all the back-end and front-end components which make up the application. The columnize operation (implemented in the back-end) and the
-  corresponding UI (implemented in the front-end) are all registered there.
+* `main/webapp/modules/core/scripts/views/data-table/key-value-columnize.html`: ダイアログの HTML。レイアウト変更やボタン追加など UI 調整に使います。
+* `main/webapp/modules/core/scripts/views/data-table/menu-edit-cells.js`: 各列の "Edit cells" メニューを定義し、columnize 操作のダイアログロジックも含みます。
+* `main/webapp/modules/core/langs/translation-en.json`: フロントエンドで表示する文字列（英語）を定義します。メニュー項目やダイアログ内テキストの翻訳先です。
+* `main/tests/cypress/cypress/e2e/project/grid/column/transpose/columnize.cy.js`: Cypress で書かれた統合テスト。UI の操作と期待結果を検証します。
+* `main/src/com/google/refine/operations/cell/KeyValueColumnizeOperation.java`: バックエンドの実装本体。特定ケースでの動作を変えたいならここを修正します。
+* `main/tests/server/src/com/google/refine/operations/cell/KeyValueColumnizeTests.java`: Java の単体テスト。さまざまなシナリオで操作が期待通りか検証します。
+* `main/resources/com/google/refine/operations/OperationDescription.properties`: バックエンド用のローカライズ文字列（操作の説明など）。
+* `main/webapp/modules/core/MOD-INF/controller.js`: フロント／バックエンドの各コンポーネントを登録するハブです。columnize 操作もここで紐づけられています。
 
-### Testing your changes
+### テスト方法
 
-Once you have made changes to the source code, you should test them to make sure they work as expected.
-Manual testing is very useful for that, as it lets you judge the quality of the final user experience. On top of that, it is useful (and often required for your contribution to be accepted) to have automated tests. As mentioned above, those can come in two
-forms:
-* [Cypress integration tests](technical-reference/functional-tests.md), which should be used when you made changes to the frontend. Those tests are relatively slow to execute: therefore, consider adding assertions to an existing test which covers the area you are touching, if possible;
-* Java unit tests, which should be used when you made changes to the backend. Those tests are faster to execute and generally more reliable. Most Java classes have a corresponding test class (as in the example above). Please make one test class corresponding to its tested class; if there isn't an existing test class, then create a new one. In most cases you should be able to write your unit test by imitating existing tests from the same or similar test classes.
+変更後は必ずテストします。ユーザー体験を確かめる手動テストも重要ですが、受け入れの際には自動テストが求められることが多いです。自動テストは主に 2 種類あります。
+* [Cypress 統合テスト](technical-reference/functional-tests.md): フロントエンドの変更時に使います。実行に時間がかかるため、既存テストにアサーションを追加できるならそれが望ましいです。
+* Java 単体テスト: バックエンド変更時に使います。高速で信頼性が高く、ほとんどのクラスに対応するテストクラスがあります。対応クラスがなければ新規作成してください。既存テストを参考にすると書きやすいです。
 
-### Submitting your changes
+### 変更の提出
 
-Once you have made sure your changes work as expected, you are ready to submit them for review.
+動作確認ができたらレビューに進みます。
 
-- Create a git branch for your fix. The name of your branch should contain the issue number, and a few words to describe the topic of the fix, for instance "issue-1234-columnize-layout".
+- 作業用の git ブランチを作成します。ブランチ名には Issue 番号と簡単な説明（例: `issue-1234-columnize-layout`）。
+- Java の変更があれば `./refine lint` でコードスタイルを確認します。
+- コミットメッセージには `closes #1234` や `fixes #1234` のように Issue 番号を含めます（GitHub が自動リンク）。
+- ブランチを自分の fork に push し、Pull Request を作成します。その際、採ったアプローチや設計判断も説明してください。
 
-- If you made Java changes, run linting to make sure they conform to our code style, with `./refine lint`.
-
-- Commit your changes, using a message that contains one of the special words "closes" and "fixes" which are detected by Github, followed by the issue number, e.g. "closes #1234" or "fixes #1234", this will link the commit to the issue you are working on.
-
-- Push your branch to your fork and create a pull request for it, explaining the approach you have used, any design decisions you have made.
-
-Your changes will be reviewed and we might suggest improvements to your pull request. You can submit those follow-up changes by adding more commits to your branch. Your commits will generally be squashed when merging the pull request.
-Thank you for your contribution!
+レビューで修正提案があれば同じブランチにコミットを追加します。マージ時にはコミットが squash されるのが一般的です。貢献に感謝します！
