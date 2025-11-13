@@ -1,42 +1,42 @@
 module.exports = {
   docs: {
-    'User Manual': [
+    'ユーザーマニュアル': [
       'index',
       'manual/installing',
       'manual/running',
       'manual/starting',
 	        {
       type: 'category',
-      label: 'Exploring data',
+      label: 'データの探索',
       items: ['manual/exploring', 'manual/facets', 'manual/sortview'],
     },
 	    {
       type: 'category',
-      label: 'Transforming data',
+      label: 'データの変換',
       items: ['manual/transforming', 'manual/cellediting','manual/columnediting','manual/transposing'],
     },
       'manual/reconciling',
       {
         type: 'category',
-        label: 'Wikibase, Wikidata and Wikimedia Commons',
+        label: 'Wikibase・Wikidata・Wikimedia Commons',
         items: ['manual/wikibase/overview', 'manual/wikibase/configuration', 'manual/wikibase/reconciling', 'manual/wikibase/schema-alignment',
                 'manual/wikibase/new-entities', 'manual/wikibase/quality-assurance', 'manual/wikibase/uploading'],
       },
 	    {
       type: 'category',
-      label: 'Expressions',
+      label: '式とスクリプト',
       items: ['manual/expressions', 'manual/grel', 'manual/grelfunctions', 'manual/jythonclojure'],
     },
       'manual/exporting',
       'manual/troubleshooting'
     ],
-  'Contributing to OpenRefine': [
+  'OpenRefine への貢献': [
     'technical-reference/contributing',
     'technical-reference/why-get-involved',
     'technical-reference/github',
     {
     type: 'category',
-    label: 'Contributing as a developer',
+    label: '開発者としての貢献',
     items: [
         'technical-reference/code-contributions',
         'technical-reference/translating-ui',
@@ -44,7 +44,7 @@ module.exports = {
         'technical-reference/functional-tests',
         {
             type: 'category',
-            label: 'Architecture',
+            label: 'アーキテクチャ',
             items: [
                 'technical-reference/architecture-before-4',
                 'technical-reference/architecture-4',
@@ -55,7 +55,7 @@ module.exports = {
         },
         {
             type: 'category',
-            label: 'Extensions',
+            label: '拡張機能',
             items: [
             'technical-reference/writing-extensions',
             'technical-reference/migrating-older-extensions',
@@ -64,7 +64,7 @@ module.exports = {
         },
         {
             type: 'category',
-            label: 'Maintaining OpenRefine',
+            label: 'OpenRefine の保守',
             items: [
             'technical-reference/maintainer-guidelines',
             'technical-reference/version-release-process',
@@ -75,7 +75,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Contributing as a designer',
+      label: 'デザイナーとしての貢献',
       items: [
           'technical-reference/introduction',
           'technical-reference/get-involved',
@@ -90,7 +90,7 @@ module.exports = {
       },
       {
       type: 'category',
-      label: 'OpenRefine Roadmap',
+      label: 'OpenRefine ロードマップ',
       items: [
           'technical-reference/development-roadmap',
           'technical-reference/about-goal-posts',
