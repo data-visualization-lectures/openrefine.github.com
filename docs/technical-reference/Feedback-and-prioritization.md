@@ -1,19 +1,17 @@
 ---
 id: feedback-and-prioritization
-title: Feedback and prioritization
-sidebar_label: Feedback and prioritization
+title: フィードバックと優先順位付け
+sidebar_label: フィードバックと優先順位付け
 ---
 
-When engaging in design discussions and reviews, share your work within GitHub issues to gather feedback on usability, aesthetics, and project alignment. Incorporate received feedback by refining your designs, ensuring they adhere to the user goals identified in the original formulation of the issue. 
+デザインディスカッションやレビューでは、GitHub Issue 上で作業内容を共有し、使いやすさ・見た目・プロジェクト方針への適合についてフィードバックを集めます。受け取った意見を踏まえてデザインを磨き、Issue で定義されたユーザーゴールに沿っているか確認しましょう。
 
-Collaborate with maintainers and contributors to prioritize the order of addressing and implementing design tasks, considering the community's size and potential competing responsibilities. Be aware that feedback from project maintainers and experienced contributors might take time due to the community's small scale and other ongoing tasks.
+メンテナーや他の貢献者と連携し、コミュニティの規模や各自のタスク状況を考慮しながら、デザイン作業の優先度や実装順序を調整します。コミュニティ規模が大きくないため、メンテナーや経験者からの返信に時間がかかることもあります。同様に、実装まで時間を要する場合もありますが、提案されたデザインは将来の機能追加や改善の議論に役立つため価値を失うわけではありません。
 
-For the same reason, implementation might also take time. The asynchronous feedback and implementation process does not remove any value from the design suggestion as it helps elicit future functionalities or improvements.
+## コミュニティへの参加
 
-## Community engagement
+### フォーラムでの交流
+GitHub 上の個別 Issue だけでなく、フォーラムでも意見交換や助言の場を活用しましょう。積極的な参加は支援的なコミュニティを育て、知識共有を促し、OpenRefine プロジェクト全体の発展につながります。
 
-### Active participation in forum
-Besides specific issue discussions on GitHub, engage in discussions on the project's Forum to share more general insights, seek guidance, and collaborate with fellow contributors. Your active involvement helps foster a supportive community and enables valuable knowledge exchange, contributing to the collective growth of the OpenRefine project.
-
-### Monthly contributor meetup
-Join the monthly contributor meetup to connect with others, discuss progress, and align efforts. These gatherings provide an opportunity to share ideas, address challenges, and collectively steer the project forward, reinforcing a sense of camaraderie and shared purpose within the OpenRefine community.
+### 月例コントリビューターミートアップ
+毎月のコントリビューターミートアップに参加して、最新状況を共有したり課題を相談したりしましょう。アイデアを持ち寄り、共通の目的に向かって歩調を合わせることで、OpenRefine コミュニティの一体感と推進力を強化できます。

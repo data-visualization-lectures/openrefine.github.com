@@ -1,100 +1,95 @@
 ---
 id: functional-tests
-title: Functional tests
-sidebar_label: Functional tests
+title: 機能テスト
+sidebar_label: 機能テスト
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-## Introduction {#introduction}
+## 概要 {#introduction}
 
-OpenRefine's web interface is tested with the [Cypress framework](https://www.cypress.io/).
-With Cypress, tests are performing assertions using a real browser, the same way a real user would use the software.
-Those are "end to end" (e2e) tests because they also rely on OpenRefine's backend (server).
+OpenRefine の Web インターフェースは [Cypress](https://www.cypress.io/) でテストしています。Cypress は実際のブラウザーを使ってアサーションを行うため、実ユーザーと同じ操作感でテストできます。バックエンド（サーバー）も含めて検証する **E2E（End-to-End）テスト** です。
 
-Cypress tests can be ran
+Cypress テストの実行方法は 2 つあります。
 
-- using the Cypress test runner (development mode)
-- using a command line (CI/CD mode)
+- Cypress Test Runner（開発モード）
+- コマンドライン（CI/CD モード）
 
-If you are writing tests, the Cypress test runner is good enough, and the command-line is mainly used by the CI/CD platform (Github actions)
+テストを作成・調整する際は Test Runner で十分です。CI/CD モードは主に GitHub Actions などの自動実行で利用されます。
 
-## Cypress brief overview {#cypress-brief-overview}
+## Cypress の概要 {#cypress-brief-overview}
 
-Cypress operates insides a browser, it's internally using NodeJS.
-That's a key difference with tools such as Selenium.
+Cypress はブラウザー内で動作し、内部的に Node.js を使用します。これは Selenium などとの大きな違いです。
 
-**From the Cypress documentation:**
+**Cypress ドキュメントより:**
 
-> But what this also means is that your test code **is being evaluated inside the browser**. Test code is not evaluated in Node, or any other server side language. The **only** language we will ever support is the language of the web: JavaScript.
+> テストコードは **ブラウザー内で評価されます**。Node やサーバー側の言語ではありません。サポートする言語は Web の言語、すなわち JavaScript だけです。
 
-Good starting points with Cypress are its [Getting started guide](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Write-your-first-test), and its [Trade-offs](https://docs.cypress.io/guides/references/trade-offs.html#Permanent-trade-offs-1)
+おすすめの読み物:
+- [Getting started guide](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Write-your-first-test)
+- [Trade-offs](https://docs.cypress.io/guides/references/trade-offs.html#Permanent-trade-offs-1)
 
-The general workflow of a Cypress test is to
+一般的な Cypress テストの流れ:
 
-- Start a browser (yarn run cypress open)
-- Visit a URL
-- Trigger user actions
-- Assert that the DOM contains expected texts and elements using selectors
+1. ブラウザーを起動（`yarn run cypress open`）
+2. URL にアクセス
+3. ユーザーアクションをトリガー
+4. セレクターで DOM のテキストや要素を検証
 
-## Getting started {#getting-started}
+## はじめ方 {#getting-started}
 
-If this is the first time you use Cypress, it is recommended for you to get familiar with the tool.
+初めて Cypress を使う場合は、以下の資料で仕組みを把握しておくとスムーズです。
 
 - [Cypress overview](https://docs.cypress.io/guides/overview/why-cypress.html)
-- [Cypress examples of tests and syntax](https://example.cypress.io/)
+- [サンプルとシンタックス](https://example.cypress.io/)
 
-### 1. Install Cypress {#1-install-cypress}
+### 1. Cypress のインストール {#1-install-cypress}
 
-- [Intalling Cypress](https://docs.cypress.io/app/get-started/install-cypress)
+- [公式インストールガイド](https://docs.cypress.io/app/get-started/install-cypress)
 
-You will need:
+必要なもの:
 
-- [Node.js 20.x, 22.x and above](https://nodejs.org)
-- [Yarn or NPM](https://yarnpkg.com/)
-- A Unix/Linux shell environment or the Windows command line
+- [Node.js 20.x/22.x 以上](https://nodejs.org)
+- [Yarn または NPM](https://yarnpkg.com/)
+- Unix/Linux シェル、または Windows コマンドライン
 
-To install Cypress and dependencies, run :
+依存関係を含めてインストール:
 
 ```shell
 cd ./main/tests/cypress
 yarn install
 ```
 
-### 2. Start the test runner {#2-start-the-test-runner}
+### 2. テストランナーを起動 {#2-start-the-test-runner}
 
-The test runner assumes that OpenRefine is up and running on the local machine, the tests themselves do not launch OpenRefine, nor restarts it.
+テストランナーは OpenRefine がローカルで起動していることを前提にします（テスト側で起動・再起動はしません）。
 
-cd back to the top-level folder, then Start OpenRefine 
+リポジトリルートで OpenRefine を起動:
 
 ```shell
 cd ../../..
 ./refine
 ```
 
-Then start Cypress
+続いて Cypress を起動:
 
 ```shell
 yarn --cwd ./main/tests/cypress run cypress open
 ```
 
-### 3. Run the existing tests {#3-run-the-existing-tests}
+### 3. 既存テストの実行 {#3-run-the-existing-tests}
 
-Once the Cypress Launchpad interface window and test runner is up, click on E2E Testing, then you can choose to run one or several tests by selecting them from the Cypress Launchpad window.  
-Click on one of them and the test will start.
+Cypress Launchpad が開いたら「E2E Testing」を選び、実行したいテストをクリックします。複数選択も可能です。
 
-### 4. Add your first test {#4-add-your-first-test}
+### 4. 最初のテストを追加 {#4-add-your-first-test}
 
-- Add a `test.spec.js` into the `main/tests/cypress/cypress/e2e` folder.
-- The test is instantly available in the list
-- Click on the test
-- Start to add some code
+- `main/tests/cypress/cypress/e2e` に `test.spec.js` を作成
+- すぐにリストへ反映されます
+- テスト名をクリックし、コードを追加
 
-## Tests technical documentation {#tests-technical-documentation}
+## テスト技術ドキュメント {#tests-technical-documentation}
 
-### A typical test {#a-typical-test}
-
-A typical OpenRefine test starts with the following code
+### 代表的なテスト {#a-typical-test}
 
 ```javascript
 it('Ensure cells are blanked down', function () {
@@ -104,47 +99,36 @@ it('Ensure cells are blanked down', function () {
 });
 ```
 
-The first noticeable thing about a test is the description (`Ensure cells are blanked down`), which describes what the test is doing.  
-Lines usually starts with `cy.something...`, which is the main way to interact with the Cypress framework.
+冒頭の説明文（`Ensure cells are blanked down`）でテスト内容を明示します。行頭の `cy.` が Cypress のコマンドです。
 
-A few examples:
+例:
+- `cy.get('a.my-class')`: `<a class="my-class" />` 要素を取得
+- `cy.click()`: 要素をクリック
+- `cy.should('to.contains', 'my text')`: アサーション
 
-- `cy.get('a.my-class')` will retrieve the `<a class="my-class" />` element
-- `cy.click()` will click on the element
-- eventually, `cy.should()` will perform an assertion, for example that the element contains an expected text with `cy.should('to.contains', 'my text')`
+OpenRefine 独自のヘルパーもいくつか用意しています。
+- `cy.loadAndVisitProject`: 指定データで新規プロジェクトを作成
+- `cy.assertCellEquals`: セル内容を検証
 
-On top of that, OpenRefine contributors have added some functions for common OpenRefine interactions.
-For example
+詳細は後述の「テストユーティリティ」を参照してください。
 
-- `cy.loadAndVisitProject` will create a fresh project in OpenRefine
-- `cy.assertCellEquals` will ensure that a cell contains a given value
+### テストのガイドライン {#testing-guidelines}
 
-See below on the dedicated section 'Testing utilities'
+- `cy.wait` は最後の手段（基本的にアンチパターン）
+- テスト同士は独立させ、1 つの機能に集中する
+- 毎回新しい OpenRefine プロジェクトで開始する
+- ファイル名は UI 上の位置に合わせる
+- Facet など hover で表示される要素は `.invoke('trigger', 'mouseover')` を利用（jQuery を使用）
+- jQuery メソッドをアサートしたい場合も `.invoke` が便利
 
-### Testing guidelines {#testing-guidelines}
+### テストユーティリティ {#testing-utilities}
 
-- `cy.wait` should be used in the last resort scenario. It's considered a bad practice, though sometimes there is no other choice
-- Tests should remain isolated from each other. It's best to try one feature at a time
-- A test should always start with a fresh OpenRefine project
-- The name of the files should mirror the OpenRefine UI organization
-- Sometimes things are hidden until hovered, like Facet choices. Use `.invoke('trigger', 'mouseover')` since we use jQuery. See [Cypress docs - invoke Examples](https://docs.cypress.io/api/commands/invoke#Properties-that-are-functions-are-invoked)
-- OpenRefine uses jQuery and sometimes you might need to assert a jQuery element method. See [Cypress docs - jQuery method](https://docs.cypress.io/api/commands/invoke#jQuery-method)
+`main/tests/cypress/cypress/support/commands.js` に共通処理が定義されています。
 
-### Testing utilities {#testing-utilities}
+最重要なのは `loadAndVisitProject` で、パラメータに応じて新規プロジェクトを作成します。
 
-OpenRefine contributors have added some utility methods on the top of the Cypress framework.
-Those methods perform some common actions or assertions on OpenRefine, to avoid code duplication.
-
-Utilities can be found in `main/cypress/cypress/support/commands.js`.
-
-The most important utility method is `loadAndVisitProject`.  
-This method will create a fresh OpenRefine project based on a dataset given as a parameter.  
-The fixture parameter can be
-
-- An arbitrary array, the first row is for the column names, other rows are for the values  
-  Use an arbitrary array **only** if the test requires some specific grid values  
-  **Example:**
-
+- 任意の配列を渡す: 最初の行が列名、それ以降がデータ。
+  特定のグリッドを明示的に用意したい場合のみ使用してください。
   ```javascript
   const fixture = [
     ['Column A', 'Column B', 'Column C'],
@@ -154,94 +138,47 @@ The fixture parameter can be
   ];
   cy.loadAndVisitProject(fixture);
   ```
+- 既存フィクスチャを渡す: `food.mini`（2 行・少列）、`food.small`（数百行）。基本的には `food.mini` を使い、特別な理由がある場合のみ `food.small` を選びます。
+  フィクスチャは `main/tests/cypress/cypress/fixtures` にあります。
 
-- A referenced dataset: `food.small` or `food.mini`  
-  Most of the time, tests does not require any specific grid values  
-  Use food.mini as much as possible, it loads 2 rows and very few columns in the grid  
-  Use food.small if the test requires a few hundred rows in the grid
+### 対応ブラウザー {#browsers}
 
-  Those datasets live in `main/cypress/cypress/fixtures`
+利用できるブラウザーは OS にインストールされているものに依存します。対応一覧は [Cypress ドキュメント](https://docs.cypress.io/guides/guides/launching-browsers.html#Browsers) を参照してください。
 
-### Browsers {#browsers}
+### ディレクトリ構成 {#folder-organization}
 
-In terms of browsers, Cypress is using what is installed on your operating system.
-See the [Cypress documentation](https://docs.cypress.io/guides/guides/launching-browsers.html#Browsers) for a list of supported browsers
+テストは `main/tests/cypress/cypress` 配下にあります。
 
-### Folder organization {#folder-organization}
+- `/fixtures`: CSV や OpenRefine プロジェクト
+- `/integration`: テストコード（※ Cypress v10 以降は `e2e` フォルダを使用）
+- `/plugins`: プロジェクト用のカスタムプラグイン
+- `/screenshots`, `/videos`: 実行記録（Git 無視）
+- `/support`: アサーションや操作の共通ライブラリ
 
-Tests are located in `main/tests/cypress/cypress` folder.
-The test should not use any file outside the cypress folder.
+### 設定 {#configuration}
 
-- `/fixtures` contains CSVs and OpenRefine project files used by the tests
-- `/integration` contains the tests
-- `/plugins` contains custom plugins for the OR project
-- `/screenshots` and `/videos` contains the recording of the tests, Git ignored
-- `/support` is a custom library of assertion and common user actions, to avoid code duplication in the tests themselves
+実行時の設定は環境変数で行えます（OS レベルまたはコマンドライン）。主なもの:
 
-### Configuration {#configuration}
+- `OPENREFINE_URL`: 接続先（デフォルト `http://localhost:3333`）
+- `DISABLE_PROJECT_CLEANUP`: 1 にするとテスト後のプロジェクト削除を無効化（デフォルト 0）
 
-Cypress execution can be configured with environment variables, they can be declared at the OS level, or when running the test
+詳しくは [Cypress の環境変数ガイド](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) を参照してください。簡単な方法は次の通りです。
 
-Available variables are
+#### `cypress.env.json` を使う {#overriding-with-a-cypressenvjson-file}
 
-- OPENREFINE_URL, determine on which scheme://url:port to access OpenRefine, default to http://localhost:333
-- DISABLE_PROJECT_CLEANUP, If set to 1, projects will not be deleted after each run. Default to 0 to keep the OpenRefine instance clean
+このファイルは Git で無視され、ローカル設定に利用できます。
 
-
-Cypress contains [exaustive documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) about configuration, but here are two simple ways to configure the execution of the tests:
-
-#### Overriding with a cypress.env.json file {#overriding-with-a-cypressenvjson-file}
-
-This file is ignored by Git, and you can use it to configure Cypress locally
-
-#### Command-line {#command-line}
-
-You can pass variables at the command-line level
-
-```shell
-yarn --cwd ./main/tests/cypress run cypress open --env OPENREFINE_URL="http://localhost:1234"
+```json
+{
+  "OPENREFINE_URL": "http://localhost:3334"
+}
 ```
 
-### Visual testing {#visual-testing}
+#### コマンドラインで上書き {#command-line}
 
-Tests generally ensure application behavior by making assertions against the DOM, to ensure specific texts or css attributes are present in the document body.  
-Visual testing, on the contrary, is a way to test applications by comparing images.
-A reference screenshot is taken the first time the test runs, and subsequent runs will compare a new screenshot against the reference, at the pixel level.
-
-Here is an [introduction to visual testing by Cypress](https://docs.cypress.io/plugins/directory#visual-testing).
-
-In some cases, we are using visual testing.  
-We are using [Cypress Image Snapshot](https://github.com/jaredpalmer/cypress-image-snapshot)
-
-Identified cases are so far:
-
-- testing images created by OpenRefine backend (scatterplots for example)
-
-Reference screenshots (Called snapshots), are stored in /cypress/snapshots.
-And a snapshot can be taken for the whole page, or just a single part of the page.
-
-#### When a visual test fails {#when-a-visual-test-fails}
-
-First, Cypress will display the following error message:
-
-![Diff image when a visual test fails](/img/visual-test-cypress-failure.png)
-
-Then, a diff image will be created in /cypress/snapshots, this directory is ignored by Git.  
-The diff images shows the reference image on the left, the image that was taken during the test run on the right, and the diff in the middle.
-
-![Diff image when a visual test fails](/img/failed-visual-test.png)
-
-## CI/CD {#cicd}
-
-In CI/CD, tests are run headless, with the following command-line
+実行時に `CYPRESS_` プレフィックス付きで渡します。
 
 ```shell
-./refine e2e_tests
+CYPRESS_OPENREFINE_URL=http://localhost:3334 \
+yarn --cwd ./main/tests/cypress run cypress open
 ```
-
-Results are displayed in the standard output
-
-## Resources {#resources}
-
-[Cypress command line options](https://docs.cypress.io/guides/guides/command-line.html#Installation)
-[Lots of good Cypress examples](https://example.cypress.io/)

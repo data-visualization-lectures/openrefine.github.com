@@ -1,49 +1,42 @@
 ---
 id: documentation-contributions
-title: Documentation contributions
-sidebar_label: Documentation contributions
+title: ドキュメント貢献
+sidebar_label: ドキュメント貢献
 ---
 
-We welcome contributions to our documentation, which is maintained as a set of [Markdown](https://www.markdownguide.org/) files in the [OpenRefine/openrefine.org](https://github.com/OpenRefine/openrefine.org) Git repository.
+OpenRefine のドキュメントは [Markdown](https://www.markdownguide.org/) で書かれており、[OpenRefine/openrefine.org](https://github.com/OpenRefine/openrefine.org) リポジトリで管理しています。貢献を歓迎します。
 
-##  Single page edit via GitHub web interface
+## GitHub から単一ページを編集
 
-For changes made to a single page, you do not need to be familiar with Git. Go to the page you want to change and click "Edit this page" at the bottom of the page. This will lead you to GitHub, where you will need to have an account. You will be then guided through the process of proposing those changes (which will create a "Pull Request" in GitHub's terms).
+1 ページだけの修正なら Git の知識は不要です。対象ページの下部にある "Edit this page" をクリックすると GitHub に移動し、アカウントでログイン後、ガイドに従って変更提案（Pull Request）が作成できます。
 
-Once your pull request is open, your changes will be checked automatically for common issues, and if all goes well a preview of the website with your changes will be generated.
-We will then review your changes and integrate them to the website.
+Pull Request が作成されると、自動的にチェックが走り、問題がなければ変更を反映したサイトのプレビューが生成されます。その後メンテナーがレビューしてサイトに反映します。
 
-## Multi-page edit by editing the documentation locally
+## ローカル環境で複数ページを編集
 
-For more complex changes, it is helpful to check how the website looks after your changes, before you submit them. For this workflow you will need to install:
-* a Git client, such as GitHub Desktop or the `git` command-line tool if you are comfortable working from the terminal;
+大きな変更では、提出前にサイトの見た目を確認できると便利です。その場合は以下のツールをインストールしてください。
+* Git クライアント（GitHub Desktop や `git` コマンドなど）
 * [Node.js](https://nodejs.org/en/download/)
-* [Yarn](https://yarnpkg.com/getting-started/install), which can be installed with
-```sh
-npm install -g yarn
-```
-after having installed Node.js.
+* [Yarn](https://yarnpkg.com/getting-started/install)（Node.js インストール後 `npm install -g yarn`）
 
-Once you have installed those tools, create a personal fork of the [OpenRefine/openrefine.org](https://github.com/OpenRefine/openrefine.org) repository and clone your fork, then change to the clone:
+準備ができたら [OpenRefine/openrefine.org](https://github.com/OpenRefine/openrefine.org) を fork し、クローンして以下を実行します。
 
 ```sh
 git clone git@github.com:<myaccount>/openrefine.org.git
 cd openrefine.org
 yarn
 ```
-This will install the dependencies required to generate the site, which is mainly [Docusaurus](https://docusaurus.io/).
 
-Once this is done, generate the docs with:
+依存関係（主に [Docusaurus](https://docusaurus.io/)）がインストールされます。続けてドキュメントをローカルで起動します。
+
 ```sh
 yarn start
 ```
-This will spin a local web server to serve the docs for you.
-A browser window will open at http://localhost:3000
-and will auto-refresh when you edit the source files.
 
-You could also generate the website as a set of static files, although this should generally not be needed:
+`http://localhost:3000` でドキュメントが表示され、ソースを編集すると自動的に更新されます。必要なら静的ファイルを生成することもできます。
+
 ```sh
 yarn build
 ```
 
-Once you are happy with your changes, you can [submit them as a pull request](https://www.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github-3/).
+内容に満足したら、[Pull Request を作成](https://www.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github-3/)して送ってください。

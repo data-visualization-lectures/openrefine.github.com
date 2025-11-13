@@ -1,25 +1,22 @@
 ---
 id: get-involved
-title: Get involved
-sidebar_label: Get involved
+title: 参加方法
+sidebar_label: 参加方法
 ---
 
-## Join the OpenRefine community
+## OpenRefine コミュニティに参加する
 
-Here's how you can take your first steps to become a part of the OpenRefine design team:
+OpenRefine のデザインチームに加わる第一歩として、以下のステップを試してください。
 
-OpenRefine's communication channels are the heart of our collaboration. Join the [OpenRefine forum](https://forum.openrefine.org/), where discussions, announcements, and design-related topics are shared. It is a great place to ask questions, get help, and meet other OpenRefine users and developers.
+OpenRefine のコラボレーションはコミュニケーションチャンネルが中心です。[OpenRefine フォーラム](https://forum.openrefine.org/) に参加し、ディスカッションやお知らせ、デザイン関連の話題を追いましょう。質問やサポート依頼、他のユーザー／開発者との交流にも最適です。
 
-Once you've joined the forum, take a moment to introduce yourself in the [introduction thread](https://forum.openrefine.org/t/introductions-thread/69). Let us know about your background, interests, and what aspects of design you're passionate about. This is a great way for us to get to know you better and for you to connect with fellow community members.
+フォーラムに参加したら、[自己紹介スレッド](https://forum.openrefine.org/t/introductions-thread/69) で背景や興味、情熱を持っているデザイン分野について共有してください。コミュニティとつながる良いきっかけになります。
 
-Check out the available avenues for contributing to the design team. Whether it's enhancing the core design elements, creating visual assets, or collaborating on user experience improvements, carrying out user testing or research, there's a role for every design enthusiast.
+デザインチームへの貢献方法も確認しましょう。コアデザインの改善、ビジュアル資産の作成、UX 向上のための協働、ユーザーテストやリサーチなど、デザインに情熱がある人ならどこかで活躍できます。
 
-## Tools
+## ツール
 ### Figma
-[Figma](https://www.figma.com/) is a popular web-based design tool, which is used to document the OpenRefine design system. You don’t have to use it to contribute to the OpenRefine project, but you may want to take advantage of the possibilities to reuse design components in your design work, too. To do that you will need to create a free account, if you don’t already have one. If you need guidance, explore [Figma's Help Center](https://help.figma.com/hc/en-us) for tutorials and more to master Figma's features.
+[Figma](https://www.figma.com/) は OpenRefine デザインシステムのドキュメント化に使っている Web ベースのデザインツールです。必須ではありませんが、既存のデザインコンポーネントを再利用したい場合に便利です。無料アカウントがなければ作成し、[ヘルプセンター](https://help.figma.com/hc/en-us) で使い方を学ぶと良いでしょう。
 
 ### GitHub
-GitHub serves as the primary issue tracker for OpenRefine, hosting its codebase. It's worth noting that GitHub's significance extends beyond developers, as users, educators and designers also contribute significantly. 
-
-You can create a free account on [Github.com](https://github.com), if you don’t already have one.
-To learn more on how designers can use GitHub, the article  [Git for Designers – All You Need to Know](https://www.uxpin.com/studio/blog/git-for-designers/) by [UXPIN](https://www.uxpin.com/studio/) offers an extensive breakdown of Github.
+GitHub は OpenRefine のコードと Issue トラッカーをホストしています。開発者だけでなく、ユーザーや教育者、デザイナーも積極的に貢献しています。まだアカウントがない場合は [Github.com](https://github.com) で無料アカウントを作成してください。デザイナーが Git/GitHub をどう活用できるか知りたい方は、[UXPIN](https://www.uxpin.com/studio/) による記事 [Git for Designers – All You Need to Know](https://www.uxpin.com/studio/blog/git-for-designers/) が参考になります。

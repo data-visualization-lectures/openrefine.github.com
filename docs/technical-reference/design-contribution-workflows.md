@@ -1,27 +1,28 @@
 ---
 id: design-contribution-workflows
-title: Design contribution workflows
-sidebar_label: Design contribution workflows
+title: デザイン貢献の進め方
+sidebar_label: デザイン貢献の進め方
 --- 
 
-### Identifying design issues
+### デザイン Issue の探し方
 
-The OpenRefine project contains several repositories, but you’re most likely to find design-related issues in the main application repository here: https://github.com/OpenRefine/OpenRefine. Alternatively, further design issues might be linked to the main [OpenRefine website repository](https://github.com/OpenRefine/openrefine.org), or some additional extensions. 
+OpenRefine には複数のリポジトリがありますが、デザイン関連の Issue は主にメインアプリのリポジトリ（https://github.com/OpenRefine/OpenRefine）にあります。そのほか [OpenRefine 公式サイト](https://github.com/OpenRefine/openrefine.org) や拡張機能のリポジトリにも紐づく場合があります。
 
-Within OpenRefine's GitHub, the [OpenRefine Design](https://github.com/orgs/OpenRefine/projects/1) Project is the main entry point for designers to identify and select suitable issues to work on.
-![This is a screenshot showing the design project in the OpenRefine GitHub repository](/img/openrefine-design-project.png)
+GitHub 上の [OpenRefine Design プロジェクト](https://github.com/orgs/OpenRefine/projects/1) が、デザイン担当者向けの入口です。ここで作業可能な Issue を見つけられます。
+![OpenRefine の GitHub リポジトリでデザインプロジェクトを示すスクリーンショット](/img/openrefine-design-project.png)
 
-The OpenRefine design team uses  GitHub Projects to effectively manage and track design-related issues across all relevant repositories. GitHub Projects allows us to group issues that have been tagged with a design-related theme and track progress from start to finish.
+OpenRefine のデザインチームは GitHub Projects を使って各リポジトリのデザイン Issue をまとめて管理し、開始から完了までの進捗を追跡しています。
 
-![This screenshot shows the OpenRefine design project in list view](/img/project-list-view.png)
+![リストビューのスクリーンショット](/img/project-list-view.png)
 
-### Project views:
+### プロジェクトビュー
 
--  Once you open the UI / UX Project, you have the option to look at current issues in either Table or Board view. Both views allow you to get a quick overview of the status of various tasks and who is assigned to work on them.  Typically, you want to find tasks that  have not been assigned to anyone yet and have status “To Do”.
+- UI/UX プロジェクトを開くと、Table View と Board View のどちらかで Issue を俯瞰できます。どちらもタスクの状態や担当者を素早く把握できる視点です。基本的には「未割り当て」でステータスが “To Do” のタスクを探します。
 
-### Getting assigned to an issue:
--  When you’d like to contribute to a design task, you can request assignment or wait to be assigned by a project maintainer or someone with appropriate permissions. Click on the issue card to open it, and within the right-hand side "Assignees" section, you can request to be assigned to the issue or express your interest via a comment to the project maintainers. Getting assigned to an issue signals to the community that this issue will be actively worked on, and unless you explicitly request help from others, you will be responsible for carrying out the actions needed to close the issue.
+### Issue へのアサイン
 
-### Tracking the issue:
--  Once assigned, you can move the issue card to the "In Progress" column, indicating that you're actively working on it, unless another project maintainer already does it for you. You can update the issue's description, comments, and share any relevant design assets. To demonstrate your progress, consider using checklists within the issue description to outline the specific design elements you're addressing. You can also add comments to the issue at relevant progress intervals to discuss particular pain points with other contributors or to mark any significant breakthroughs Once an issue has been completed and/or moved to a pull request, you can also mark it as done.
+- デザインタスクに参加したい場合は、Issue カードを開いて右側の "Assignees" セクションから割り当てをリクエストするか、コメントで意欲を伝えます。メンテナーや権限のあるメンバーが割り当てを行います。アサインされることで「この Issue に取り組んでいる」ことがコミュニティに伝わり、原則として完了までの作業責任を負うことになります（もちろん他の人に協力を求めても構いません）。
 
+### Issue の進捗管理
+
+- アサインされたら、カードを "In Progress" 列に移動し、着手中であることを示します（メンテナーが移動してくれる場合もあります）。Issue の説明やコメントに作業内容やデザインアセットを記録しましょう。進捗を示すには、Issue 説明にチェックリストを追加して担当するデザイン要素を列挙する方法が役立ちます。また、途中経過や課題、成果をコメントで共有すると他の貢献者と議論しやすくなります。作業完了やプルリクエスト作成後は、カードを Done に移動してクローズできます。

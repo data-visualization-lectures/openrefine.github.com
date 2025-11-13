@@ -1,36 +1,37 @@
 ---
 id: development-roadmap
-title: Development roadmap
-sidebar_label: Development roadmap
+title: 開発ロードマップ
+sidebar_label: 開発ロードマップ
 ---
 
-### Short Term Roadmap
+### 短期ロードマップ
 
-You can monitor our [issues list](https://github.com/OpenRefine/OpenRefine/issues) in Github to keep up to date with current plans. We use:
-* [Milestones](https://github.com/OpenRefine/OpenRefine/milestones) to identify what's included in upcoming releases.
-* [Projects](https://github.com/OpenRefine/OpenRefine/projects) to group issues for a specific goal. 
+最新の計画は GitHub の [Issue リスト](https://github.com/OpenRefine/OpenRefine/issues) で確認できます。以下を活用しています。
+* [Milestones](https://github.com/OpenRefine/OpenRefine/milestones): 次回リリースに含める内容を整理
+* [Projects](https://github.com/OpenRefine/OpenRefine/projects): 特定ゴールに向けた Issue をまとめる
 
-If there are features you would like to see that are not currently listed, please add them to the [issue tracker](https://github.com/OpenRefine/OpenRefine/issues).
+まだ挙がっていない機能要望があれば、[Issue トラッカー](https://github.com/OpenRefine/OpenRefine/issues) に追加してください。
 
-### Work in progress {#work-in-progress}
-Alongside the planned releases there are often smaller pieces of work in progress. Check for [recently updated issues](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and [pull requests](https://github.com/OpenRefine/OpenRefine/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) to see what is currently in the works.
+### 進行中の作業 {#work-in-progress}
 
-Please be aware that the OpenRefine roadmap is subject to change at any time, so please check back regularly to keep up to date with current plans.
+計画されたリリースと並行して、小規模な作業も随時進行しています。[最近更新された Issue](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) や [Pull Request](https://github.com/OpenRefine/OpenRefine/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) をチェックすると、現在取り組んでいる内容がわかります。
 
-### Long Term Goal Posts
+ロードマップは状況に応じて変わるため、定期的に確認してください。
 
-In the following pages, we gathered features the community has expressed interest in building for OpenRefine and group them as goal posts. We divided it into three sections:
-* **[OpenRefine goal posts](/docs/technical-reference/goal-posts)**, 
-* a list of **[extension ideas](/docs/technical-reference/extension-ideas)**, 
-* request focused on the **[Wikimedia integration](/docs/technical-reference/wikimedia-goal-posts)** (including Wikidata, Wikibase, and Wikimedia Commons).
+### 長期的なゴールポスト
 
-#### Goal Posts are not
+コミュニティが関心を寄せる機能を「ゴールポスト」として整理したページがあります。以下の 3 区分でまとめています。
+* **[OpenRefine のゴールポスト](/docs/technical-reference/goal-posts)**
+* **[拡張のアイデア集](/docs/technical-reference/extension-ideas)**
+* **[Wikimedia 連携に関する要望](/docs/technical-reference/wikimedia-goal-posts)**（Wikidata/Wikibase/Wikimedia Commons）
 
-* **A roadmap**. While there is community interest in these features, there is no formal commitment on if or when those feature will be released. 
-* **Exhaustive**: you can also explore [good first issues](https://github.com/OpenRefine/OpenRefine/labels/good%20first%20issue) and other [open tickets](https://github.com/OpenRefine/OpenRefine/issues) for more ways to contribute.
+#### ゴールポストが意味しないもの
 
-#### Help us make them happen 
+* **正式なロードマップ**ではありません。コミュニティの関心はありますが、リリース時期や実装可否は確約されていません。
+* **網羅的リスト**ではありません。他にも [good first issue](https://github.com/OpenRefine/OpenRefine/labels/good%20first%20issue) や [open ticket](https://github.com/OpenRefine/OpenRefine/issues) など、貢献できる項目が多数あります。
 
-To help bring them to life, you are welcome to join the conversation via the related forum links or issues. While there is community interest in these features, most of them still need definition and resourcing to make them happen. You can help by [volunteering your time](/community), creating a partnerships between your organization and OpenRefine, or by [supporting OpenRefine financially](/funding).
+#### 実現に向けて
 
-Feel free to edit them (see the link at the bottom of each page) to add a relevant link, remove completed items, or help clarify existing one.
+各ページのフォーラムリンクや Issue から議論に参加してください。多くのアイデアはまだ要件定義やリソース確保が必要です。[時間を提供する](/community)、所属組織と OpenRefine の連携を模索する、[資金面で支援する](/funding) などの方法があります。
+
+ページ末尾のリンクから編集して、関連リンクの追加、完了項目の削除、説明の明確化なども歓迎しています。

@@ -4,31 +4,31 @@ title: Transforming data
 sidebar_label: Overview
 ---
 
-## Overview {#overview}
+## 概要 {#overview}
 
-OpenRefine gives you powerful ways to clean, correct, codify, and extend your data. Without ever needing to type inside a single cell, you can automatically fix typos, convert things to the right format, and add structured categories from trusted sources. 
+OpenRefine にはデータをクリーンアップ・正規化・コード化・拡張する強力な手段があり、セル内部を直接編集しなくても誤字の修正や型の変換、信頼できる外部データからの補完などが可能です。
 
-This section of ways to improve data are organized by their appearance in the menu options in OpenRefine. You can:
+このセクションではメニュー順に機能を並べ、以下のような操作を扱います:
 
-*   change the order of [rows](#edit-rows) or [columns](columnediting#rename-remove-and-move)
-*   edit [cell contents](cellediting) within a particular column
-*   [transform](transposing) rows into columns, and columns into rows
-*   [split or join columns](columnediting#split-or-join)
-*   [add new columns](columnediting) based on existing data, with fetching new information, or through [reconciliation](reconciling)
-*   convert your rows of data into [multi-row records](exploring#rows-vs-records).
+*   [行](#edit-rows) や [列](columnediting#rename-remove-and-move) の順序変更
+*   特定の列内の [セル編集](cellediting)
+*   行と列の [変換](transposing)
+*   [列の分割・結合](columnediting#split-or-join)
+*   既存データを元に [列を追加](columnediting)（フェッチや [リコンシリエーション](reconciling) を併用）
+*   [複数行のレコード](exploring#rows-vs-records) への変換
 
-## Edit rows {#edit-rows}
+## 行の編集 {#edit-rows}
 
-Moving rows around is a permanent change to your data. 
+行を移動する操作はデータに恒久的な変更を加えることになります。
 
-You can [sort your data](sortview#sort) based on the values in one column, but that change is a temporary view setting. With that setting applied, you can make that new order permanent. 
+1 列の値に基づいて [データを並べ替える](sortview#sort) ことは、まず一時的な表示設定として行われますが、その順序を恒久化できます。
 
-![A screenshot of where to find the Sort menu with a sorting applied.](/img/sortPermanent.png)
+![ソートメニューの位置 (「Reorder rows permanently」)](/img/sortPermanent.png)
 
-In the project grid header, the word “Sort” will appear when a sort operation is applied. Click on it to show the dropdown menu, and select <span class="menuItems">Reorder rows permanently</span>. You will see the numbering of the rows change under the <span class="menuItems">All</span> column. 
+ソートを適用するとプロジェクトグリッドヘッダーに“Sort”が表示され、そのドロップダウンで <span class="menuItems">Reorder rows permanently</span> を選ぶと、<span class="menuItems">All</span> 列の行番号が変化します。
 
-:::info Reordering all rows
-Reordering rows permanently will affect all rows in the dataset, not just those currently viewed through [facets and filters](facets). 
+:::info 行の順序を確定する場合
+行の順序を恒久化すると現在のファセット/フィルター下だけでなく、データセット全体の行順が対象になります（[facets](facets) を適用した行のみではありません）。
 :::
 
-You can undo this action using the [<span class="fieldLabels">History</span> tab](running#history-undoredo). 
+この操作は [<span class="fieldLabels">History</span> タブ](running#history-undoredo) から取り消せます。

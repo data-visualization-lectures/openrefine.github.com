@@ -1,70 +1,62 @@
 ---
 id: extension-ideas
-title: Extensions Ideas
-sidebar_label: Extension Ideas
+title: 拡張機能のアイデア
+sidebar_label: 拡張機能のアイデア
 ---
 
-This page lists ideas of possible extensions which have been requested in the past.
-Because they are specific to a particular domain, it would probably be better to implement those features as extensions rather than in OpenRefine directly.
+過去にリクエストのあった拡張機能のアイデアをまとめています。特定ドメイン向けの機能は、OpenRefine 本体に組み込むよりも拡張として実装する方が望ましい場合があります。アイデアの追加も歓迎です。
 
-Feel free to add more ideas!
+### OAI-PMH インポート
 
-### OAI-PMH import
+[OAI-PMH](https://www.openarchives.org/pmh/) は図書館・アーカイブなどがコレクションを公開する標準プロトコルで、文書一覧と標準化されたメタデータを取得できます。[多様な分野の数千のリポジトリ](http://www.openarchives.org/Register/BrowseSites) で採用されています。現在、OpenRefine からこれらのリポジトリを簡単に取り込む方法はありません。OAI-PMH 拡張では、エンドポイントや OAI セットなどを指定してプロジェクトを作成し、ページネーションやデータ変換を自動で処理できるようにします。
 
-The [OAI-PMH](https://www.openarchives.org/pmh/) protocol is a standard that libraries, archives or other scholarly repositories use to expose collections of documents. The protocol can be used to retrieve the list of documents available in the collection, with standardized metadata.
-It is supported by [thousands of repositories covering a wide range of domains](http://www.openarchives.org/Register/BrowseSites).
-Currently, there is no simple way to import data from such a repository into OpenRefine. With an OAI-PMH extension, the user would be able to create a project by providing an OAI-PMH endpoint, alongside other parameters to configure the ingestion of records (such as an OAI "set" to restrict the download to). The extension would then take care of making the appropriate calls to the endpoint, handling pagination and translating the results into a table suitable for further processing in OpenRefine.
+**未解決の課題**
+* OAI-PMH では複数のメタデータフォーマットが利用できます。OpenRefine プロジェクトにどう変換するべきでしょうか？
+* 利用用途は何が想定されるでしょう？OpenRefine レッスンを提供している Library Carpentry コミュニティにニーズを聞く価値がありそうです。
 
-**Open questions**
-* OAI-PMH allows for various metadata formats to represent each item in the collection a server exposes. How should we translate those records to an OpenRefine project?
-* What would users typically use this for? It could be worth asking the Library Carpentry community (which offers an OpenRefine lesson) to understand if/how they would use this.
-
-**Related discussions**: 
+**関連議論**
 * https://mamot.fr/@pintoch/111841610572874330
 
-### IIIF import
+### IIIF インポート
 
-The [IIIF format](https://en.wikipedia.org/wiki/International_Image_Interoperability_Framework) (pronounced "triple I F") is a standard to publish images online, with advanced metadata. It is a popular format for cultural institutions to published digitizations of their collections. OpenRefine could offer a way to import an IIIF collection as an OpenRefine project. This would let users work on the corresponding metadata. Combining this with our integration with Wikimedia Commons, this could help users upload collections represented in IIIF to Wikimedia Commons.
-We would have a new import workflow (based on a custom importing controller) to create a project from a IIIF collection root URL. This will require exposing some settings to control the way in which the project is created (to which depth should the IIIF collection should be crawled, for instance). This functionality could be built into the [Commons extension](https://github.com/OpenRefine/CommonsExtension) or a new OpenRefine extension.
+[IIIF](https://en.wikipedia.org/wiki/International_Image_Interoperability_Framework)（トリプル I F）は、高度なメタデータ付きで画像を公開する標準で、文化機関が収蔵資料のデジタル化を共有する際に用いられています。IIIF コレクションを OpenRefine に取り込み、メタデータを整備したり、Wikimedia Commons 拡張と組み合わせてアップロードしたりできると便利です。IIIF ルート URL を入力してプロジェクトを生成する専用インポートフローが必要で、クロールの深さなどを設定できる UI が求められます。[Commons extension](https://github.com/OpenRefine/CommonsExtension) に組み込むか、新たな拡張として実装する案があります。
 
-**Open questions**
-* How can we represent the rich metadata allowed by IIIF in a tabular format?
-* Regarding the combination with our Wikimedia Commons integration, what sort of data cleaning steps are we expecting users to do between the IIIF import and the Commons upload? It would be great to try working with a few example collections to understand the data cleaning processes that are required. If no human intervention should be required in many cases, then could be a sign that this should perhaps not be built as an OpenRefine extension, but rather a standalone IIIF to Commons exporter (unrelated to OpenRefine).
+**未解決の課題**
+* IIIF が許容する豊富なメタデータを、OpenRefine の表構造にどのように写像するべきでしょうか？
+* Wikimedia Commons 連携と組み合わせる場合、IIIF から Commons へのアップロードの間にユーザーはどんなデータ整形を行うでしょう？例となるコレクションで実際に試すと要件が見えてきそうです。人手を介さず済むケースが多ければ、OpenRefine ではなく専用の IIIF→Commons エクスポーターを検討する余地もあります。
 
-**Related discussions**: 
+**関連議論**
 * https://github.com/OpenRefine/CommonsExtension/issues/90
 * https://github.com/OpenRefine/CommonsExtension/issues/19
 
-### OFX import
+### OFX インポート
 
-The OFX format can be used to represent financial data streams. It is for instance offered by many banks to export the transactions in a bank account. It could be useful to be able to import such files in OpenRefine easily. This would enable searching through large transactions lists via OpenRefine's faceting capabilities, or categorizing transactions via various criteria for instance.
-There might be existing Java implementations that can be used as a starting point, such as https://github.com/stoicflame/ofx4j. 
+OFX 形式は金融データのストリームを表現するために使われ、多くの銀行が口座取引のエクスポートに対応しています。OpenRefine で簡単に OFX ファイルを読み込めると、大量の取引履歴をファセットで検索したり、条件ごとに分類したりできるでしょう。Java 実装として https://github.com/stoicflame/ofx4j などが参考になります。
 
-**Open questions**
-* Is this the best format to go for, or are there other formats which would be more strategic to support?
-* Are there typical formats in which this sort of data tends to be exported after cleaning?
-* Would this add sufficient value, over using an external converter from OFX to CSV for instance?
+**未解決の課題**
+* OFX が最優先で対応すべき形式でしょうか？他に戦略的なフォーマットはありますか？
+* クリーニング後のデータは通常どのような形式に出力されますか？
+* 単に OFX→CSV 変換ツールを使うのと比べて十分な価値がありますか？
 
-### Wikidata lexemes upload
+### Wikidata レキシームのアップロード
 
-Wikidata has added support for lexemes, a type of Wikibase entity that is tailored to represent lexicographical data, with the intention of offering structured data akin to Wiktionary.
-Currently the Wikibase extension in OpenRefine is only able to edit or create items or media files with structured data (`MediaInfo` entities, internally), and can therefore not be used to edit lexemes. Adding support for that has been requested many times.
+Wikidata では語彙データ用のレキシーム型エンティティが導入されましたが、現状の Wikibase 拡張では Items/Mediainfo のみ扱え、レキシーム編集や作成はできません。対応を求める声が多くあります。
 
-**Open questions**
-* What sorts of datasets would such an integration be used on?
-* How can the deeply nested structure of lexemes (with embedded forms and senses) be worked with in OpenRefine's tabular environment?
-* Would it be possible to make the set of entity types supported by the Wikibase extension extensible itself, so that support for lexemes could be added by another extension? If so, support for media upload could then be also migrated to the Commons extension. Given that there is specific treatment of entities depending on their type in a lot of places in the code, this seems like a rather complicated undertaking
+**未解決の課題**
+* どのようなデータセットでの利用が想定されるでしょう？
+* フォームやセンスを内包する入れ子構造を、OpenRefine の表形式でどう扱うべきでしょう？
+* Wikibase 拡張自体を拡張可能にし、追加エンティティ型（レキシーム等）を別拡張でサポートできるでしょうか？メディアアップロード機能を Commons 拡張へ移すことも可能かもしれません。ただし各所でエンティティ型ごとの特別扱いがあり、実現は容易ではなさそうです。
 
-**Related discussions**: 
+**関連議論**
 * https://github.com/OpenRefine/OpenRefine/issues/2240
 * https://forum.openrefine.org/t/openrefine-support-for-lexemes-in-wikidata-how-would-you-use-this/216
 
-### Anonymize data
+### データの匿名化
 
-Build an extension that can expose and show users risk metrics of a dataset with PII and allow them options to remove (void) data as well as anonymize data. There are some libraries that offer utility and algorithms to assess risk and allow anonymization as well as pseudonymization, the later of which is still useful sometimes depending on needs, although not true anonymization and sometimes is not compliant enough with GDPR standards as well as others.
+PII を含むデータセットのリスクを可視化し、削除（無効化）や匿名化を行える拡張を構想しています。リスク評価や匿名化・仮名化を支援するライブラリとして以下が参考になります（仮名化は GDPR などの規制に十分適合しない場合もあります）。
 
 https://github.com/arx-deidentifier/arx
 https://github.com/realrolfje/anonimatron
 
-**Related discussions**: 
+**関連議論**
 * https://github.com/OpenRefine/OpenRefine/issues/5642
