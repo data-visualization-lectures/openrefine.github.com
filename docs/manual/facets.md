@@ -1,25 +1,24 @@
-﻿---
+---
 id: facets
-title: Exploring facets
+title: ファセットの使い方
 sidebar_label: Facets
 ---
 
 ## Overview {#overview}
 
-Facets are one of OpenRefine’s strongest features - that’s where the diamond logo comes from! 
+ファセットは OpenRefine の最も強力な機能の 1 つです ― ダイヤモンドのロゴはそこから来ています。
 
-Faceting allows you to look for patterns and trends. Facets are essentially aspects or angles of data variance in a given column. For example, if you had survey data where respondents indicated one of five responses from “Strongly agree” to “Strongly disagree,” those five responses make up a text facet, showing how many people selected each option.  
+ファセットを使うと、パターンや傾向を視覚化できます。ファセットとはある列に含まれるデータの変動の「見方（アングル）」で、たとえばアンケートで「強く賛成」〜「強く反対」まで 5 段階の回答があれば、それら 5 つの回答がテキストファセットを構成し、各回答が何件あるかを示します。
 
-Faceted browsing gives you a big-picture look at your data (do they agree or disagree?) and also allows you to filter down to a specific subset to explore it more (what do people who disagree say in other responses?). 
+ファセットブラウジングはデータ全体の大局的な把握（賛成派が多いか反対派が多いか）だけでなく、特定のサブセットに絞ってさらに詳しく調べる（反対と答えた人は他にどんな回答をしているか）ことにも役立ちます。
 
-Typically, you create a facet on a particular column. That facet selection appears on the left, in the <span class="tabLabels">Facet/Filter</span> tab, and you can click on a displayed facet to view all the records that match. You can also “exclude” the facet, to view every record that does _not_ match, and you can select more than one facet by clicking “include.”
-
+通常、特定の列にファセットを作成します。作成されたファセットは <span class="tabLabels">Facet/Filter</span> タブの左側に表示され、表示された項目をクリックするとその条件に合致するレコードだけが表示されます。「除外（exclude）」をクリックすれば一致しない行だけが表示され、「含める（include）」を複数押すと複数の値を同時に選択できます。
 
 ### An example {#an-example}
 
-You can learn about facets and filtering with the following example. You can copy the following table and paste it using the <span class="menuItems">Clipboard</span> method of starting a project if you would like to try it yourself. Check the "Attempt to parse cell text into numbers" option so that you can use numeric faceting.
+次の例でファセットとフィルターを体験できます。以下の表をコピーし、プロジェクトを作るときに <span class="menuItems">Clipboard</span> を使って貼り付けてください。数値ファセットを使えるように「Attempt to parse cell text into numbers」をオンにしておきましょう。
 
-We collected a list of the [10 most populous cities from Wikidata](https://w.wiki/3Em), using an example query of theirs. We removed the GPS coordinates and added the country. 
+[Wikidata](https://w.wiki/3Em) の例クエリから上位 10 都市を取り出し、GPS 座標を削除して国名を追加しました。
 
 | cityLabel | population | countryLabel |
 |-|-|-|
@@ -34,9 +33,9 @@ We collected a list of the [10 most populous cities from Wikidata](https://w.wik
 | Guangzhou | 13080500 | People's Republic of China |
 | São Paulo | 12106920 | Brazil |
 
-If we want to see which countries have the most populous cities, we can create a text facet on the “countryLabel” column and OpenRefine will generate a list of all the different strings used in these cells. 
+もっとも人口の多い都市が属する国を知りたいときは、“countryLabel” 列にテキストファセットを作成すると、列内に出現する文字列とその件数（カウント）が一覧で表示されます。
 
-We will see in the sidebar that the countries identified are displayed, along with the number of matches (the “count”). We can sort this list alphabetically or by the count. If you sort by count at the top of the facet window, you’ll learn which countries hold the most populous cities. 
+サイドバーに国名とカウントが表示され、アルファベット順やカウント順に並べ替えられます。カウント順で上に並んでいれば、最も多く人口上位都市を抱える国が分かります。
 
 |Facet|Count|
 |---|---|
@@ -48,53 +47,52 @@ We will see in the sidebar that the countries identified are displayed, along wi
 |Nigeria|1|
 |Turkey|1|
 
-If we want to learn more about a particular country, we can click on its appearance in the facet sidebar. This narrows our dataset down temporarily to only rows matching that facet.
+特定の国について詳しく見たい場合は、その国をクリックすると一時的に該当する行のみでデータが絞り込まれます。
 
-You’ll see the “10 rows” indicator change to “4 matching rows (10 total)” if you click on “People’s Republic of China”. In the data grid, you’ll see fewer rows: only the ones matching your current filter. Each row will maintain its original numbering, though - in this case, rows #1, 2, and 8.
+たとえば “People’s Republic of China” をクリックすると「10 rows」表示が「4 matching rows (10 total)」に変わり、データグリッドには選択された 4 行のみが表示されます。行番号は元のまま（ここでは #1、2、8）です。
 
-If you want to go back to the original dataset, click <span class="buttonLabels">Reset All</span> or the small “exclude” text next to the facet. If you want to view the most populous cities in both China and India, click “include” next to each facet. Now you’ll see 5 rows - #1, 2, 5, 8, 9.
+元のデータセットに戻したい場合は <span class="buttonLabels">Reset All</span> かファセット横の小さな “exclude” をクリックします。中国とインドの両方に絞りたいなら、それぞれのファセットで “include” を押すと 5 行（#1、2、5、8、9）が表示されます。
 
-We can also explore our data using the population information. In this case, because population is a number, we can create a numeric facet. This will give us the ability to explore by range rather than by exact matching values. 
+人口情報を使ってさらに絞り込むことも可能です。人口が数値なので数値ファセットを作れば、値の範囲でフィルターできます。
 
-With the numeric facet, we are given a scale from the smallest to the largest value in the column. We can drag the range minimum and maximum to narrow the results. In this case, if we narrow down to only cities with more than 20 million in population, we get 3 matching rows out of the original 10. 
+数値ファセットは列の最小値〜最大値のスケールを示し、範囲の最小/最大をドラッグして調整できます。上図の例では 2,000 万以上を選ぶと、元の 10 行から 3 行だけが残ります。
 
-When you look back at the text facet display of country names, you should see a smaller list with a reduced count: OpenRefine is now displaying the facets of the 3 matching rows, not the total dataset of 10 rows. 
+その状態で国名のテキストファセットを見ると表示項目は 3 行分だけに減り、総数 10 行のファセットではなく現在フィルターされた 3 行に基づいた表示になっていることが分かります。
 
-We can combine these facets - say, by narrowing to only the Chinese cities with populations greater than 20 million - simply by clicking in both. You should see 2 matching rows for both these criteria. 
+ファセット同士を組み合わせることもできます。たとえば人口 2,000 万以上の中国の都市に絞るには、その両方をクリックすれば 2 行が残ります。
 
 ### Things to know about facets {#things-to-know-about-facets}
 
-When you have facets applied, you will see “matching rows” in the [project grid header](running#project-grid-header). If you click <span class="menuItems">Export</span> and copy your data out of OpenRefine while facets are active, many of the exporting options will only export the matching rows, not all the rows in your project. 
+ファセットを適用すると、[プロジェクトグリッドのヘッダー](running#project-grid-header) に “matching rows” が表示されます。ファセットが有効な状態で <span class="menuItems">Export</span> からデータをコピーすると、多くのエクスポートオプションは一致した行のみを出力し、すべての行を出力しません。
 
-OpenRefine has several default facets, which you’ll learn about below. The most powerful facets are the ones designed by you - custom facets, written using [expressions](expressions) to transform the data behind the scenes and help you narrow down to precisely what you’re looking for. 
+OpenRefine にはデフォルトのファセットが複数ありますが、最も強力なのは自分で式を使って作成するカスタムファセットです。[expressions](expressions) を使ってデータを変換し、狙った対象を正確に絞り込めます。
 
-Facets are not saved in the project along with the data. But you can save a link to the current state of the application. Find the <span class="menuItems">[Permalink](running#the-project-bar)</span> next to the project’s name.
+ファセットはプロジェクトと一緒に保存されませんが、現在の状態へのリンクを保存できます。プロジェクト名横にある <span class="menuItems">[Permalink](running#the-project-bar)</span> を探してください。
 
-You can modify any facet expression by clicking the “change” button to the right of the column name in the facet sidebar.
+ファセット一覧の右側にある “change” ボタンを押すと、該当列の式を編集できます。
 
-Facet boxes that appear in the sidebar can be resized and rearranged. You can drag and drop the title bar of each box to reorder them, and drag on the bottom bar of text facet boxes. 
+サイドバーに表示されるファセットのボックスはサイズ変更や並べ替えが可能です。タイトルバーをドラッグ＆ドロップして順序を入れ替えたり、テキストファセットの下端をドラッグして高さを変えたりできます。
 
 :::info Operations that don't respect facets
+特定の操作はファセットの状態を無視します。ファセットでフィルタリング中に以下の操作を行うと、フィルター済みのサブセットだけでなく、テーブル全体の該当データ（列や行）に対して操作が適用されます:
 
-Certain operations don't respect facet settings. If you perform any of the following operations while filtering your data with a facet, the operation will apply to all relevant data, columns, and/or rows in the table, not just those which you have filtered with the facet:
-
-*   Moving, Removing, Renaming, or Reordering a column
-*   Splitting or Joining multi-valued cells
-*   Reordering of rows 
-*   Transposition (columns to rows, rows to columns, and columnization by key/value columns)
+*   列の移動・削除・名前変更・並べ替え
+*   複数値セルの分割・結合
+*   行の再順序付け
+*   転置（列 ⇔ 行、キー/バリュー列による列化）
 :::
 
 ## Text facet {#text-facet}
 
-A text facet can be generated on any column with the “text” data type. Select the column dropdown and go to <span class="menuItems">Facet</span> → <span class="menuItems">Text facet</span>. The created facet will be sorted alphabetically, and can be sorted by count. 
+“text” データ型の列にテキストファセットを作るには、列のドロップダウンから <span class="menuItems">Facet</span> → <span class="menuItems">Text facet</span> を選びます。作成されたファセットはアルファベット順に並び、カウント順にもできます。
 
-A text facet is very simple: it takes the total contents of the cells of the column in question and matches them up. It does no guessing about typos or near-matches. 
+テキストファセットは単純で、列のセルの内容をそのまま集計し、近似値や誤字を自動的に補正しません。
 
-You can edit any entry that appears in the facet display, by hovering over the facet and clicking the “edit” button that appears. You can then type in a new value manually. This will mass-edit every identical cell in the column. This is a great way to fix typos, whitespace, and other issues that may be affecting the way facets appear. You can also automate the cleanup of facets by using [clustering](transforming#cluster-and-edit): a “Cluster” button is displayed within the facet window. It may be most efficient to cluster cells to one value, and then mass-edit that value to your desired string within the clustering operation window. 
+ファセット表示に出た項目を編集するには、ファセットにマウスを重ねて表示される “edit” ボタンをクリックし、新しい値を入力します。これにより列内のすべての一致するセルが一括で変更されます。誤字や余分な空白を修正するのに便利です。さらに [クラスタリング](transforming#cluster-and-edit) を使えば、ファセット内の “Cluster” ボタンから自動的に類似セルをまとめて、まとめて書き換えることもできます。
 
-Each text facet shows up to 2,000 choices by default. You can [increase this limit on the Preferences screen](running#preferences) if you need to, which may slow down your browser. If your applied facet has more choices than the current limit, you'll be offered the option to increase the limit, which will permanently edit that preference for you. 
+テキストファセットは最大 2,000 件の項目を表示します。必要なら [設定画面](running#preferences) で上限を変更できますが、ブラウザの動作が遅くなる可能性があります。適用したファセットで上限を超える項目数があると、上限を増やすオプションが表示され、その設定が永続的に保存されます。
 
-The choices and counts displayed in each facet can be copied as tab-separated values. To do so, click on the "X choices" link near the top left corner of the facet. This can be useful to generate small summary tables of your data.
+各ファセットの項目一覧とカウントはタブ区切り値としてコピーできます。ファセットの左上にある “X choices” リンクをクリックすると、項目とカウントが TSV でコピーされ、小規模な集計表を作る際に便利です。
 
 ![A column of years faceted as text and numbers, and with the count ready to be copied.](/img/yeardata.png)
 
@@ -102,133 +100,131 @@ The choices and counts displayed in each facet can be copied as tab-separated va
 
 ![A screenshot of an example numeric facet.](/img/numericfacet.png)
 
-Whereas a text facet groups unique text values into groups, a numeric facet sorts numbers by their range - smallest to biggest. This displays visually as a histogram, and allows you to set a custom facet within that range. You can drag the minimum and maximum range markers to set a range. OpenRefine snaps to some basic equal-sized divisions - 19 in the example set above. 
+テキストファセットが文字列の一意値をグルーピングするのに対し、数値ファセットは数値を範囲ごとに分割します。ヒストグラムとして表示され、範囲内をドラックして設定できます。最小値/最大値のスライダーを動かすと、指定した範囲に絞った絞り込みが可能です。OpenRefine は例として 19 分割の等間隔ゾーンを自動で生成します。
 
-You will be offered the option to include blank, non-numeric, and error values in your numeric visualization; these will appear in the visual range as “0” values.
+空白・非数値・エラーの値を含めるか選択でき、それらは表示内に “0” のカテゴリとして現れます。
 
 :::info Numbers as text
-You can create a text facet on numeric data, which will treat each entry as a string. This can be useful if you wish, for example, to manually include facets instead of selecting a range, or sort by count, or copy that count.
+数値を文字列として扱いたい場合にはテキストファセットを作るとよく、たとえば範囲ではなくカウント順で並べたいときや、カウントをコピーしたいときに便利です。
 :::
 
 :::info Faceting customization
-As mentioned in the overview, facets can be modified or customized by GREL [expressions](expressions) in many ways.  For example, to facet by clusters of [row](expressions#variables) numbers with `row.index/100` or better visualizing numbers greater than 1000 with `max(row.index, 1000)`.
+前述のとおり、ファセットは GREL [expressions](expressions) を使って自由にカスタマイズできます。たとえば `row.index/100` で行番号をグルーピングしたり、`max(row.index, 1000)` で 1000 より大きい数値を見やすくしたりできます。
 :::
 
 ## Timeline facet {#timeline-facet}
 
 ![A screenshot of an example timeline facet.](/img/timelinefacet.png)
 
-Much like a numeric facet, a timeline facet will display as a small histogram with the values sorted: in this case, chronologically. A timeline facet only works on cells formatted as the [“date” data type](exploring#dates). 
+タイムラインファセットは数値ファセットと同様にヒストグラムで表示されますが、時間順に並ぶ点が異なります。タイムラインファセットは [日付](exploring#dates) データ型のセルでのみ動作します。
 
-The facet appears with a count of blank cells and those with errors, which can help you analyze whether your date cells are correctly converted.
+空白セルとエラーセルのカウントも表示されるため、日付の変換が正しく行われているか確認できます。
 
 ## Scatterplot facet {#scatterplot-facet}
 
-A scatterplot is a visual representation of two related sets of numeric data. 
+散布図ファセットは 2 つの数値の関係を視覚化します。
 
-You have the option to generate linear scatterplots (where the X and Y axes show continuous increases) or logarithmic scatterplots (where the X and Y axes show exponential or scaled increases). You can also rotate the plot by 45 degrees in either direction, and you can choose the size of the dot indicating a datapoint. You can make these choices in both the preview and in the facet display. 
+一次元的な直線散布図（X/Y 軸が連続的に増加）と対数的な散布図（スケールが指数的）を選べ、45 度回転させたり、各ポイントのドットサイズを指定したりできます。これらはプレビューとファセット表示の両方で設定可能です。
 
-A scatterplot facet can be generated on any column. You require two or more number columns to generate scatterplots. Selecting <span class="menuItems">Facet</span> → <span class="menuItems">Scatterplot facet</span> will create a preview of data plotted from every number-formatted column in your dataset, comparing every column against every other column. Each scatterplot will show in its own square, allowing you to choose which data comparison you would like to analyze further. You can control which columns are on the X and Y axes by rearranging the columns in your dataset. 
+散布図ファセットは任意の列から作成できますが、少なくとも 2 つの数値列が必要です。<span class="menuItems">Facet</span> → <span class="menuItems">Scatterplot facet</span> を選ぶと、データセット内のすべての数値列の組み合わせを比較したプレビューが表示され、それぞれの組み合わせが独立したマスとして表示されます。解析したい組み合わせのマスを選ぶと、その比較がファセットサイドバーに追加されます。
 
 ![A simple scatterplot of two numeric values.](/img/scatterplot.png)
 
-When you click on your desired square, that two-column comparison will appear in the facets sidebar. From here, you can drag your mouse to draw a rectangle inside the scatterplot, which will narrow down to just the rows matching the points plotted inside that rectangle (as shown by the rectangle inside the square in the image above). This rectangle can be resized by dragging any of the four edges. To draw a new rectangle, simply click and drag your mouse again. To add more scatterplots to the facet sidebar, re-run this process and select a different square. 
+表示されたマスをクリックするとその 2 列の散布図がファセットとして現れます。マウスで内部に矩形を描くことで、その矩形に含まれる点に対応する行だけに絞り込めます。矩形は四辺をドラッグして再調整したり、新しい矩形を描いたりできます。別の散布図を追加したいときは、再びプレビューで別のマスを選びます。
 
-If you have multiple facets applied, plotted points in your scatterplot displays will be greyed out if they are not part of the current matching data subset. If the rectangle you have drawn within a scatterplot display only includes grey dots, you will see no matching rows.
+複数のファセットを適用中ならば、現在一致していない点は灰色で表示されます。灰色の点だけを選んだ矩形を描いても一致する行はありません。
 
-If you would like to export a scatterplot, OpenRefine will open a new tab with a generated PNG file that you can save. 
+散布図をエクスポートしたいときは、OpenRefine が新しいタブで PNG を生成してくれるので、それを保存してください。
 
 ## Custom text facet {#custom-text-facet}
 
-You may want to explore your textual data with modifications that aren't permanent. Creating custom text facets will load your column into memory, transform the data temporarily, and store those transformations inside the facet. 
+テキストデータに一時的な変換を加えたいならカスタムテキストファセットがおすすめです。列のデータをメモリに読み込み、変換した結果でファセットを構築し、ファセット内だけに反映します。
 
-You can also use custom text facets to analyze numerical data, such as by analyzing a number as a string, or by creating a test that will return “true” and “false” as values. 
+数値データも文字列として扱ったり、“true”/“false” を返す式を使って解析できます。
 
-Clicking on <span class="menuItems">Facet</span> → <span class="menuItems">Custom text facet…</span> will bring up an [expressions](expressions) window where you can enter in a GREL, Jython, or Clojure expression to modify how the facet works. 
+<span class="menuItems">Facet</span> → <span class="menuItems">Custom text facet…</span> を選ぶと [expressions](expressions) ウィンドウが表示され、GREL・Jython・Clojure の式を入力できます。
 
-A custom text facet operates just like a [text facet](#text-facet) by default. Unlike a text facet, however, you cannot click “edit” on the facets that appear in the sidebar and change the matching cells in your dataset - because what they display is modified, not the original entries. 
+カスタムテキストファセットはデフォルトでは [text facet](#text-facet) と同様に動作しますが、ファセットサイドバーの項目をクリックしても列のデータ自体は編集されません。表示内容が変化するだけで、元の値は保持されます。
 
-For example, you may wish to analyze only the first word in a text field - perhaps the first name in a column of “[First Name] [Last Name]” entries. In this case, you can tell OpenRefine to facet only on the information that comes before the first space:
+たとえばテキスト列の最初の語だけをファセットにしたいときは、次のようにします:
 
 ```
 value.split(" ")[0]
 ```
 
-In this case, `split()` is creating an array of text strings based on every space in the cells ["Firstname", "Lastname"]. Because arrays number their entries starting with 0, we want the first value, so we ask for `[0]`. (Assuming the first name is one word, not something like “Mary Anne.”) We can do the same splitting and ask for the last name with 
+`split()` はスペースで区切って ["Firstname", "Lastname"] の配列を作り、0番目の要素（1語目）を返します（“Mary Anne” のように複数語の場合は注意が必要です）。姓を抽出したいときは `[1]` を使います。
 
-```
-value.split(" ")[1]
-``` 
-
-You may want to create a facet that references several columns. For example, let’s say you have two columns, “First Name” and “Last Name”, and you want out how many people have the same initial letter for both names (e.g., Marilyn Monroe, Steven Segal). To do so, create a custom text facet on either column and enter the expression
+複数列を参照するファセットも作れます。たとえば “First Name” と “Last Name” があり両方の頭文字が同じ行を調べたいときは、いずれかの列でカスタムテキストファセットを作成し、次の式を使います:
 
 ```
 cells["First Name"].value[0] == cells["Last Name"].value[0]
 ```
 
-That expression will look for the first letter (the character at index 0) of each entry and compare them. Then it will facet your rows into “true” and “false.” 
+この式は両列の先頭文字（インデックス 0）を比較し、true/false で分けます。
 
-You can learn more about text-modification functions on the [Expressions page](expressions). 
+テキスト操作関数は [Expressions ページ](expressions) で詳しく確認できます。
 
 ## Custom numeric facet {#custom-numeric-facet}
 
-You may want to explore your numerical data with modifications that aren't permanent. You can also use custom numeric facets to analyze textual data, such as by getting the length of text strings (with `value.length()`), or by analyzing it as though it were formatted as numbers (with `toNumber(value)`). 
+数値データにも一時的な変換を加えたい場合はカスタム数値ファセットを使えます。文字列の長さ（`value.length()`）や `toNumber(value)` で数値的に扱うなど、柔軟に処理できます。
 
-If you would like to build your own version of a numeric facet, you can use the <span class="menuItems">Custom Numeric Facet</span> option. Clicking on <span class="menuItems">Facet</span> → <span class="menuItems">Custom Numeric Facet…</span> will bring up an [expressions](expressions) window where you can enter in a GREL, Jython, or Clojure expression to modify how the facet works. A custom numeric facet operates just like a [numeric facet](#numeric-facet) by default.
+<span class="menuItems">Facet</span> → <span class="menuItems">Custom Numeric Facet…</span> を選ぶと [expressions](expressions) ウィンドウが開き、GREL/Jython/Clojure の式を入力できます。カスタム数値ファセットはデフォルトで [numeric facet](#numeric-facet) と同様ですが、出力値を自由に変換できます。
 
-For example, you may wish to create a numeric facet that rounds your value to the nearest integer, enter
+たとえば四捨五入した数値を扱いたいときは:
 
 ```
 round(value)
 ```
 
-If you have two columns of numbers and for each row you wish to create a numeric facet only on the larger of the two, enter
+2 つの数値列があり、各行で大きいほうを対象にしたいときは:
 
 ```
 max(cells["Column1"].value, cells["Column2"].value)
 ```
 
-If the numeric values in a column are drawn from a power law distribution, then it's better to group them by their logs:
+値がべき乗分布に従うなら対数を取ると見やすくなります:
 
 ```
 value.log()
 ```
 
-If the values are periodic you could take the modulus by the period to understand if there's a pattern:
+周期性があるなら周期で割った余りをとってパターンを探せます:
 
 ```
 mod(value, 7)
 ```
 
-You can learn more about numeric-modification functions on the [Expressions page](expressions). 
+数値変換関数の詳細も [Expressions ページ](expressions) で確認できます。
 
 ## Customized facets {#customized-facets}
 
-Customized facets have been added to expand the number of default facets users can apply with a single click. They represent some common and useful functions you shouldn’t have to work out using an [expression](expressions).
+Customized facets は、ワンクリックで利用できる追加のファセットで、よく使う処理を [expressions](expressions) で自分で組み立てる必要がないように用意されています。
 
-All facets that display in the <span class="tabLabels">Facet/Filter</span> tab can be edited by clicking on the “change” button to the right of the column title. This brings up the expressions window that will allow you to modify and preview the expression being used. 
+<span class="tabLabels">Facet/Filter</span> タブに表示されるファセットは、右側の “change” ボタンから式を編集できます。そこで [expressions](expressions) ウィンドウが開き、式を修正・プレビューできます。
 
 ### Word facet {#word-facet}
 
-A <span class="menuItems">Word facet</span> is a simple version of a text facet: it splits up the content of the cells based on spaces, and outputs each character string as a facet:
+<span class="menuItems">Word facet</span> はテキストファセットの簡易版で、スペースで分割した各文字列をファセット項目として出力します:
 
 ```
 value.split(" ")
 ```
 
-This can be useful for exploring the language used in a corpus, looking for common first and last names or titles, or seeing what’s in multi-valued cells you don’t wish to split up. 
+コーパス内の言語の頻度分析や、複数値セルの中身を手軽に確認したいときに便利です。
 
-Word facet is case-sensitive and only splits by spaces, not by line breaks or other natural divisions. 
+Word facet は大文字と小文字を区別し、改行などではなくスペースだけで分割します。
 
 ### Duplicates facet {#duplicates-facet}
 
-A <span class="menuItems">Duplicates facet</span> will return only rows that have non-unique values in the column you’ve selected. It will create a facet of “true” and “false” values - true being cells that are not unique, and “false” being cells that are. The actual expression being used is
+<span class="menuItems">Duplicates facet</span> は列内で重複する値だけを抽出し、true/false のファセットを生成します。重複していない値は false、重複している値は true になります。
+
+実際の式は次のようになっています:
 
 ```
 facetCount(value, 'value', '[Column]') > 1
 ```
 
-Duplicates facets are case-sensitive and you may wish to filter out things like leading and trailing whitespace or other hard-to-see issues. You can modify the facet expression, for example, with:
+Duplicates facet は大文字小文字を区別し、余分な空白などの見落としやすい違いを除くために、たとえば次のように式を変更できます:
 
 ```
 facetCount(trim(toLowercase(value)), 'trim(toLowercase(value))', 'cityLabel') > 1
@@ -236,9 +232,9 @@ facetCount(trim(toLowercase(value)), 'trim(toLowercase(value))', 'cityLabel') > 
 
 ### Numeric log facet {#numeric-log-facet}
 
-Logarithmic scales reduce wide-ranging quantities to more compact and manageable ranges. A log transformation can be used to make highly skewed distributions less skewed. If your numerical data is unevenly distributed (say, lots of values in one range, and then a long tail extending off into different magnitudes), a <span class="menuItems">Numeric log facet</span> can represent that range better than a simple numeric facet. It will break these values down into more navigable segments than the buckets of a numeric facet. This facet can make patterns in your data more visible. OpenRefine uses a base-10 log, the “common logarithm.”
+対数スケールは広い範囲を短くまとめるのに適しており、極端に偏った分布を平滑化できます。値が特定の範囲に集中していて長いテールがあるようなときは、<span class="menuItems">Numeric log facet</span> が素直な数値ファセットよりもなじみのある粒度で表示します。OpenRefine は常用対数（底 10）を使います。
 
-For example, we can look at [this data about the body weight of various mammals](http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Brain2BodyWeight):
+たとえば [さまざまな哺乳類の体重データ](http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Brain2BodyWeight) を見ると、0〜100 に集中しながら 35,000 の値が突き抜けているような分布になります。
 
 |Species|BodyWeight (kg)|
 |---|---|
@@ -256,84 +252,83 @@ For example, we can look at [this data about the body weight of various mammals]
 | Turtle | 3 |
 | Alligator | 270 |
 
-Most values will be clustered in the 0-100 range, but 35,000 is many magnitudes above that. A numeric facet will create 36 equal buckets of 1,000 each - containing almost all the cells in the first bucket. A numeric log facet will instead display the data more evenly across the visual range.
+通常の数値ファセットだと 1,000 ごとのバケットを 36 個作るため、最初のバケットにほぼすべてのセルが入ってしまいます。対数ファセットなら視覚的に均等に配置でき、パターンの把握が容易になります。
 
 ![A screenshot of a numeric facet first and a numeric log facet second.](/img/numericlogfacet.png)
 
-A 1-bounded numeric log facet can be used if you'd like to exclude all the values below 1 (including zero and negative numbers). 
+1 限界のログファセットを使えば、1 未満（0 や負数を含む）を除外して表示できます。
 
 ### Text-length facet {#text-length-facet}
 
-The <span class="menuItems">Text-length facet</span> returns a numerical value for each cell and plots it on a numeric facet chart. The expression used is
+<span class="menuItems">Text-length facet</span> は各セルの文字数を数値として返し、数値ファセットとしてプロットします。式は単に:
 
 ```
 value.length()
 ```
 
-This can be useful to, for example, look for values that did not successfully split on an earlier split operation, or to validate that data is a certain expected length (such as whether a date in YYYY/MM/DD is eight to ten characters). 
+このファセットは、たとえば以前に分割したはずのセルがうまく分割されていないものを見つけたり、YYYY/MM/DD 形式の日付が正しく 8〜10 文字かどうか確認したりするときに役立ちます。
 
-You can also employ a <span class="menuItems">Log of text-length facet</span> that allows you to navigate more easily a wide range of string lengths. This can be useful in the case of web-scraping, where lots of textual data is loaded into single cells and needs to be parsed out. 
-
+さらに <span class="menuItems">Log of text-length facet</span> を使うと、文字数の幅が広いデータをより操作しやすくできます。大きなテキストを 1 つのセルに詰め込んだスクレイプ結果の解析などに便利です。
 
 ### Unicode character-code facet {#unicode-character-code-facet}
 
 ![A screenshot of the Unicode facet.](/img/unicodefacet.png)
 
-The Unicode facet identifies and returns [Unicode decimal values](https://en.wikipedia.org/wiki/List_of_Unicode_characters). It generates a list of the Unicode numerical values of each character used in each text cell, which allows you to narrow down and search for special characters, punctuation, and other data formatting issues.
+Unicode ファセットは各文字の [Unicode 十進数値](https://en.wikipedia.org/wiki/List_of_Unicode_characters) を一覧化します。テキストセルで使われている文字の数値を表示し、特殊文字や句読点、フォーマット上の問題を絞り込めます。
 
-This facet creates a numerical chart, which offers you the ability to narrow down to a range of numbers. For example, lowercase characters are numbers 97-122, uppercase characters are numbers 65-90, and numerical digits are numbers 48-57. 
+このファセットは数値チャートを作り、範囲を指定して絞り込むことができます。たとえば小文字は 97〜122、大文字は 65〜90、数字は 48〜57 の範囲です。
 
 ### Facet by error {#facet-by-error}
 
-An error is a data type created by OpenRefine in the process of transforming data. For example, say you had converted a column to the number data type. If one cell had text characters in it, OpenRefine could either output the original text string unchanged or output an error. If you allow errors to be created, you can facet by them later to search for them and fix them. 
+エラーは OpenRefine がデータ変換中に生成するデータ型です。たとえば列を数値型に変換しようとして文字列が含まれていた場合、OpenRefine は元の文字列のままにするかエラーを出力します。エラーを許可しておけば、あとからそれをファセットで抽出して修正できます。
 
 ![A view of the expressions window with an error converting a string to a number.](/img/error.png)
 
-To store errors in cells, ensure that you have <span class="fieldLabels">store error</span> selected for the “On error” option in the expressions window. 
+セルにエラーを記録するには、式ウィンドウの「On error」オプションで <span class="fieldLabels">store error</span> をオンにしてください。
 
 ### Facet by null, empty, or blank {#facet-by-null-empty-or-blank}
 
-Any column can be faceted for [null and/or empty cells](#cell-data-types). These can help you find cells where you want to manually enter content. 
+任意の列を [null/空値](#cell-data-types) でファセットできます。手動で値を入力したいセルを見つけるのに便利です。
 
-“Blank” means both null values and empty values. All three facets will generate “true” and “false” facets, “true” being blank. 
+「blank」は null と empty の両方を含み、3 つとも true/false のファセットを生成し、true が空のセルとなります。
 
-An empty cell is a cell that is set to contain a string, but doesn’t have any characters in it (a zero-length string). This can be left over from an operation that removed characters, or from manually editing a cell and deleting its contents.
+empty セルは文字列型ながら文字が 0 個（長さゼロ）の状態です。文字を削除する処理や手動編集で中身を削除すると発生します。
 
 ### Facet by star or flag {#facet-by-star-or-flag}
 
-Stars and flags offer you the opportunity to mark specific rows for yourself for later focus. Stars and flags persist through closing and opening your project, and thus can provide a different function than using a permalink to persist your facets. Stars and flags can be used in any way you want, although they are designed to help you flag errors and star rows of particular importance. 
+スターとフラグは特定の行をマークして後から着目するためのものです。プロジェクトを閉じたり開いたりしても保持されるため、パーマリンクとは別の保存方法として役立ちます。エラーをスター/フラグしたり重要な行に印を付けたり、自由に使えます。
 
-You can manually star or flag rows simply by clicking on the icons to the left of each row. 
+行の左側のアイコンをクリックするだけでスター・フラグを付けられます。
 
-You can also apply stars or flags to all matching rows by using the <span class="menuItems">All</span> dropdown menu (on the first column) and selecting <span class="menuItems">Edit rows</span> → <span class="menuItems">Star rows</span> or <span class="menuItems">Flag rows</span>. This will create “true” and “false” facets in the <span class="tabLabels">Facet/Filter</span>. These operations will modify all matching rows in your current subset. You can unstar or unflag them as well. 
+<span class="menuItems">All</span> ドロップダウン（最初の列）から <span class="menuItems">Edit rows</span> → <span class="menuItems">Star rows</span> / <span class="menuItems">Flag rows</span> を選ぶと、現在一致する行すべてに適用されます。これにより <span class="tabLabels">Facet/Filter</span> に true/false のファセットが生成され、後から解除（unstar/unflag）もできます。
 
-You may wish to create a custom subset of your data through a series of separate faceting activities (rather than successively narrowing down with multiple facets applied). For example, you may wish to: 
-*   apply a facet
-*   star all the matching rows
-*   remove that facet 
-*   apply another, unrelated facet
-*   star all the new matching rows (which will not modify already-starred rows)
-*   remove that facet
-*   and then work with all of the cumulative starred rows. 
+ファセットを段階的に適用して条件を積み重ねた部分集合を作りたい場合、次のように進めるのも有効です:
+* ファセットを適用する
+* 一致した行すべてにスターを付ける
+* そのファセットを解除する
+* 別のファセットを適用する
+* 新たに一致した行すべてにスターを付ける（既存のスターは変更されない）
+* そのファセットを解除する
+* 最後にすべてのスター付き行を対象に作業する
 
-You can also create a text facet on any column with the expression `row.starred` or `row.flagged`.
+任意の列で `row.starred` や `row.flagged` の式を使ってテキストファセットを作ることもできます。
 
 ## Text filter {#text-filter}
 
-Filters allow you to narrow down your data based on whether a given column includes a text string. 
+テキストフィルターは、特定の列が文字列を含むかどうかでデータを絞り込みます。
 
-When you choose <span class="menuItems">Text filter</span> a box appears in the <span class="tabLabels">Facet/Filter</span> tab that allows you to enter in text. Matching rows will narrow dynamically with every character you enter. You can set the search to be case-sensitive or not, and you can use this box to enter in a regular expression. 
+<span class="menuItems">Text filter</span> を選ぶと、<span class="tabLabels">Facet/Filter</span> タブにテキスト入力欄が表示され、文字を入力するたびに一致行が動的に狭まります。大文字小文字の区別や正規表現を使う設定もできます。
 
-For example, you can enter in “side” as a text filter, and it will return all cells in that column containing “side,” “sideways,” “offside,” etc. 
+たとえば “side” と入力すると、その列に “side”、“sideways”、“offside” など “side” を含むセルだけが表示されます。
 
-The text filter field supports [regular expressions](expressions#regular-expressions). For example, you can employ a regular expression to view all properly-formatted emails:
+このフィルターでは [正規表現](expressions#regular-expressions) を使えます。たとえば正しく書式化されたメールアドレスだけを残すには次の式を使えます:
 
 ```
 ([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9\-\.]+)\.([a-zA-Z0-9\-]{2,15})
 ```
 
-You can press “invert” on this facet to then see blank cells or invalid email addresses. 
+“invert” を押すと空白セルや無効なメールアドレスだけが表示されます。
 
-This filter works differently than facets because it is always active as long as it appears in the sidebar. If you “reset” it, you will delete all the text or expression you have entered. 
+このフィルターはサイドバーに表示されている限り常に有効です。リセットすると入力した文字列や式が削除されます。
 
-You can apply multiple text filters in succession, which will successively narrow your data subset. This can be useful if you apply multiple inverted filters, such as to filter out all rows that respond “yes” or “maybe” and only look at the remaining responses.
+複数のテキストフィルターを連続で適用すると段階的に絞り込めます。たとえば “yes” と “maybe” を除外する反転フィルターを順番にかけて、残りの回答だけを見ることも可能です。

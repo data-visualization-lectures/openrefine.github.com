@@ -1,56 +1,54 @@
 ﻿---
 id: grelfunctions
-title: GREL functions
-sidebar_label: GREL functions
+title: GREL 関数
+sidebar_label: GREL 関数
 ---
 
-**Besides the reference guide below, OpenRefine's GitHub wiki has [a page with many examples and recipes of frequently-used GREL functions](https://github.com/OpenRefine/OpenRefine/wiki/Recipes).**
+**この参考資料に加え、OpenRefine の GitHub Wiki には、[よく使われる GREL 関数の例とレシピ](https://github.com/OpenRefine/OpenRefine/wiki/Recipes) をまとめたページがあります。**
 
 ## Reading this reference {#reading-this-reference}
 
-For the reference below, the function is given in full-length notation and the in-text examples are written in dot notation. Shorthands are used to indicate the kind of [data type](exploring#data-types) used in each function: s for string, b for boolean, n for number, d for date, a for array, p for a regex pattern, and o for object (meaning any data type), as well as “null” and “error” data types. 
+以下のリファレンスでは関数をフル表記で示し、本文中の例はドット記法で記述しています。関数ごとに使われる [データ型](exploring#data-types) を s（文字列）、b（真偽値）、n（数値）、d（日付）、a（配列）、p（正規表現パターン）、o（任意の型＝文字列、真偽値、日付、数値など）のように略記しています。null や error も含みます。
 
-If a function can take more than one kind of data as input or can output more than one kind of data, that is indicated with more than one letter (as with “s or a”) or with o for object, meaning it can take any type of data (string, boolean, date, number, etc.). 
+複数の型を受け取ったり返したりできる関数は “s or a” のように複数の記号や、任意の型を示す o を使って示します。
 
-We also use shorthands for substring (“sub”) and separator string (“sep”). 
-Optional arguments will say “(optional)”.
+部分列は “sub”、区切り文字列は “sep” の略記を使うことがあります。オプション引数には “(optional)” と記載します。
 
-In places where OpenRefine will accept a string (s) or a regex pattern (p), you can supply a string by putting it in quotes. If you wish to use any [regex](expressions#regular-expressions) notation, wrap the pattern in forward slashes.
+文字列（s）または正規表現パターン（p）を受け付ける場所では引用符で文字列を渡せます。正規表現を使いたい場合はスラッシュで囲ってください（詳細は [regex](expressions#regular-expressions) を参照）。
 
 ## Boolean functions {#boolean-functions}
 
 ###### and(b1, b2, ...) {#andb1-b2-}
 
-Uses the logical operator AND on two or more booleans to output a boolean. Evaluates multiple statements into booleans, then returns true if all of the statements are true. For example, `(1 < 3).and(1 < 0)` returns false because one condition is true and one is false.
+複数の真偽値に論理 AND を適用し、すべて true なら true を返します。例: `(1 < 3).and(1 < 0)` は 1 つが false なので false になります。
 
 ###### or(b1, b2, ...) {#orb1-b2-}
 
-Uses the logical operator OR on two or more booleans to output a boolean. For example, `(1 < 3).or(1 > 7)` returns true because at least one of the conditions (the first one) is true.
+複数の真偽値に論理 OR を適用し、どれか 1 つでも true なら true を返します。例: `(1 < 3).or(1 > 7)` は第一条件が true なので true になります。
 
 ###### not(b) {#notb}
 
-Uses the logical operator NOT on a boolean to output a boolean. For example, `not(1 > 7)` returns true because 1 > 7 itself is false.
+真偽値を否定して返します。例: `not(1 > 7)` は false の否定なので true になります。
 
 ###### xor(b1, b2, ...) {#xorb1-b2-}
 
-Uses the logical operator XOR (exclusive-or) on two or more booleans to output a boolean. Evaluates multiple statements, then returns true if only one of them is true. For example, `(1 < 3).xor(1 < 7)` returns false because more than one of the conditions is true.
-
+排他的論理和（XOR）を返し、条件のうちちょうど 1 つだけ true なら true を返します。例: `(1 < 3).xor(1 < 7)` は複数の条件が true なので false になります。
 ## String functions {#string-functions}
 
 ###### length(s) {#lengths}
 
-Returns the length of string s as a number.
+文字列 s の長さを数値で返します。
 
 ###### levenshteinDistance(s1, s2) {#levenshteinDistance-s1-s2}
-Returns an integer indicating how many single-character changes you need to make to turn one string into another. This includes adding characters, removing characters, and changing characters to match between the two strings. For example, `levenshteinDistance("New York", "newyork")` will return 1 and `levenshteinDistance("M. Makeba", "Miriam Makeba")` will return 5.
+2 つの文字列を一致させるために必要な単一文字の変更回数（追加・削除・置換）を整数で返します。例: `levenshteinDistance("New York", "newyork")` は 1、`levenshteinDistance("M. Makeba", "Miriam Makeba")` は 5 を返します。
 
-Note: Before calculating the Levenshtein distance, the input strings are preprocessed by trimming spaces, removing punctuation and control characters, collapsing consecutive whitespace, and converting them to lowercase.
+注: 距離を計算する前に、入力文字列はトリム・句読点・制御文字の除去・連続空白の縮約・小文字化で前処理されます。
 
 ###### toString(o, string format (optional)) {#tostringo-string-format-optional}
 
-Takes any value type (string, number, date, boolean, error, null) and gives a string version of that value. 
+任意の値（文字列・数値・日付・真偽値・エラー・null）を文字列に変換します。
 
-You can use toString() to convert numbers to strings with rounding, using an [optional string format](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html). For example, if you applied the expression `value.toString("%.0f")` to a column:
+文字列フォーマット（[Java Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html)準拠）を指定すると、数値を丸めて出力できます。たとえば `value.toString("%.0f")` を実行すると:
 
 |Input|Output|
 |-|-|
@@ -59,29 +57,29 @@ You can use toString() to convert numbers to strings with rounding, using an [op
 |0.15|0|
 |100.0|100|
 
-You can also convert dates to strings, using date parsing syntax built into OpenRefine (see [the toDate() function for details](#todateo-b-monthfirst-s-format1-s-format2-)). For example, `value.toString("MMM-dd-yyyy")` would convert the date value [2024-10-15T00:00:00Z] to “Oct-15-2024”.
+日付も OpenRefine に組み込まれたパース構文を使って文字列に変換できます（[toDate() 関数](#todateo-b-monthfirst-s-format1-s-format2-) 参照）。例: `value.toString("MMM-dd-yyyy")` は `2024-10-15T00:00:00Z` を “Oct-15-2024” に変換します。
 
-Note: In OpenRefine, using toString() on a null cell outputs the string “null”.
+注意: null セルに toString() を使うと文字列 “null” が出力されます。
 
 :::info
-Date/times without timezone info were interpreted as **local** up until May 2018 when OpenRefine 3.0 was released, at which point they were switched from **local** to **UTC**.  See issue [#6009](https://github.com/OpenRefine/OpenRefine/issues/6009)
+OpenRefine 3.0（2018年5月）のリリースまでは、タイムゾーンなしの日付/時刻はローカルタイムと解釈されていましたが、その後 UTC に変更されました。[issue #6009](https://github.com/OpenRefine/OpenRefine/issues/6009) を参照してください。
 :::
 
 ### Testing string characteristics {#testing-string-characteristics}
 
 ###### startsWith(s, sub) {#startswiths-sub}
 
-Returns a boolean indicating whether s starts with sub. For example, `"food".startsWith("foo")` returns true, whereas `"food".startsWith("bar")` returns false. 
+s が sub で始まるかどうかを真偽値で返します。例: `"food".startsWith("foo")` は true、`"food".startsWith("bar")` は false です。
 
 ###### endsWith(s, sub) {#endswiths-sub}
 
-Returns a boolean indicating whether s ends with sub. For example, `"food".endsWith("ood")` returns true, whereas `"food".endsWith("odd")` returns false. 
+s が sub で終わるかどうかを真偽値で返します。例: `"food".endsWith("ood")` は true、`"food".endsWith("odd")` は false です。
 
 ###### contains(s, sub or p) {#containss-sub-or-p}
 
-Returns a boolean indicating whether s contains sub, which is either a substring or a regex pattern. For example, `"food".contains("oo")` returns true whereas `"food".contains("ee")` returns false. 
+s に sub（文字列または正規表現）が含まれるかどうかを返します。例: `"food".contains("oo")` は true、`"food".contains("ee")` は false です。
 
-You can search for a regular expression by wrapping it in forward slashes rather than quotes: `"rose is a rose".contains(/\s+/)` returns true. startsWith() and endsWith() can only take strings, while contains() can take a regex pattern, so you can use contains() to look for beginning and ending string patterns.  
+正規表現を使うにはスラッシュで囲みます: `"rose is a rose".contains(/\s+/)` は true になります。startsWith()/endsWith() は文字列しか取れませんが、contains() は正規表現を使えるので、部分パターンの検出に使えます。 
 
 ### Basic string modification {#basic-string-modification}
 

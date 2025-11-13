@@ -1,46 +1,46 @@
-﻿---
+---
 id: grel
-title: General Refine Expression Language
-sidebar_label: General Refine Expression Language
+title: GREL（General Refine Expression Language）
+sidebar_label: GREL
 ---
 
 ## Basics {#basics}
 
-GREL (General Refine Expression Language) is designed to resemble Javascript. Formulas use variables and depend on data types to do things like string manipulation or mathematical calculations:
+GREL（General Refine Expression Language）は JavaScript 風の構文が特徴です。式では変数とデータ型を活用して文字列操作や数値計算を行います。
 
 |Example|Output|
 |---|---|
-| `value + " (approved)"` | Concatenate two strings; whatever is in the cell gets converted to a string first |
-| `value + 2.239`    | Add 2.239 to the existing value (if a number); append text "2.239" to the end of the string otherwise |
-| `value.trim().length()` &nbsp; &nbsp; | Trim leading and trailing whitespace of the cell value and then output the length of the result |
-| `value.substring(7, 10)` | Output the substring of the value from character index 7, 8, and 9 (excluding character index 10) |
-| `value.substring(13)` | Output the substring from index 13 to the end of the string |
+| `value + " (approved)"` | 2 つの文字列を連結。セル内の値はいったん文字列に変換されます。 |
+| `value + 2.239`    | 数値なら 2.239 を足し、文字列なら末尾に "2.239" を連結します。 |
+| `value.trim().length()` | 前後の空白を除去したうえで文字数を返します。 |
+| `value.substring(7, 10)` | 文字列のインデックス 7〜9 の部分列を返します（10 は含まない）。 |
+| `value.substring(13)` | インデックス 13 以降の部分列を返します。 |
 
-Note that the operator for string concatenation is `+` (not “&” as is used in Excel). 
+文字列の連結演算子は `+`（Excel の `&` ではない）です。
 
-Evaluating conditions uses symbols such as `<`, `>`, `*`, `/`, etc. To check whether two objects are equal, use two equal signs (`value=="true"`).
+条件判定には `<` や `>`、`*`、`/` などの記号を使い、`value=="true"` のように `==` を使って等価性を比較します。
 
-See the [GREL functions page for a thorough reference](grelfunctions) on each function and its inputs and outputs. Read on below for more about the general nature of GREL expressions.
+[GREL 関数ページ](grelfunctions) には各関数の入力と出力の説明があります。以降では GREL 式の一般的な性質を見ていきます。
 
 ## Operators {#operators}
 
 #### Arithmetic Operators {#arithmetic-operators}
 
-Refer [GREL functions page](/docs/manual/grelfunctions#math-functions) for details on Division Operator.
+詳細は [GREL functions の Division Operator](grelfunctions#math-functions) を参照してください。
 
-###### Modulus {#modulus} 
+###### Modulus {#modulus}
 
-When using the `%` operator, if both operands are numbers such as `1 % 2` the result will be a whole number. However, if either or both of the operands are floating-point numbers like `1.0 % 2` they will be promoted to floating point and the result will also be in floating-point format. It's important to note that the `%` operator may not behave as expected with floating-point numbers due to precision issues.
+`%` 演算子は、両方のオペランドが整数なら整数の結果を返します（例: `1 % 2` は 1）。どちらかが浮動小数点（例: `1.0 % 2`）だと浮動小数点に昇格し、そのまま浮動小数点の結果になります。浮動小数点の精度により期待した値とならないことがある点に注意してください。
 
 ###### Multiplication {#multiplication}
 
-The behavior of the `*` operator is nuanced based on the data types of the operands. When both operands are integers such as `1 * 2`, the result is an integer. Conversely, if either or both operands are floating-point numbers the result becomes a floating-point number. You can use simple evaluations such as `3.5 * 2`
+`*` 演算子はオペランドのデータ型に応じて挙動が変わります。両方とも整数なら結果は整数、どちらかが浮動小数点なら浮動小数点になります。`3.5 * 2` のような単純な計算も可能です。
 
 #### Relational Operators {#relational-operators}
 
-`==` and `!=` operators are used to assess equality and inequality. For instance, `"a" == "b"` returns false and `"a" != "b"` returns true. When applied to integers, `5 == 5` returns true, while `3 != 3` returns false.
+`==`/`!=` は等価・非等価を評価します。たとえば `"a" == "b"` は false、`"a" != "b"` は true を返します。整数なら `5 == 5` は true、`3 != 3` は false です。
 
-The `<` operator checks if the left operand is less than the right operand, while `<=` checks if it's less than or equal to. Similarly `>` verifies if the left operand is greater than the right and `>=` checks if it's greater than or equal to. These comparison operators apply to numbers, strings and dates.
+`<` は左オペランドが小さいか、`<=` は小なりイコールかを確認し、`>`/`>=` も同様に動作します。これらは数値・文字列・日付に適用できます。
 
 #### References {#references}
 
@@ -49,131 +49,127 @@ The `<` operator checks if the left operand is less than the right operand, whil
 
 ## Syntax {#syntax}
 
-In GREL, functions can use either of these two forms:
-*   functionName(arg0, arg1, ...)
-*   arg0.functionName(arg1, ...)
+GREL の関数は次のいずれかの形式で記述できます:
+*   `functionName(arg0, arg1, ...)`
+*   `arg0.functionName(arg1, ...)`
 
-The second form is a shorthand to make expressions easier to read. It simply pulls the first argument out and appends it to the front of the function, with a dot:
+後者は読みやすさのための省略記法で、最初の引数を先頭に出してドットでつなぎます。
 
 |Dot notation |Full notation |
 |-|-|
 | `value.trim().length()` | `length(trim(value))` |
 | `value.substring(7, 10)` | `substring(value, 7, 10)` |
 
-So, in the dot shorthand, the functions occur from left to right in the order of calling, rather than in the reverse order with parentheses. This allows you to string together multiple functions in a readable order.
+ドット記法では、関数は左から順に呼び出され、括弧の内側を逆順にたどる必要がありません。複数の関数を連結して読みやすくできます。
 
-The dot notation can also be used to access the member fields of [variables](expressions#variables). For referring to column names that contain spaces (anything not a continuous string), use square brackets instead of dot notation:
-
-|Example |Description |
-|-|-|
-| `cells.FirstName` | Access the cell in the column named “FirstName” of the current row |
-| `cells["First Name"]` | Access the cell in the column called “First Name” of the current row |
-
-Square brackets can also be used to get substrings and sub-arrays, and single items from arrays:
+ドット記法は [variables](expressions#variables) の member field にも使えます。空白を含む列名の参照にはドットの代わりに角括弧を使います。
 
 |Example |Description |
 |-|-|
-| `value[1,3]` | A substring of value, starting from character 1 up to but excluding character 3 |
-| `"internationalization"[1,-2]` | Will return “nternationalizati” (negative indexes are counted from the end) |
-| `row.columnNames[5]` | Will return the name of the fifth column |
+| `cells.FirstName` | 現在の行の “FirstName” 列のセルを取得 |
+| `cells["First Name"]` | 空白を含む “First Name” 列のセルを取得 |
 
-Any function that outputs an array can use square brackets to select only one part of the array to output as a string (remember that the index of the items in an array starts with 0). 
+角括弧は部分列や部分配列、配列から特定要素を取り出すのにも使えます。
 
-For example, [partition()](grelfunctions#partitions-s-or-p-fragment-b-omitfragment-optional) would normally output an array of three items: the part before your chosen fragment, the fragment you've identified, and the part after. Selecting only the third part with `"internationalization".partition("nation")[2]` will output “alization” (and so will [-1], indicating the final item in the array).
+|Example |Description |
+|-|-|
+| `value[1,3]` | インデックス 1 から 3 未満までの部分列 |
+| `"internationalization"[1,-2]` | 終端から数えて 2 文字前までの部分列 “nternationalizati” |
+| `row.columnNames[5]` | 5 番目の列名 |
+
+配列を返す関数であれば角括弧で特定要素だけを選んで文字列として出力できます（配列のインデックスは 0 始まり）。
+
+たとえば [partition()](grelfunctions#partitions-s-or-p-fragment-b-omitfragment-optional) は前方・一致部分・後方の 3 要素を持つ配列を返しますが、`"internationalization".partition("nation")[2]` または `[-1]` を使えば “alization” を取り出せます。
 
 ## Controls {#controls}
 
-GREL offers controls to support branching and looping (that is, “if” and “for” functions), but unlike functions, their arguments don't all get evaluated before they get run. A control can decide which part of the code to execute and can affect the environment bindings. Functions, on the other hand, can't do either. Each control decides which of their arguments to evaluate to `value`, and how.
+GREL の control は分岐・繰り返しを提供する構文で、すべての引数を事前に評価する関数とは異なり、何を実行するかを制御できます。control は評価対象の引数を選び出し、評価環境を変更することもあります。
 
-Please note that the GREL control names are case-sensitive: for example, the isError() control can't be called with iserror().
+control 名は大文字小文字を区別します（例: `isError()` は `iserror()` では動きません）。
 
 #### if(e, eTrue, eFalse) {#ife-etrue-efalse}
 
-Expression e is evaluated to a value. If that value is true, then expression eTrue is evaluated and the result is the value of the whole if() expression. Otherwise, expression eFalse is evaluated and that result is the value.
+式 e を評価し true なら eTrue、false なら eFalse を評価した結果を返します。
 
-Examples:
-
-| Example expression                                                           	| Result   	|
+| Example expression                                                            | Result    |
 | ------------------------------------------------------------------------ | ------------ |
 | `if("internationalization".length() > 10, "big string", "small string")` | “big string” |
-| `if(mod(37, 2) == 0, "even", "odd")`                                 	| “odd”    	|
+| `if(mod(37, 2) == 0, "even", "odd")`                                  | “odd”     |
 
-Nested if (switch case) example:
+ネストした if（switch 相当）の例:
 
-	if(value == 'Place', 'http://www.example.com/Location',
-
-	 	if(value == 'Person', 'http://www.example.com/Agent',
-
-	  	if(value == 'Book', 'http://www.example.com/Publication',
-
-	null)))
+```
+if(value == 'Place', 'http://www.example.com/Location',
+  if(value == 'Person', 'http://www.example.com/Agent',
+    if(value == 'Book', 'http://www.example.com/Publication',
+      null)))
+```
 
 #### with(e1, variable v, e2) {#withe1-variable-v-e2}
 
-Evaluates expression e1 and binds its value to variable v. Then evaluates expression e2 and returns that result.
+式 e1 を評価して変数 v に束縛し、e2 を評価して結果を返します。
 
-| Example expression                                                                       	| Result 	|
+| Example expression                                                                        | Result |
 | ------------------------------------------------------------------------------------ | ---------- |
-| `with("european union".split(" "), a, a.length())`                               	| 2   	|
-| `with("european union".split(" "), a, forEach(a, v, v.length()))`                	| [ 8, 5 ] |
-| `with("european union".split(" "), a, forEach(a, v, v.length()).sum() / a.length())` | 6.5  	|
+| `with("european union".split(" "), a, a.length())`                                | 2    |
+| `with("european union".split(" "), a, forEach(a, v, v.length()))`                 | [ 8, 5 ] |
+| `with("european union".split(" "), a, forEach(a, v, v.length()).sum() / a.length())` | 6.5 |
 
 #### filter(e1, v, e test) {#filtere1-v-e-test}
 
-Evaluates expression e1 to an array. Then for each array element, binds its value to variable v, evaluates expression test - which should return a boolean. If the boolean is true, pushes v onto the result array.
+式 e1 を配列として評価し、各要素を変数 v に束縛して test（真偽値）を評価します。true なら v を結果に含めます。
 
-| Expression                                 	| Result    	|
+| Expression                                  | Result     |
 | ---------------------------------------------- | ------------- |
 | `filter([ 3, 4, 8, 7, 9 ], v, mod(v, 2) == 1)` | [ 3, 7, 9 ] |
 
 #### forEach(e1, v, e2) {#foreache1-v-e2}
 
-Evaluates expression e1 to an array. Then for each array element, binds its value to variable v, evaluates expression e2, and pushes the result onto the result array. When e1 is a JSON object, `forEach` iterates over its keys.
+式 e1 を配列として評価し、各要素を変数 v に束縛して e2 を評価し、結果配列に追加します。e1 が JSON オブジェクトならキーごとに反復します。
 
-| Expression                             	| Result          	|
+| Expression                              | Result           |
 | ------------------------------------------ | ------------------- |
 | `forEach([ 3, 4, 8, 7, 9 ], v, mod(v, 2))` | [ 1, 0, 0, 1, 1 ] |
 
 #### forEachIndex(e1, i, v, e2) {#foreachindexe1-i-v-e2}
 
-Evaluates expression e1 to an array. Then for each array element, binds its index to variable i and its value to variable v, evaluates expression e2, and pushes the result onto the result array.
+式 e1 を配列として評価し、各要素のインデックスを i、値を v に束縛して e2 を評価します。
 
-| Expression                                                                  	| Result                  	|
+| Expression                                                                   | Result                   |
 | ------------------------------------------------------------------------------- | --------------------------- |
 | `forEachIndex([ "anne", "ben", "cindy" ], i, v, (i + 1) + ". " + v).join(", ")` | 1. anne, 2. ben, 3. cindy |
 
 #### forRange(n from, n to, n step, v, e) {#forrangen-from-n-to-n-step-v-e}
 
-Iterates over the variable v starting at from, incrementing by the value of step each time while less than to. At each iteration, evaluates expression e, and pushes the result onto the result array.
+変数 v を from から to 未満まで step ずつ増やしながら繰り返し、各イテレーションで e を評価して結果配列に追加します。
 
 #### forNonBlank(e, v, eNonBlank, eBlank) {#fornonblanke-v-enonblank-eblank}
 
-Evaluates expression e. If it is non-blank, forNonBlank() binds its value to variable v, evaluates expression eNonBlank and returns the result. Otherwise (if e evaluates to blank), forNonBlank() evaluates expression eBlank and returns that result instead.
+式 e を評価し、非空ならその値を v に束縛して eNonBlank を評価して返します。空なら eBlank を評価して返します。
 
-Unlike other GREL functions beginning with “for,” forNonBlank() is not iterative. forNonBlank() essentially offers a shorter syntax to achieving the same outcome by using the isNonBlank() function within an “if” statement.
+ほかの “for” 系とは異なり繰り返し処理ではなく、`isNonBlank()` を使った if 文の簡潔な構文です。
 
 #### isBlank(e), isNonBlank(e), isNull(e), isNotNull(e), isNumeric(e), isError(e) {#isblanke-isnonblanke-isnulle-isnotnulle-isnumerice-iserrore}
 
-Evaluates the expression e, and returns a boolean based on the named evaluation.
+式 e を評価し、名前が示す条件を満たすかどうかを真偽値で返します。
 
-Examples:
-
-| Expression      	| Result  |
+| Expression       | Result  |
 | ------------------- | ------- |
-| `isBlank("abc")`	| false |
-| `isNonBlank("abc")`   | true |
-| `isNull("abc")` 	| false |
-| `isNotNull("abc")`	| true |
-| `isNumeric(2)`  	| true  |
-| `isError(1)`    	| false |
-| `isError("abc")`	| false |
-| `isError(1 / 0)`	| true  |
+| `isBlank("abc")` | false |
+| `isNonBlank("abc")` | true |
+| `isNull("abc")` | false |
+| `isNotNull("abc")` | true |
+| `isNumeric(2)` | true  |
+| `isError(1)` | false |
+| `isError("abc")` | false |
+| `isError(1 / 0)` | true  |
 
-Remember that these are controls and not functions: you can’t use dot notation (for example, the format `e.isX()` will not work).
+これらは dot 記法で呼べない「制御構文」である点に注意してください（`e.isX()` の形式は使えません）。
 
 ## Constants {#constants}
+
 |Name |Meaning |
 |-|-|
-| true | The boolean constant true |
-| false | The boolean constant false |
-| PI | From [Java's Math.PI](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#PI), the value of pi (that is, 3.1415...) |
+| true | 真（boolean）定数 |
+| false | 偽（boolean）定数 |
+| PI | [Java の Math.PI](https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#PI) から取得した円周率（3.1415...） |
