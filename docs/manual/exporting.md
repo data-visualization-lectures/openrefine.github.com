@@ -1,6 +1,8 @@
+---
 id: manual/exporting
 title: 作業のエクスポート
 sidebar_label: エクスポート
+---
 
 ## Overview {#overview}
 
