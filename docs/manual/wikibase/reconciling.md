@@ -1,54 +1,43 @@
 ---
 id: reconciling
-title: Reconciling with Wikibase
+title: Wikibase とのリコンサイル
 sidebar_label: Wikibase との照合
 ---
 
-The Wikidata [reconciliation service](reconciling) for OpenRefine [supports](https://reconciliation-api.github.io/testbench/):
-*   A large number of potential types to reconcile against
-*   Previewing and viewing entities
-*   Suggesting entities, types, and properties
-*   Augmenting your project with more information pulled from Wikidata. 
+OpenRefine が利用する Wikidata の [リコンサイルサービス](reconciling) は、[次の機能](https://reconciliation-api.github.io/testbench/) を備えています。
+* さまざまなタイプに対するリコンサイル
+* エンティティのプレビュー表示
+* エンティティ・タイプ・プロパティの候補提示
+* Wikidata から情報を取得してプロジェクトを拡張
 
-You can find documentation and further resources on the reconciliation API [here](https://wikidata.reconci.link/).
-
-For the most part, Wikidata reconciliation behaves the same way other reconciliation services do, but there are a few processes and features specific to Wikidata. 
+リコンサイル API の詳しいドキュメントは [https://wikidata.reconci.link/](https://wikidata.reconci.link/) にあります。基本的な操作は他のリコンサイルサービスと同じですが、Wikidata 固有の機能がいくつかあります。
 
 ## Language settings {#language-settings}
 
-You can install a version of the Wikidata reconciliation service that uses your language. First, you need the language code: this is the [two-letter code found on this list](https://en.wikipedia.org/wiki/List_of_Wikipedias), or in the domain name of the desired Wikipedia/Wikidata (for instance, “fr” if your Wikipedia is https://fr.wikipedia.org/wiki/).
+リコンサイルサービスは言語別に用意されています。まず [Wikipedia の言語コード一覧](https://en.wikipedia.org/wiki/List_of_Wikipedias) などから 2 文字のコード（例: フランス語なら `fr`）を確認し、<span class="menuItems">Reconcile</span> → <span class="menuItems">Start reconciling...</span> で開くウィンドウから <span class="menuItems">Add Standard Service</span> を選択します。`https://wikidata.reconci.link/fr/api` のように、URL 中の `fr` を希望の言語コードに置き換えて追加してください。
 
-Then, open the reconciliation window (under <span class="menuItems">Reconcile</span> → <span class="menuItems">Start reconciling...</span>) and click <span class="menuItems">Add Standard Service</span>. The URL to enter is `https://wikidata.reconci.link/fr/api`, where “fr” is your desired language code.
-
-When reconciling using this interface, items and properties will be displayed in your chosen language if the label is available. The matching score of the reconciliation is not influenced by your choice of language for the service: items are matched by considering all labels and returning the best possible match. The language of your dataset is also irrelevant to your choice of language for the reconciliation service; it simply determines which language labels to return based on the entity chosen.
+このサービスを利用すると、対象エンティティに該当言語のラベルが存在する場合はその言語で表示されます。言語設定はマッチングスコアには影響しません。データセットの言語とも関係なく、単に表示するラベルの言語を切り替えるための設定です。
 
 ## Restricting matches by type {#restricting-matches-by-type}
 
-In Wikidata, types are items themselves. For instance, the [university of Ljubljana (Q1377)](https://www.wikidata.org/wiki/Q1377) has the type [public university (Q875538)](https://www.wikidata.org/wiki/Q875538), using the [instance of (P31)](https://www.wikidata.org/wiki/Property:P31) property. Types can be subclasses of other types, using the [subclass of (P279)](https://www.wikidata.org/wiki/Property:P279) property. For instance, [public university (Q875538)](https://www.wikidata.org/wiki/Q875538) is a subclass of [university (Q3918)](https://www.wikidata.org/wiki/Q3918). You can visualize these structures with the [Wikidata Graph Builder](https://angryloki.github.io/wikidata-graph-builder/). 
+Wikidata のタイプはアイテムとして表現され、[instance of (P31)](https://www.wikidata.org/wiki/Property:P31) で関連付けられます。例えば [university of Ljubljana (Q1377)](https://www.wikidata.org/wiki/Q1377) は [public university (Q875538)](https://www.wikidata.org/wiki/Q875538) のインスタンスです。タイプ同士も [subclass of (P279)](https://www.wikidata.org/wiki/Property:P279) で階層化されています（Q875538 は [university (Q3918)](https://www.wikidata.org/wiki/Q3918) のサブクラス）。[Wikidata Graph Builder](https://angryloki.github.io/wikidata-graph-builder/) で視覚化できます。
 
-When you select or enter a type for reconciliation, OpenRefine will include that type and all of its subtypes. For instance, if you select [university (Q3918)](https://www.wikidata.org/wiki/Q3918), then [university of Ljubljana (Q1377)](https://www.wikidata.org/wiki/Q1377) will be a possible match, though that item isn't directly linked to Q3918 - because it is directly linked to Q875538, the subclass of Q3918.
+リコンサイル時にタイプを指定すると、そのタイプとすべてのサブタイプが候補になります。たとえば [university (Q3918)](https://www.wikidata.org/wiki/Q3918) を選べば、直接 Q3918 に紐付いていない [university of Ljubljana (Q1377)](https://www.wikidata.org/wiki/Q1377) も候補に含まれます（Q875538 経由でサブクラス関係があるため）。
 
-Some items and types may not yet be set as an instance or subclass of anything (because Wikidata is crowdsourced). If you restrict reconciliation to a type, items without the chosen type will not appear in the results, except as a fallback, and will have a lower score.
+クラウドソースゆえに、まだタイプが設定されていないアイテムも存在します。タイプで絞り込むとこうしたアイテムは結果に表示されず（フォールバックで表示された場合でもスコアは低くなります）。
 
 ## Reconciling via unique identifiers {#reconciling-via-unique-identifiers}
 
-You can supply a column of unique identifiers (in the form "Q###" for entities) directly to Wikidata in order to pull more data, but [these strings will not be “reconciled” against the external dataset](reconciling#reconciling-with-unique-identifiers). Apply the operation <span class="menuItems">Reconcile</span> → <span class="menuItems">Use values as identifiers</span> on your column of QIDs. All cells will appear as dark blue “confirmed” matches. Some of the “matches” may be errors, which you will need to hover over or click on to identify. You cannot use this to reconcile properties (in the form "P###").
+QID（「Q###」形式）を列に持っている場合は、<span class=\"menuItems\">Reconcile</span> → <span class=\"menuItems\">Use values as identifiers</span> を適用すると直接エンティティを参照できます。この方法では外部データセットとの照合は行われませんが、すべてのセルが濃青色で「confirmed」と表示され、追加情報の取得に利用できます。誤った QID が含まれている場合は、セルにマウスオーバーして確認してください。プロパティ（「P###」形式）には利用できません。
 
-If the identifier you submit is assigned to multiple Wikidata items (because Wikidata is crowdsourced), all of the items are returned as candidates, with none automatically matched.
+誤って 1 つの識別子が複数のアイテムに付与されている場合は、すべての候補が表示されますが、自動的に確定されるものはありません。
 
 ## Property paths, special properties, and subfields {#property-paths-special-properties-and-subfields}
 
-Wikidata's hierarchical property structure can be called by using property paths (using |, /, and . symbols). Labels, aliases, descriptions, and sitelinks can also be accessed. You can also match values against subfields, such as latitude and longitude subfields of a geographical coordinate.
+Wikidata のプロパティは階層構造になっており、`|`、`/`、`.` を使ったプロパティパスで参照できます。ラベル・別名・説明・サイトリンクも同様に取得できます。また、地理座標の緯度・経度のようなサブフィールドにもアクセスできます。
 
-Labels, aliases, descriptions and sitelinks can be accessed as follows (L for label , D for description, A for aliases, S for sitelink):
+ラベル・別名・説明・サイトリンクの例（L=Label、D=Description、A=Alias、S=Sitelink）:
 
-    Len for Label in English
-    Dfi for Description in Finnish
-    Apt for Alias in Portuguese
-    Sdewiki for Sitelink in German Wikipedia page titles
-    Scommonswiki for Commons sitelink
+```\nLen  英語ラベル\nDfi  フィンランド語の説明\nApt  ポルトガル語の別名\nSdewiki  ドイツ語版 Wikipedia の記事タイトル\nScommonswiki  Wikimedia Commons のサイトリンク\n```\n\n小文字の部分は言語コードで、取得する言語を指定します。値の取得時にフォールバックは行われません。
 
-The lowercase letters are Wikimedia language codes which select which language the terms will be fetched. No language fall-back is performed when retrieving the values.
-
-For information on how to do this, read the [documentation and further resources here](https://wikidata.reconci.link/#documentation).
-
+詳しくは [公式ドキュメント](https://wikidata.reconci.link/#documentation) を参照してください。

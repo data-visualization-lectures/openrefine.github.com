@@ -1,72 +1,36 @@
-Sometimes your data is not as simple as a normal table, or the sort of
-statements that you want to do varies on each row. This document
-explains how to work around these cases.
+データが単純な表ではなかったり、行ごとに追加したいステートメントの種類が変わる場合があります。本ドキュメントでは、そうしたケースに対応する方法を紹介します。
 
-## Hierarchical data {#hierarchical-data}
+## 階層データ {#hierarchical-data}
 
-Sometimes your source provides data in a structured format, such as XML,
-JSON or RDF. OpenRefine can import these files and will convert them to
-tables. These tables will reflect some of the hierarchy in the file by
-means of null cells, using the [records mode](manual/exploring.md#rows-vs-records).
+ソースが XML や JSON、RDF のような構造化形式で提供されることがあります。OpenRefine はこれらをインポートし、表に変換します。この表は [レコードモード](manual/exploring.md#rows-vs-records) を用いて null セルで階層構造を表現します。
 
-The Wikibase extension always works in rows mode, so if we want to add
-statements which reference both the artist and the song, we need to fill
-the null cells with the corresponding artist. You can do this with the
-**Fill down** operation (in the **Edit cells** menu for this column).
-This function will copy not just cell values but also reconciliation
-results.
+Wikibase 拡張は常に行モードで動作するため、アーティストと曲を同時に参照するステートメントを追加したい場合は、null セルを適切なアーティストで埋める必要があります。対象列の **Edit cells** → **Fill down** を使えば、セル値だけでなくリコンサイル結果も含めてコピーできます。
 
-## Conditional additions {#conditional-additions}
+## 条件付きでの追加 {#conditional-additions}
 
-Sometimes you want to add a statement only in some conditions.
+特定の条件を満たす行にだけステートメントを追加したい場合があります。
 
-The workflow to achieve this looks like this:
-- Use facets to select the rows where you do not want to add any
-  information;
-- Blank out the cells in the column that contain the information you
-  want to add. If you do not want to lose this information, you can
-  create a copy of the column beforehand;
-- Remove your facets to see all rows again;
-- Create a schema using the column you partially blanked out as
-  statement value.
+ワークフローの一例:
+- 追加したくない行をファセットで絞り込む
+- 追加対象の列を空にする（情報を残したい場合は事前に列を複製）
+- ファセットを解除して全行を再表示
+- 空にした列をステートメント値としてスキーマを構築
 
-## Varying properties {#varying-properties}
+## プロパティが行によって異なる場合 {#varying-properties}
 
-Sometimes you wish you could use column variables for properties in your
-schema. It is currently not possible, first because we do not have a
-reconciliation service for properties yet, but also because allowing
-varying properties in a statement would mean that these properties could
-potentially have different datatypes, which would break the structure of
-the schema.
+スキーマ内でプロパティを列変数に置き換えたいことがありますが、現在は実現できません。プロパティ用のリコンサイルサービスが存在しないことに加えて、プロパティが行ごとに変わるとデータ型が揃わず、スキーマ構造が崩れてしまうためです。
 
-If you only want to use a few properties, there is a way to go around
-this problem. For instance, say you have a first column of altitudes and a
-second column that indicates whether you should add it as
-[operating altitude (P2254)](https://www.wikidata.org/wiki/Property:P2254) or as
-[elevation above sea level (P2044)](https://www.wikidata.org/wiki/Property:P2044).
+使用するプロパティが少数であれば、次のように回避できます。例として、1 列目に高度、2 列目に [operating altitude (P2254)](https://www.wikidata.org/wiki/Property:P2254) として追加すべきか、[elevation above sea level (P2044)](https://www.wikidata.org/wiki/Property:P2044) として追加すべきかを示す列があるとします。
 
-Create a text facet on the first column. Filter to keep only the
-*altitude* values. Add a new column based on the second column, by
-keeping the default expression (`value`) which just copies the existing
-values. Then, select the *maximum operating altitude* value in the facet
-and do the same. Reset the facet, you should have obtained two new columns
-which partition the original column. You can now create a schema which adds
-two statements, with values taken from those columns. Since blank values are
-ignored, exactly one statement will be added for each item, with the desired property.
+まず 1 列目にテキストファセットを作成し、*altitude* の行だけ残します。次に 2 列目を元に新しい列を追加します（既定式 `value` のままで複製）。続いてファセットで *maximum operating altitude* を選び、同様に複製します。ファセットをリセットすると、元の列が 2 つの列に分割されているはずです。これら 2 列を使って 2 つのステートメントをスキーマに追加すれば、空の値は無視されるため各アイテムにつき望んだプロパティのステートメントが 1 件だけ作成されます。
 
-## Adapting to existing data on Wikibase {#adapting-to-existing-data-on-wikibase}
+## Wikibase 上の既存データに合わせる {#adapting-to-existing-data-on-wikibase}
 
-Sometimes you want to create statements only if there are no such
-statements on the item yet. Here is one way to achieve this:
+すでにステートメントが存在する場合は新規追加しないようにしたいことがあります。以下はその一例です。
 
--   first, retrieve the existing values from Wikidata first, using the
-    **Edit columns** → **Add columns from reconciled values** action;
--   second, create a *facet by null* on the newly created column that
-    contains the information you want to control against;
--   select the non-null rows (value **false**);
--   clear the contents of the column where your source values are
-    (**Edit cells** → **Common transformations** → **To null**).
+1. **Edit columns → Add columns from reconciled values** で Wikidata の既存値を取得
+2. 取得した列に *facet by null* を作成
+3. 非 null 行（値が **false**）を選択
+4. ソース値を持つ列を **Edit cells → Common transformations → To null** でクリア
 
-You can now construct your schema as usual - null values will be ignored
-when generating the statements.
-
+あとは通常どおりスキーマを構築すれば、null のセルは無視されるため、既存データがあるアイテムには追加されません。

@@ -1,48 +1,46 @@
 ---
 id: quality-assurance
-title: Quality assurance for Wikibase uploads
+title: Wikibase へのアップロードにおける品質管理
 sidebar_label: 品質管理
 ---
 
-This page explains how the Wikidata extension of OpenRefine analyzes edits before they are uploaded to the Wikibase
-instance. Most of these checks rely on the use of the [Wikibase Quality Constraints](https://gerrit.wikimedia.org/g/mediawiki/extensions/WikibaseQualityConstraints) extension and the configuration of the property and item identifiers in the [Wikibase manifest](./configuration).
+このページでは、OpenRefine の Wikidata 拡張がアップロード前に行うチェックについて説明します。ほとんどの検査は [Wikibase Quality Constraints](https://gerrit.wikimedia.org/g/mediawiki/extensions/WikibaseQualityConstraints) 拡張と、[Wikibase マニフェスト](./configuration) で設定されたプロパティ／アイテム ID に依存しています。
 
-## Overview {#overview}
+## 概要 {#overview}
 
-Changes are scrutinized before they are uploaded, but also before the current content of the corresponding items is retrieved and merged with the updates. This means that some constraint violations cannot be predicted by the software (for instance, adding a new statement that conflicts with an existing statement on the item). However, this makes it possible to run the checks quickly, even for relatively large batches of edits. Issues are therefore refreshed in real time while the user builds the schema.
+更新内容は、既存のアイテムを取得してマージする前に検査されます。そのため、既存のステートメントと矛盾するようなケースは検出できませんが、大量の編集でも高速にチェックできます。スキーマを組み立てている最中にリアルタイムで警告が更新されます。
 
-As a consequence, not all constraint violations can be detected: the ones that are supported are listed in the [Constraint violations](#constraint-violations) section. Conversely, not all issues reported will be flagged as constraint violations on the Wikibase site: see [Generic issues](#generic-issues) for these.
+すべての制約違反が検出されるわけではなく、対応しているものは [制約違反](#constraint-violations) に列挙しています。一方、検出されたすべての問題が Wikibase 側の制約違反として表示されるわけではなく、[一般的な問題](#generic-issues) として扱うものもあります。
 
-## Reconciliation {#reconciliation}
+## リコンサイル結果の確認 {#reconciliation}
 
-You should always assess the quality of your reconciliation results first. OpenRefine has various tools for quality assurance of reconciliation results. For instance:
+まずはリコンサイル結果の品質を確認しましょう。OpenRefine には品質確認用のツールがいくつか用意されています。
 
-* you can analyze the string similarity between your original names and those of the reconciled items (for instance with <span class="menuItems">Reconcile</span> → <span class="menuItems">Facets</span> → <span class="menuItems">Best candidate's name edit distance</span>);
-* you can compare the values in your table with those on the items (via a text facet defined by a custom expression);
-* you can facet by type on the reconciled items (add a new column with the types and use a text facet ordered by counts to get a sense of the distribution of types in your reconciled items).
+* <span class="menuItems">Reconcile</span> → <span class="menuItems">Facets</span> → <span class="menuItems">Best candidate's name edit distance</span> で元データと候補名の編集距離を調べる
+* カスタム式でテキストファセットを作り、表の値とアイテムの値を比較する
+* タイプ情報を新しい列に取得し、件数順のファセットで分布を確認する
 
-## Constraint violations {#constraint-violations}
+## 制約違反 {#constraint-violations}
 
-Constraints are retrieved as defined on the properties, using [ (P2302)](https://www.wikidata.org/wiki/Property:P2302).
+制約は各プロパティの [P2302](https://www.wikidata.org/wiki/Property:P2302) に沿って取得されます。
 
-The following constraints are supported:
-* [format constraint (Q21502404)](https://www.wikidata.org/wiki/Q21502404), checked on all values
-* [inverse constraint (Q21510855)](https://www.wikidata.org/wiki/Q21510855): OpenRefine assumes that the inverses of the candidate statements are not in Wikidata yet. If you know that the inverse statements are already in Wikidata, you can safely ignore this issue.
-* [used for values only constraint (Q21528958)](https://www.wikidata.org/wiki/Q21528958), [used as qualifier constraint (Q21510863)](https://www.wikidata.org/wiki/Q21510863) and [used as reference constraint (Q21528959)](https://www.wikidata.org/wiki/Q21528959)
+対応している制約は以下のとおりです。
+* [format constraint (Q21502404)](https://www.wikidata.org/wiki/Q21502404): 文字列や識別子の形式を検査
+* [inverse constraint (Q21510855)](https://www.wikidata.org/wiki/Q21510855): 逆方向のステートメントがまだ存在しないと仮定して警告します。既に Wikidata にあると分かっている場合は無視して構いません。
+* [used for values only constraint (Q21528958)](https://www.wikidata.org/wiki/Q21528958)、[used as qualifier constraint (Q21510863)](https://www.wikidata.org/wiki/Q21510863)、[used as reference constraint (Q21528959)](https://www.wikidata.org/wiki/Q21528959)
 * [allowed qualifiers constraint (Q21510851)](https://www.wikidata.org/wiki/Q21510851)
 * [required qualifier constraint (Q21510856)](https://www.wikidata.org/wiki/Q21510856)
-* [single-value constraint (Q19474404)](https://www.wikidata.org/wiki/Q19474404): this will only trigger if you are adding more than one statement with the property on the same item, but will not detect any existing statement with this property.
-* [distinct values constraint (Q21502410)](https://www.wikidata.org/wiki/Q21502410): similarly, this only checks for conflicts inside your edit batch.
+* [single-value constraint (Q19474404)](https://www.wikidata.org/wiki/Q19474404): 同じアイテムに同じプロパティを 2 回以上追加する場合のみ検出します（既存のステートメントは確認しません）
+* [distinct values constraint (Q21502410)](https://www.wikidata.org/wiki/Q21502410): 同じバッチ内での重複のみ検査します
 
-A comparison of the supported constraints with respect to other implementations is available [here](https://www.wikidata.org/wiki/Wikidata:WikiProject_property_constraints/reports/implementations).
+他の実装との比較は [こちら](https://www.wikidata.org/wiki/Wikidata:WikiProject_property_constraints/reports/implementations) を参照してください。
 
-## Generic issues {#generic-issues}
+## 一般的な問題 {#generic-issues}
 
-OpenRefine also detects issues that are not flagged (yet) by constraint violations on Wikidata:
-* Statements without references. This does not rely on [citation needed constraint (Q54554025)](https://www.wikidata.org/wiki/Q54554025): all statements are expected to have references. (The idea is that when importing a dataset, every statement you add
-* should link to this dataset - it does not hurt to do it even for generic properties such as [instance of (P31)](https://www.wikidata.org/wiki/Property:P31).)
-* Spurious whitespace and non-printable characters in strings (including labels, descriptions and aliases);
-* Self-referential statements (statements which mention the item they belong to);
-* New items created without any label;
-* New items created without any description;
-* New items created without any [instance of (P31)](https://www.wikidata.org/wiki/Property:P31) or [subclass of (P279)](https://www.wikidata.org/wiki/Property:P279) statement.
+以下のように、Wikidata 側では制約違反として扱われない問題も検出します。
+* 出典の無いステートメント（[citation needed constraint (Q54554025)](https://www.wikidata.org/wiki/Q54554025) に依存せず、すべてのステートメントに出典が必要とみなします。データセットをインポートする場合は、[instance of (P31)](https://www.wikidata.org/wiki/Property:P31) のような汎用プロパティでもデータセットへの参照を付けるのが望ましいと考えています）
+* ラベル・説明・別名などの文字列に含まれる不要な空白や制御文字
+* 自分自身（所属するアイテム）を参照するステートメント
+* ラベルのない新規アイテム
+* 説明のない新規アイテム
+* [instance of (P31)](https://www.wikidata.org/wiki/Property:P31) または [subclass of (P279)](https://www.wikidata.org/wiki/Property:P279) を持たない新規アイテム

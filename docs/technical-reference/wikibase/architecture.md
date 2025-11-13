@@ -1,31 +1,27 @@
 ---
 id: architecture
-title: Architecture of the Wikibase extension
+title: Wikibase 拡張のアーキテクチャ
 sidebar_label: Wikibase extension
 ---
 
 
-# Overview of the Wikibase extension
+# Wikibase 拡張の概要
 
-The Wikibase extension provides upload functionalities into [Wikibase](https://wikiba.se/) instances, by helping the user transform
-data from a tabular format to [the data model of Wikibase entities](https://www.mediawiki.org/wiki/Wikibase/DataModel).
+この拡張は、表形式のデータを [Wikibase エンティティのデータモデル](https://www.mediawiki.org/wiki/Wikibase/DataModel) に変換し、[Wikibase](https://wikiba.se/) インスタンスへアップロードする機能を提供します。
 
-The following graph gives an overview of the editing pipeline:
+編集パイプラインは次の図のようになっています。
 ![Directed graph representing the pipeline from schema to upload into Wikibase](/img/editing-pipeline.png)
 
-1. The schema is evaluated (`WikibaseSchema::evaluate`) on each visible row in the project. This gives rise to one or more `EntityEdit` objects for each row. Those objects represent a candidate edit, including the configuration of how this edit should be matched to any
-   existing data on the entity to be edited.
-2. The `WikibaseAPIScheduler` groups the edits together, so that they can later be performed with the HTTP Wikibase API efficiently. This essentially means bundling up all changes made to the same entity across the project into a single object. If new
-   edits are made, those edits also need to be ordered so that any new entity referenced in an edit already exists by the time this edit is made.
-3. A collection of `EditScrutinizer`s are executed on the candidate edits, to check for detectable issues about those. This generate `QAWarning` objects which are aggregated according to keys defined by the scrutinizers. This collection of scrutinizers is largely based on the constraint system offered by [WikibaseQualityConstraints](https://www.mediawiki.org/wiki/Extension:WikibaseQualityConstraints), when it is used by the target Wikibase.
+1. プロジェクト内の可視行ごとにスキーマ（`WikibaseSchema::evaluate`）を評価し、1 行につき 1 つ以上の `EntityEdit` オブジェクトを生成します。各オブジェクトは候補編集と、その編集を既存データにどのようにマッチさせるかの設定を持ちます。
+2. `WikibaseAPIScheduler` が編集をまとめ、Wikibase HTTP API で効率的に処理できるようにします。これは、同じアイテムに対する変更を 1 つのオブジェクトに集約すること、および新規エンティティが参照される前に作成されるよう順序を調整することを意味します。
+3. 編集候補に対して `EditScrutinizer` の集合を実行し、検出可能な問題がないか確認します。結果は `QAWarning` として集約されます。この仕組みは、対象 Wikibase で [WikibaseQualityConstraints](https://www.mediawiki.org/wiki/Extension:WikibaseQualityConstraints) が利用されている場合にその制約システムに基づきます。
 
-The steps above are executed every time the schema is previewed. When the user is ready to upload their edits to Wikibase, they have a choice between two routes:
+以上の処理はスキーマをプレビューするたびに実行されます。アップロード時には 2 つの経路があります。
  
-4. Going through [QuickStatements](https://github.com/magnusmanske/quickstatements). The `QuickStatementsScheduler` offers another way to group edits together, such that they can be expressed in the QuickStatements v1 format. The `QuickStatementsExporter` translates them to that format.
+4. [QuickStatements](https://github.com/magnusmanske/quickstatements) を利用する方法。`QuickStatementsScheduler` が編集を再編成し、QuickStatements v1 形式で表現できるようにし、`QuickStatementsExporter` が最終的なテキストを生成します。
 
-They can also upload their edits directly from OpenRefine, in which case the following operations are executed for each edit:
+もう一つは OpenRefine から直接アップロードする方法で、この場合は各編集に対して次の処理を行います。
 
-5. The edit is rewritten, so that if it references any newly created Wikibase entity, the identifier of this entity is inserted in the edit. This is done by `ReconEntityRewriter`.
-6. For edits to existing entities, the edit is compared to any existing data on the item. Following the matching criteria stored in the edit, we generate a concrete update of entity data. This is done by `EntityEdit::toUpdate`.
-7. Finally, the update is sent to the Wikibase instance using [Wikidata-Toolkit](https://github.com/Wikidata/Wikidata-Toolkit).
-
+5. 編集内容に新規エンティティが含まれている場合は、`ReconEntityRewriter` が実際の識別子を挿入して書き換えます。
+6. 既存エンティティへの編集では、保存されているマッチング条件に従って現状データと比較し、適用すべき差分（`EntityEdit::toUpdate`）を生成します。
+7. 最後に [Wikidata-Toolkit](https://github.com/Wikidata/Wikidata-Toolkit) を通じて Wikibase インスタンスへ送信します。

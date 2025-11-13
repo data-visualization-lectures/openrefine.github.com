@@ -1,39 +1,36 @@
 ---
 id: configuration
-title: Connecting OpenRefine to a Wikibase instance
+title: OpenRefine を Wikibase インスタンスへ接続する
 sidebar_label: Wikibase への接続
 ---
 
-This page explains how to connect OpenRefine to any Wikibase instance. If you just want to work with [Wikidata](https://www.wikidata.org/), you can ignore this page as Wikidata is configured out of the box in OpenRefine.
+このページでは OpenRefine を任意の Wikibase インスタンスに接続する方法を説明します。[Wikidata](https://www.wikidata.org/) だけを利用する場合は、OpenRefine に標準設定済みなのでこのページを読む必要はありません。
 
-## For Wikibase end users {#for-wikibase-end-users}
+## Wikibase 利用者の場合 {#for-wikibase-end-users}
 
-All you need to configure OpenRefine to work with a Wikibase instance is a *manifest* for that instance, which provides some metadata and links required for the integration to work.
+OpenRefine を特定の Wikibase と連携させるために必要なのは、そのインスタンスを記述した *マニフェスト* です。マニフェストには連携に必要なメタデータや各種 URL が含まれます。
 
-We offer some off-the-shelf manifests for some public Wikibase instances in the [wikibase-manifests](https://github.com/OpenRefine/wikibase-manifests) repository. But the administrators of your Wikibase instance should provide one that is potentially more
-up to date, so it makes sense to request it to them first.
+[wikibase-manifests](https://github.com/OpenRefine/wikibase-manifests) リポジトリでは、いくつかの公開インスタンス向けマニフェストを提供しています。ただし最も新しい設定はインスタンスの管理者が持っているはずなので、まずは管理者に提供を依頼してください。
 
-## For Wikibase administrators {#for-wikibase-administrators}
+## Wikibase 管理者の場合 {#for-wikibase-administrators}
 
-To let your users contribute to your Wikibase instance with OpenRefine, you will need to write a manifest as described above. There is currently no canonical location where this manifest should be hosted - just make sure can be found easily by your users. This section explains the format of the manifest.
+利用者が OpenRefine からあなたの Wikibase に編集できるようにするには、上記のマニフェストを用意する必要があります。ホスティング場所に正式な決まりはありませんが、利用者が簡単に見つけられる場所に置いてください。以下でマニフェストの構造を説明します。
 
-### Requirements {#requirements}
+### 要件 {#requirements}
 
-To work with OpenRefine, your Wikibase instance needs an associated reconciliation service for each editable entity type:
+OpenRefine と連携するには、編集対象となる各エンティティタイプごとにリコンサイルサービスが必要です。
 
-* To enable editing items (entities with an identifier starting with Q), you can deploy [a Python wrapper](https://gitlab.com/nfdi4culture/ta1-data-enrichment/openrefine-wikibase) for this. It exposes a reconciliation service for items, built on top of Wikibase's own API and its Query Service.
-  Note that this service requires the [UniversalLanguageSelector extension](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:UniversalLanguageSelector) should be installed.
+* アイテム（Q で始まる ID）を編集するには、[Python 製ラッパー](https://gitlab.com/nfdi4culture/ta1-data-enrichment/openrefine-wikibase) をデプロイし、Wikibase API と Query Service の上にリコンサイルサービスを構築します。利用には [UniversalLanguageSelector 拡張](https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:UniversalLanguageSelector) が必要です。
 
-* To enable editing media files (if your Wikibase instance accepts file uploads), you can use [another Python wrapper](https://github.com/wikimedia/labs-tools-commons-recon-service) which exposes a reconciliation service for media files.
+* ファイルアップロードを受け付ける場合は、[別の Python ラッパー](https://github.com/wikimedia/labs-tools-commons-recon-service) を利用してメディアファイル用リコンサイルサービスを公開します。
 
-* Editing properties or other entity types is not supported yet.
+* プロパティやその他のエンティティタイプの編集は現時点ではサポートされていません。
 
-We are aware that deploying those additional web services can be difficult for some Wikibase users, and we think those web services should be replaced by a MediaWiki extension which exposes the reconciliation endpoints from MediaWiki itself. We are not
-aware of anyone planning to work on this, though.
+これらの追加サービスを運用するのが難しい場合があることは把握しており、将来的には MediaWiki 拡張としてリコンサイルエンドポイントを提供する形に置き換えたいと考えていますが、現時点で着手予定はありません。
 
-### The format of the manifest {#the-format-of-the-manifest}
+### マニフェストの形式 {#the-format-of-the-manifest}
 
-The manifest is a JSON object describing all the configuration details necessary for OpenRefine to integrate with your Wikibase instance. As an example, here is the manifest of Wikimedia Commons:
+マニフェストは JSON オブジェクトで、OpenRefine と Wikibase を連携させるための設定をすべて記述します。以下は Wikimedia Commons の例です。
 
 ```json
 {
@@ -87,11 +84,13 @@ The manifest is a JSON object describing all the configuration details necessary
 }
 ```
 
-In general, there are several parts of the manifest: version, mediawiki, wikibase, oauth, entity_types and editgroups.
+マニフェストは大まかに `version`、`mediawiki`、`wikibase`、`oauth`、`entity_types`、`editgroups` の各セクションに分かれています。
 
 #### version {#version}
 
-The version should in the format "2.x". The minor version should be increased when you update the manifest in a backward-compatible manner. The major version should be "2" if the manifest is in the format specified by [wikibase-manifest-schema-v2.json](https://github.com/afkbrb/wikibase-manifest/blob/master/wikibase-manifest-schema-v2.json).
+バージョンは `"2.x"` の形式を取り、後方互換の変更を加えたときにマイナーバージョンを上げます。フォーマットが [wikibase-manifest-schema-v2.json](https://github.com/afkbrb/wikibase-manifest/blob/master/wikibase-manifest-schema-v2.json) に準拠していればメジャーバージョンは 2 にします。
+
+OpenRefine 3.6 以前に作成したマニフェストは version 1 形式です。OpenRefine 3.6 からは複数のエンティティタイプを編集できるように仕様が拡張されたため、version 2 形式に移行することを推奨します。移行手順は本頁末尾を参照してください。
 
 #### mediawiki {#mediawiki}
 
@@ -175,12 +174,11 @@ The base IRI for the entities of this type. This property is required. By defaul
 
 ##### mediawiki_api {#mediawiki_api}
 
-The URL of the MediaWiki API to use with entities of this type. If not provided, it is expected to be the same as the MediaWiki API endpoint for this instance, but if entities of this type are federated from another instance, then this should be set to the MediaWiki API endpoint of that Wikibase instance.
+このエンティティタイプで利用する MediaWiki API の URL。省略するとインスタンス全体の API エンドポイントが使われますが、他インスタンスからフェデレーションされている場合はそちらの API エンドポイントを指定します。
 
 #### hide_structured_fields_in_mediainfo
 
-Not required. Set this flag to true if your Wikibase instance supports file uploads (in which case it should have a `mediainfo` section in the `entity_types` object above), but it does not support adding captions and statements directly on the files themselves (unlike
-Wikimedia Commons).
+任意。ファイルアップロードには対応しているが、Wikimedia Commons のようにファイルに直接キャプションやステートメントを付ける機能はない場合に `true` を設定します。
 
 #### editgroups {#editgroups}
 
@@ -192,23 +190,22 @@ The URL schema used in edits summary. This is used for EditGroups to extract the
 
 #### Check the format of the manifest {#check-the-format-of-the-manifest}
 
-As mentioned above, the manifest should be in the format specified by [wikibase-manifest-schema-v2.json](https://github.com/afkbrb/wikibase-manifest/blob/master/wikibase-manifest-schema-v2.json). You can check the format by adding the manifest directly to OpenRefine, and OpenRefine will complain if there is anything wrong with the format.
+マニフェストは [wikibase-manifest-schema-v2.json](https://github.com/afkbrb/wikibase-manifest/blob/master/wikibase-manifest-schema-v2.json) に沿っている必要があります。OpenRefine にマニフェストを追加すると、自動的に形式が検証され、不正な場合はエラーが表示されます。
 
 ![test-validate-manifest-format](https://user-images.githubusercontent.com/29347603/90506110-52d85d00-e186-11ea-8077-683d2f234c46.gif)
 
-#### Migrate from the version 1 to the version 2 of the manifest format
+#### マニフェストを version 1 から version 2 へ移行する
 
-If you have created a manifest for your Wikibase instance before OpenRefine 3.6, then you have used the version 1 format for manifests. This format was generalized (into version 2) in OpenRefine 3.6 to allow for editing different entity types.
-If you are interested in letting OpenRefine users edit not just items on your Wikibase instance, but also other types of entities (such as media files), then you should migrate your manifest from version 1 to 2.
+OpenRefine 3.6 以前に作成したマニフェストは version 1 形式です。3.6 で複数エンティティタイプを扱えるよう仕様が一般化されたため、アイテム以外（メディアファイルなど）も編集させたい場合は version 2 へ移行してください。
 
-To do so, you need to:
+手順:
 
-* Change the `version` field of your manifest to 2.0;
+* `version` フィールドを `2.0` に変更
 
-* Introduce the new `entity_types` field, into which the URL of your existing reconciliation service should go (inside the `item` subsection). See the documentation above for more details about the expected values of such fields;
+* `entity_types` フィールドを追加し、既存のリコンサイルサービスの URL を `item` セクションに記述
 
-* Deploy [the additional reconciliation service for media files](https://github.com/wikimedia/labs-tools-commons-recon-service) and reference it in the `entity_types` section of the manifest, following the documentation above.
+* [メディアファイル用リコンサイルサービス](https://github.com/wikimedia/labs-tools-commons-recon-service) をデプロイし、`entity_types` に追記
 
-* If your Wikibase instance supports file uploads, but does not use structured data on those files, add the `hide_structured_fields_in_mediainfo` field to your manifest, as documented above.
+* ファイルをアップロードできるが構造化データを利用しない場合は `hide_structured_fields_in_mediainfo` を追加
 
-After you have made those changes to your manifest, OpenRefine users will need to add it again to their list of Wikibase instances for the changes to take effect.
+変更後は、利用者にマニフェストを再登録してもらうことで新しい設定が反映されます。
