@@ -1,128 +1,125 @@
 ---
 id: architecture-before-4
-title: Architecture before version 4 
-sidebar_label: Architecture before version 4
+title: バージョン 4 以前のアーキテクチャ
+sidebar_label: バージョン 4 以前のアーキテクチャ
 ---
 
-OpenRefine is a web application, but is designed to be run locally on your own machine. The server-side maintains states of the data (undo/redo history, long-running processes, etc.) while the client-side maintains states of the user interface (facets and their selections, view pagination, etc.). The client-side makes GET and POST ajax calls to cause changes to the data and to fetch data and data-related states from the server-side.
+OpenRefine は Web アプリケーションですが、自分のマシン上でローカルに動かす前提で設計されています。サーバー側はデータの状態（Undo/Redo の履歴や長時間実行プロセスなど）を保持し、クライアント側は UI の状態（ファセットとその選択内容、ページングなど）を保持します。クライアントは GET/POST の Ajax 呼び出しでサーバーにアクセスし、データの更新や取得を行います。
 
-This architecture provides a good separation of concerns (data vs. UI); allows the use of familiar web technologies (HTML, CSS, Javascript) to implement user interface features; and enables the server side to be called by third-party software through standard GET and POST requests.
+このアーキテクチャによって、データと UI の責務をきれいに分離し、HTML/CSS/JavaScript といった身近な Web 技術で UI 機能を実装でき、さらに標準的な GET/POST でサードパーティのソフトウェアがサーバー側機能を呼び出せるようになります。
 
-## Technology stack {#technology-stack}
+## 技術スタック {#technology-stack}
 
-The server-side (back-end) part of OpenRefine is implemented in Java as one single servlet which is executed by the [Jetty](http://jetty.codehaus.org/jetty/) web server and servlet container. The use of Java strikes a balance between performance and portability across operating systems (there is very little OS-specific code and has mostly to do with starting the application). 
+OpenRefine のサーバー側（バックエンド）は単一の Java サーブレットとして実装され、[Jetty](http://jetty.codehaus.org/jetty/) Web サーバー／サーブレットコンテナ上で実行されます。Java を採用することで、各 OS 間で性能と移植性のバランスを保てます（OS 固有コードはアプリ起動まわりにごく少量あるだけです）。
 
-The functional extensibility of OpenRefine is provided by a fork of the [SIMILE Butterfly](https://github.com/OpenRefine/simile-butterfly) modular web application framework. With this framework, extensions are able to provide new functionality both in the
-server- and client-side. A [list of known extensions](/extensions) is maintained on our website and we have [specific documentation for extension developers](technical-reference/writing-extensions.md).
+OpenRefine の機能拡張性は、[SIMILE Butterfly](https://github.com/OpenRefine/simile-butterfly) というモジュラー Web アプリケーションフレームワークのフォークによって支えられています。これにより拡張はサーバー側・クライアント側の双方に新機能を提供できます。[既知の拡張一覧](/extensions) は公式サイトで管理しており、拡張開発者向けの[専用ドキュメント](technical-reference/writing-extensions.md)も用意しています。
 
-The client-side part of OpenRefine is implemented in HTML, CSS and plain Javascript. It primariy uses the following libraries:
+クライアント側は HTML/CSS/プレーン JavaScript で実装され、主に次のライブラリを利用します。
 * [jQuery](http://jquery.com/)
-* [Wikimedia's jQuery.i18n](https://github.com/wikimedia/jquery.i18n)
-The front-end dependencies are fetched at build time via [NPM](https://www.npmjs.com/).
+* [Wikimedia jQuery.i18n](https://github.com/wikimedia/jquery.i18n)
+フロントエンドの依存モジュールはビルド時に [NPM](https://www.npmjs.com/) で取得します。
 
-The server-side part of OpenRefine relies on many libraries, for instance to implement import and export in many different formats.
-Those are fetched at build time via [Apache Maven](https://maven.apache.org/).
+サーバー側も多数のライブラリに依存しており、さまざまなフォーマットでのインポート／エクスポート実装などに利用しています。これらは [Apache Maven](https://maven.apache.org/) でビルド時に取得します。
 
-The data storage and processing architecture is being transformed. Up to version 3.x, OpenRefine uses an in-memory storage, where the entire project grid is loaded in the Java heap, with operations mutating that state. From 4.x on, OpenRefine uses a
-different architecture, where data is stored on disk by default and cached in memory if the project is small enough.
+データ保存と処理のアーキテクチャは移行中です。3.x まではプロジェクト全体のグリッドを Java ヒープに読み込むインメモリ構造で、各操作が直接その状態を書き換えていました。4.x 以降は基本的にディスク上にデータを置き、プロジェクトが十分小さい場合だけメモリにキャッシュする新アーキテクチャへ移行します。
 
-## Server-side architecture {#server-side-architecture}
+## サーバー側アーキテクチャ {#server-side-architecture}
 
-OpenRefine's server-side is written entirely in Java (`main/src/`) and its entry point is the Java servlet `com.google.refine.RefineServlet`. By default, the servlet is hosted in the lightweight Jetty web server instantiated by `server/src/com.google.refine.Refine`. Note that the server class itself is under `server/src/`, not `main/src/`; this separation leaves the possibility of hosting `RefineServlet` in a different servlet container.
+サーバー側コードはすべて Java（`main/src/`）で書かれ、エントリーポイントは `com.google.refine.RefineServlet` です。デフォルトでは `server/src/com.google.refine.Refine` がインスタンス化する軽量 Jetty 上でホストされます。サーバークラス本体は `main/src/` ではなく `server/src/` にあり、`RefineServlet` を別のサーブレットコンテナで動かす余地を残しています。
 
-The web server configuration is in `main/webapp/WEB-INF/web.xml`; that's where `RefineServlet` is hooked up. `RefineServlet` itself is simple: it just reacts to requests from the client-side by routing them to the right `Command` class in the packages `com.google.refine.commands.**`.
+Web サーバーの設定は `main/webapp/WEB-INF/web.xml` にあり、ここで `RefineServlet` が紐づけられます。`RefineServlet` 自体はシンプルで、クライアントからのリクエストを `com.google.refine.commands.**` パッケージの適切な `Command` クラスに振り分けるだけです。
 
-As mentioned before, the server-side maintains states of the data, and the primary class involved is `com.google.refine.ProjectManager`.
+前述のとおりサーバー側はデータ状態を保持しており、その中心となるクラスが `com.google.refine.ProjectManager` です。
 
-### Projects {#projects}
+### プロジェクト {#projects}
 
-In OpenRefine there's the concept of a workspace similar to that in [Eclipse IDE](https://www.eclipse.org/ide). When you run OpenRefine it manages projects within a single workspace, and the workspace is organized in a file directory with sub-directories. The default workspace directories are listed [in the manual](manual/installing.md#set-where-data-is-stored) and it also explains how to change them.
+OpenRefine には [Eclipse IDE](https://www.eclipse.org/ide) のようなワークスペースの概念があります。OpenRefine を起動すると 1 つのワークスペース内で複数プロジェクトを管理し、ワークスペースはサブディレクトリを含むディレクトリ構造で表現されます。デフォルトのワークスペースパスや変更方法は[マニュアル](manual/installing.md#set-where-data-is-stored)に記載されています。
 
-The class `ProjectManager` is what manages the workspace. It keeps in memory the metadata of every project (in the class `ProjectMetadata`). This metadata includes the project's name and last modified date, and any other information necessary to present and let the user interact with the project as a whole. Only when the user decides to look at the project's data would `ProjectManager` load the project's actual data. The separation of project metadata and data is to minimize the amount of stuff loaded into memory.
+`ProjectManager` クラスがワークスペースを管理します。`ProjectMetadata` として各プロジェクトのメタデータ（名前、最終更新日時、UI に必要な付随情報など）をメモリに保持し、ユーザーがデータを閲覧／編集しようとした時だけ実データを読み込みます。メタデータと実データを分離することで、メモリ使用量を抑えています。
 
-A project's _actual_ data includes the columns, rows, cells, reconciliation records, and history entries.
+実データには列・行・セル・リコンサイル情報・履歴エントリが含まれます。
 
-A project is loaded when it needs to be displayed or modified, and it remains in memory until 1 hour after the last time it gets modified. Periodically the project manager tries to save modified projects, and it saves as many modified projects as possible within 30 seconds.
+プロジェクトは表示または編集が必要になった時点で読み込まれ、最後に変更されてから 1 時間はメモリ上に残ります。`ProjectManager` は定期的に変更されたプロジェクトの保存を試み、30 秒以内に可能な限り多くのプロジェクトを保存します。
 
-### Data Model {#data-model}
+### データモデル {#data-model}
 
-A project's data consists of
+プロジェクトデータは次の要素で構成されます。
 
-- _raw data_: a list of rows, each row consisting of a list of cells
-- _models_ on top of that raw data that give high-level presentation or interpretation of that data. This design lets the same raw data be viewed in different ways by different models, and let the models be changed without costly changes to the raw data.
+- _生データ_: 行のリスト（各行はセルのリスト）
+- _モデル_: 生データの上に載る解釈・表示レイヤー。モデルを変えても生データを書き換える必要がない設計になっており、同じ生データでも複数のモデルで違う見方を提供できます。
 
-#### Column Model {#column-model}
+#### カラムモデル {#column-model}
 
-Cells in rows are not named and can only be addressed by their list position indices. So, a _column model_ is needed to give a name to each list position. The column model also stores other metadata for each column, including the type that cells in the column have been reconciled to and the overall reconciliation statistics of those cells.
+行内のセルには名前がなく、リストのインデックスでしかアクセスできません。そのため各位置に名前を付ける _カラムモデル_ が必要です。カラムモデルは、列に含まれるセルがリコンサイル済みかどうか、その結果の型や統計といったメタデータも保持します。
 
-Each column also acts as a cache for data computed from the raw data related to that column.
+各列はその列に関連する計算結果のキャッシュとしても機能します。
 
-Columns in the column model can be removed and re-ordered without changing the raw data--the cells in the rows. This makes column removal and ordering operations really quick.
+カラムモデル上の列は、生データ（行やセル）を変更せずに削除や並べ替えができます。これにより列操作を高速に行えます。
 
-##### Column Groups {#column-groups}
+##### カラムグループ {#column-groups}
 
 :::caution
-This feature is partially implemented, buggy and deprecated. It will be removed in OpenRefine 4.0.
-See the following links for details:
+この機能は部分的な実装であり、バグも多く非推奨です。OpenRefine 4.0 で削除される予定です。詳細は以下を参照してください。
 
-- [Issue#5122](https://github.com/OpenRefine/OpenRefine/issues/5122) that first argues it's a useful feature, but then agrees with its deprecation
-- Discussion [Who uses column groups?](https://groups.google.com/g/openrefine/c/A8RhOwlulRs/m/NFR8LDBmBwAJ)
-- Discussion [The future of the records mode](https://groups.google.com/g/openrefine/c/X9O8NBC1UKQ) about better ways of implementing grouping and a hierarchical model in OpenRefine.
+- [Issue #5122](https://github.com/OpenRefine/OpenRefine/issues/5122)（有用性の議論から非推奨への合意まで）
+- ディスカッション [Who uses column groups?](https://groups.google.com/g/openrefine/c/A8RhOwlulRs/m/NFR8LDBmBwAJ)
+- ディスカッション [The future of the records mode](https://groups.google.com/g/openrefine/c/X9O8NBC1UKQ)（OpenRefine におけるグルーピング／階層モデルの将来案）
 
-This feature is related to [Rows vs Records](../manual/exploring#rows-vs-records), which however continues to be supported.
+この機能は [Rows vs Records](../manual/exploring#rows-vs-records) と関連しますが、Rows vs Records 自体は引き続きサポートされます。
 :::
 
-Consider the following data:
+次のデータを考えてみます。
 
 ![Illustration of row groups in OpenRefine](https://raw.github.com/OpenRefine/OpenRefine/2.0/graphics/row-groups.png)
 
-Although the data is in a grid, we humans can understand that it is a tree. First of all, all rows contain data ultimately linked to the movie Austin Powers, although only one row contains the text "Austin Powers" in the "movie title" column. We also know that "USA" and "Germany" are not related to Elizabeth Hurley and Mike Myers respectively (say, as their nationality), but rather, "USA" and "Germany" are related to the movie (where it was released). We know that Mike Myers played both the character "Austin Powers" and the character "Dr. Evil"; and for the latter he received 2 awards. We humans can understand how to interpret the grid as a tree based on its visual layout as well as some knowledge we have about the movie domain but is not encoded in the table.
+データはグリッド状ですが、人間はそれを木構造として理解できます。全行が最終的には映画「Austin Powers」に紐づいていること、1 行だけが「movie title」列にタイトルを持つこと、"USA" や "Germany" は俳優の国籍ではなく映画の公開国を指していること、Mike Myers が "Austin Powers" と "Dr. Evil" の両方を演じ、後者で 2 つの賞を受けたことなどを、レイアウトやドメイン知識から読み取れます。
 
-OpenRefine can capture our knowledge of this transformation from grid to tree using _column groups_, also stored in the column model. Each column group illustrated as a blue bracket above specifies which columns are grouped together, as well as which of those columns is the key column in that group (blue triangle). One column group can span over columns grouped by another column group, and in this way, column groups form a hierarchy determined by which column group envelopes another. This hierarchy of column groups allows the 2-dimensional (grid-shaped) table of rows and cells to be interpreted as a list of hierarchical (tree-shaped) data records.
+OpenRefine ではこのグリッド→ツリーの知識をカラムモデル内の _カラムグループ_ として表現できます。上図の青い括弧が列をまとめ、青三角がそのグループのキー列を示します。カラムグループは互いに入れ子になれるため、グループの包含関係が階層を形作ります。これにより 2 次元の表を階層的なレコードの集合として解釈できます。
 
-Blank cells play a very important role. The blank cell in a key column of a row (e.g., cell "character" on row 4) makes that row (row 4) _depend_ on the first preceding row with that column filled in (row 3). This means that "Best Comedy Perf" on row 4 applies to "Dr. Evil" on row 3. Row 3 is said to be a _context row_ for row 4. Similarly, since rows 2 - 6 all have blank cells in the first column, they all depend on row 1, and all their data ultimately applies to the movie Austin Powers. Row 1 depends on no other row and is said to be a _record row_. Rows 1 - 6 together form one _record_.
+空セルも重要です。キー列が空の行（例: 行 4 の "character"）は、その列が埋まっている直前の行（行 3）に _依存_ します。つまり行 4 の "Best Comedy Perf" は行 3 の "Dr. Evil" に適用され、行 3 は行 4 の _コンテキスト行_ です。同様に行 2〜6 は第 1 列が空なので行 1 に依存し、すべてのデータが映画 Austin Powers に最終的に紐づきます。行 1 は他行に依存せず _レコード行_ と呼びます。行 1〜6 が 1 つのレコードを形成します。
 
-Currently (as of 12th December 2017) only the XML and JSON importers create column groups, and while the data table view does display column groups but it doesn't support modifying them.
+2024 年現在、カラムグループを生成するのは XML/JSON インポーターのみです。データテーブルビューには表示されますが、編集はできません。
 
-### Changes, History, Processes, and Operations {#changes-history-processes-and-operations}
+### 変更・履歴・プロセス・操作 {#changes-history-processes-and-operations}
 
-All changes to the project's data are tracked (N.B. this does not include changes to a project's metadata - such as the project name.)
+プロジェクトデータへのすべての変更が追跡されます（プロジェクト名などメタデータの変更は対象外）。
 
-Changes are stored as `com.google.refine.history.Change` objects. `com.google.refine.history.Change` is an interface, and implementing classes are in `com.google.refine.model.changes.**`. Each change object stores enough data to modify the project's data when its `apply()` method is called, and enough data to revert its effect when its `revert()` method is called. It's only supposed to _store_ data, not to actually _compute_ the change. In this way, it's like a .diff patch file for a code base.
+変更は `com.google.refine.history.Change` オブジェクトとして保存されます。`Change` はインターフェースで、実装は `com.google.refine.model.changes.**` にあります。各 Change は `apply()` 呼び出しでデータを更新するのに十分な情報と、`revert()` で元に戻すのに必要な情報を保持します。変更内容を _計算_ するのではなく、あくまで差分を _保存_ する点で、コードベースに対する diff パッチのような存在です。
 
-Some change objects can be huge, as huge as the project itself. So change objects are not kept in memory except when they are to be applied or reverted. However, since we still need to show the user some information about changes (as displayed in the History panel in the UI), we keep metadata of changes separate from the change objects. For each change object there is one corresponding `com.google.refine.history.HistoryEntry` for storing its metadata, such as the change's human-friendly description and timestamp.
+Change オブジェクトはプロジェクトと同程度に巨大になることもあります。そのため適用／復元時以外はメモリに保持しません。ただし履歴パネルでユーザーに情報を表示する必要があるため、メタデータは別に保存します。各 Change には `com.google.refine.history.HistoryEntry` が 1 つ対応し、人が読める説明やタイムスタンプなどを記録します。
 
-Each project has a `com.google.refine.history.History` object that contains an ordered list of all `HistoryEntry` objects storing metadata for all changes that have been done since after the project was created. Actually, there are 2 ordered lists: one for done changes that can be reverted (undone), an done for undone changes that can be re-applied (redone). Changes must be done or redone in their exact orders in these lists because each change makes certain assumptions about the state of the project before and after it is applied. As changes cannot be undone/redone out of order, when one change fails to revert, it blocks the whole history from being reverted to any state preceding that change (as happened in [Issue #2](https://github.com/OpenRefine/OpenRefine/issues/2)).
+各プロジェクトには `com.google.refine.history.History` があり、すべての `HistoryEntry` を順番に保持します。実際には 2 つのリストがあり、1 つは適用済みで Undo 可能な変更、もう 1 つは Undo 済みで Redo 可能な変更です。各変更は適用前後の状態に前提条件を持つため、リストの順序通りにしか Undo/Redo できません。どこかの変更が戻せないと、その変更以前の状態には戻れなくなります（[#2](https://github.com/OpenRefine/OpenRefine/issues/2) 参照）。
 
-As mentioned before, a change contains only the diff and does not actually compute that diff. The computation is performed by a `com.google.refine.process.Process` object--every change object is created by a process object. A process can be immediate, producing its change object synchronously within a very short period of time (e.g., starring one row); or a process can be long-running, producing its change object after a long time and a lot of computation, including network calls (e.g., reconciling a column).
+Change は差分だけを持ち、差分の計算自体は行いません。計算は `com.google.refine.process.Process` が担当し、すべての Change は何らかの Process から生成されます。Process には短時間で同期的に完了するもの（行のスター付与など）と、時間や計算量（ネットワーク呼び出し含む）が大きいもの（列のリコンサイルなど）があります。
 
-As the user interacts with the UI on the client-side, their interactions trigger ajax calls to the server-side. Some calls are meant to modify the project. Those are handled by commands that instantiates processes. Processes are queued in a first-in-first-out basis. The first-in process gets run and until it is done all the other processes are stuck in the queue.
+クライアント側の UI 操作は Ajax 呼び出しでサーバーに到達し、プロジェクトを変更するリクエストは Process を生成する Command によって処理されます。Process は FIFO キューに積まれ、先頭の Process が完了するまで他は待機します。
 
-A process can effect a change in one thing in the project (e.g., edit one particular cell, star one particular row), or a process can effect changes in _potentially_ many things in the project (e.g., edit zero or more cells sharing the same content, starring all rows filtered by some facets). The latter kind of process is generalizable: it is meaningful to apply them on another similar project. Such a process is associated with an _abstract operation_ `com.google.refine.model.AbstractOperation` that encodes the information necessary to create another instance of that process, but potentially for a different project. When you click "extract" in the History panel, these abstract operations are called to serialize their information to JSON; and when you click "apply" in the History panel, the JSON you paste in is used to re-construct these abstract operations, which in turn create processes, which get run sequentially in a queue to generate change object and history entry pairs.
+Process は 1 つの要素だけを変更する場合もあれば（特定セルの編集、特定行へのスター付与など）、条件に合う多数の要素を変更する場合もあります（同じ内容のセルを一括編集、ファセットで絞った行すべてにスター付与など）。後者のように他プロジェクトにも適用可能な Process には、再構築に必要な情報を保持する _抽象オペレーション_ `com.google.refine.model.AbstractOperation` が紐づきます。履歴パネルで「抽出」を押すと抽象オペレーションが JSON にシリアライズされ、「適用」で貼り付けた JSON から再構築され、Process が順番に実行されて Change/HistoryEntry のペアが生成されます。
 
-In summary,
+まとめると、
 
-- change objects store diffs
-- history entries store metadata of change objects
-- processes compute diffs and create change object and history entry pairs
-- some processes are long-running and some are immediate; processes are run sequentially in a queue
-- generalizable processes can be re-constructed from abstract operations
+- Change オブジェクトは差分を保持する
+- HistoryEntry は Change のメタデータを保持する
+- Process は差分を計算し、Change/HistoryEntry のペアを生成する
+- Process には即時と長時間のものがあり、FIFO で順番に実行される
+- 抽象オペレーションから再構築できる Process も存在する
 
-## Client-side architecture {#client-side-architecture}
-The client-side part of OpenRefine is implemented in HTML, CSS and Javascript and uses the following Javascript libraries:
+## クライアント側アーキテクチャ {#client-side-architecture}
+
+クライアント側は HTML/CSS/JavaScript で実装され、次のライブラリを利用します。
 * [jQuery](http://jquery.com/)
-* [jQueryUI](http:jqueryui.com/)
-* [Recurser jquery-i18n](https://github.com/recurser/jquery-i18n)
+* [jQueryUI](http://jqueryui.com/)
+* [recurser/jquery-i18n](https://github.com/recurser/jquery-i18n)
 
-### Importing architecture {#importing-architecture}
+### インポートアーキテクチャ {#importing-architecture}
 
-OpenRefine has a sophisticated architecture for accommodating a diverse and extensible set of importable file formats and workflows. The formats range from simple CSV, TSV to fixed-width fields to line-based records to hierarchical XML and JSON. The workflows allow the user to preview and tweak many different import settings before creating the project. In some cases, such as XML and JSON, the user also has to select which elements in the data file to import. Additionally, a data file can also be an archive file (e.g., .zip) that contains many files inside; the user can select which of those files to import. Finally, extensions to OpenRefine can inject functionalities into any part of this architecture.
+OpenRefine には多様で拡張可能なファイル形式・ワークフローを扱うインポート基盤があります。CSV/TSV や固定長フィールド、行単位レコード、階層構造の XML/JSON まで幅広く対応し、プロジェクト作成前に設定をプレビュー・調整できます。XML/JSON のように、インポートする要素を選択する必要がある形式もあります。データファイル自体が複数ファイルを含むアーカイブ（zip など）の場合も、取り込むファイルを選択できます。さらに拡張からこのアーキテクチャの任意の箇所に機能を差し込めます。
 
-### The Index Page and Action Areas {#the-index-page-and-action-areas}
+### インデックスページとアクション領域 {#the-index-page-and-action-areas}
 
-The opening screen of OpenRefine is implemented by the file `main/webapp/modules/core/index.vt` and will be referred to here as the index page. Its default implementation contains 3 finger tabs labeled Create Project, Open Project, and Import Project. Each tab selects an "action area". The 3 default action areas are for, obviously, creating a new project, opening an existing project, and importing a project .tar file.
+OpenRefine の起動画面は `main/webapp/modules/core/index.vt` で実装され、ここではインデックスページと呼びます。デフォルトでは「Create Project」「Open Project」「Import Project」の 3 つのタブ（アクション領域）があり、それぞれ新規作成・既存プロジェクトのオープン・`.tar` からのインポートに対応します。
 
-Extensions can add more action areas in Javascript. For example, this is how the Create Project action area is added (`main/webapp/modules/core/scripts/index/create-project-ui.js`):
+拡張は JavaScript でアクション領域を追加できます。たとえば Create Project 領域は次のように登録されています（`main/webapp/modules/core/scripts/index/create-project-ui.js`）。
 
 ```javascript
 Refine.actionAreas.push({
@@ -132,42 +129,42 @@ Refine.actionAreas.push({
 });
 ```
 
-The UI class is a constructor function that takes one argument, a jQuery-wrapped HTML element where the tab body of the action area should be rendered.
+`uiClass` はコンストラクター関数で、タブの本体をレンダリングする jQuery ラップ済み要素を 1 つ受け取ります。
 
-If your extension requires a very unique importing work flow, or a very novel feature that should be exposed on the index page, then add a new action area. Otherwise, try to use the existing work flows as much as possible.
+拡張で独自のインポートフローや新機能をインデックスページに露出させたい場合は、新しいアクション領域を追加してください。既存フローで代替できる場合はそちらを利用するのが推奨です。
 
-### The Create Project Action Area {#the-create-project-action-area}
+### Create Project アクション領域 {#the-create-project-action-area}
 
-The Create Project action area is itself extensible. Initially, it embeds a set of finger tabs corresponding to a variety of "source selection UIs": you can select a source of data by specifying a file on your computer, or you can specify the URL to a publicly accessible data file or data feed, or you can paste in from the clipboard a chunk of data.
+Create Project 領域自体も拡張可能です。初期状態では複数の「データソース選択 UI」（ローカルファイル／URL／クリップボード貼り付けなど）に対応するタブを内包しています。
 
-There are actually 3 points of extension in the Create Project action area, and the first is invisible.
+この領域には 3 つの拡張ポイントがあり、そのうち 1 つは UI 上では見えません。
 
-#### Importing Controllers {#importing-controllers}
+#### インポートコントローラー {#importing-controllers}
 
-The Create Project action area manages a list of "importing controllers". Each controller follows a particular work flow (in UI terms, think "wizard"). Refine comes with a "default importing controller" (refine/main/webapp/modules/core/scripts/index/default-importing-controller/controller.js) and its work flow assumes that the data can be retrieved and cached in whole before getting processed in order to generate a preview for the user to inspect. (If the data cannot be retrieved and cached in whole before previewing, then another importing controller is needed.)
+Create Project 領域は複数の「インポートコントローラー」を管理します。各コントローラーは特定のワークフロー（ウィザードに近い UI）を実装します。OpenRefine には「デフォルトインポートコントローラー」があり（`main/webapp/modules/core/scripts/index/default-importing-controller/controller.js`）、データ全体を取得・キャッシュしてからプレビューを生成できる前提で動作します（取得・キャッシュできない場合は別コントローラーが必要）。
 
-An importing controller is just programming logic, but it can manifest itself visually by registering one or more data source UIs and one or more custom panels in the Create Project action area. The default importing controller registers 3 such custom panels, which act like pages of a wizard.
+インポートコントローラーはロジックですが、Create Project 領域にデータソース UI やカスタムパネルを登録することで視覚的に現れます。デフォルトコントローラーは 3 つのカスタムパネルを登録し、ウィザードのページのように振る舞います。
 
-An extension can register any number of importing controller. Each controller has a client-side part and a server-side part. Its client-side part is just a constructor function that takes an object representing the Create Project action area (usually named `createProjectUI`). The controller (client-side) is expected to use that object to register data source UIs and/or create custom panels. The controller is not expected to have any particular interface method. The default importing controller's client-side code looks like this (`main/webapp/modules/core/scripts/index/default-importing-controller/controller.js`):
+拡張は任意の数のコントローラーを登録できます。各コントローラーにはクライアント側とサーバー側があり、クライアント側は Create Project 領域（通常 `createProjectUI`）を表すオブジェクトを 1 つ受け取るコンストラクター関数です。そのオブジェクトを使ってデータソース UI を登録したりカスタムパネルを作成したりします。特定のインターフェース実装は要求されません。デフォルトコントローラーのクライアント側コードは次の通りです。
 
 ```javascript
 Refine.DefaultImportingController = function(createProjectUI) {
-  this._createProjectUI = createProjectUI; // save a reference to the create project action area
+  this._createProjectUI = createProjectUI; // アクション領域への参照を保持
 
-  this._progressPanel = createProjectUI.addCustomPanel(); // create a custom panel
-  this._progressPanel.html('...'); // render the custom panel
+  this._progressPanel = createProjectUI.addCustomPanel(); // カスタムパネルを作成
+  this._progressPanel.html('...'); // パネルをレンダリング
   ... do other stuff ...
 };
-Refine.CreateProjectUI.controllers.push(Refine.DefaultImportingController); // register the controller
+Refine.CreateProjectUI.controllers.push(Refine.DefaultImportingController); // コントローラーを登録
 ```
 
-We will cover the server-side code [below](#importingcontrollers).
+サーバー側のコードについては[後述](#importingcontroller)します。
 
-#### Data Source Selection UIs {#data-source-selection-uis}
+#### データソース選択 UI {#data-source-selection-uis}
 
-Data source selection UIs are another point of extensibility in the Create Project action area. As mentioned previously, by default there are 3 data source UIs. Those are added by the default importing controller.
+Create Project 領域のもう 1 つの拡張ポイントがデータソース選択 UI です。デフォルトでは 3 種類の UI があり、いずれもデフォルトコントローラーが追加します。
 
-Extensions can also add their own data source UIs. A data source selection UI object can be registered like so
+拡張も独自のデータソース選択 UI を追加できます。登録は次のように行います。
 
 ```javascript
 createProjectUI.addSourceSelectionUI({
@@ -177,12 +174,12 @@ createProjectUI.addSourceSelectionUI({
 });
 ```
 
-`theDataSourceSelectionUIObject` is an object that has the following member methods:
+`theDataSourceSelectionUIObject` は次のメソッドを持つオブジェクトです。
 
 - `attachUI(bodyDiv)`
 - `focus()`
 
-If you want to install a data source selection UI that is managed by the default importing controller, then register its UI class with the default importing controller, like so (`main/webapp/modules/core/scripts/index/default-importing-sources/sources.js`):
+デフォルトコントローラー管理下のデータソース UI を追加したい場合は、次のように UI クラスを登録します（`main/webapp/modules/core/scripts/index/default-importing-sources/sources.js`）。
 
 ```javascript
 Refine.DefaultImportingController.sources.push({
@@ -192,88 +189,69 @@ Refine.DefaultImportingController.sources.push({
 });
 ```
 
-The default importing controller will assume that the `uiClass` field is a constructor function and call it with one argument--the controller object itself. That constructor function should save the controller object for later use. More specifically, for data source UIs that use the default importing controller, they can call the controller to kickstart the process that retrieves and caches the data to import:
+デフォルトコントローラーは `uiClass` をコンストラクター関数とみなし、自身のインスタンスを引数に呼び出します。UI 側はその参照を保持し、次のようにコントローラー経由でデータ取得／キャッシュを開始できます。
 
 ```javascript
 controller.startImportJob(form, "... status message ...");
 ```
 
-The argument `form` is a jQuery-wrapped FORM element that will get submitted to the server side at the command `/command/core/create-importing-job`. That command and the default importing controller will take care of uploading or downloading the data, caching it, updating the client side's progress display, and then showing the next importing step when the data is fully cached.
+`form` はコマンド `/command/core/create-importing-job` に送信される jQuery ラップ済みの FORM 要素です。このコマンドとデフォルトコントローラーがアップロード／ダウンロード、キャッシュ、進捗更新、次ステップ表示を担います。
 
-See `main/webapp/modules/core/scripts/index/default-importing-sources/sources.js` for examples of such source selection UIs. While we write about source selection UIs managed by the default importing controller here, chances are your own extension will not be adding such a new source selection UI. Your extension probably adds with a new importing controller as well as a new source selection UI that work together.
+具体例は `main/webapp/modules/core/scripts/index/default-importing-sources/sources.js` を参照してください。多くの拡張では独自のインポートコントローラーとデータソース UI をセットで実装するでしょう。
 
-#### File Selection Panel {#file-selection-panel}
+#### ファイル選択パネル {#file-selection-panel}
 
-This screen is shown when there are multiple files to choose from when creating a project, for instance after uploading a zip file with multiple files in it. This interface lets the user choose which files to import to create a new project.
-Although OpenRefine only supports one table per project so far, it is possible to select multiple files to import. Their contents will be concatenated into a single table.
+Zip など複数ファイルを含むアップロード後、どのファイルを取り込むか選ぶ画面です。OpenRefine は現在 1 プロジェクト 1 テーブルですが、複数ファイルを選択すると内容を連結して 1 つのテーブルにします。
 
-#### Parsing UI Panel {#parsing-ui-panel}
+#### パース UI パネル {#parsing-ui-panel}
 
-The parsing UI panel is shown when importing data into a new project.
-Primarily, it lets the user select in which format the data is, which determines how it is read and transformed into an OpenRefine project. The back-end will try to supply an informed guess for the format using the [format guesser](#formatguesser), but it
-is not uncommon that this initial choice must be overriden by the user.
+新規プロジェクトにデータを取り込む際に表示されるパネルです。主にデータのフォーマットを選択し、それに応じた読み込み／変換方法を指定します。バックエンドは[フォーマット推定器](#formatguesser)で形式を推測しますが、ユーザーが上書きするケースも珍しくありません。
 
-Beyond this choice of format, the parsing UI panel offers a configuration panel for the chosen importer. This part of the UI can be defined independently for each input format, given that not all options are relevant for all formats. For instance, when
-selecting the "Text file" option, the specific UI of the `LinedBasedImporter` will be shown. This UI is defined in:
-* `main/webapp/modules/core/scripts/index/parser-interfaces/line-based-parser-ui.html`
-* `main/webapp/modules/core/scripts/index/parser-interfaces/line-based-parser-ui.js`
+フォーマット選択に加えて、各インポーター専用の設定パネルを表示します。入力形式ごとに relevant なオプションが異なるため、UI も個別です。たとえば「Text file」を選ぶと `LinedBasedImporter` 用 UI が表示されます（`main/webapp/modules/core/scripts/index/parser-interfaces/line-based-parser-ui.html` および `.js`）。その他のインポーターも独自の設定 UI を定義します。
 
-Other importers generally define their own parsing configuration panel as well.
+フォーマットの識別子（MIME type）、インポーター（パースを実装する Java クラス）、設定 UI（オプション領域を描画する JavaScript クラス）の関連付けは `main/webapp/modules/core/MOD-INF/controller.js` の `ImportingManager` に登録されています。
 
-The link between the format's identifier (MIME type), importer (Java class which defines the parsing logic) and parsing options UI (Javascript class that defines the rendering of this options area) is made in the `main/webapp/modules/core/MOD-INF/controller.js` file,
-where those components are registered together in the `ImportingManager`.
-
-### Server-side Components {#server-side-components}
+### サーバー側コンポーネント {#server-side-components}
 
 #### ImportingController {#importingcontroller}
 
-An importing controller is a component of the back-end which is in charge of the entire importing workflow, from the initial transfer of the raw data to be imported to the created project, with all the configuration steps in between, [as described in the
-earlier section](#importing-controllers). OpenRefine comes with
-a default importing controller which implements this for data coming from:
-* file upload by the user via the web interface
-* upload of textual information using the clipboard import form
-* download of a file by supplying a URL
+インポートコントローラーは、前述のワークフロー全体（生データの受け取りから設定、プレビュー、プロジェクト作成まで）を担うバックエンドコンポーネントです。OpenRefine には次のデータソース向けのデフォルト実装があります。
 
-For all of these data sources, the first step consists of storing the corresponding input files in a temporary directory inside the workspace. The default importing controller provides an HTTP API used by the front-end to select which files to import, [predict
-the format they are in](#formatguesser), provide default importing options for the selected format, preview the project's first few rows with the given options, and finally create the project.
+* Web UI からのファイルアップロード
+* クリップボード入力フォームによるテキスト投稿
+* URL 指定によるファイルのダウンロード
 
-The importing controller is not used for loading existing projects or importing OpenRefine project archives: the project manager is responsible for both of those.
+これらのデータソースでは、まず入力ファイルをワークスペース内の一時ディレクトリに保存します。デフォルトコントローラーは HTTP API を提供し、フロントエンドからファイル選択、[フォーマット推定](#formatguesser)、形式ごとの既定オプション提示、プレビュー生成、最終的なプロジェクト作成を行えるようにします。
 
-Extensions can define other importing controllers to implement other importing flows depending on the data source. For instance, importing data from a SQL database requires different steps such as selecting the database and providing a SQL query. The
-`database` extension implements such a workflow by providing its own importing controller.
+既存プロジェクトの読み込みや OpenRefine プロジェクトアーカイブの取り込みはインポートコントローラーではなく ProjectManager が担当します。
+
+拡張はデータソースに応じた固有のインポートコントローラーを定義できます。たとえば SQL データベースからの取り込みでは接続先選択やクエリ入力が必要になるため、`database` 拡張が独自のコントローラーを提供しています。
 
 #### FormatGuesser {#formatguesser}
 
-A format guesser is a class that tries to determine the MIME type of a file, considering its contents.
-The `FormatGuesser` interface has multiple implementations, which can be used to determine the format depending on its basic type (binary, text based).
-For text files, this relies on heuristics which are quite ad-hoc and brittle. For binary files, we do not currently try to do anything, while one would at least expect that we check for some so-called magic numbers at the beginning of files, which can be
-used to detect many file formats.
+フォーマット推定器は、ファイル内容を見て MIME type を推測するクラスです。`FormatGuesser` インターフェースには複数の実装があり、バイナリ／テキストなど基本種別に応じて使い分けます。テキストファイルではヒューリスティックに頼っており脆弱です。バイナリでは先頭のマジックナンバーを見れば判定できる形式も多いものの、現状はほぼ対応していません。
 
-Worse, our format guessing logic does not actually attempt to parse the files with the guessed formats, so it is not uncommon that the user is directly presented with a parsing error (in the form of a javascript alert) upon importing files.
-
-This could be avoided by trying to read the given files with the predicted importer before suggesting the format to the user, making sure that at least that does not throw an exception.
+さらに悪いことに、推測した形式で実際にファイルをパースしてみないため、インポート直後にパースエラー（JavaScript の警告）を目にするケースもあります。推定後すぐにそのインポーターで読み込みを試し、少なくとも例外が出ないことを確認してからユーザーに提示するのが望ましいでしょう。
 
 #### ImportingParser {#importingparser}
 
-An `ImportingParser` is a class that is responsible for parsing a file into OpenRefine's project model.
-It takes a range of importing options passed on from the frontend, input by the user into a dedicated UI, specific to the format being parsed.
+`ImportingParser` はファイルを OpenRefine のプロジェクトモデルに変換する役割を持つクラスです。ユーザーが UI で入力した形式固有のオプションがフロントエンドから渡されます。
 
-When possible, parsers are designed so that they can import the first few rows of the project without reading the entire input file in memory. This helps provide fast previews of the project to be created when the user changes importing options. Every
-change in the importing options triggers a new parse of the source files (unless the user has disabled auto preview option in the parsing configuration panel).
+可能な限り、入力ファイル全体をメモリに読み込まなくても最初の数行を取り込めるように設計されており、設定変更時のプレビューレスポンスを高速に保ちます（自動プレビューをオフにしない限り、設定変更のたびに再パースします）。
 
-## Faceted browsing architecture {#faceted-browsing-architecture}
+## ファセットブラウジングのアーキテクチャ {#faceted-browsing-architecture}
 
-Faceted browsing support is core to OpenRefine as it is the primary and only mechanism for filtering to a subset of rows on which to do something _en masse_ (ie in bulk). Without faceted browsing or an equivalent querying/browsing mechanism, you can only change one thing at a time (one cell or row) or else change everything all at once; both kinds of editing are practically useless when dealing with large data sets.
+ファセットブラウジングは OpenRefine の中核機能で、処理対象の行を絞り込み一括処理する唯一の手段です。これがなければ 1 セル／1 行ずつ操作するか、全行まとめて操作するしかなく、大規模データの整備が現実的ではありません。
 
-In OpenRefine, different components of the code need to know which rows to process from the faceted browsing state (how the facets are constrained). For example, when the user applies some facet selections and then exports the data, the exporter serializes only the matching rows, not all rows in the project. Thus, faceted browsing isn't only hooked up to the data view for displaying data to the user, but it is also hooked up to almost all other parts of the system.
+さまざまなコンポーネントがファセットの状態（どの条件で絞り込まれているか）を参照して処理対象の行を決めます。たとえばファセットで絞ってからエクスポートすると、エクスポーターは該当行のみを書き出します。つまりファセットブラウジングはデータビューだけでなく、システムのほぼすべての部分に結びついています。
 
-### Engine Configuration {#engine-configuration}
+### エンジン設定 {#engine-configuration}
 
-As OpenRefine is a web app, there might be several browser windows opened on the same project, each in a different faceted browsing state. It is best to maintain the faceted browsing state in each browser window while keeping the server side completely stateless with regard to faceted browsing. Whenever the client-side needs something done by the server, it transfers the entire faceted browsing state over to the server-side. The faceted browsing state behaves much like the `WHERE` clause in a SQL query, telling the server-side how to select the rows to process.
+Web アプリである OpenRefine では、同じプロジェクトを異なるブラウザーウィンドウで開き、それぞれが異なるファセット状態を持つことがあります。ファセット状態はブラウザーごとに保持しつつ、サーバー側はステートレスに保つのがよい設計です。クライアントがサーバーに処理を依頼する際、現在のファセット状態を丸ごと JSON（エンジン設定）として渡します。SQL で言えば `WHERE` 句に相当し、処理すべき行を指定します。
 
-In fact, it is best to think of the faceted browsing state as just a database query much like a SQL query. It can be passed around the whole system, to any component needing to know which rows to process. It is serialized into JSON to pass between the client-side and the server side, or to save in an abstract operation's specification. The job of the faceted browsing subsystem on the client-side is to let the user interactively modify this "faceted browsing query", and the job of the faceted browsing subsystem on the server side is to resolve that query.
+実際、ファセット状態（= クエリ）は SQL のようにシステム内を流通します。クライアントとサーバー間で JSON シリアライズされ、抽象オペレーションにも保存されます。クライアント側のファセットサブシステムはユーザーがこの「ファセットクエリ」を編集できるようにし、サーバー側サブシステムはそれを解決する役割を持ちます。
 
-In the code, the faceted browsing state, or faceted browsing query, is actually called the *engine configuration* or *engine config* for short. It consists mostly of an array facet configurations. For each facet, it stores the name of the column on which the facet is based (or an empty string if there is no base column). Each type of facet has different configuration. Text search facets have queries and flags for case-sensitivity mode and regular expression mode. Text facets (aka list facets) and numeric range facets have expressions. Each list facet also has an array of selected choices, an invert flag, and flags for whether blank and error cells are selected. Each numeric range facet has, among other things, a "from" and a "to" values. If you trace the AJAX calls, you'd see the engine configs being shuttled, e.g.,
+コード上ではファセット状態を *エンジン設定* （engine config）と呼びます。主にファセット設定の配列で構成され、各ファセットは基になる列名（または空文字）を保持します。テキスト検索ファセットはクエリ・大文字小文字設定・正規表現フラグを持ち、テキストファセット（リスト型）や数値レンジファセットは式を持ちます。リストファセットには選択項目・反転フラグ・空セルやエラーセルの選択設定があり、数値レンジファセットには `from`/`to` などが含まれます。実際の AJAX では次のような JSON がやり取りされます。
 
 ```json
 {
@@ -315,17 +293,17 @@ In the code, the faceted browsing state, or faceted browsing query, is actually 
 }
 ```
 
-### Server-Side Subsystem {#server-side-subsystem}
+### サーバー側サブシステム {#server-side-subsystem}
 
-From an engine configuration like the one above, the server-side faceted browsing subsystem is capable of producing:
+上記のようなエンジン設定から、サーバー側のファセットブラウジングサブシステムは次を生成します。
 
-- an iteration over the rows matching the facets' constraints
-- information on how to render the facets (e.g., choice and count pairs for a list facet, histogram for a numeric range facet)
+- ファセット条件を満たす行の反復処理
+- ファセットの描画情報（リストファセットなら選択肢と件数、数値レンジファセットならヒストグラムなど）
 
-When the engine config JSON arrives in an HTTP request on the server-side, a `com.google.refine.browsing.Engine` object is constructed and initialized with that JSON. It in turns constructs zero or more `com.google.refine.browsing.facets.Facet` objects. Then for each facet, the engine calls its `getRowFilter()` method, which returns `null` if the facet isn't constrained in anyway, or a `com.google.refine.browsing.filters.RowFilter` object. Then, to when iterating over a project's rows, the engine calls on all row filters' `filterRow()` method. If and only if all row filters return `true` the row is considered to match the facets' constraints. How each row filter works depends on the corresponding type of facet.
+HTTP リクエストでエンジン設定 JSON を受け取ると、`com.google.refine.browsing.Engine` が生成され初期化されます。このエンジンが 0 個以上の `com.google.refine.browsing.facets.Facet` を構築し、各ファセットの `getRowFilter()` を呼び出します。制約がない場合は `null`、制約がある場合は `com.google.refine.browsing.filters.RowFilter` が返り、行を走査するときに `filterRow()` をすべて呼びます。全てのフィルターが `true` を返した場合のみ、行が条件を満たすと見なされます。
 
-To produce information on how to render a particular facet in the UI, the engine follows the same procedure described in the previous except it skips over the facet in question. In other words, it produces an iteration over all rows constrained by the other facets. Then it feeds that iteration to the facet in question by calling the facet's `computeChoices()` method. This gives the method a chance to compute the rendering information for its UI counterpart on the client-side. When all facets have been given a chance to compute their rendering information, the engine calls all facets to serialize their information as JSON and returns the JSON to the client-side. Only one HTTP call is needed to compute all facets.
+特定ファセットの表示情報を計算する際は、そのファセットだけをスキップし、他ファセットの条件で行を走査します。その結果を該当ファセットの `computeChoices()` に渡し、クライアント UI 用のデータを生成させます。すべてのファセットが計算を終えると、それぞれの情報を JSON にシリアライズして返します。全ファセットの更新に必要な HTTP 呼び出しは 1 回です。
 
-### Client-side subsystem {#client-side-subsystem}
+### クライアント側サブシステム {#client-side-subsystem}
 
-On the client-side there is also an engine object (implemented in Javascript rather than Java) and zero or more facet objects (also in Javascript, obviously). The engine is responsible for distributing the rendering information computed on the server-side to the right facets, and when the user interacts with a facet, the facet tells the engine to update the whole UI. To do so, the engine gathers the configuration of each facet and composes the whole engine config as a single JSON object. Two separate AJAX calls are made with that engine config, one to retrieve the rows to render, and one to re-compute the rendering information for the facets because changing one facet does affect all the other facets.
+クライアント側にも JavaScript 実装のエンジンとファセットオブジェクト（0 個以上）があり、サーバーが計算した描画情報を適切なファセットに配布します。ユーザーがファセットを操作すると、ファセットがエンジンに UI 全体の更新を依頼します。その際エンジンは各ファセットの設定を集めて 1 つのエンジン設定 JSON を組み立て、2 本の Ajax 呼び出しを行います。1 本は描画する行を取得するため、もう 1 本は他のファセットに影響するため再計算された描画情報を取得するためです。
