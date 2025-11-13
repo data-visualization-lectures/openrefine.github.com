@@ -1,3 +1,4 @@
+---
 id: reconciling
 title: リコンシリエーション（データ照合）
 sidebar_label: データ照合

@@ -1,28 +1,29 @@
+---
 id: transposing
 title: データの転置
 sidebar_label: データの転置
 ---
 
-## Overview {#overview}
+## 概要 {#overview}
 
-These functions were created to solve common problems with reshaping your data: pivoting cells from a row into a column, or pivoting cells from a column into a row. You can also transpose from a repeated set of values into multiple columns.
+これらの機能は、行に並んだ値を列に移したり、その逆を行ったりするなど、データの形状変更で頻出する課題を解決するために用意されています。繰り返し値のセットを複数列に展開することも可能です。
 
-## Transpose cells across columns into rows {#transpose-cells-across-columns-into-rows}
+## 列をまたぐセルを行に転置する {#transpose-cells-across-columns-into-rows}
 
-Imagine personal data with addresses in this format:
+次のように住所情報を複数列に持つ個人データを想像してください。
 
 |Name|Street|City|State/Province|Country|Postal code|
 |---|---|---|---|---|---|
 |Jacques Cousteau|23, quai de Conti|Paris||France|75270|
 |Emmy Noether|010 N Merion Avenue|Bryn Mawr|Pennsylvania|USA|19010|
 
-You can transpose the address information from this format into multiple rows. Go to the “Street” column and select <span class="menuItems">Transpose</span> → <span class="menuItems">Transpose cells across columns into rows</span>. From there you can select all of the five columns, starting with “Street” and ending with “Postal code,” that correspond to address information. Once you begin, you should put your project into [records mode](exploring#rows-vs-records) to associate the subsequent rows with “Name” as the key column. 
+この形式の住所情報を複数行へ転置できます。「Street」列のメニューから <span class="menuItems">Transpose</span> → <span class="menuItems">Transpose cells across columns into rows</span> を選びます。ダイアログでは「Street」から「Postal code」まで住所に関係する 5 列をすべて選択します。処理を開始したらプロジェクトを [レコードモード](exploring#rows-vs-records) に切り替え、「Name」列をキー列として行を結び付けるとよいでしょう。
 
 ![A screenshot of the transpose across columns window.](/img/transpose1.png)
 
-### One column {#one-column}
+### 1 列にまとめる {#one-column}
 
-You can transpose the multiple address columns into a series of rows:
+複数の住所列を行の連なりに転置し、1 列にまとめられます。
 
 |Name|Address|
 |---|---|
@@ -36,7 +37,7 @@ You can transpose the multiple address columns into a series of rows:
 ||USA|
 ||19010|
 
-You can choose one column and include the column-name information in each cell by prepending it to the value, with or without a separator:
+1 列を指定して各セルに列名を付加することもでき、区切り文字を付けるかどうかも選択できます。
 
 |Name|Address|
 |---|---|
@@ -50,9 +51,9 @@ You can choose one column and include the column-name information in each cell b
 ||Country: USA|
 ||Postal code: 19010|
 
-### Two columns {#two-columns}
+### 2 列に分ける {#two-columns}
 
-You can retain the column names as separate cell values, by selecting <span class="fieldLabels">Two new columns</span> and naming the key and value columns.
+列名を独立したセルとして残したい場合は <span class="fieldLabels">Two new columns</span> を選択し、キー列と値列に名前を付けます。
 
 |Name|Address part|Address|
 |---|---|---|
@@ -66,9 +67,9 @@ You can retain the column names as separate cell values, by selecting <span clas
 ||Country|USA|
 ||Postal code|19010|
 
-## Transpose cells in rows into columns {#transpose-cells-in-rows-into-columns}
+## 行内のセルを列に転置する {#transpose-cells-in-rows-into-columns}
 
-Imagine employee data in this format: 
+次のように 1 列へ情報が連なっている従業員データを例にします。
 
 |Column|
 |---|
@@ -82,7 +83,7 @@ Imagine employee data in this format:
 |Job title: CTO|
 |Office: Tokyo|
 
-The goal is to sort out all of the information contained in one column into separate columns, but keep it organized by the person it represents: 
+目的は 1 列に詰め込まれた情報を人ごとに整理しつつ複数列へ展開することです。
 
 |Name |Job title    |Office|
 |---|---|---|
@@ -90,7 +91,7 @@ The goal is to sort out all of the information contained in one column into sepa
 |Joe Khoury                |Junior analyst       |Beirut|
 |Samantha Martinez               |CTO      |Tokyo|
 
-By selecting <span class="menuItems">Transpose</span> → <span class="menuItems">Transpose cells in rows into columns...</span> a window will appear that simply asks how many rows to transpose. In this case, each employee record has three rows, so input “3” (do not subtract one for the original column). The original column will disappear and be replaced with three columns, with the name of the original column plus a number appended.
+<span class="menuItems">Transpose</span> → <span class="menuItems">Transpose cells in rows into columns...</span> を選ぶと、何行を 1 レコードとして転置するかを入力するダイアログが表示されます。この例では従業員 1 人につき 3 行なので「3」と入力します（元の列を差し引く必要はありません）。元の列は削除され、列名に通し番号を付けた新しい 3 列に置き換わります。
 
 |Column 1 |Column 2    |Column 3|
 |---|---|---|
@@ -98,21 +99,21 @@ By selecting <span class="menuItems">Transpose</span> → <span class="menuItems
 |Employee: Joe Khoury                |Job title: Junior analyst       |Office: Beirut|
 |Employee: Samantha Martinez               |Job title: CTO      |Office: Tokyo|
 
-From here you can use <span class="menuItems">Cell editing</span> → <span class="menuItems">Replace</span> to remove “Employee: ”, “Job title: ”, and “Office: ” if you wish, or use [expressions](expressions) with <span class="menuItems">Edit cells</span> → <span class="menuItems">Transform...</span> to clean out the extraneous characters: 
+必要に応じて <span class="menuItems">Cell editing</span> → <span class="menuItems">Replace</span> で “Employee: ” や “Job title: ”、“Office: ” を削除するか、<span class="menuItems">Edit cells</span> → <span class="menuItems">Transform...</span> で [式](expressions) を使って不要な文字を取り除きます。
 
 ```
 value.replace("Employee: ", "")
 ```
 
-If your dataset doesn't have a predictable number of cells per intended row, such that you cannot specify easily how many columns to create, try <span class="menuItems">Columnize by key/value columns</span>.
+1 レコードあたりの行数が一定でなく、生成する列数を指定できない場合は <span class="menuItems">Columnize by key/value columns</span> を試してください。
 
-## Columnize by key/value columns {#columnize-by-keyvalue-columns}
+## キー/値列で列化する {#columnize-by-keyvalue-columns}
 
-This operation can be used to reshape a dataset that contains key and value columns: the repeating strings in the key column become new column names, and the contents of the value column are moved to new columns. This operation can be found at <span class="menuItems">Transpose</span> → <span class="menuItems">Columnize by key/value columns</span>.
+キー列と値列を持つデータセットでは、この操作で形を変えられます。キー列にある繰り返しの文字列が新しい列名になり、値列の内容がそれぞれの新列へ移動します。この操作は <span class="menuItems">Transpose</span> → <span class="menuItems">Columnize by key/value columns</span> にあります。
 
 ![A screenshot of the Columnize window.](/img/transpose2.png) 
 
-Consider the following example, with flowers, their colours, and their International Union for Conservation of Nature (IUCN) identifiers:
+以下は花の名前、花の色、IUCN での識別子を含む例です。
 
 |Field   |Data              	|
 |--------|----------------------|
@@ -123,18 +124,18 @@ Consider the following example, with flowers, their colours, and their Internati
 |Color   |Yellow            	|
 |IUCN ID |161899            	|
 
-In this format, each flower species is described by multiple attributes on consecutive rows. The “Field” column contains the keys and the “Data” column contains the values. In the <span class="menuItems">Columnize by key/value columns</span> window you can select each of these from the available columns. It transforms the table as follows:
+この形式では、各花の種が連続する複数行で記述されています。「Field」列にキーが、「Data」列に値が入っています。<span class="menuItems">Columnize by key/value columns</span> ウィンドウでそれぞれの列を指定すると、表は次のように変換されます。
 
 | Name              	| Color	| IUCN ID |
 |-----------------------|----------|---------|
 | Galanthus nivalis 	| White	| 162168  |
 | Narcissus cyclamineus | Yellow   | 161899  |
 
-### Entries with multiple values in the same column {#entries-with-multiple-values-in-the-same-column}
+### 同じ列に複数の値がある場合 {#entries-with-multiple-values-in-the-same-column}
 
-If a new row would have multiple values for a given key, then these values will be grouped on consecutive rows, to form a [record structure](exploring#rows-vs-records).
+あるキーに複数の値が対応している場合、それらは連続する行にまとめられ、[レコード構造](exploring#rows-vs-records) を形成します。
 
-For instance, flowers can have multiple colors:
+たとえば花が複数の色を持つ場合を考えます。
 
 | Field   	| Data              	|
 |-------------|-----------------------|
@@ -146,7 +147,7 @@ For instance, flowers can have multiple colors:
 | Color   	| Yellow            	|
 | IUCN ID 	| 161899            	|
 
-This table is transformed by the Columnize operation to:
+この表を列化すると次のようになります。
 
 | Name              	| Color	| IUCN ID |
 |-----------------------|----------|---------|
@@ -154,13 +155,13 @@ This table is transformed by the Columnize operation to:
 |                   	| Green	|     	|
 | Narcissus cyclamineus | Yellow   | 161899  |
 
-The first key encountered by the operation serves as the record key, so the “Green” value is attached to the “Galanthus nivalis” name. See the [Row order](#row-order) section for more details about the influence of row order on the results of the operation.
+操作が最初に見つけるキーがレコードの区切りとして使われるため、「Green」は「Galanthus nivalis」に結び付きます。行順が結果へ与える影響については [行順](#row-order) を参照してください。
 
-### Notes column {#notes-column}
+### メモ列 {#notes-column}
 
-In addition to the key and value columns, you can optionally add a column for notes. This can be used to store extra metadata associated to a key/value pair.
+キー列と値列に加えて、任意でメモ用の列を指定できます。キー/値ペアに関連するメタデータを保持する用途に便利です。
 
-Consider the following example:
+次の例を見てみましょう。
 
 | Field   | Data              	| Source            	|
 |---------|---------------------|-----------------------|
@@ -171,20 +172,20 @@ Consider the following example:
 | Color   | Yellow            	| 2009 survey       	|
 | IUCN ID | 161899            	|                   	|
 
-If the “Source” column is selected as the notes column, this table is transformed to:
+「Source」列をメモ列に選ぶと、表は次のように変換されます。
 
 | Name              	| Color	| IUCN ID | Source: Name | Source: Color    	|
 |-----------------------|----------|---------|---------------|-----------------------|
 | Galanthus nivalis 	| White	| 162168  | IUCN      	| Contributed by Martha |
 | Narcissus cyclamineus | Yellow   | 161899  | Legacy    	| 2009 survey       	|
 
-Notes columns can therefore be used to preserve provenance or other context about a particular key/value pair.
+このようにメモ列を使えば、特定のキー/値ペアに紐づく出典や文脈を残しておけます。
 
-### Row order {#row-order}
+### 行順 {#row-order}
 
-The order in which the key/value pairs appear matters. The Columnize operation will use the first key it encounters as the delimiter for entries: every time it encounters this key again, it will produce a new row, and add the following key/value pairs to that row.
+キー/値ペアの並び順も重要です。列化操作は最初に見つけたキーを区切りとして扱い、そのキーが再び現れるたびに新しい行を作り、その後ろのキー/値ペアをその行に追加します。
 
-Consider for instance the following table:
+次の表を例に取ります。
 
 | Field	| Data              	|
 |----------|-----------------------|
@@ -196,7 +197,7 @@ Consider for instance the following table:
 | Color	| Yellow            	|
 | IUCN ID  | 161899            	|
 
-The occurrences of the “Name” value in the “Field” column define the boundaries of the entries. Because there is no other row between the “Crinum variabile” and the “Narcissus cyclamineus” rows, the “Color” and “IUCN ID” columns for the “Crinum variabile” entry will be empty:
+「Field」列に現れる “Name” がレコードの境界を決めます。「Crinum variabile」と「Narcissus cyclamineus」の行の間に別の行がないため、「Crinum variabile」の「Color」と「IUCN ID」は空のままになります。
 
 | Name              	| Color	| IUCN ID |
 |-----------------------|----------|---------|
@@ -204,13 +205,13 @@ The occurrences of the “Name” value in the “Field” column define the bou
 | Crinum variabile  	|      	|     	|
 | Narcissus cyclamineus | Yellow   | 161899  |
 
-This sensitivity to order is removed if there are extra columns: in that case, the first extra column will serve as the key for the new rows.
+追加列がある場合は行順への敏感さがなくなり、最初の追加列が新しい行のキーとして扱われます。
 
-### Extra columns {#extra-columns}
+### 追加列 {#extra-columns}
 
-If your dataset contains extra columns, that are not being used as the key, value, or notes columns, they can be preserved by the operation. For this to work, they must have the same value in all old rows corresponding to a new row. 
+キー・値・メモ以外の列がある場合でも保持できます。そのためには、新しい行にまとめられる元の行すべてで、その列の値が同じである必要があります。
 
-In the following example, the “Field” and “Data” columns are used as key and value columns respectively, and the “Wikidata ID” column is not selected:
+次の例では「Field」がキー、「Data」が値として使われ、「Wikidata ID」は選択されていません。
 
 | Field   | Data              	| Wikidata ID |
 |---------|-----------------------|-------------|
@@ -221,13 +222,13 @@ In the following example, the “Field” and “Data” columns are used as key
 | Color   | Yellow            	| Q1727024	|
 | IUCN ID | 161899            	| Q1727024	|
 
-This will be transformed to:
+変換結果は次のとおりです。
 
 | Wikidata ID | Name              	| Color	| IUCN ID |
 |-------------|-----------------------|----------|---------|
 | Q109995 	| Galanthus nivalis 	| White	| 162168  |
 | Q1727024	| Narcissus cyclamineus | Yellow   | 161899  |
 
-This actually changes the operation: OpenRefine no longer looks for the first key (“Name”) but simply pivots all information based on the first extra column's values. Every old row with the same value gets transposed into one new row. If you have more than one extra column, they are pivoted as well but not used as the new key. 
+この場合、OpenRefine は最初に現れるキー（“Name”）ではなく、最初の追加列の値を基準にして情報をまとめます。同じ値を持つ元の行は 1 つの新しい行に転置されます。追加列が複数あっても同様にピボットされますが、新しいキーにはなりません。
 
-You can use <span class="menuItems">[Fill down](cellediting#fill-down-and-blank-down)</span> to put identical values in the extra columns if you need to.
+必要であれば <span class="menuItems">[Fill down](cellediting#fill-down-and-blank-down)</span> を使って追加列の値をそろえてください。

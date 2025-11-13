@@ -1,45 +1,26 @@
 ---
 id: why-get-involved
-title: Why get involved
-sidebar_label: Why get involved
+title: 参加する理由
+sidebar_label: 参加する理由
 ---
 
-OpenRefine is a powerful open-source tool for cleaning, transforming, and enriching data. Originally developed by Google, it was released open source in 2013 and is now maintained by a diverse international community. Users like journalists, librarians and researchers value it for its powerful capabilities to work with messy data.
+OpenRefine はデータのクレンジング・変換・拡張を行う OSS です。Google から 2013 年にオープンソース化され、現在は多国籍コミュニティによって維持されています。ジャーナリスト、図書館員、研究者など、多様なユーザーが「汚い」データを整えるために活用しています。
 
-Design plays an important role in OpenRefine’s popularity as its web-based interface is the main point of interaction between users and their data. They load datasets into the tool, where they can explore the data, identify issues, and apply transformations. Key OpenRefine features:
+Web ベースの UI が唯一の接点であるため、デザインは OpenRefine の人気を支える重要な要素です。ユーザーはデータセットを読み込み、探索・問題の特定・変換を行います。主な特徴:
 
-## Key OpenRefine features:
-- Open-source codebase: it is freely available for anyone to use and modify. This enables the tool to evolve continuously, benefiting from the contributions of developers, data enthusiasts, and designers across the globe.
+## 主な特徴
+- **オープンソース**: 世界中の開発者やデザイナーが継続的に改善できます。
+- **複雑な変換も GUI で実行**: フォーマット変更やフィルタリングから高度なクレンジング／異種データ統合まで、コードを書かずに操作可能。
+- **非技術者も扱いやすい**: 専門家に依存せずデータを扱えることで意思決定を加速します。
+- **学習リソースが豊富**: チュートリアルや教材がデータクレンジングの概念を紹介します。
+- **支援的なコミュニティ**: 情報共有・問題解決の場があり、継続的な学びを後押しします。
 
-- Capacity to streamline complex data transformation tasks: OpenRefine allows users to perform a wide array of operations – ranging from Complex data transformation tasks without requiring extensive programming skills: From basic formatting, filtering and sorting, to advanced data cleaning and connecting across heterogeneous sources, all via the user friendly interface.
-
-- Empowering individuals who may not have extensive technical backgrounds to work confidently with data: the tool’s accessibility reduces dependency on specialized data professionals and accelerates insights and decision-making.
-
-- Educational resource: an extensive range of tutorials and learning materials online introduce newcomers to the concepts of data cleaning, transformation, and data quality management. 
-
-- Supportive environment for knowledge exchange, troubleshooting, and collaborative problem-solving: this fosters a sense of belonging and encourages continuous learning.
-
-## Diverse user communities
-  - **Data analysts and scientists**
-    Data analysts and scientists often use OpenRefine to preprocess and clean datasets before conducting in-depth analyses. They leverage its features to identify anomalies, correct errors, and ensure data consistency, enabling them to generate more accurate insights.
-  
-  - **Data engineers**
-    Data engineers use OpenRefine to transform and prepare raw data for downstream processes. They perform data normalization, standardization, and enrichment to ensure that data is well-structured and ready for integration into databases or data pipeline
-
-  - **Researchers**
-    Researchers across various domains use OpenRefine to clean and prepare data for academic studies and research projects. It allows them to focus on the core aspects of their research rather than getting bogged down by data quality issues.
-
-  - **Librarians and archivists**
-    OpenRefine is valuable for librarians and archivists who work with large collections of data, such as catalog records or historical documents. It helps them clean, categorize, and enrich metadata, making it easier to organize and retrieve information.
-
-  - **Business analysts**
-    Business analysts leverage OpenRefine to process and transform datasets for business intelligence purposes. They ensure data accuracy and consistency, enabling more reliable decision-making within organizations.
-
-  - **Journalists**
-    Investigative journalists use OpenRefine to clean and analyze datasets relevant to their stories. It helps them uncover patterns, discrepancies, and insights that contribute to impactful news reporting.
-
-  - **Non-technical professionals**
-    OpenRefine's user-friendly interface makes it accessible to individuals who may not have strong technical skills. Marketing professionals, for instance, can clean and prepare customer data for targeted campaigns without needing programming expertise.
-
-  - **Educators**
-    OpenRefine serves as an educational tool for teaching data cleaning, transformation, and data quality concepts. Educators can introduce students to real-world data challenges and provide hands-on experience in managing messy datasets.
+## 多様なユーザーコミュニティ
+- **データアナリスト／サイエンティスト**: 異常値の特定や整合性チェックで分析結果の精度向上。
+- **データエンジニア**: 正規化・標準化・エンリッチを行い、パイプラインに適したデータを準備。
+- **研究者**: データ品質に煩わされず本来の研究に集中できます。
+- **図書館員／アーキビスト**: 大量のメタデータをクレンジング・分類・拡張。
+- **ビジネスアナリスト**: BI のためにデータを整備し、意思決定を支援。
+- **ジャーナリスト**: ストーリーに関連するデータを分析し、洞察を得る。
+- **非技術系プロフェッショナル**: 例としてマーケターが顧客データを整備し、キャンペーンに活用。
+- **教育者**: 実際のデータ課題を教材にし、学生に実務的な経験を提供。

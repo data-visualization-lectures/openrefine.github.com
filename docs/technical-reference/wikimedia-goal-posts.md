@@ -1,39 +1,38 @@
 ---
 id: wikimedia-goal-posts
-title: Wikimedia Goal Posts
-sidebar_label: Wikimedia Goal Posts
+title: Wikimedia ゴールポスト
+sidebar_label: Wikimedia ゴールポスト
 hide_table_of_contents: false
 ---
-This page focuses on features related to OpenRefine’s integration with Wikimedia projects, including Wikidata, Wikibase, and Wikimedia Commons. Please refer to the priorities discussed in the [Wikimedia Sverige development planning thread](https://forum.openrefine.org/t/prioritisation-of-wikimedia-sveriges-development-work/1803) and the related **[prioritization spreadsheet](https://docs.google.com/spreadsheets/d/1AUnYo4cXydXPnc0uFedbxTCMrylD1sXzhnFObEppNx0/edit?gid=0#gid=0).**
 
-The following items have been ranked from the OpenRefine 2024 feature survey as they relate to the Wikimedia integration and should be integrated in the [prioritization spreadsheet](https://docs.google.com/spreadsheets/d/1AUnYo4cXydXPnc0uFedbxTCMrylD1sXzhnFObEppNx0/edit?gid=0#gid=0). 
+このページは Wikidata / Wikibase / Wikimedia Commons との連携機能に関する要望をまとめています。優先度は [Wikimedia Sverige 開発計画スレッド](https://forum.openrefine.org/t/prioritisation-of-wikimedia-sveriges-development-work/1803) と [優先順位スプレッドシート](https://docs.google.com/spreadsheets/d/1AUnYo4cXydXPnc0uFedbxTCMrylD1sXzhnFObEppNx0/edit?gid=0#gid=0) を参照してください。
 
-**Score and Status** are defined on the [about goal post page](/docs/technical-reference/about-goal-posts#status-definition).
+以下は 2024 年のフィーチャー調査で Wikimedia 連携に該当する項目です。スプレッドシートにも反映してください。**スコアとステータス** の定義は [ゴールポストについて](/docs/technical-reference/about-goal-posts#status-definition) を参照。
 
-### Create an OpenRefine Wikimedia Group
+### OpenRefine Wikimedia グループの設立
 - **Status**: Needs Scoping
-- See the [forum conversation](https://forum.openrefine.org/t/creating-an-openrefine-wikimedia-group/2132)
+- [フォーラムの議論](https://forum.openrefine.org/t/creating-an-openrefine-wikimedia-group/2132)
 
-### Ability to extend data by bringing in qualifiers from Wikidata
+### Wikidata から修飾語を取り込んでデータを拡張
 - **Score**: 43
 - **Status**: Needs Scoping
 - **Source**: Prioritization-2024
-- Please create a thread on the forum or create an issue to discuss this request.
+- フォーラムや Issue で議論を開始してください。
 
-### Fully maintained production Wikidata reconciliation service
+### 公式に維持された本番用 Wikidata リコンサイルサービス
 - **Score**: 35
 - **Status**: Needs Solution Definition
 - **Source**: Prioritization-2024
-- **Comment**: Faster upload to Wikibase, Wikidata, or other Wikimedia projects – Fully maintained production Wikidata reconciliation service with better reconciliation and performance. See the summary of the discussion during the [2024 Barcamp](https://forum.openrefine.org/t/openrefine-2024-barcamp-reconciliation-in-openrefine/1629)
+- **補足**: Wikibase/Wikidata などへの高速アップロードを可能にする。2024 Barcamp での議論まとめを参照: [link](https://forum.openrefine.org/t/openrefine-2024-barcamp-reconciliation-in-openrefine/1629)
 
-### Work on reconciliation of Wikidata Lexemes
+### Wikidata レキシームのリコンサイル対応
 - **Score**: 32
 - **Status**: Needs Solution Definition
 - **Source**: Prioritization-2024
-- **Comment**: Related issue: [#2240](https://github.com/OpenRefine/OpenRefine/issues/2240) and discussion on the [forum](https://forum.openrefine.org/t/openrefine-support-for-lexemes-in-wikidata-how-would-you-use-this/216).
+- **補足**: Issue [#2240](https://github.com/OpenRefine/OpenRefine/issues/2240) と [フォーラムの議論](https://forum.openrefine.org/t/openrefine-support-for-lexemes-in-wikidata-how-would-you-use-this/216)
 
-### Better support for self hosted Wikidata instances.
+### 自前の Wikidata インスタンスのサポート強化
 - **Score**: 24
 - **Status**: Needs Scoping
 - **Source**: Prioritization-2024
-- **Comment**: This include setting up manifests, and creating data previews (when reconciling) is full of dark secrets. Wikibase cloud reconciliation. Improved integration with Wikibase would be important to me because right now I have to make do with some workarounds that can be time-consuming. See [this thread](https://forum.openrefine.org/t/fundraising-to-commission-the-development-of-a-mediawiki-extension-for-reconciliation-with-wikibase/1645) regarding the effort to make this process easier.
+- **補足**: マニフェスト設定やリコンサイル時のプレビュー作成などの改善。Wikibase Cloud リコンサイル。現状は手間のかかるワークアラウンドが多い。[関連スレッド](https://forum.openrefine.org/t/fundraising-to-commission-the-development-of-a-mediawiki-extension-for-reconciliation-with-wikibase/1645) を参照。

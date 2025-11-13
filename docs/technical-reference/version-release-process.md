@@ -1,64 +1,49 @@
 ---
 id: version-release-process
-title: How to do an OpenRefine version release
-sidebar_label: How to do an OpenRefine version release
+title: OpenRefine リリース手順
+sidebar_label: OpenRefine リリース手順
 ---
 
-OpenRefine release process
-==================
+## メジャー／マイナーリリース
 
-Major or minor version release
-==================
+1. `master` ブランチが安定しているか確認し、数日間テストしてもらう。
+2. パッチ番号なしでリリース対象のブランチを作成（例: `3.9`）。
+3. [RefineServlet.java](http://github.com/OpenRefine/OpenRefine/blob/master/main/src/com/google/refine/RefineServlet.java#L62) と POM のバージョンを新番号に更新（例: `mvn versions:set -DgenerateBackupPoms=false -DnewVersion=3.9-beta`）。コミット。
+4. Markdown でチェンジログを作成（Issue にマイルストーンが付いていれば参考に）。
+5. リリース候補にタグを付けて push。
+   ```bash
+   git tag -a -m "Second beta" 2.6-beta.2
+   git push origin --tags
+   ```
+6. GitHub Release を作成し要約を記入。公開するとビルド済みアーティファクトが添付される。
+7. openrefine.org リポジトリの [`releases.json`](https://github.com/OpenRefine/openrefine.org/blob/master/releases.json) を更新し、[ダウンロードページ](/download) を確認。
+8. [フォーラムのアナウンス](https://forum.openrefine.org/c/news/13) や [ブログ](/blog) で告知。
+9. `master` のバージョンを次期 `-SNAPSHOT`（例: `4.3-SNAPSHOT`）に更新。
 
-When releasing a new major or minor version of Refine, the following steps should be followed:
+## パッチリリース
 
-1. Make sure the `master` branch is stable and nothing has broken since the previous version. We need developers to stabilize the trunk and some volunteers to try out `master` for a few days.
-2. Create a new branch with the expected major and minor version, without a patch number (e.g. `3.0`, `3.8`, `3.9`, etc.)
-3. Change the version number in [RefineServlet.java](http://github.com/OpenRefine/OpenRefine/blob/master/main/src/com/google/refine/RefineServlet.java#L62) by editing it manually and in the POM files by using `mvn versions:set -DgenerateBackupPoms=false -DnewVersion=3.9-beta`. Commit the changes.
-4. Prepare a changelog in Markdown format, to be added to the release description. If the issues have been updated with the appropriate milestone, the Github issue tracker should be able to provide a good starting point for this.
-5. Tag the release candidate in git and push the tag to Github. For example:
-```shell
-git tag -a -m "Second beta" 2.6-beta.2
-git push origin --tags
-```
-6. Create a GitHub release based on that tag, with a summary of the changes as description of the release. Publishing the GitHub release will trigger the generation of the packaged artifacts, which will be added to the release on GitHub.
-7. Once the artifacts are ready, update the [`releases.json`](https://github.com/OpenRefine/openrefine.org/blob/master/releases.json) file in the openrefine.org repository to reflect this new version. Verify that the correct versions are shown at [https://openrefine.org/download](/download)
-8. Announce on the [announcements section of the OpenRefine forum](https://forum.openrefine.org/c/news/13), or even on the [blog](/blog) if this is a major release (the blog is imported automatically into the announcements category
-    of the forum)
-9. Update the version in master to the next version number with `-SNAPSHOT` (such as `4.3-SNAPSHOT`), in the same places as in step 2.
+1. 対象マイナーブランチ（例: `3.9`）をチェックアウト。
+2. RefineServlet と POM のバージョンをパッチ番号に更新（例: `3.9.3`）。
+3. 含めたい PR のマージコミットを `git cherry-pick` で取り込む（競合は手動解決）。
+4. タグ付けして push。
+   ```bash
+   git tag -a -m "Version 3.9.3" 3.9.3
+   git push origin --tags
+   ```
+5. GitHub Release を作成し、生成されたアーティファクトを確認。
+6. `releases.json` 更新とダウンロードページ確認。
+7. フォーラム／ブログで告知。
+8. ブランチのバージョンを `3.9-SNAPSHOT` のように戻す。
 
-Patch version release
-==================
+## Apple コード署名
 
-Unlike major and minor versions, patch releases of OpenRefine do not happen from the `master` branch. Instead, they build off of the latest release for a specific minor version. When performing a patch release you will need a list of pull requests to be included in the release. Once you have a complete list of changes, please use the following steps:
+ビルド環境に証明書を配置済みですが、問題があればローカルに取り込んでデバッグできます。
+- advisory.committee@openrefine.org に Apple Team 参加を依頼（AppleID メールを伝える）。
+- [CSR を作成](https://help.apple.com/developer-account/#/devbfa00fef7)。
+- [Apple Developer](https://developer.apple.com/account/resources/certificates/add) で "Apple Distribution" を選び CSR をアップロード。
+- 証明書をダウンロードし Keychain Access にインポート。
+- 署名ワークフローは `.github/workflows/snapshot_release.yml` 参照。
 
-1. Check out the branch for the minor version to which this release belongs (e.g. check out `3.9` if releasing `3.9.3`).
-2. Change the version number in [RefineServlet.java](http://github.com/OpenRefine/OpenRefine/blob/master/main/src/com/google/refine/RefineServlet.java#L62) by editing it manually and in the POM files by using `mvn versions:set -DgenerateBackupPoms=false -DnewVersion=3.9.3`. Commit the changes.
-3. For each pull request to be included in the release, find the commit created when the PR was squashed and merged. Cherry pick that commit into the release branch using `git cherry-pick <commit hash>`. Manually resolve any merge conflicts if they exist.
-4. Once all pull requests are merged, tag the release candidate in git and push the tag to GitHub. For example:
-```shell
-git tag -a -m "Version 3.9.3" 3.9.3
-git push origin --tags
-```
-5. Create a GitHub release based on that tag, with a summary of the changes as description of the release. Publishing the GitHub release will trigger the generation of the packaged artifacts, which will be added to the release on GitHub. 
-6. Once the artifacts are ready, update the [`releases.json`](https://github.com/OpenRefine/openrefine.org/blob/master/releases.json) file in the openrefine.org repository to reflect this new version. Verify that the correct versions are shown at [https://openrefine.org/download](/download)
-7. Announce on the [announcements section of the OpenRefine forum](https://forum.openrefine.org/c/news/13), or even on the [blog](/blog) if this is a major release (the blog is imported automatically into the announcements category
-    of the forum)
-8. Update the version in the minor version branch to the minor version number with `-SNAPSHOT` (such as `3.9-SNAPSHOT`), in the same places as in step 2.
+## Maven アーティファクト公開
 
-Apple code signing
-==================
-
-We have code signing certificates for our iOS distributions. Those are available in our build environment and you should not need to import them to your own machine to make a release (since you are not building the release yourself). But if the signing process fails, it can be useful to import the certificates on your own machine to debug the process. To do so:
-* Request advisory.committee@openrefine.org to be added to the Apple team: you need to provide the email address that corresponds to your AppleID account;
-* Create a certificate signing request from your Mac: https://help.apple.com/developer-account/#/devbfa00fef7
-* Go to https://developer.apple.com/account/resources/certificates/add and select "Apple Distribution" as certificate type
-* Upload the certificate signing request in the form
-* Download the generated certificate
-* Import this certificate in the "Keychain Access" app on your mac
-* The signing workflow can be found in `.github/workflows/snapshot_release.yml`
-
-Maven artifact publishing
-========================
-
-Maven artifacts are published to [the `org.openrefine` namespace in Maven Central](https://central.sonatype.com/artifact/org.openrefine/openrefine/overview) by a small set of approved release managers. Access to the namespace is managed by emailing Sonatype support (only). Core developer group members and community members with access to the `openrefinedev@gmail.com` account can contact Sonatype support to manage access to the namespace.
+Maven Central の [`org.openrefine`](https://central.sonatype.com/artifact/org.openrefine/openrefine/overview) は一部のリリースマネージャーが管理します。アクセス権の調整は Sonatype サポートへのメールのみで行います。`openrefinedev@gmail.com` にアクセスできるメンバーが対応可能です。
