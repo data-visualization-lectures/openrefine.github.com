@@ -1,28 +1,25 @@
 ---
 id: contributing
-title: Getting started
-sidebar_label: Getting started
+title: はじめに
+sidebar_label: はじめに
 ---
 
 import Card from '../../src/card.tsx';
 
-There are many ways you can contribute to OpenRefine. Choose which one fits you best and follow our guides to get started.
+OpenRefine にはさまざまな形で貢献できます。関心に合うエリアを選び、手引きを参考に始めましょう。
 
 <div className="cardList">
-  <Card href="./code-contributions" title="Code" description="Fix a bug or implement new functionality in the tool" />
-  <Card href="./documentation-contributions" title="Documentation" description="Improve the manual or develop new training material" />
+  <Card href="./code-contributions" title="コード" description="バグを直したり新機能を実装する" />
+  <Card href="./documentation-contributions" title="ドキュメント" description="マニュアル改善や研修資料の作成" />
 </div>
 <div className="cardList">
-  <Card href="./introduction" title="Design" description="Propose new interfaces and make OpenRefine more usable" />
-  <Card href="./translating-ui" title="Translations" description="Make OpenRefine available in your language" />
+  <Card href="./introduction" title="デザイン" description="新しい UI を提案して使いやすさを向上" />
+  <Card href="./translating-ui" title="翻訳" description="OpenRefine を自分の言語にローカライズ" />
 </div>
 
+## Issue の報告と追跡 {#reporting-and-tracking-issues}
 
-## Reporting and tracking issues {#reporting-and-tracking-issues}
+バグ報告や機能要望は、[OpenRefine の GitHub Issue](https://github.com/OpenRefine/OpenRefine/issues) で受け付けています。具体的な不具合や要望の共有にご利用ください。使い方が分からない、アイデアを議論したいといった場合は次の方法もあります。
 
-If you need to file a bug or request a feature, [create an Issue in the OpenRefine Github repository](https://github.com/OpenRefine/OpenRefine/issues). Github issues should be used for reporting specific bugs and requesting specific features. If you just don't know how to do something using OpenRefine, or want to discuss some ideas, please:
-
-- [Try the user manual](/)
-- [Ask for help on our forum](http://forum.openrefine.org/)
-
-
+- [ユーザーマニュアルを参照](/)
+- [フォーラムで質問](http://forum.openrefine.org/)

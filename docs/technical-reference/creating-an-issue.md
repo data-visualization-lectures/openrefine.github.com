@@ -1,33 +1,30 @@
 ---
 id: creating-an-issue
-title: Creating an issue
-sidebar_label: Creating an issue
+title: Issue の作成
+sidebar_label: Issue の作成
 ---
 
-If you can’t find relevant issues to work on in the OpenRefine Design Project, or you already have new ideas for OpenRefine that you’d like to contribute to, you are welcome to create new issues. To do that you can either click on "New issue" from the Issues page of the relevant repository, or you can click on the “Add new item” buttons from the bottom of the Table or Board views in the OpenRefine Design Project page. You may be prompted to select a template if applicable.
+OpenRefine Design Project で取り組めそうな Issue が見つからない、あるいは新しいアイデアを提案したい場合は、自由に Issue を作成できます。該当リポジトリの Issues ページから「New issue」を押すか、Design Project の Table / Board ビュー下部にある “Add new item” ボタンから作成してください。テンプレート選択が表示される場合があります。
 
-**Specify the type of issue**: Choose one of the following options that best describes your issue:
+**Issue の種別を選択**: 以下から最も近いものを選んでください。
 
--  **Bug report**: Create a report to help us improve OpenRefine.
--  **Feature request**: Suggest an idea for OpenRefine.
--  **Design discussion**: Start a discussion on issues related to UI/visual design, UX/usability or accessibility. 
--  **Documentation**: Report issues related to improving project documentation or tutorials. 
--  **Report a security vulnerability**: Privately report a security vulnerability.
--  **Ask a question (forum)**: Please ask and answer questions here.
--  **Gitter chat**: Engage in live discussions on Gitter.
+- **Bug report**: OpenRefine の問題を報告し、改善に役立てます。
+- **Feature request**: 新機能や改善案を提案します。
+- **Design discussion**: UI/ビジュアルデザイン、UX/ユーザビリティ、アクセシビリティなどの議論を始めます。
+- **Documentation**: マニュアルやチュートリアル改善に関する Issue。
+- **Report a security vulnerability**: セキュリティ脆弱性を非公開で報告します。
+- **Ask a question (forum)**: フォーラムで質問・回答を行います。
+- **Gitter chat**: Gitter でのリアルタイムディスカッション。
 
-Selecting the appropriate issue type ensures that your contribution reaches the right audience and receives the attention it needs.
+適切な種別を選ぶことで、Issue が然るべきメンバーに届きやすくなります。
 
-**Title and description**: Craft a clear and descriptive title (e.g., "Improve Consistency in Button Styling" rather than just “Button Design”) for your issue. Detail the design problem or idea following the template provided in the description space. Screenshots or links to mockups can add clarity.
+**タイトルと説明**: 「Improve Consistency in Button Styling」のように具体的なタイトルを付けましょう（“Button Design” のような曖昧な表現は避けます）。説明欄ではテンプレートに沿って問題点やアイデアを詳しく書きます。スクリーンショットやモックアップへのリンクがあると理解が深まります。
 
-**Assigning labels**:Labels are used to categorize issues based on their content. It's important to note that label assignment is generally restricted to more experienced contributors, and you need to wait to become a member of the OpenRefine GitHub organization before being able to perform this yourself.  In any case, it’s helpful to be aware of the current labeling conventions in order to be able to better identify issues suitable to contribute to, as well as being able to assign labels yourself in the future.
+**ラベルの付与**: ラベルは Issue を内容別に分類するためのもので、原則として経験あるコントリビューターのみが付与できます（OpenRefine GitHub 組織のメンバーになるまでは付与できません）。ただしラベル体系を理解しておくと、自分に合う Issue を見つけたり、将来的にラベルを付ける際に役立ちます。
 
-**Label structure**: Generally, issues can be tagged with labels that fall within one of the following categories:
-Type / Theme / Status / PR [pull request] / Priority /  Difficulty / Platform / Module / Data format
+**ラベル構造**: 一般的に以下のカテゴリのラベルが使われます。
+Type / Theme / Status / PR / Priority / Difficulty / Platform / Module / Data format
 
-You would have already seen the templates for the Type category labels, these were Bug, Feature Request, Design Discussion, and Documentation. The next set of labels relevant for design contributions are the Theme category labels, these can be one of the following: UI/Visual Design, UX/Usability and Accessibility. Status is assigned via the Project views. PR, Priority, and the rest of the categories are optional, but still helpful to assign whenever possible. Difficulty is a category that can be particularly useful when identifying issues to contribute to. The Good first issue label indicates an issue that is suitable to newcomers, whereas Difficulty: Intermediate or Advanced indicate issues better suited to more experienced contributors. Check out the Resources section for a complete guide to the GitHub label structure used by the OpenRefine community.
+Type ラベルは既にテンプレートで見たとおり（Bug, Feature Request, Design Discussion, Documentation）。デザイン貢献に関連する Theme ラベルには UI/Visual Design、UX/Usability、Accessibility があります。Status は Project View で管理されます。PR・Priority など他カテゴリは必須ではありませんが、可能なら付けましょう。Difficulty は着手しやすい Issue を探す際に有効です。`Good first issue` は初心者向け、`Difficulty: Intermediate/Advanced` は経験者向けを表します。ラベル体系の詳細は Resources セクションを参照してください。
 
-**Submitting your issue**: Click "Submit new issue" to publish your issue. It will now be visible to the OpenRefine community.
-
-
-
+**Issue の送信**: 「Submit new issue」をクリックすると公開され、OpenRefine コミュニティが閲覧できるようになります。

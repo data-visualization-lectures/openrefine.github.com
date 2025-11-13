@@ -4,6 +4,9 @@ title: OpenRefine のインストール
 sidebar_label: Installing
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## System requirements {#system-requirements}
 
 OpenRefine は基本機能においてインターネット接続を必要としません。一度ダウンロードしてローカルにインストールすると、小さなウェブサーバーとして動作し、ブラウザからそのローカルサーバーへアクセスする形になります。インターネット接続は、Web からデータを読み込む、リコンシリエーションサービスを使う、あるいは Web にエクスポートする場合だけに必要です。
@@ -108,10 +111,6 @@ user@machine:~/Downloads/openrefine-3.6.2$ ./refine
 <TabItem value="linux">
 
 ...  ※ ここには Linux 用の手順が続く（原文に準拠）。
-
-</TabItem>
-
-</Tabs>
 
 ---
 
