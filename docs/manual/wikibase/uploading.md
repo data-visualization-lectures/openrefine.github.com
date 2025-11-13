@@ -1,7 +1,7 @@
 ---
 id: uploading
 title: Uploading edits to Wikibase
-sidebar_label: Uploading edits
+sidebar_label: 編集のアップロード
 ---
 
 This page explains how to upload your edits to the target Wikibase. It assumes you already have a created a Wikibase schema in your OpenRefine project.

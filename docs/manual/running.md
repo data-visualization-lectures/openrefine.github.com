@@ -1,7 +1,7 @@
 ---
 id: running
 title: OpenRefine の起動と終了
-sidebar_label: Running
+sidebar_label: 起動と終了
 ---
 
 ## 起動と終了 {#starting-and-exiting}

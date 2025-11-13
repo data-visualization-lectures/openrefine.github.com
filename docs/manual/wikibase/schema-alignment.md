@@ -1,7 +1,7 @@
 ---
 id: schema-alignment
 title: Schema alignment
-sidebar_label: Schema alignment
+sidebar_label: スキーマの整合
 ---
 
 A Wikibase schema is a template of Wikibase edits that is applied

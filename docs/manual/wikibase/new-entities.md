@@ -1,7 +1,7 @@
 ---
 id: new-entities
 title: Creating new items
-sidebar_label: New items
+sidebar_label: 新しいアイテム
 ---
 
 OpenRefine can create new items. This page explains how they are

@@ -1,7 +1,7 @@
 ---
 id: facets
 title: ファセットの使い方
-sidebar_label: Facets
+sidebar_label: ファセット
 ---
 
 ## Overview {#overview}

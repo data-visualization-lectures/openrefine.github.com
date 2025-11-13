@@ -1,7 +1,7 @@
 ---
 id: configuration
 title: Connecting OpenRefine to a Wikibase instance
-sidebar_label: Connecting to Wikibase
+sidebar_label: Wikibase への接続
 ---
 
 This page explains how to connect OpenRefine to any Wikibase instance. If you just want to work with [Wikidata](https://www.wikidata.org/), you can ignore this page as Wikidata is configured out of the box in OpenRefine.
@@ -212,4 +212,3 @@ To do so, you need to:
 * If your Wikibase instance supports file uploads, but does not use structured data on those files, add the `hide_structured_fields_in_mediainfo` field to your manifest, as documented above.
 
 After you have made those changes to your manifest, OpenRefine users will need to add it again to their list of Wikibase instances for the changes to take effect.
-

@@ -1,7 +1,7 @@
 ---
 id: reconciling
 title: Reconciling with Wikibase
-sidebar_label: Reconciling with Wikibase
+sidebar_label: Wikibase との照合
 ---
 
 The Wikidata [reconciliation service](reconciling) for OpenRefine [supports](https://reconciliation-api.github.io/testbench/):
@@ -51,5 +51,4 @@ Labels, aliases, descriptions and sitelinks can be accessed as follows (L for la
 The lowercase letters are Wikimedia language codes which select which language the terms will be fetched. No language fall-back is performed when retrieving the values.
 
 For information on how to do this, read the [documentation and further resources here](https://wikidata.reconci.link/#documentation).
-
 

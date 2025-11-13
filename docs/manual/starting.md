@@ -1,7 +1,7 @@
 ---
 id: starting
 title: プロジェクトの開始
-sidebar_label: Starting a project
+sidebar_label: プロジェクトの開始
 ---
 
 ## Overview {#overview}

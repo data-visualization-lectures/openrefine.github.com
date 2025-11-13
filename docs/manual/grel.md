@@ -1,7 +1,7 @@
 ---
 id: grel
 title: GREL（General Refine Expression Language）
-sidebar_label: GREL
+sidebar_label: GREL の基礎
 ---
 
 ## Basics {#basics}

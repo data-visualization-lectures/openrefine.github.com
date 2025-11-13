@@ -1,7 +1,7 @@
 ---
 id: jythonclojure
 title: Jython & Clojure
-sidebar_label: Jython & Clojure
+sidebar_label: Jython と Clojure
 ---
 
 ## Jython {#jython}

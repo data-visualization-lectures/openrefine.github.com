@@ -1,7 +1,7 @@
 ---
 id: quality-assurance
 title: Quality assurance for Wikibase uploads
-sidebar_label: Quality assurance
+sidebar_label: 品質管理
 ---
 
 This page explains how the Wikidata extension of OpenRefine analyzes edits before they are uploaded to the Wikibase

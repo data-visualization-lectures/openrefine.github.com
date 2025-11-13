@@ -1,7 +1,7 @@
 ---
 id: installing
 title: OpenRefine のインストール
-sidebar_label: Installing
+sidebar_label: インストール
 ---
 
 import Tabs from '@theme/Tabs';

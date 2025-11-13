@@ -1,7 +1,7 @@
 ---
 id: sortview
 title: 並べ替えと表示
-sidebar_label: Sort and view
+sidebar_label: 並べ替えと表示
 ---
 
 ## Sort {#sort}
