@@ -45,8 +45,17 @@ npm run serve
 
 ### Deployment
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website
-and push to the `gh-pages` branch.
+#### GitHub Pages workflow
+
+This repo ships with `.github/workflows/deploy.yml`, which builds the site with Node 20 and publishes the `build/` directory to the `gh-pages` branch via GitHub Pages.
+
+1. In the repository settings, open **Pages** and select **GitHub Actions** as the source (only needs to be done once).
+2. Push to `master` (or trigger the workflow manually via **Actions → Deploy Docusaurus to GitHub Pages**). The workflow installs dependencies with `npm ci`, runs `npm run build`, uploads the artifact and deploys it to the `gh-pages` branch.
+3. Optional: add a custom domain in **Settings → Pages**; GitHub Pages will create the corresponding `CNAME` record automatically.
+
+#### Manual deployment
+
+If you prefer a manual deployment, the Docusaurus CLI command below builds the website locally and pushes to `gh-pages` using your credentials:
 
 ```sh
 GIT_USER=<Your GitHub username> USE_SSH=true npm run deploy
