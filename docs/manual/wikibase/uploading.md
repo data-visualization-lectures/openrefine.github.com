@@ -8,10 +8,10 @@ sidebar_label: 編集のアップロード
 
 ## OpenRefine から直接アップロードする {#uploading-with-openrefine}
 
-1. <span class=\"menuItems\">Wikidata</span> → <span class=\"menuItems\">Upload edits to Wikidata</span> を選択します（他の Wikibase を利用している場合でもメニュー名は同じです）。
+1. <span class="menuItems">Wikidata</span> → <span class="menuItems">Upload edits to Wikidata</span> を選択します（他の Wikibase を利用している場合でもメニュー名は同じです）。
 2. 編集に利用する個人アカウントまたはボットアカウントでログインします。[Bot password](https://www.mediawiki.org/wiki/Manual:Bot_passwords/ja) を使うと安全です。
 3. 編集サマリーを入力します。OpenRefine は同一アイテムへの変更を 1 回の編集にまとめるため、分かりやすいサマリーを付けることが重要です。Wikibase が対応していれば、[EditGroups](https://editgroups.toolforge.org/) へのリンクが自動的に追記されます。
-4. <span class=\"buttonLabels\">Perform edits</span> を押して完了を待ちます。進捗は Wiki 側の投稿記録や EditGroups で確認できます。
+4. <span class="buttonLabels">Perform edits</span> を押して完了を待ちます。進捗は Wiki 側の投稿記録や EditGroups で確認できます。
 
 アップロード自体も OpenRefine の「操作」として記録されるため、操作の抽出・再適用が可能です。その場合はスキーマ保存の操作（最後の 1 件で可）も含め、スキーマ内の列名が適用先のプロジェクトと一致していることを確認してください。
 
@@ -19,11 +19,11 @@ sidebar_label: 編集のアップロード
 
 [QuickStatements](https://meta.wikimedia.org/wiki/QuickStatements/ja) が利用可能な Wikibase であれば、OpenRefine から QuickStatements 形式をエクスポートして実行することもできます。
 
-1. <span class=\"menuItems\">Wikibase</span> → <span class=\"menuItems\">Export to QuickStatements</span> を選択し、生成されたファイルの内容をコピーします。
+1. <span class="menuItems">Wikibase</span> → <span class="menuItems">Export to QuickStatements</span> を選択し、生成されたファイルの内容をコピーします。
 2. QuickStatements（Wikidata では https://quickstatements.toolforge.org/）にアクセスし、アカウント認証を行います。
-3. <span class=\"buttonLabels\">Version 1 format</span> を選択します。
+3. <span class="buttonLabels">Version 1 format</span> を選択します。
 4. 先ほどのテキストを貼り付けます。
-5. <span class=\"buttonLabels\">Run</span> もしくは <span class=\"buttonLabels\">Run in background</span> で実行します。
+5. <span class="buttonLabels">Run</span> もしくは <span class="buttonLabels">Run in background</span> で実行します。
 
 ## 2 つの方法の違い {#notable-differences-between-the-two-methods}
 

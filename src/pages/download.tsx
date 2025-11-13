@@ -36,7 +36,7 @@ function MainDownload() {
    <div className="container margin-bottom--xl">
       <div className="row" style={{maxWidth: '800px', margin: 'auto', textAlign: 'left'}}>
         <div className="col">
-          <p>OpenRefine is free software released under the <a href="https://github.com/OpenRefine/OpenRefine/blob/master/LICENSE.txt">BSD 3-clause license</a>, brought to you by <a href="https://github.com/OpenRefine/OpenRefine/graphs/contributors">our contributors</a>.</p>
+          <p>OpenRefineは<a href="https://github.com/OpenRefine/OpenRefine/blob/master/LICENSE.txt">BSD 3-clause license</a>の下でリリースされた無料のソフトウェアで、<a href="https://github.com/OpenRefine/OpenRefine/graphs/contributors">私たちのコントリビューター</a>によって提供されています。</p>
         </div>
       </div>
       <div className="row" style={{maxWidth: '800px', margin: 'auto' }}>
@@ -58,11 +58,11 @@ function MainDownload() {
                         // also advertise deb package to Windows users per https://github.com/OpenRefine/openrefine.org/commit/d45dab4349930bf71e232a85ce8dc131f57342c3#r99335793
                         || navigator.platform.indexOf("Win") != -1) {
                   return (<div id="otherDistributionNotice">
-                        <p>You can also install OpenRefine via <a href="https://repology.org/project/openrefine/versions">package managers of various Linux distributions</a>.</p>
+<p>OpenRefineは<a href="https://repology.org/project/openrefine/versions">各種Linuxディストリビューションのパッケージマネージャー</a>経由でもインストールできます。</p>
                        </div>);
                 } else if (['Mac OS'].includes(os)) {
                    return (<div id="otherDistributionNotice">
-                        You also can <a href="https://formulae.brew.sh/cask/openrefine">install OpenRefine via Homebrew</a> with:&nbsp;
+                        OpenRefineは<a href="https://formulae.brew.sh/cask/openrefine">Homebrew経由でもインストール</a>できます：&nbsp;
                         <code>brew install --cask openrefine</code>
                        </div>);
                 }
@@ -72,7 +72,7 @@ function MainDownload() {
       </div>
       <div className="row" style={{maxWidth: '800px', margin: 'auto' }}>
         <div className="col">
-        <h3 id="older-versions">Other platforms and versions</h3>
+        <h3 id="older-versions">その他のプラットフォームとバージョン</h3>
         <table style={{textAlign: 'center'}}>
           <thead>
             <tr>
@@ -84,13 +84,13 @@ function MainDownload() {
              {releases.map(release => <ReleaseLine key={'v'+release.version} release={release} />)}
           </tbody>
         </table>
-        <p>See the <a href="https://github.com/OpenRefine/OpenRefine/releases">full list of releases on GitHub</a> for other versions.</p>
+        <p>その他のバージョンについては、<a href="https://github.com/OpenRefine/OpenRefine/releases">GitHubのリリース一覧</a>をご覧ください。</p>
         </div>
       </div>
       <div className="row" style={{maxWidth: '800px', margin: 'auto' }}>
         <div className="col">
-        <h3 id="extensions">Extensions</h3>
-        <p>See the <a href="/extensions">extensions</a> for additional ways to use and extend OpenRefine.</p>
+        <h3 id="extensions">拡張機能</h3>
+        <p>OpenRefineを使用・拡張するための追加の方法については、<a href="/extensions">拡張機能</a>をご覧ください。</p>
         </div>
       </div>
     </div>);
@@ -181,7 +181,7 @@ export default function Home(): JSX.Element {
         <div className="container text--center margin-top--xl">
           <div className="row" style={{maxWidth: '800px', margin: 'auto', textAlign: 'left'}}>
             <div className="col">
-              <h1>Download OpenRefine</h1>
+              <h1>OpenRefine ダウンロード</h1>
             </div>
           </div>
         </div>

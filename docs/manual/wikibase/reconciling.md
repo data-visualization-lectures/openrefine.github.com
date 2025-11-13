@@ -28,7 +28,7 @@ Wikidata のタイプはアイテムとして表現され、[instance of (P31)](
 
 ## Reconciling via unique identifiers {#reconciling-via-unique-identifiers}
 
-QID（「Q###」形式）を列に持っている場合は、<span class=\"menuItems\">Reconcile</span> → <span class=\"menuItems\">Use values as identifiers</span> を適用すると直接エンティティを参照できます。この方法では外部データセットとの照合は行われませんが、すべてのセルが濃青色で「confirmed」と表示され、追加情報の取得に利用できます。誤った QID が含まれている場合は、セルにマウスオーバーして確認してください。プロパティ（「P###」形式）には利用できません。
+QID（「Q###」形式）を列に持っている場合は、<span class="menuItems">Reconcile</span> → <span class="menuItems">Use values as identifiers</span> を適用すると直接エンティティを参照できます。この方法では外部データセットとの照合は行われませんが、すべてのセルが濃青色で「confirmed」と表示され、追加情報の取得に利用できます。誤った QID が含まれている場合は、セルにマウスオーバーして確認してください。プロパティ（「P###」形式）には利用できません。
 
 誤って 1 つの識別子が複数のアイテムに付与されている場合は、すべての候補が表示されますが、自動的に確定されるものはありません。
 
