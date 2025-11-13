@@ -45,21 +45,27 @@ npm run serve
 
 ### Deployment
 
-#### GitHub Pages workflow
+#### Netlify (recommended)
 
-This repo ships with `.github/workflows/deploy.yml`, which builds the site with Node 20 and publishes the `build/` directory to the `gh-pages` branch via GitHub Pages.
+Netlify automatically builds and deploys this repository via `netlify.toml`.
 
-1. In the repository settings, open **Pages** and select **GitHub Actions** as the source (only needs to be done once).
-2. Push to `master` (or trigger the workflow manually via **Actions → Deploy Docusaurus to GitHub Pages**). The workflow installs dependencies with `npm ci`, runs `npm run build`, uploads the artifact and deploys it to the `gh-pages` branch.
-3. Optional: add a custom domain in **Settings → Pages**; GitHub Pages will create the corresponding `CNAME` record automatically.
+1. In Netlify, create a new site from Git and point it to this repo + the `master` branch.
+2. Netlify will pick up the `build` command and publish directory from `netlify.toml` (`npm run build` and `build/`). No extra environment variables are required because the site’s default `baseUrl` is `/`.
+3. Optional tweaks:
+   - Set `NODE_VERSION` (e.g. `20`) in the Netlify UI to lock the runtime.
+   - Add a custom domain and, if needed, configure redirects or headers in `netlify.toml`.
+4. Every push to `master` triggers a production deployment; pull requests get deploy previews automatically.
 
 #### Manual deployment
 
-If you prefer a manual deployment, the Docusaurus CLI command below builds the website locally and pushes to `gh-pages` using your credentials:
+If you need to publish from your machine (for example when testing a hotfix), run (requires the [Netlify CLI](https://docs.netlify.com/cli/get-started/)):
 
 ```sh
-GIT_USER=<Your GitHub username> USE_SSH=true npm run deploy
+npm run build
+netlify deploy --dir=build --prod
 ```
+
+or any other static hosting service that can serve the generated `build/` folder.
 
 ### License
 
