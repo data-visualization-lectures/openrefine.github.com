@@ -4,284 +4,167 @@ title: OpenRefine API
 sidebar_label: OpenRefine API
 ---
 
-This is a generic API reference for interacting with OpenRefine's HTTP API.
+OpenRefine の HTTP API とやり取りするためのリファレンスです。
 
-**NOTE:** This protocol is subject to change without warning at any time (and has in the past) and is not versioned. Use at your own risk!
+**注意:** プロトコルは予告なく変更される可能性があり、バージョニングもありません。利用は自己責任でお願いします。
 
-For OpenRefine 3.3 and later, all POST requests need to include a CSRF token as described [in the release notes](https://github.com/OpenRefine/OpenRefine/wiki/Changes-for-3.3#csrf-protection-changes)
+OpenRefine 3.3 以降では、すべての POST リクエストに [リリースノート](https://github.com/OpenRefine/OpenRefine/wiki/Changes-for-3.3#csrf-protection-changes) に記載の CSRF トークンが必要です。
 
-## Create project: {#create-project}
+## プロジェクト作成 {#create-project}
 
-> **Command:** _POST /command/core/create-project-from-upload_
+> **コマンド:** _POST /command/core/create-project-from-upload_
 
-When uploading files you will need to send the data as `multipart/form-data`. This is different to all other API calls which use a mixture of query string and POST parameters.
+ファイルアップロード時は `multipart/form-data` で送信します。他の API はクエリ文字列や通常の POST パラメータを使います。
 
 multipart form-data:
 
-      'project-file' : file contents
-      'project-name' : project name
-      'format' : format of data in project-file (e.g. 'text/line-based/*sv') [optional]
-      'options' : json object containing options relevant to the file format [optional - however, some importers may have required options, such as `recordPath` for the JSON & XML importers].
-
-The formats supported will depend on the version of OpenRefine you are using and any Extensions you have installed. The common formats include:
-
-* 'text/line-based': Line-based text files
-* 'text/line-based/*sv': CSV / TSV / separator-based files [separator to be used in specified in the json submitted to the options parameter]
-* 'text/line-based/fixed-width': Fixed-width field text files
-* 'binary/text/xml/xls/xlsx': Excel files
-* 'text/json': JSON files
-* 'text/xml': XML files
-
-If the format is omitted OpenRefine will try to guess the format based on the file extension and MIME type.
-The values which can be specified in the JSON object submitted to the 'options' parameter will vary depending on the format being imported. If not specified the options will either be guessed at by OpenRefine (e.g. separator being used in a separated values file) or a default value used. The import options for each file format are not currently documented, but can be seen in the OpenRefine GUI interface when importing a file of the relevant format.
-
-If the project creation is successful, you will be redirected to a URL of the form:
 ```
-      http://127.0.0.1:3333/project?project=<project id>
+'project-file' : ファイルの内容
+'project-name' : プロジェクト名
+'format' : ファイル形式（例: 'text/line-based/*sv'）[任意]
+'options' : ファイル形式に応じたオプションを含む JSON オブジェクト [任意。ただし JSON/XML など一部インポーターでは必須]
 ```
 
-From the project parameter you can extract the project id for use in future API calls. The content of the response is the HTML for the OpenRefine interface for viewing the project.
+利用できる形式は OpenRefine のバージョンや拡張機能によって異なります。一般的なもの:
 
-### Get project models: {#get-project-models}
+- 'text/line-based': 行ベーステキスト
+- 'text/line-based/*sv': CSV/TSV/区切り文字形式（区切り文字は `options` の JSON で指定）
+- 'text/line-based/fixed-width': 固定長テキスト
+- 'binary/text/xml/xls/xlsx': Excel
+- 'text/json': JSON
+- 'text/xml': XML
 
-> **Command:** _GET /command/core/get-models?_
+`format` を省略すると拡張子や MIME タイプから推測します。`options` の JSON に指定できる値は形式によって異なり、未指定の場合は推測またはデフォルト値が使われます。GUI で該当形式をインポートする際の画面が参考になります。
 
-      'project' : project id
+成功すると以下のような URL にリダイレクトされます。
+```
+http://127.0.0.1:3333/project?project=<project id>
+```
+`project` パラメータからプロジェクト ID を取得し、以降の API で利用します。レスポンス本体はプロジェクトを表示する OpenRefine の HTML です。
 
-Recovers the models for the specific project. This includes  columns, records, overlay models, scripting. In the columnModel a list of the columns is displayed, key index and name, and column groupings.
+### プロジェクトモデル取得 {#get-project-models}
 
-### Response: {#response}
-**On success:**
+> **コマンド:** _GET /command/core/get-models?_
+
+```
+'project' : プロジェクト ID
+```
+
+列やレコード、オーバーレイモデル、スクリプト情報などを取得します。`columnModel` には列リスト（位置・元名・表示名）とキー列情報、グループが含まれます。
+
+### レスポンス例 {#response}
 ```json
-{
-   "columnModel":{
-      "columns":[
-         {
-            "cellIndex":0,
-            "originalName":"email",
-            "name":"email"
-         },
-         {
-            "cellIndex":1,
-            "originalName":"name",
-            "name":"name"
-         },
-         {
-            "cellIndex":2,
-            "originalName":"state",
-            "name":"state"
-         },
-         {
-            "cellIndex":3,
-            "originalName":"gender",
-            "name":"gender"
-         },
-         {
-            "cellIndex":4,
-            "originalName":"purchase",
-            "name":"purchase"
-         }
-      ],
-      "keyCellIndex":0,
-      "keyColumnName":"email",
-      "columnGroups":[
-
-      ]
-   },
-   "recordModel":{
-      "hasRecords":false
-   },
-   "overlayModels":{
-
-   },
-   "scripting":{
-      "grel":{
-         "name":"General Refine Expression Language (GREL)",
-         "defaultExpression":"value"
-      },
-      "jython":{
-         "name":"Python / Jython",
-         "defaultExpression":"return value"
-      },
-      "clojure":{
-         "name":"Clojure",
-         "defaultExpression":"value"
-      }
-   }
-}
+{"columnModel":{...},"recordModel":{"hasRecords":false},...}
 ```
 
-## Rename Project or Change Metadata
+## プロジェクト名・メタデータ変更
 
-> **Command:** _POST /command/core/set-project-metadata_
+> **コマンド:** _POST /command/core/set-project-metadata_
 
-Use this command to rename a proejct or change project metadata as described in [Project management](../manual/starting#project-management).
+[プロジェクト管理](../manual/starting#project-management) の通り、プロジェクト名やメタデータを変更します。
 
-In the form data
+```
+'project' : プロジェクト ID
+'name' : name/creator/contributors/.../customMetadata
+'value' : 新しい値
+```
 
-      'project' : project id
-      'name': metadata field, one of: name, creator, contributors, subject, description, title, version, license, homepage, image, customMetadata
-      'value': metadata value
+- 名前変更は `name` フィールド
+- カスタムメタデータは `customMetadata` に JSON を指定
 
-- To rename a project, use the `name` metadata field.
-- To set custom metadata fields, use `customMetadata` and a JSON object `value`
+## プロジェクトタグ変更
 
-## Change Project Tags
+> **コマンド:** _POST /command/core/set-project-tags_
 
-> **Command:** _POST /command/core/set-project-tags_
+```
+'project' : プロジェクト ID
+'old' : 削除するタグ（カンマ区切り）
+'new' : 追加するタグ（カンマ区切り）
+```
 
-Tags are used to organize projects, see  [Project management](../manual/starting#project-management).
+## 操作の適用 {#apply-operations}
 
-In the form data
+> **コマンド:** _POST /command/core/apply-operations?_
 
-      'project' : project id
-      'old': tags to remove (comma-separated list)
-      'new': tags to add (comma-separated list)
+```
+'project' : プロジェクト ID
+```
 
-## Apply operations {#apply-operations}
+フォームデータ:
+```
+'operations' : OpenRefine 操作の JSON 配列
+```
 
-> **Command:** _POST /command/core/apply-operations?_
-
-In the parameter
-
-      'project' : project id
-
-In the form data
-
-      'operations' : Valid JSON **Array** of OpenRefine operations
-
-Example of a Valid JSON **Array**
+例:
 ```json
 [
-   {
-      "op":"core/column-addition",
-      "description":"Create column zip type at index 15 based on column Zip Code 2 using expression grel:value.type()",
-      "engineConfig":{
-         "mode":"row-based",
-         "facets":[]
-      },
-      "newColumnName":"zip type",
-      "columnInsertIndex":15,
-      "baseColumnName":"Zip Code 2",
-      "expression":"grel:value.type()",
-      "onError":"set-to-blank"
-   },
-   {
-      "op":"core/column-addition",
-      "description":"Create column testing at index 15 based on column Zip Code 2 using expression grel:value.toString()0,5]",
-      "engineConfig":{
-         "mode":"row-based",
-         "facets":[]
-      },
-      "newColumnName":"testing",
-      "columnInsertIndex":15,
-      "baseColumnName":"Zip Code 2",
-      "expression":"grel:value.toString()[0,5]",
-      "onError":"set-to-blank"
-   }
+  {"op":"core/column-addition",...},
+  {"op":"core/column-addition",...}
 ]
 ```
 
-On success returns JSON response
-`{ "code" : "ok" }`
+成功すると `{ "code" : "ok" }` を返します。
 
-## Export rows {#export-rows}
+## 行のエクスポート {#export-rows}
 
-> **Command:** _POST /command/core/export-rows_
+> **コマンド:** _POST /command/core/export-rows_
 
-In the parameter
-
-      'project' : project id
-      'format' : format... (e.g 'tsv', 'csv')
-
-In the form data
-```json
-      "engine" : JSON string... (e.g. '{"facets":[],"mode":"row-based"}')
 ```
-Returns exported row data in the specified format. The formats supported will depend on the version of OpenRefine you are using and any Extensions you have installed. The common formats include:
-
-* csv
-* tsv
-* xls
-* xlsx
-* ods
-* html
-
-## Delete project {#delete-project}
-
-> **Command:** _POST /command/core/delete-project_
-
-      'project' : project id...
-
-Returns JSON response
-
-## Check status of async processes {#check-status-of-async-processes}
-
-> **Command:** _GET /command/core/get-processes_
-
-      'project' : project id...
-
-Returns JSON response
-
-## Get all projects metadata: {#get-all-projects-metadata}
-
-> **Command:** _GET /command/core/get-all-project-metadata_
-
-Recovers the meta data for all projects. This includes the project's id, name, time of creation and last time of modification.
-
-### Response: {#response-1}
-```json
-{
-    "projects":{
-        "[project_id]":{
-            "name":"[project_name]",
-            "created":"[project_creation_time]",
-            "modified":"[project_modification_time]"
-        },
-        ...[More projects]...
-    }
-}
+'project' : プロジェクト ID
+'format' : 'tsv' や 'csv' など
 ```
 
-## Expression Preview {#expression-preview}
-> **Command:** _POST /command/core/preview-expression_
-
-Pass some expression (GREL or otherwise) to the server where it will be executed on selected columns and the result returned.
-
-### Parameters: {#parameters}
-* **cellIndex**: _[column]_
-The cell/column you wish to execute the expression on.
-* **rowIndices**: _[rows]_
-The rows to execute the expression on as JSON array. Example: `[0,1]`
-* **expression**: _[language]_:_[expression]_
-The expression to execute. The language can either be grel, jython or clojure. Example: grel:value.toLowercase()
-* **project**: _[project_id]_
-The project id to execute the expression on.
-* **repeat**: _[repeat]_
-A boolean value (true/false) indicating whether or not this command should be repeated multiple times. A repeated command will be executed until the result of the current iteration equals the result of the previous iteration.
-* **repeatCount**: _[repeatCount]_
-The maximum amount of times a command will be repeated.
-
-### Response: {#response-2}
-**On success:**
+フォームデータ:
 ```json
-{
-  "code": "ok",
-  "results" : [result_array]
-}
+"engine" : {"facets":[],"mode":"row-based"}
 ```
 
-The result array will hold up to ten results, depending on how many rows there are in the project that was specified by the [project_id] parameter. Each result is the string that would be put in the cell if the GREL command was executed on that cell. Note that any expression that would return an array or JSon object will be jsonized, although the output can differ slightly from the jsonize() function.
+指定フォーマットでデータを返します。共通フォーマット: csv, tsv, xls, xlsx, ods, html。
 
-**On error:**
-```json
-{
-  "code": "error",
-  "type": "[error_type]",
-  "message": "[error message]"
-}
+## プロジェクト削除 {#delete-project}
+
+> **コマンド:** _POST /command/core/delete-project_
+
+```
+'project' : プロジェクト ID
 ```
 
-## Third-party software libraries {#third-party-software-libraries}
+## 非同期プロセスの状態確認 {#check-status-of-async-processes}
 
-Libraries using the OpenRefine API are listed on the [Extensions](/extensions#client-libraries) website.
+> **コマンド:** _GET /command/core/get-processes_
+
+```
+'project' : プロジェクト ID
+```
+
+## 全プロジェクトのメタデータ取得 {#get-all-projects-metadata}
+
+> **コマンド:** _GET /command/core/get-all-project-metadata_
+
+全プロジェクトの ID・名称・作成日時・更新日時を返します。
+
+```json
+{"projects":{"123":{"name":"proj","created":"..."}}}
+```
+
+## 式プレビュー {#expression-preview}
+
+> **コマンド:** _POST /command/core/preview-expression_
+
+指定の列と行に式（GREL/Jython/Clojure）を適用し、結果を返します。
+
+主なパラメータ:
+- `cellIndex`: 対象列
+- `rowIndices`: 行インデックス配列（例: `[0,1]`）
+- `expression`: `grel:value.toLowercase()` のように `<言語>:<式>`
+- `project`: プロジェクト ID
+- `repeat`, `repeatCount`: 同じ計算を繰り返す場合に指定
+
+成功レスポンス:
+```json
+{"code":"ok","results":["foo","bar"]}
+```
+
+## サードパーティライブラリ {#third-party-software-libraries}
+
+API クライアントライブラリは [Extensions](/extensions#client-libraries) にまとめられています。

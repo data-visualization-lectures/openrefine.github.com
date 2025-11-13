@@ -1,14 +1,15 @@
 ---
 id: providing-design-assets-and-implementation
-title: Providing design assets and implementation
-sidebar_label: Providing design assets and implementation
+title: デザインアセットと実装の提供
+sidebar_label: デザインアセットと実装
 ---
 
-## Providing design assets and design implementation
--  **High-fidelity designs**: Once wireframes are approved by community consensus, proceed to create high-fidelity designs of the user interface using design tools like Figma or Sketch.
+## デザインアセットの提供と実装
 
--  **Visual consistency**: Ensure your designs align with the existing design system, incorporating colors, typography, and UI components as outlined in the OpenRefine Design System. Note: Using Figma in this regard will probably save you time.
+- **ハイファイデザイン**: ワイヤーフレームについてコミュニティの合意が得られたら、Figma や Sketch などを使って高忠実度の UI デザインを作成します。
 
--  **Export assets**: Export design assets such as icons, buttons, and graphics in formats suitable for implementation and link them directly in the relevant GitHub issues. 
+- **ビジュアルの一貫性**: 既存のデザインシステムに沿って、OpenRefine Design System で定義された色・タイポグラフィ・UI コンポーネントを適用します（Figma を使うと効率的です）。
 
--  **Implementing your design ideas**: If you’re fluent in frontend development, as well as design, you will ideally be able to also implement your own design proposals in html and css. You can follow the contributor guide for developers for detailed instructions on how the process for contributing code via GitHub is organized.
+- **アセットの書き出し**: アイコンやボタンなどのデザインアセットを実装に適した形式で書き出し、関連する GitHub Issue から参照できるようにします。
+
+- **実装**: フロントエンド開発に慣れている場合は、HTML/CSS で自分のデザイン提案を実装することも歓迎です。GitHub を通じたコード貢献の流れは開発者向けガイドに従ってください。
