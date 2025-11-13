@@ -1,89 +1,75 @@
 ---
 id: maintainer-guidelines
-title: Guidelines for maintaining OpenRefine
-sidebar_label: Maintainer guidelines
+title: メンテナー向けガイドライン
+sidebar_label: メンテナーガイドライン
 ---
 
-This page describes our practices to review issues and pull requests in the OpenRefine project.
+OpenRefine で Issue や Pull Request をレビューする際のルールをまとめています。
 
-## Reviewing issues {#reviewing-issues}
+## Issue のレビュー {#reviewing-issues}
 
-When people create new issues, they automatically get assigned [the "to be reviewed" tag](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue+is%3Aopen+label%3A%22to+be+reviewed%22).
+新しい Issue には自動的に ["to be reviewed" ラベル](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue+is%3Aopen+label%3A%22to+be+reviewed%22) が付きます。開発者でなくても構わないので、OpenRefine に詳しい人が内容を確認し、本当のバグや妥当な改善提案かどうかを判断してください。妥当であればラベルを外して残します。そうでなければ礼儀正しくクローズしましょう。
 
-Ideally, for each of these issues, someone familiar with OpenRefine (not necessarily a developer!) should read the issue and try to determine if there is a genuine bug to fix, or if the enhancement request is legitimate. In those cases, we can remove the "to be reviewed" tag and leave the issue open. In the others, the issue should be politely closed.
+### バグ {#bugs}
 
-### Bugs {#bugs}
+期待動作の誤解ではなく、本当に想定外の挙動かを確認します（ドキュメント改善が必要な場合もあります）。問題が正しそうなら master ブランチで再現できるかを確かめます。Issue に再現情報が不足している場合は "not reproducible" を付けて追加情報を依頼し、一定期間返答がなければクローズします。
 
-For a bug, we should first check if it is a real unexpected behaviour or if just comes from a misunderstanding of the intended behaviour of the tool (which could suggest an improvement to the documentation). Then, if it sounds like a genuine problem, we need to check if it can be reproduced independently on the master branch. If the issue does not give enough details about the bug to reproduce it on master, mark it as "not reproducible" and ask the reporter for more information. After some time without any information from the reporter, we can close the issue.
+### 改善要望 {#enhancement-requests}
 
-### Enhancement requests {#enhancement-requests}
+提案された機能がプロジェクトの範囲に収まるかを判断します。明確な基準はないので、自分の感覚を信じて「ツールが良くなるか」「プロジェクトの精神に合うか」を考えてください。意見が分かれたら Issue 上で議論できます。
 
-For an enhancement, we need to make a judgment call of whether the proposed functionality is in the scope of the project. There is no universal rule for this of course, so just use your own intuition: do you think this would improve the tool? Would it be consistent with the spirit of the project? Trust your own opinion - if people disagree, they can have a discussion on the issue.
+### good first issue の付与 {#tagging-good-first-issues}
 
-### Tagging good first issues {#tagging-good-first-issues}
+["good first issue" ラベル](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) は、開発プロセスに慣れた人が付けるべきです。GitHub や我々から新規貢献者への入口として紹介するため、取り組みやすい Issue であることが重要です。
 
-Adding [the "good first issue" tag](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) is something that requires a bit more familiarity with the development process. This tag is used by GitHub to showcase issues in some project lists and we point interested potential contributors to it. It is therefore important that tackling these issues gives them a nice onboarding experience, with as few hurdles as possible.
+開発者は「数時間以内で良質な PR を出せる」「難しい設計判断が不要」「チームが受け入れることが明らかな内容」と判断できる場合にこのラベルを付与してください。
 
-Develepers should add the "good first issue" tag when they are confident that they can provide a good pull request for the issue with at most a few hours of work. Also, solving the issue should not require any difficult design decision. The issue should be uncontentious: it should be clear that the proposed solution should be accepted by the team.
+## Pull Request のレビュー {#reviewing-pull-requests}
 
-## Reviewing pull requests {#reviewing-pull-requests}
+### プロセス {#process}
 
-### Process {#process}
+1. PR は作者以外のコミッターがレビューし、下記要件を満たしているか確認しテストします。PR と関連 Issue が正しく紐付いているかを確認し、影響が大きい場合は他の貢献者の意見も募ります。
+2. レビュアーは PR を squash merge します（Weblate PR は例外で、そのままマージ）。
+3. 対応した Issue を次回リリースのマイルストーン（例: [3.5 マイルストーン](https://github.com/OpenRefine/OpenRefine/milestone/17)）へ追加します。
+4. ユーザーや開発者にとって重要な変更は、次回リリースの changelog（例: [Changes for 3.5](https://github.com/OpenRefine/OpenRefine/wiki/Changes-for-3.5)）へ追記します。
 
-1. A committer reviews the PR to check for the requirements below and tests it. Each PR should be linked to one or more corresponding issues and the reviewer should check that those are correctly addressed by the PR. The reviewer should be someone else than the PR author. For PRs with an important impact or contentious issues, it is important to leave enough time for other contributors to give their opinion.
+### 要件 {#requirements}
 
-2. The reviewer merges the pull request by squashing its commits into one (except for Weblate PRs which should be merged without squashing).
+#### コードスタイル {#code-style}
 
-3. The reviewer adds the linked issues to the milestone for the next release (such as [the 3.5 milestone](https://github.com/OpenRefine/OpenRefine/milestone/17))
+現状、自動チェックがあるのは Cypress を使った統合テストのみです。その他は周辺コードに合わせてください。[ツール全体でスタイルを決めて CI で検証したい](https://github.com/OpenRefine/OpenRefine/issues/2338) という課題もあります。
 
-4. If the change is worth noting for users or developers, the reviewer adds an entry in the changelog for the next release (such as [Changes for 3.5](https://github.com/OpenRefine/OpenRefine/wiki/Changes-for-3.5))
+#### テスト {#testing}
 
-### Requirements {#requirements}
+- Java（TestNG）によるバックエンドテスト
+- JavaScript（Cypress）による UI テスト
 
-#### Code style {#code-style}
+バックエンド変更には TestNG テストを、UI 機能変更には可能な限り Cypress テストを追加し、同じ PR に含めます。
 
-Currently, only our code style for integration tests (using Cypress) is codified and enforced by the CI.
-For the rest, we rely on imitating the surrounding code. [We should decide on a code style and check it in the CI for other areas of the tool](https://github.com/OpenRefine/OpenRefine/issues/2338).
+#### ドキュメント {#documentation}
 
-#### Testing {#testing}
+ユーザー向け機能が変わる場合は、ドキュメントも同じ PR で更新してください。
 
-We currently rely have two sorts of tests:
-* Backend tests, in Java, written with the TestNG framework. Their granularity varies, but generally speaking they are unit tests which test components in isolation.
-* UI tests, in Javascript, written with the Cypress framework. They are integration tests which test both the frontend and the backend at the same time.
+#### UI スタイル {#ui-style}
 
-Changes to the backend should generally come with the accompanying TestNG tests.
-Functional changes to the UI should ideally come with corresponding Cypress tests as well.
+正式なガイドラインはないため、既存スタイルを踏襲してください。
 
-Those tests should be supplied in the same PR as the one that touches the product code.
+#### ライセンスと依存関係 {#licensing-and-dependencies}
 
-#### Documentation {#documentation}
+依存ライブラリは BSD-3-Clause と両立するライセンスである必要があります。またバンドルサイズに影響するため、依存追加は慎重に検討します。
 
-Changes to user-facing functionality should be reflected in the docs. Those documentation changes should happen in the same PR as the one that touches the product code.
+#### CI {#continuous-integration}
 
-#### UI style {#ui-style}
+CI のチェックはすべて緑であることが条件です。
 
-We do not have formally defined UI style guidelines. Contributors are invited to imitate the existing style.
+### 特別な PR {#special-pull-requests}
 
-#### Licensing and dependencies {#licensing-and-dependencies}
+#### Weblate PR {#weblate-prs}
 
-Dependencies can only be added if they are released under a license that is compatible with our BSD Clause-3 license.
-One should pay attention to the size of the dependencies since they inflate the size of the release bundles.
+Weblate PR は squash すると Weblate 側で取り込みが検出できなくなるため、squash せずにマージします。言語チェックは簡単な目視のみで構いません。修正が必要なら Weblate 上で行います。
 
-#### Continuous integration {#continuous-integration}
+#### Dependabot PR {#dependabot-prs}
 
-The various check statuses reported by our continuous integration suite should be green.
-
-### Special pull requests {#special-pull-requests}
-
-#### Weblate PRs {#weblate-prs}
-
-Weblate PRs should not be squashed as it prevents Weblate from recognizing that the corresponding changes have been made in master. They should be merged without squashing.
-
-Reviewing Weblate PRs only amonuts to a quick visual sanity check as maintainers are not expected to master the languages involved. If corrections need to be made, they should be done in Weblate itself.
-
-#### Dependabot PRs {#dependabot-prs}
-
-When reviewing a Dependabot PR it is generally useful to pay attention to:
-* the type of version change: most libraries follow the "semver" versioning convention, which indicates the nature of the change.
-* the library's changelog, especially if the version change is more significant than a patch release
-
+Dependabot PR では以下を確認すると良いでしょう。
+- バージョン変更の種類（多くは semver に従う）
+- ライブラリの changelog（特にマイナー以上の更新）

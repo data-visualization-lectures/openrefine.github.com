@@ -1,28 +1,28 @@
 ---
 id: homebrew-cask-process
-title: Maintaining OpenRefine's Homebrew cask
-sidebar_label: Maintaining OpenRefine's Homebrew cask
+title: Homebrew cask のメンテナンス
+sidebar_label: Homebrew cask のメンテナンス
 ---
 
-[Homebrew](https://brew.sh) is a popular command-line package manager for macOS. Once Homebrew is installed, OpenRefine can be installed via the simple command, `brew install openrefine`. OpenRefine's presence on Homebrew is found in the Homebrew Cask repository project, as a "cask", at https://github.com/Homebrew/homebrew-cask/blob/master/Casks/o/openrefine.rb.
+[Homebrew](https://brew.sh) は macOS 向けの人気パッケージマネージャーです。Homebrew をインストールすれば `brew install openrefine` で OpenRefine を導入できます。OpenRefine の cask は https://github.com/Homebrew/homebrew-cask/blob/master/Casks/o/openrefine.rb にあります。
 
-**Terminology:** "Homebrew Cask" is the segment of Homebrew where pre-built binaries and GUI applications go, whereas the original "Homebrew" project is reserved for command-line utilities that can be built from source. Because the macOS version of OpenRefine is released as an app bundle with GUI components, it is handled as a Homebrew Cask.
+**用語:** GUI 付きのアプリや事前ビルド済みバイナリは「Homebrew Cask」で扱われ、コマンドライン用のソースビルドパッケージが「Homebrew（Formula）」に分類されます。OpenRefine の macOS 版はアプリバンドル（GUI）なので Cask 側で管理されます。
 
-When there is a new release of OpenRefine, registering the new release with Homebrew can be easily accomplished using Homebrew's `brew bump-cask-pr` command (if it's not done automatically as in [this PR](https://github.com/Homebrew/homebrew-cask/pull/192923)). Full directions for this utility as well as procedures for more complex PRs can be found on [the Homebrew Cask CONTRIBUTING page](https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md), but, a simple version bump is a one-line command. For example, to update Homebrew's version of OpenRefine to 3.4.1, use this command:
+新リリース時は `brew bump-cask-pr` コマンドで簡単に更新できます（自動 PR が作られる場合もあります。例: [この PR](https://github.com/Homebrew/homebrew-cask/pull/192923)）。詳細な手順は [Homebrew Cask CONTRIBUTING](https://github.com/Homebrew/homebrew-cask/blob/master/CONTRIBUTING.md) を参照してください。単純なバージョンアップなら以下の 1 行で済みます（例: 3.4.1 への更新）。
 
 ```
 brew bump-cask-pr --version 3.4.1 openrefine
 ```
 
-This command will cause your local Homebrew installation to download the new version of OpenRefine, calculate the installer's new SHA-256 fingerprint value, and construct a pull request under your GitHub account. Once the pull request is submitted, continuous integration tests will run, and a member of the Homebrew community will review the PR. At times there is a backlog on the CI servers, but once tests pass, the community review is typically completed in a matter of hours.
+このコマンドはローカルの Homebrew で新バージョンをダウンロードし、インストーラの SHA-256 を計算し、あなたの GitHub アカウントから PR を作成します。PR 作成後に CI が走り、Homebrew コミュニティがレビューします。CI に待ちが発生することがありますが、テスト完了後は数時間以内にレビューされることがほとんどです。
 
-**Note:** It is important that the OpenRefine release tag and version number are identical, so that the Homebrew cask can find the installer's URL. This is because Homebrew's cask for OpenRefine uses the following formula for constructing the URL to OpenRefine's installer for a given release:
+**注意:** OpenRefine のリリースタグとバージョン番号が一致していることが重要です。Homebrew の cask は以下の URL 形式でインストーラを取得するためです。
 
 ```
 https://github.com/OpenRefine/OpenRefine/releases/download/#{version}/openrefine-mac-#{version}.dmg
 ```
 
-That is, when you tell Homebrew that OpenRefine is now at version `3.4.1`, Homebrew will try to download the OpenRefine installed from the following URL:
+たとえば Homebrew に `3.4.1` と伝えた場合、以下の URL からダウンロードを試みます。
 
 ```
 https://github.com/OpenRefine/OpenRefine/releases/download/3.4.1/openrefine-mac-3.4.1.dmg

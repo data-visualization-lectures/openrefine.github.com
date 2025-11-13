@@ -1,30 +1,27 @@
 ---
 id: github
-title: Communicating via GitHub
-sidebar_label: Communicating via GitHub
+title: GitHub でのコミュニケーション
+sidebar_label: GitHub でのコミュニケーション
 ---
 
-We recommend new members of OpenRefine's GitHub organization to apply some GitHub configuration settings, to help them integrate in the project smoothly.
+OpenRefine の GitHub 組織に参加したメンバーがスムーズに活動できるよう、いくつかの設定をおすすめしています。
 
-## Notifications
+## 通知設定
 
-As a member of the organization, GitHub subscribes you automatically to a lot of notifications about everything that is happening in the project. For most people, this will generate much more noise than desired.
+組織メンバーになると、GitHub から大量の通知が届くようになります。多くの場合はノイズが多すぎるため、設定を見直しましょう。
 
-Go to [the OpenRefine repository](https://github.com/OpenRefine/OpenRefine), click on "Unwatch" and pick "Participating and @mentions".
-This will ensure that you only get notifications in discussions in which you left a comment, or if you were explicitly pinged.
+[OpenRefine リポジトリ](https://github.com/OpenRefine/OpenRefine) にアクセスし、右上の「Unwatch」をクリックして "Participating and @mentions" を選択します。これで、自分がコメントしたスレッドやメンションされた場合のみ通知が届くようになります。
 
-![Screenshot of notification settings on GitHub, where 'Participating and mentions' is selected](/img/github/notification_settings.png)
+![通知設定のスクリーンショット](/img/github/notification_settings.png)
 
-We encourage you to do the same for any other repository which generates unwanted notifications in your feed.
-This will help you ensure your GitHub notifications stay relevant and help you get involved in OpenRefine, focusing on the topics that you care about.
+他のリポジトリでも不要な通知が多ければ同様に設定してください。自分にとって重要なトピックに集中しやすくなります。
 
-## Publicizing your membership
+## メンバーシップの公開設定
 
-By default, your membership of the OpenRefine project is kept hidden. We encourage you to make it public by going to [the list of members of the OpenRefine organization](https://github.com/orgs/OpenRefine/people), looking for your own user account there,
-and switching from "Private" to "Public".
+デフォルトでは、OpenRefine 組織への所属は非公開になっています。[メンバー一覧](https://github.com/orgs/OpenRefine/people) で自分のアカウントを見つけ、「Private」から「Public」に切り替えると公開できます。
 
-![Screenshot of the two visibility choices (private and public) for organization membership on GitHub](/img/github/publicize_membership.png)
+![メンバーシップの公開設定スクリーンショット](/img/github/publicize_membership.png)
 
-This will include you in the list of project members and display an OpenRefine badge on your GitHub profile:
+公開するとメンバー一覧に表示され、GitHub プロフィールに OpenRefine バッジがつきます。
 
-![Screenshot of an OpenRefine badge on a GitHub profile](/img/github/badge.png)
+![バッジ表示のスクリーンショット](/img/github/badge.png)

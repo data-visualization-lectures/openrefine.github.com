@@ -1,15 +1,13 @@
 ---
 id: introduction
-title: Introduction
-sidebar_label: Introduction
+title: はじめに
+sidebar_label: はじめに
 ---
 
-### Welcome to the OpenRefine design contribution documentation!
+### OpenRefine デザイン貢献ドキュメントへようこそ！
 
-This documentation is a comprehensive guide to contributing and collaborating on design for OpenRefine. It covers everything from joining the community to creating and implementing design changes. 
+このドキュメントは、OpenRefine のデザインに参加・協働するための包括的なガイドです。コミュニティへの参加方法から、デザイン変更の提案・実装までを網羅しています。
 
-We invite designers to help with usability issues (UX/UI), aesthetics and visual design input, and more.
+UX/UI の改善やビジュアル面の提案など、デザイナーの皆さんが力を発揮できる場があります。
 
-The goal of this documentation is to help you make impactful contributions to OpenRefine's user experience. We emphasize the importance of open communication, feedback, and collaboration with developers.
-
-Whether you're a seasoned designer or new to open source, we believe that your contributions can make a significant impact on OpenRefine.
+ここでは、オープンなコミュニケーションとフィードバック、開発者との協力を重視し、OpenRefine のユーザー体験に影響力のある貢献ができるようサポートします。OSS に慣れた方も、初めての方も、このプロジェクトで大きな価値を生み出せると信じています。
