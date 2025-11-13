@@ -1,106 +1,63 @@
 ---
 id: translating-ui
-title: Translate OpenRefine's interface
-sidebar_label: Translate OpenRefine's interface
+title: OpenRefine の翻訳
+sidebar_label: OpenRefine の翻訳
 ---
 
-You can help translate OpenRefine into your language by visiting [Weblate](https://hosted.weblate.org/engage/openrefine/?utm_source=widget) which provides a web based UI to edit and add translations and sends automatic pull requests back to our project.
+OpenRefine を自分の言語に翻訳するには [Weblate](https://hosted.weblate.org/engage/openrefine/?utm_source=widget) を利用します。ブラウザ上で翻訳を編集でき、完了すると自動的に Pull Request が送信されます。
 
 ![Translation status](https://hosted.weblate.org/widgets/openrefine/-/287x66-grey.png)
 
-Click to help translate --> [Weblate](https://hosted.weblate.org/engage/openrefine/?utm_source=widget)
+→ [Weblate で翻訳に参加](https://hosted.weblate.org/engage/openrefine/?utm_source=widget)
 
-## Manual translation process {#manual-translation-process}
- 
-Localized strings are entered in a `.json` file, one per language. They are located in the folder `main/webapp/modules/core/langs/` in a file named `translation-xx.json`, where `xx` is the language code (i.e. `fr` for French).
+## 手動で翻訳する {#manual-translation-process}
 
-### Simple case of localized string {#simple-case-of-localized-string}
-This is an example of a simple string, with the start of the JSON file. This example is for French.
-```
+各言語の文字列は `main/webapp/modules/core/langs/translation-xx.json` に格納されています（`xx` は言語コード、例: `fr`）。
+
+### 単純な例 {#simple-case-of-localized-string}
+```json
 {
     "name": "Français",
-    "core-index/help": "Aide",
-    (… more lines)
+    "core-index/help": "Aide"
 }
 ```
 
-So the key `core-index/help` will render as `"Aide"` in French.
+`core-index/help` というキーに対し、フランス語では "Aide" が表示されます。
 
-### Localization with a parameterized value {#localization-with-a-parameterized-value}
-In this example, the name of the column (represented by `$1` in this example), will be substituted with the string of the name of the column.
+### 変数を含む例 {#localization-with-a-parameterized-value}
+列名などのパラメータは `$1` のように表現します。
 
-`"core-facets/edit-facet-title": "Cliquez ici pour éditer le nom de la facette\nColonne : $1",`
-
-### Localization with a singular/plural value {#localization-with-a-singularplural-value}
-In this example, one of the parameter will have a different string depending if the value is 1 or another value.
-In this example, the string for page, the second parameter, `$2`, will have an « s » or not depending on the value of `$2`.
-
-`"core-views/goto-page": "$1 de $2 {{plural:$2|page|pages}}"`
-
-## Front-end development {#front-end-development}
-
-The OpenRefine front end has been localized using the [Wikimedia jquery.i18n library](https://github.com/wikimedia/jquery.i18n). The localized text is stored in a JSON dictionary on the server and retrieved with a new OpenRefine command.
-
-### Adding a new string {#adding-a-new-string}
-
-There should be no hard-coded language strings in the HTML or JSON used for the front end.  If you need a new string, first check the existing strings to make sure there isn't an equivalent string, **in an equivalent context**, that you can reuse.  Context is important because it can affect how the same literal English text is translated. This cuts down on the amount of text which needs to be translated.
-
-Strings should be entire sentences or phrases and should include substitution variables for any parameters. Do not concatenate strings in either Java or Javascript (or implicitly by laying them out in a specific order). So, instead of `"You have " + count + " row(s)"` (or worse `count != 1 ? " rows" : " row"`), internationalize everything together so that it can be translated taking into account word ordering and plurals for different languages, ie `"You have $1 {{plural $1: row|rows}}"`, passing the parameter(s) into the `$.i18n` call.
-
-If there's no string you can reuse, allocate an available key in the appropriate translation dictionary and add the default string, e.g.
-
-```json
-...,
-"section/newkey": "new default string for this key",
-...
+```
+"core-facets/edit-facet-title": "Cliquez ici ...\nColonne : $1"
 ```
 
-and then set the text (or HTML) of your HTML element using i18n helper method. So given an HTML fragment like:
-```html
-<label id="new-element-id">[untranslated text would have appeared here before]</label>
-```
-we could set its text using:
-```
-$('#new-html-element-id').text($.i18n('section/newkey'));
-```
-or, if you need to embed HTML tags:
-```
-$('#new-html-element-id').html($.i18n('section/newkey'));
-```
+### 単数・複数形 {#localization-with-a-singularplural-value}
+`{{plural:$2|page|pages}}` のようにして値に応じた語形を選択します。
 
-HTML should be avoided as it can enable [cross-scripting attacks](https://owasp.org/www-community/attacks/xss/).
+## フロントエンド開発 {#front-end-development}
 
-### Adding a new language {#adding-a-new-language}
+OpenRefine のフロントエンドは [Wikimedia jquery.i18n](https://github.com/wikimedia/jquery.i18n) でローカライズされています。新しい文字列が必要な場合は既存のキーを再利用できないか確認し、適切なキーで文章全体を国際化してください。以下のように `$.i18n('section/key')` で取得し、`text()` か `html()` を使って DOM に挿入します。
 
-The language dictionaries are stored in the `langs` subdirectory for the module e.g.
-
-* https://github.com/OpenRefine/OpenRefine/tree/master/main/webapp/modules/core/langs for the main interface
-* https://github.com/OpenRefine/OpenRefine/tree/master/extensions/database/module/langs for database via JDBC
-* https://github.com/OpenRefine/OpenRefine/tree/master/extensions/wikibase/module/langs for the Wikibase extension
-
-To add support for a new language, the easiest way is to do it directly in Weblate. To do it manually, copy `translation-en.json` to `translation-<locale>.json` and have your translator translate all the value strings (ie right hand side).
-
-#### Main interface {#main-interface}
- The translation is best done [with Weblate](https://hosted.weblate.org/engage/openrefine/?utm_source=widget). Changes are pushed to OpenRefine's git repository and are included in the next release.
-
-[Run OpenRefine from the master branch](/docs/technical-reference/build-test-run) and check whether translated words fit to the layout. Not all items can be translated word by word, especially into non-Ìndo-European languages.
-
-If you see any text which remains in English even when you have checked all items, please create bug report in the issue tracker so that the developers can fix it.
-
-#### Extensions {#extensions}
-
-Extensions can be translated via Weblate just like the core software.
-
-The Wikibase extension contains lots of domain-specific concepts, with which you may not be familiar. The Wikidata may not have reconciliation service for your language. We recommend checking the [Wikidata glossary](https://www.wikidata.org/wiki/Wikidata:Glossary) to be consistent.
-
-By default, the system tries to load the language file corresponding to the currently in-use browser language. To override this setting a new menu item ("Language Settings") has been added at the index page.
-To support a new language file, the developer should add a corresponding entry to the dropdown menu in this file: `/OpenRefine/main/webapp/modules/core/scripts/index/lang-settings-ui.html`. The entry should look like:
 ```javascript
-<option value="<locale>">[Language Label]</option>
+$('#element').text($.i18n('section/key'));
 ```
 
-## Server-side localisation {#server--backend-coding}
+文字列の連結は行わず、パラメータを含む完全な文章として翻訳対象に含めます。
 
-Certain areas of the back-end can also be localized, also via Weblate.
-The translated strings are stored in `.properties` file, from which Java classes are generated at compilation time.
-For instance, operation descriptions are stored under [`main/resources/com/google/refine/operations`](https://github.com/OpenRefine/OpenRefine/tree/master/main/resources/com/google/refine/operations/).
+## 新しい言語の追加 {#adding-a-new-language}
+
+最も簡単なのは Weblate で翻訳を追加する方法です。手動の場合は `translation-en.json` をコピーして `translation-<locale>.json` を作成し、値を翻訳します。
+
+- コア UI: `main/webapp/modules/core/langs`
+- database 拡張: `extensions/database/module/langs`
+- Wikibase 拡張: `extensions/wikibase/module/langs`
+
+マスターブランチで OpenRefine を動かしてレイアウトに収まるか確認してください。未翻訳のテキストが残る場合は Issue を作成して報告してください。
+
+### 拡張 {#extensions}
+
+拡張も Weblate で翻訳できます。Wikibase 拡張では専門用語が多いため、[Wikidata glossary](https://www.wikidata.org/wiki/Wikidata:Glossary) を参照するとよいでしょう。新言語をメニューに表示するには `/main/webapp/modules/core/scripts/index/lang-settings-ui.html` のドロップダウンに `<option value="<locale>">言語名</option>` を追加します。
+
+## サーバー側ローカライズ {#server--backend-coding}
+
+バックエンドの一部も Weblate で翻訳され、`.properties` ファイルに保存されています。ビルド時に Java クラスへ生成されます。例: 操作説明は [`main/resources/com/google/refine/operations`](https://github.com/OpenRefine/OpenRefine/tree/master/main/resources/com/google/refine/operations/) にあります。

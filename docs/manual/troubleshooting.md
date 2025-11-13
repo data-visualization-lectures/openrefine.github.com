@@ -1,7 +1,6 @@
----
 id: troubleshooting
-title: Troubleshooting
-sidebar_label: Troubleshooting
+title: トラブルシューティング
+sidebar_label: トラブルシューティング
 ---
 
 ## Frequently asked questions {#frequently-asked-questions}

@@ -1,41 +1,38 @@
 ---
 id: reconciliation-api
-title: Reconciliation API
-sidebar_label: Reconciliation API
+title: リコンサイル API
+sidebar_label: リコンサイル API
 ---
 
-_This is a technical description of the mechanisms behind the reconciliation system in OpenRefine. For usage instructions, see [Reconciliation](manual/reconciling.md)._
+_ここでは OpenRefine のリコンサイル機構の技術的仕組みを説明します。使い方は [リコンサイル](manual/reconciling.md) を参照してください。_
 
-A reconciliation service is a web service that, given some text which is a name or label for something, and optionally some additional details, returns a ranked list of potential entities matching the criteria. The candidate text does not have to match each entity's official name perfectly, and that's the whole point of reconciliation--to get from ambiguous text name to precisely identified entities. For instance, given the text "apple", a reconciliation service probably should return the fruit apple, the Apple Inc. company, and New York city (also known as the Big Apple).
+リコンサイルサービスは、名前やラベルなどのテキストと任意の追加情報を受け取り、条件に合致する候補エンティティを順位付きで返す Web サービスです。候補テキストは公式名称と完全一致する必要はありません。これにより曖昧な文字列から確定したエンティティ ID に結び付けられます。例えば "apple" なら、果物の Apple、企業 Apple Inc.、通称 Big Apple のニューヨークなどが返るでしょう。
 
-Entities are identified by strong identifiers in some particular identifier space. In the same identifier space, identifiers follow the same syntax. For example, given the string "apple", a reconciliation service might return entities identified by the strings " [Q89](https://www.wikidata.org/wiki/Q89)", "[Q312](https://www.wikidata.org/wiki/Q312)", and "[Q60](https://www.wikidata.org/wiki/Q60)", in the Wikidata ID space. Each reconciliation service can only reconcile to one single identifier space, but several reconciliation services can reconcile to the same identifier space.
+エンティティは特定の ID 空間で一意の識別子を持ちます。例: Wikidata で "apple" に対する候補は `Q89`、`Q312`、`Q60` などです。1 つのリコンサイルサービスは単一の ID 空間に対してのみ動作しますが、同じ空間に複数サービスが存在することは可能です。
 
-OpenRefine can connect to any reconciliation service which follows the [reconciliation API v0.2](https://reconciliation-api.github.io/specs/0.2/). This was formerly a specification edited by the OpenRefine project, which has now transitioned to its own
-[W3C Entity Reconciliation Community Group](https://www.w3.org/community/reconciliation/).
+OpenRefine は [reconciliation API v0.2](https://reconciliation-api.github.io/specs/0.2/) に従う任意のサービスと接続できます。以前は OpenRefine が策定していましたが、現在は [W3C Entity Reconciliation Community Group](https://www.w3.org/community/reconciliation/) に移管されています。
 
-Informally, the main function of any reconciliation service is to find good candidates in the underlying database, given the following data:
+非公式には、リコンサイルサービスは以下の情報から適切な候補を検索します。
 
-* A string, which is normally the name or title of the entity, in some language.
-* Optionally, a type which can be used to narrow down the search to entities of this type. OpenRefine does not define a particular set of acceptable types: this choice is left to the reconciliation service (see the suggest API for that).
-* Optionally, a list of properties and their values, which can be used to refine the search. For instance, when reconciling a database of books, the author name or the publication date are useful bits of information that can be transferred to the reconciliation service. This information will be sent to the reconciliation service if the user binds columns to properties. Again, the notion of property is not predefined in OpenRefine: its definition depends on the reconciliation service.
+- エンティティの名称やタイトルとなる文字列
+- 任意: Type。どのタイプのエンティティに絞るか。Type の定義はサービス側に委ねられています（Suggest API を参照）。
+- 任意: プロパティと値の組。例: 書籍データなら著者名や出版年など。ユーザーが列をプロパティに紐付けると、この情報が送信されます。プロパティの定義もサービスに依存します。
 
-In a sense, the reconciliation protocol is a standardized search API tailored to the specific needs of data matching. Beyond searching for candidate matches, it also comes with other features to help the user review and correct a matching (by offering previews and auto-completion for the target dataset).
+リコンサイルプロトコルはデータ照合向けに特化した検索 API と捉えられます。候補検索だけでなく、プレビューや補完機能でユーザーによる結果確認・修正も支援します。
 
-See [the specifications of the protocol](https://reconciliation-api.github.io/specs/0.1) for more details about it. You can suggest changes on its [issues tracker](https://github.com/reconciliation-api/specs/issues) or on the [group mailing
-list](https://lists.w3.org/Archives/Public/public-reconciliation/).
+詳細は [仕様](https://reconciliation-api.github.io/specs/0.1) を参照し、変更提案は [Issue トラッカー](https://github.com/reconciliation-api/specs/issues) や [メーリングリスト](https://lists.w3.org/Archives/Public/public-reconciliation/) へどうぞ。
 
-## API versions supported by OpenRefine
+## OpenRefine がサポートする API バージョン
 
-There are multiple versions of the protocol available:
-- [version 0.1](https://www.w3.org/community/reports/reconciliation/CG-FINAL-specs-0.1-20230321/), supported since OpenRefine 2.7. This version of the protocol is based on [JSONP](https://en.wikipedia.org/wiki/JSONP#Security_concerns), which represents a security risk. Therefore we discourage services to implement this version of the specifications.
-- [version 0.2](https://reconciliation-api.github.io/specs/0.2/), supported since OpenRefine 3.3. This is the current stable version of the protocol, which we encourage services to implement.
-- [the current draft of the next version](https://reconciliation-api.github.io/specs/draft/), which is not supported by OpenRefine yet.
+- [v0.1](https://www.w3.org/community/reports/reconciliation/CG-FINAL-specs-0.1-20230321/)（OpenRefine 2.7〜）。JSONP ベースでセキュリティリスクがあるため実装は推奨しません。
+- [v0.2](https://reconciliation-api.github.io/specs/0.2/)（OpenRefine 3.3〜）。現行の安定版で、実装を推奨します。
+- [次期ドラフト](https://reconciliation-api.github.io/specs/draft/)（未対応）。
 
-## Create a new reconciliation service
+## 新しいリコンサイルサービスを作るには
 
-If you want to create a reconciliation service for a new data source, we have resources to help you.
-You can work from the specification and implement the API in your own service, but there are also other options.
-* you can reuse an [existing library or framework to expose the required web API](https://reconciliation-api.github.io/census/libraries/). Note that it is worth paying attention to which version of the specification they implement.
-* you can also use a [standalone tool to expose a reconciliation service on top of a dataset](https://reconciliation-api.github.io/census/services/).
+仕様を参照して自作するほか、以下の方法もあります。
 
-In any case, you can use the [reconciliation test bench](https://reconciliation-api.github.io/testbench/) to test your service interactively on some examples and validate its behaviour. Note that this page also features a list of known public reconciliation services: you could also add yours there if it is hosted publicly.
+- [既存のライブラリ／フレームワーク](https://reconciliation-api.github.io/census/libraries/) を利用して Web API を公開する（対応バージョンに注意）。
+- [スタンドアロンツール](https://reconciliation-api.github.io/census/services/) でデータセットにリコンサイルサービスを被せる。
+
+どの場合も [test bench](https://reconciliation-api.github.io/testbench/) で挙動を確認し、公開サービス一覧に追加できます。

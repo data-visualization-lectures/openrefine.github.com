@@ -1,7 +1,6 @@
----
 id: transposing
-title: Transposing
-sidebar_label: Transposing
+title: データの転置
+sidebar_label: データの転置
 ---
 
 ## Overview {#overview}

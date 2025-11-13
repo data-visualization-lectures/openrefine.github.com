@@ -1,7 +1,6 @@
----
 id: transforming
-title: Transforming data
-sidebar_label: Overview
+title: データの変換
+sidebar_label: 概要
 ---
 
 ## 概要 {#overview}
