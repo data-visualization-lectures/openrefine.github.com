@@ -1,10 +1,12 @@
-
 # Note: this file's config overrides the Netlify UI admin config
 
-[context.production]
+[build]
   command = "npm run build"
-  environment = { NPM_FLAGS = "--force --no-progress" }
+  publish = "build"
+
+[build.environment]
+  NPM_FLAGS = "--force --no-progress"
+
+[context.production]
 
 [context.deploy-preview]
-  command = "npm run build"
-  environment = { NPM_FLAGS = "--force --no-progress" }

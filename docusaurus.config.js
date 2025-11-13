@@ -1,5 +1,8 @@
 export default async function createConfigAsync() {
 
+const BASE_URL = process.env.BASE_URL ?? '/';
+const SITE_URL = process.env.SITE_URL ?? 'https://openrefine.org';
+
 return {
   markdown: {
     mermaid: true,
@@ -9,8 +12,8 @@ return {
   onBrokenAnchors: 'warn',
   title: 'OpenRefine',
   tagline: 'A power tool for working with messy data.',
-  url: 'https://openrefine.org',
-  baseUrl: '/',
+  url: SITE_URL,
+  baseUrl: BASE_URL,
   trailingSlash: false,
   favicon: 'img/openrefine_logo.svg',
   organizationName: 'OpenRefine', // Usually your GitHub org/user name.
