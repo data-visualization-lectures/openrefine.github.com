@@ -1,124 +1,123 @@
 ---
 id: columnediting
-title: Column editing
-sidebar_label: Column editing
+title: 列編集
+sidebar_label: 列編集
 ---
 
 ## Overview {#overview}
 
-Column editing contains some of the most powerful data-improvement methods in OpenRefine. The operations in the <span class="menuItems">Edit column</span> menu involve using one column of data to add entirely new columns and fields to your dataset. 
+列編集では OpenRefine の中でも最も強力なデータ改善手法がいくつも提供されています。<span class="menuItems">Edit column</span> メニューに含まれる操作は、1 列のデータを活用して新しい列やフィールドをデータセットに追加する内容です。
 
 ## Splitting or joining {#splitting-or-joining}
 
-Many users find that they frequently need to make their data more granular: for example, splitting a “Firstname Lastname” column into two columns, one for first names and one for last names. The reverse is also often true: you may have several columns of category values that you want to join into one “category” column. 
-.
+多くのユーザーはデータをさらに細かく扱いたい場面に直面します。たとえば「姓名」列を「名」と「姓」の 2 つの列に分割したいことがあります。逆に複数のカテゴリ列をまとめて 1 つの「カテゴリ」列に統合したいケースもよくあります。
+
 ### Split into several columns {#split-into-several-columns}
 
 ![A screenshot of the settings window for splitting columns.](/img/columnsplit.png)
 
-You can find this operation at <span class="menuItems">Edit column</span> → <span class="menuItems">Split into several columns...</span>. Splitting one column into several columns requires you to identify the character, string lengths, or evaluating expression you want to split on. Just like [splitting multi-valued cells into rows](cellediting#split-multi-valued-cells), splitting cells into multiple columns will remove the separator character or string you indicate. Splitting by lengths will discard any information that comes after the specified total length. 
+この操作は <span class="menuItems">Edit column</span> → <span class="menuItems">Split into several columns...</span> から利用できます。1 列を複数列に分割するには、区切り文字や文字列の長さ、あるいは評価式で分割ポイントを指定します。[複数値セルを行に分割する](cellediting#split-multi-valued-cells) と同様に、指定した区切り文字や文字列は削除されます。長さで分割した場合には、指定した合計長さを超える情報は失われます。
 
-You can also specify a maximum number of new columns to be made: separator characters after this limit will be ignored, and the remaining characters will end up in the last column.
+新しく作成される列は元の列名に番号が付き、「Location 1」「Location 2」のようになります。元の列を削除するかどうかや、可能なら [データ型](exploring#data-types) を付与するかも選択できます。文字列を数値に変換するケースでは特に効果的で、[日付](exploring#dates) には対応しないことがあります。
 
-New columns will be named after the original column, with a number: “Location 1,” “Location 2,” etc. You can choose to remove the original column with this operation, and you can have [data types](exploring#data-types) identified where possible. This function will work best with converting strings to numbers, and may not work with [dates](exploring#dates).
+最大で何列に分割するかを指定することもできます。この上限を超える区切り文字は無視され、残った文字列は最後の列に入ります。
 
 ### Join columns {#join-columns}
 
 ![A screenshot of the settings window for joining columns.](/img/columnjoin.png)
 
-You can join columns by selecting <span class="menuItems">Edit column</span> → <span class="menuItems">Join columns...</span>. All the columns currently in your dataset will appear in the pop-up window. You can select or un-select all the columns you want to join, and drag columns to put them in the order you want to join them in. You will define a separator character (optional) and define a string to insert into empty cells (nulls). 
+列を統合するには <span class="menuItems">Edit column</span> → <span class="menuItems">Join columns...</span> を選びます。現在のデータセット内のすべての列がポップアップに表示され、結合対象の列を選択・解除したり、ドラッグして順序を指定したりできます。区切り文字（任意）や空セル（null）の代替文字列も設定します。
 
-The joined data will appear in the column you originally selected, or you can create a new column for this content and specify a name. You can delete all the columns that were used in this join operation. 
+統合結果は元の列に上書きされるか、新しい列を作って名前をつけるかを選べます。また、この操作で使用したすべての列を削除できます。
 
 ## Add column based on this column {#add-column-based-on-this-column}
 
-Selecting <span class="menuItems">Edit column</span> → <span class="menuItems">Add column based on this column...</span> will open up an [expressions](expressions) window where you can transform the data from this column (using `value`), or write a more complex expression that takes information from any number of columns or from external sources. 
+<span class="menuItems">Edit column</span> → <span class="menuItems">Add column based on this column...</span> を選ぶと、式を入力できる [expressions](expressions) ウィンドウが開きます。ここで `value` を使って現在の列のデータを変換したり、他の複数列や外部データを参照するより複雑な式を記述できます。
 
-Expressions used in this operation will rely on your knowledge of variables. You can learn more in the [Expressions section on variables](expressions#variables).
+この操作では変数に関する知識が必要になります。[変数に関する Expressions セクション](expressions#variables) を参照してください。
 
-The simplest way to use this operation is simply leave the default `value` in the expression field, to create an exact copy of your column. For a column of [reconciled data](reconciling), you can use the variable `cell` instead, to copy both the original string and the existing reconciliation data. This will include matched values, candidates, and new items. 
+最も簡単な使い方は、式欄に既定の `value` を残して列をそのままコピーする方法です。[リコンシリエーションデータ](reconciling) を含む列に対しては変数 `cell` を使うと、元の文字列と一致候補、マッチした値、新しいアイテムなどの情報もコピーできます。
 
-One useful expression is to create a column based on concatenating (merging) two other columns. Select either of the source columns, choose <span class="menuItems">Edit column</span> → <span class="menuItems">Add column based on this column...</span>, name your new column, and use the following format in the expression window:
+2 つの列を連結して新しい列を作成する例としては、元になる列のどちらかを選び <span class="menuItems">Edit column</span> → <span class="menuItems">Add column based on this column...</span> を開き、新しい列名を入力した後、式欄に次のように記述します:
 
 ```
 cells["Column 1"].value + cells["Column 2"].value
 ```
 
-If your column names do not contain spaces, you can use the following format instead:
+列名にスペースが含まれないなら、次のように書けます:
 
 ```
 cells.Column1.value + cells.Column2.value
 ```
 
-If you are in records mode instead of rows mode, you can concatenate using the following format:
+行モードではなくレコードモードの場合は、次の形式を使って連結します:
 
 ```
 row.record.cells.Column1.value + row.record.cells.Column2.value
 ```
 
-You may wish to add separators or spaces, or modify your input during this operation with more advanced expressions. 
+必要に応じて区切り文字やスペースを挟んだり、さらに高度な式で入力内容に手を加えたりできます。
 
 ## Add column by fetching URLs {#add-column-by-fetching-urls}
 
-Through the <span class="menuItems">Add column by fetching URLs</span> function, OpenRefine supports the ability to fetch HTML or data from web pages or services. In this operation you will be building URL strings based on your column of data, by using `value` to insert a relevant substring. Your chosen column needs to contains parts of paths to valid HTML pages or files online. 
+<span class="menuItems">Add column by fetching URLs</span> 機能を使うと、OpenRefine は Web ページやサービスから HTML やデータを取得できます。この操作では、`value` を用いて列のデータから URL 文字列を組み立てます。対象の列には有効な HTML ページやファイルのパスの一部が含まれている必要があります。
 
-If you have a column of URLs and want to fetch the information that they point to, you can simply run the expression as `value`. If your column has, for example, unique identifiers for Wikidata entities (numerical values starting with Q), you can download the JSON-formatted metadata about each entity with
+URL が格納された列を持っているなら、式を `value` のまま実行するとその URL に対するデータを取得できます。たとえば Wikidata エンティティを示す識別子（Q から始まる数値）が入っている場合、次のように JSON メタデータをダウンロードできます:
 
 ```
 "https://www.wikidata.org/wiki/Special:EntityData/" + value + ".json"
 ```
 
-or whatever metadata format you prefer. Information about the format options in Wikidata can be found [here](https://www.wikidata.org/wiki/Wikidata:Data_access). The service you are fetching data from may have similar documentation on its provided options.
+ほかのメタデータ形式を選ぶこともできます。Wikidata で利用できるフォーマットの一覧は [こちら](https://www.wikidata.org/wiki/Wikidata:Data_access) にあり、利用する Web サービスにも類似のドキュメントがあるはずです。
 
 ![A screenshot of the settings window for fetching URLs.](/img/fetchingURLs.png)
 
-This service is more useful when getting metadata files instead of HTML, but you may wish to work with a page’s entire HTML contents and then parse out information from that. 
+HTML ではなくメタデータファイルを取得する場面で特に役立ちますが、取得した HTML 全体を解析して必要な情報を抽出することもできます。
 
 :::caution
-Be aware that the fetching process can take quite some time and that servers may not want to fulfill hundreds or thousands of page requests in seconds. Fetching allows you to set a “throttle delay” which determines the amount of time between requests. The default is 5 seconds per row in your dataset (5000 milliseconds). We recommend leaving this at 1000 or greater. 
+フェッチ処理には時間がかかるうえ、1 秒間に数百・数千件のリクエストを受け取ってくれないサーバーもあります。デフォルトでは 1 行あたり 5 秒（5000 ミリ秒）の「スロットル遅延」が設定されており、必要に応じて変更可能です。1000 ミリ秒以上に設定することを推奨します。
 :::
 
-Note the following:
-* Before pressing “OK,” copy and paste a URL or two from the preview and test them in another browser tab to make sure they work.
-* In some situations you may need to set [HTTP request headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). To set these, click the small “Show” button next to “HTTP headers to be used when fetching URLs” in the settings window. The authorization credentials get logged in your operation history in plain text, which may be a security concern for you. You can set the following request headers:
+次の点に注意してください:
+*「OK」を押す前にプレビューから 1～2 個の URL をコピーして別のブラウザタブで開き、実際に動作するか確認してください。
+* 場合によっては [HTTP リクエストヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) を設定する必要があります。設定ウィンドウ内の「HTTP headers to be used when fetching URLs」の横にある小さな「Show」ボタンを押すと入力欄が表示されます。認証情報はプレーンテキストで履歴に記録されるため、セキュリティ上の懸念があることに留意してください。設定可能なヘッダーは以下の通りです:
   * [User-Agent](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent)
   * [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept)
   * [Authorization](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)
 
 ### Common errors {#common-errors}
 
-When OpenRefine attempts to fetch information from a web service, it can fail in a variety of ways. The following information is meant to help troubleshoot and fix problems encountered when using this function.
+Web サービスから情報を取得する際にはさまざまな失敗が起こります。以下はこの操作中に遭遇した問題をトラブルシュートするためのヒントです。
 
-First, make sure that your fetching operation is storing errors (check “store error”). Then run the fetch and look at the error messages. 
+まず「store error」を有効にしてエラーを記録したうえでフェッチを実行し、表示されたエラーメッセージを確認してください。
 
-**“HTTP error 403 : Forbidden”** can be simply down to you not having access to the URL you are trying to use. If you can access the same URL with your browser, the remote site may be blocking OpenRefine because it doesn't recognize its request as valid. Changing the [User-Agent](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent) request header may help. If you believe you should have access to a site but are “forbidden,” you may wish to contract the administrators.
+**“HTTP error 403 : Forbidden”** はアクセス権限がないか、OpenRefine のリクエストが正規のものと認識されていないことを意味します。同じ URL をブラウザで開けるなら、サイト側が OpenRefine のリクエストを拒否している可能性があります。[User-Agent](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent) ヘッダーを変更すると改善することがあります。アクセス権があるはずなのに拒否される場合は管理者に連絡してください。
 
-**“HTTP error 404 : Not Found”** indicates that the information you are requesting does not exist, perhaps due to a problem with your cell values if it only happening in certain rows. 
+**“HTTP error 404 : Not Found”** は、対象の URL に情報が存在しないことを示します。特定の行でのみ発生する場合は、セル値に問題があるかもしれません。
 
-**“HTTP error 500 : Internal Server Error”** indicates the remote server is having a problem filling your request. You may wish to simply wait and try again later, or double-check the URLs. 
+**“HTTP error 500 : Internal Server Error”** はリモートサーバーの障害を示します。時間を置いて再試行するか、URL を再確認してください。
 
-**“error: javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure”** can occur when you are trying to retrieve information over HTTPS but the remote site is using an encryption not supported by the Java virtual machine being used by OpenRefine.
+**“error: javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure”** は HTTPS 接続で、OpenRefine の Java 仮想マシンが対応しない暗号化方式を使っているときに発生します。
 
-You can check which encryption methods are supported by your OpenRefine/Java installation by using a service such as **How's my SSL**. Add the URL `https://www.howsmyssl.com/a/check` to an OpenRefine cell and run “Add column by fetching URLs” on it, which will provide a description of the SSL client being used. 
+使用している OpenRefine/Java 環境が対応する暗号スイートを確認するには、**How's my SSL** などのサービスを利用します。`https://www.howsmyssl.com/a/check` を OpenRefine のセルに入れて「Add column by fetching URLs」を実行すると、使用中の SSL クライアントの説明が得られます。
 
-You can try installing additional encryption supports by installing the [Java Cryptography Extension](https://www.oracle.com/java/technologies/javase-jce8-downloads.html). 
-Note that for Mac users and for Windows users with the OpenRefine installation with bundled JRE, these updated cipher suites need to be dropped into the Java install within the OpenRefine application: 
+追加の暗号化方式を導入するには [Java Cryptography Extension](https://www.oracle.com/java/technologies/javase-jce8-downloads.html) をインストールします。Mac およびバンドルされた JRE を含む Windows インストーラーを利用している場合は、更新した暗号スイートを OpenRefine 内の Java インストール先へ配置する必要があります:
 
-* On Mac, it will look something like `/Applications/OpenRefine.app/Contents/PlugIns/jdk1.8.0_60.jdk/Contents/Home/jre/lib/security`. 
-* On Windows: `\server\target\jre\lib\security`.
+* Mac の場合: `/Applications/OpenRefine.app/Contents/PlugIns/jdk1.8.0_60.jdk/Contents/Home/jre/lib/security`
+* Windows の場合: `\server\target\jre\lib\security`
 
-**“javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed”** can appear when the remote site is using an HTTPS certificate not trusted by your local Java installation. You will need to make sure that the certificate, or (more likely) the root certificate, is trusted. 
+**“javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed”** は、リモートサイトがローカル Java で信頼されていない証明書（多くはルート証明書）を使っているときに発生します。証明書またはルート証明書が信頼されていることを確認してください。
 
-The list of trusted certificates is stored in an encrypted file called `cacerts` in your local Java installation. This can be read and updated by a tool called “keytool.” You can find directions on how to add a security certificate to the list of trusted certificates for a Java installation [here](http://magicmonster.com/kb/prg/java/ssl/pkix_path_building_failed.html) and [here](http://javarevisited.blogspot.co.uk/2012/03/add-list-certficates-java-keystore.html).
+信頼された証明書の一覧はローカル Java インストールの暗号化された `cacerts` ファイルに格納されています。これは “keytool” というツールで読み書きできます。Java インストールにセキュリティ証明書を追加する手順は [こちら](http://magicmonster.com/kb/prg/java/ssl/pkix_path_building_failed.html) および [こちら](http://javarevisited.blogspot.co.uk/2012/03/add-list-certficates-java-keystore.html) を参照してください。
 
-Note that for Mac users and for Windows users with the OpenRefine installation with bundled JRE, the `cacerts` file within the OpenRefine application needs to be updated. 
+Mac およびバンドル JRE を含む Windows の OpenRefine では、アプリケーション内の `cacerts` ファイルも更新する必要があります。
 
-* On Mac, it will look something like `/Applications/OpenRefine.app/Contents/PlugIns/jdk1.8.0_60.jdk/Contents/Home/jre/lib/security/cacerts`.
-* On Windows: `\server\target\jre\lib\security\`.
+* Mac の場合: `/Applications/OpenRefine.app/Contents/PlugIns/jdk1.8.0_60.jdk/Contents/Home/jre/lib/security/cacerts`
+* Windows の場合: `\server\target\jre\lib\security\`
 
 ## Renaming, removing, and moving {#renaming-removing-and-moving}
 
-Every column's <span class="menuItems">Edit column</span> dropdown contains options to move it (to the beginning, end, left, or right), rename it, and delete it. 
-These operations can be undone, but a removed column cannot be restored later if you keep modifying your data. If you wish to temporarily hide a column, go to <span class="menuItems">[View](sortview#view)</span> → <span class="menuItems">Collapse this column</span> instead. 
+すべての列の <span class="menuItems">Edit column</span> ドロップダウンには、列を先頭・末尾・左・右に移動する、名前を変更する、または削除するオプションが含まれています。
+これらの操作は取り消せますが、列を削除したあとにさらに変更を重ねると元に戻せなくなります。列を一時的に非表示にしたい場合は、<span class="menuItems">[View](sortview#view)</span> → <span class="menuItems">Collapse this column</span> を使ってください。
 
-Be cautious about moving columns in [records mode](cellediting#rows-vs-records): if you change the first column in your dataset (the key column), your records may change in unintended ways. 
+[records mode](cellediting#rows-vs-records) で列を移動する際には注意が必要です。データセットの最初の列（キー列）を変更すると、レコードの構造が意図せず変化することがあります。

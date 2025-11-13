@@ -1,25 +1,25 @@
 ---
 slug: /
 id: index
-title: OpenRefine user manual
-sidebar_label: Introduction
+title: OpenRefine ユーザーマニュアル
+sidebar_label: はじめに
 ---
 
 
-This manual is designed to comprehensively walk through every aspect of setting up and using OpenRefine, including every interface function and feature.
+このマニュアルは、OpenRefine のセットアップや利用のあらゆる側面を、インターフェースの各機能を含めて丁寧に説明することを目的としています。
 
 <!--
-This documentation platform provides a separate version of the user manual for each version of OpenRefine (from 3.4.1 onwards) - if you're looking for a later version than 3.4.1, please select the correct version from the dropdown menu in the top bar of this page.
+このドキュメントプラットフォームでは、OpenRefine の各バージョン（3.4.1 以降）ごとに別々のユーザーマニュアルを用意しています。3.4.1 以降のバージョンをお探しであれば、このページ上部のドロップダウンメニューから該当バージョンを選択してください。
 -->
 
-This user manual starts with instructions for [installing or upgrading OpenRefine on Windows, Mac, and Linux computers](manual/installing.md). It then walks you through [the interface and how to run OpenRefine](manual/running.md#jvm-preferences) from a program or command line, with or without setting custom preferences and modifications.
+このユーザーマニュアルは、[Windows・Mac・Linux 向けの OpenRefine のインストールまたはアップグレード手順](manual/installing.md)から始まります。続いて、プログラムまたはコマンドラインから [OpenRefine のインターフェースと起動方法](manual/running.md#jvm-preferences) を、カスタム設定の有無にかかわらず段階的に説明します。
 
-The manual then teaches you how to [start a project](./manual/starting.md) by importing an existing dataset. We work through how to [view and learn about your data](./manual/exploring.md) using facets, filters, and sorting.
+続いて、[既存のデータセットをインポートしてプロジェクトを開始する方法](./manual/starting.md) を学び、[ファセット・フィルター・ソートを使ってデータを閲覧・理解する手順](./manual/exploring.md) を進めます。
 
-Then we launch into [transforming that data permanently](./manual/transforming.md) through common and custom transformations, clustering, pulling data from the web, [reconciling](manual/reconciling.md), and [writing expressions](manual/expressions.md).
+その後、[データを恒久的に変形する方法](./manual/transforming.md)：一般的な変換やカスタム変換、クラスタリング、ウェブからのデータ取得、[リコンシリエーション](manual/reconciling.md)、[式の記述](manual/expressions.md) などを扱います。
 
-Finally we discuss what to do with your improved dataset, whether [exporting](manual/exporting.md) it to a file or [uploading statements to Wikidata, Wikimedia Commons, or another Wikibase instance](manual/wikibase/overview.md). 
+最後に、[ファイルへエクスポート](manual/exporting.md) するか、[Wikidata・Wikimedia Commons・他の Wikibase インスタンスにステートメントをアップロード](manual/wikibase/overview.md) するかなど、整理されたデータをどう活用するかを説明します。
 
-If you're stuck on any aspect and can't find an answer in the manual, try the [Troubleshooting page](manual/troubleshooting.md) for links to various places to find help.
+行き詰まったりマニュアルで答えが見つからない場合は、[トラブルシューティングページ](manual/troubleshooting.md) で支援先へのリンクを確認してください。
 
-If you are new and want to learn how to use OpenRefine using an example dataset, you may wish to start with a user-contributed tutorial from our [recommendations list](https://github.com/OpenRefine/OpenRefine/wiki/External-Resources).
+初めてで例示データセットを使って OpenRefine の使い方を学びたい場合は、[おすすめリスト](https://github.com/OpenRefine/OpenRefine/wiki/External-Resources) にある利用者提供チュートリアルから始めるとよいでしょう。

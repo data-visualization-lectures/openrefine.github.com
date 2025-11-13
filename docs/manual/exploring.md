@@ -1,53 +1,53 @@
-﻿---
+---
 id: exploring
-title: Exploring data
-sidebar_label: Overview
+title: データの探索
+sidebar_label: 概要
 ---
 
 ## Overview {#overview}
 
-OpenRefine offers lots of features to help you learn about your dataset, even if you don’t change a single character. In this section we cover different ways for sorting through, filtering, and viewing your data. 
+OpenRefine には、1 字も変更しなくてもデータセットを理解するのに役立つ機能が多数用意されています。このセクションでは、ソート・フィルター・表示のさまざまな方法を紹介します。
 
-Unlike spreadsheets, OpenRefine doesn’t store formulas and display the output of those calculations; it only shows the value inside each cell. It doesn’t support cell colors or text formatting. 
+スプレッドシートと違って OpenRefine は式を記憶して結果だけを表示するのではなく、各セル内の値そのものだけを表示します。セルの色やテキストの書式設定はサポートされていません。
 
 ## Data types {#data-types}
 
-Each piece of information (each cell) in OpenRefine is assigned a data type. Some file formats, when imported, can set data types that are recognized by OpenRefine. Cells without an associated data type on import will be considered a “string” at first, but you can have OpenRefine convert cell contents into other data types later. This is set at the cell level, not at the column level. 
+OpenRefine の各セルにはデータ型が割り当てられます。インポート時にデータ型を設定できる形式もありますが、データ型が設定されていないセルは最初「文字列」として扱われ、後から他の型に変換することも可能です。これは列単位ではなくセル単位の設定です。
 
-You can see data types in action when you preview a new project: check the box next to <span class="fieldLabels">Attempt to parse cell text into numbers</span>, and cells will be converted to the “number” data type based on their contents. You’ll see numbers change from black text to green if they are recognized.
+新しいプロジェクトのプレビュー画面で、<span class="fieldLabels">Attempt to parse cell text into numbers</span> にチェックを入れると、内容に応じてセルが「数値」データ型に変換され、認識された数値は黒文字から緑文字に変わります。
 
-The data type will determine what you can do with the value. For example, if you want to add two values together, they must both be recognized as the number type. 
+データ型は、その値に対して何ができるかを決定します。たとえば 2 つの値を足し合わせたい場合、それぞれが数値型として認識されている必要があります。
 
-You can check data types at any time by:
-*   clicking “edit” on a single cell (where you can also edit the type)
-*   creating a <span class="menuItems">Custom Text Facet</span> on a column, and inserting `type(value)` into the <span class="fieldLabels">Expression</span> field. This will generate the data type in the preview, and you can facet by data type if you press <span class="buttonLabels">OK</span>.
+データ型はいつでも確認できます:
+* 単一のセルで「edit」をクリックして型を確認・変更する
+* 列に <span class="menuItems">Custom Text Facet</span> を作り、<span class="fieldLabels">Expression</span> 欄に `type(value)` を入力する。プレビューに型が表示され、<span class="buttonLabels">OK</span> を押せばデータ型ごとにファセットできます。
 
-The data types supported are:
-*   string (one or more text characters)
-*   number (one or more characters of numbers only)
-*   boolean (values of “true” or “false”)
-*   [date](#dates) (ISO-8601-compliant extended format with time in UTC: YYYY-MM-DDTHH:MM:SSZ)
+サポートされるデータ型:
+* 文字列（1 文字以上のテキスト）
+* 数値（数字のみの 1 文字以上）
+* 真偽値（“true” または “false”）
+* [日付](#dates)（UTC 時間を含む ISO-8601 拡張形式: YYYY-MM-DDTHH:MM:SSZ）
 
-OpenRefine recognizes two further data types as a result of its own processes:
-*   error
-*   null
+OpenRefine 独自の処理により認識される追加の型:
+* error
+* null
 
-An “error” data type is created when the cell is storing an error generated during a transformation in OpenRefine.
+「error」型は、変換中に発生したエラーがセルに格納されたときに割り当てられます。
 
-A “null” data type is a special type that means “this cell has no value.” It’s distinct from cells that have values such as “0” or “false”, or cells that look empty but have whitespace in them, or cells that contain empty strings. When you use `type(value)`, it will show you that the cell’s value is “null” and its type is “undefined.” You can opt to [show “null” values](sortview#showhide-null), by going to <span class="menuItems">All</span> → <span class="menuItems">View</span> → <span class="menuItems">Show/Hide ‘null’ values in cells</span>.
+「null」型は「このセルには値が存在しない」ことを示す特殊な型です。たとえば “0” や “false”、空白に見えるがスペースが入っているセル、または空文字列を含むセルとは区別されます。`type(value)` を使うと、セルの値は “null” で型が “undefined” だと示されます。<span class="menuItems">All</span> → <span class="menuItems">View</span> → <span class="menuItems">Show/Hide ‘null’ values in cells</span> で [“null” を表示](sortview#showhide-null) できます。
 
-Changing a cell's data type is not the same operation as transforming its contents. For example, using a column-wide transform such as <span class="menuItems">Transform</span> → <span class="menuItems">Common transforms</span> → <span class="menuItems">To date</span> may not convert all values successfully, but going to an individual cell, clicking “edit”, and changing the data type can successfully convert text to a date. These operations use different underlying code. Learn more about date formatting and transformations in the next section. 
+セルのデータ型を変更する操作は、内容を変換する操作とは別です。たとえば <span class="menuItems">Transform</span> → <span class="menuItems">Common transforms</span> → <span class="menuItems">To date</span> のような列全体の変換がすべて成功しなくても、個々のセルで「edit」して型を変更すればテキストを日付に変換できる場合があります。この 2 種類の操作は内部的に異なるコードを使っています。日付の書式や変換については次のセクションで詳しく説明します。
 
-To transform data from one type to another, see [Transforming data](cellediting#data-type-transforms) for information on using common tranforms, and see [Expressions](expressions) for information on using [toString()](grelfunctions#tostringo-string-format-optional), [toDate()](grelfunctions#todateo-b-monthfirst-s-format1-s-format2-), and other functions. 
+ある型から別の型へ変換するには、[Transforming data](cellediting#data-type-transforms) を参照し、共通変換の使い方を確認してください。また [Expressions](expressions) で [toString()](grelfunctions#tostringo-string-format-optional)、[toDate()](grelfunctions#todateo-b-monthfirst-s-format1-s-format2-) などの関数を使う方法もご覧ください。
 
 
 ### Dates {#dates}
 
-A “date” type is created when a column is [transformed into dates](transforming#to-date), when an expression is used to [convert cells to dates](grelfunctions#todateo-b-monthfirst-s-format1-s-format2-) or when individual cells are set to have the data type “date”. 
+「日付」型は、列を [日付型に変換](transforming#to-date) したとき、式で [セルを日付に変換](grelfunctions#todateo-b-monthfirst-s-format1-s-format2-) したとき、あるいは個別のセルに「date」型を割り当てたときに作成されます。
 
-Date-formatted data in OpenRefine relies on a number of conversion tools and standards. For something to be considered a date in OpenRefine, it will be converted into the ISO-8601-compliant extended format with time in UTC: YYYY-MM-DDTHH:MM:SSZ.
+OpenRefine における日付データのフォーマットは複数の変換ツールと標準に依存しています。日付と認識されるには、UTC 時間付きの ISO-8601 拡張形式 YYYY-MM-DDTHH:MM:SSZ に変換される必要があります。
 
-When you run <span class="menuItems">Edit cells</span> → <span class="menuItems">Common transforms</span> → <span class="menuItems">To date</span>, the following column of strings on the left will transform into the values on the right:
+<span class="menuItems">Edit cells</span> → <span class="menuItems">Common transforms</span> → <span class="menuItems">To date</span> を実行すると、左側の文字列列が右側の値に変換されます:
 
 |Input|→|Output|
 |---|---|---|
@@ -58,13 +58,13 @@ When you run <span class="menuItems">Edit cells</span> → <span class="menuItem
 |today|→|today|
 |never|→|never|
 
-OpenRefine uses a variety of tools to recognize, convert, and format [dates](exploring#dates) and so some of the values above can be reformatted using other methods. In this case, clicking the “today” cell and editing its data type manually will convert “today” into a value such as “2020-08-14T00:00:00Z”. Attempting the same data-type change on “never” will give you an error message and refuse to proceed.  
- 
-You can do more precise conversion and formatting using expressions and arguments based on the state of your data: see the GREL functions reference section on [Date functions](grelfunctions#date-functions) for more help.
+OpenRefine はさまざまなツールで [日付](exploring#dates) を認識・変換・書式化するため、上記の値も別の方法で再フォーマットできます。たとえば「today」のセルをクリックして型を手動で変更すると、“2020-08-14T00:00:00Z” のような値に変換されます。「never」に同じ処理をしようとするとエラーが出て実行されません。
 
-You can convert dates into a more human-readable format when you [export your data using the custom tabular exporter](exporting#custom-tabular-exporter). You are given the option to keep your dates in the ISO 8601 format, to output short, medium, long, or full locale formats, or to specify a custom format. This means that you can format your dates into, for example, MM/DD/YY (the US short standard) with or without including the time, after working with ISO-8601-formatted dates in your project.  
+式と引数を使えば、データの状態に応じてより厳密な変換や書式設定ができます。詳細は GREL 関数リファレンスの [Date functions](grelfunctions#date-functions) をご覧ください。
 
-The following table shows some example [date and time formatting styles for the U.S. and French locales](https://docs.oracle.com/javase/tutorial/i18n/format/dateFormat.html):
+[カスタムタブ区切りエクスポーター](exporting#custom-tabular-exporter) でデータをエクスポートするときに、人間が読みやすい形式に変換することもできます。ISO 8601 フォーマットを維持するか、短・中・長・完全などのロケール形式、あるいは独自形式を指定できるため、作業中は ISO-8601 形式で保持しつつ、最終的には MM/DD/YY（米国の短い形式）など好みの書式と時間の有無を選べます。
+
+以下の表は、米国とフランスのロケールにおける [日付/時刻の書式スタイル](https://docs.oracle.com/javase/tutorial/i18n/format/dateFormat.html) の例です:
 
 |Style 	|U.S. Locale 	|French Locale|
 |---|---|---|
@@ -76,19 +76,19 @@ The following table shows some example [date and time formatting styles for the 
 
 ## Rows vs. records {#rows-vs-records}
 
-A row is a simple way to organize data: a series of cells, one cell per column. Sometimes there are multiple pieces of information in one cell, such as when a survey respondent can select more than one response. 
+行は、列ごとに 1 つのセルを並べた単純なデータ構造です。たとえばアンケートで複数回答を許す項目がある場合、1 つのセルに複数の情報が含まれることがあります。
 
-In cases where there is more than one value for a single column in one or more rows, you may wish to use OpenRefine’s records mode: this defines a single record as potentially containing more than one row. From there you can transform cells into multiple rows, each cell containing one value you’d like to work with. 
+1 つの列に複数の値があり、それが複数行にまたがる場合は、OpenRefine のレコードモードを使うと便利です。レコードモードでは 1 つのレコードが複数行を含む可能性を認め、そこから セルを複数行に展開して個別に操作できます。
 
-Generally, when you import some data, OpenRefine reads that data in row mode. From the project screen, you can convert the project into records mode. OpenRefine remembers this action and will present you with records mode each time you open the project from then on. 
+データをインポートすると初期状態では通常行モードです。プロジェクト画面からレコードモードに切り替えれば、以降そのプロジェクトを開くたびに記憶された状態で表示されます。
 
-OpenRefine understands records based on the content of the first column, what we call the “key column.” Splitting a row into a multi-row record will base all association on the first column in your dataset. 
+OpenRefine は最初の列（「キー列」）の内容に基づいてレコードを認識します。1 行を複数行のレコードとして分割すると、すべての関連はデータセットの最初の列に依存します。
 
-If you have more than one column to split out into multiple rows, OpenRefine will keep your data associated with its original record, and associate subgroups based on the top-most row in each group. 
+複数列を分割したい場合でも、OpenRefine は元のレコードとの関連を保ち、各グループの最上段の行を基準にサブグループを関連付けます。
 
-You can imagine the structure as a tree with many branches, all leading back to the same trunk. 
+構造は多くの枝を持ちつつ同じ幹に戻る木のように想像できます。
 
-For example, your key column may be a film or television show, with multiple cast members identified by name, associated to that work. You may have one or more roles listed for each person. The roles are linked to the actors, which are linked to the title.
+たとえばキー列が映画やテレビ作品で、複数の出演者が名前で記録され、それぞれが複数の役を持つ場合を考えます。役柄は俳優に、俳優は作品タイトルにリンクしています。
 
 | Work             | Actor             | Role                         |
 |------------------|-------------------|------------------------------|
@@ -107,12 +107,12 @@ For example, your key column may be a film or television show, with multiple cas
 |                  | Margaret Hamilton | Miss Almira Gulch            |
 |                  |                   | The Wicked Witch of the West |
 
-Once you are in records mode, you can still move some columns around, but if you move a column to the beginning, you may find your data becomes misaligned. The new key column will sort into records based on empty cells, and values in the old key column will be assigned to the last row in the old record (the key value sitting above those values). 
+レコードモードでも列を移動できますが、先頭に移動させるとデータがずれてしまうことがあります。新しいキー列は空白セルを基準にレコードへ並び替えられ、旧キー列の値は元レコードの最終行（該当値の上部）に割り当てられるためです。
 
-OpenRefine assigns a unique key behind the scenes, so your records don’t need a unique identifier in the key column. You can keep track of which rows are assigned to each record by the record number that appears under the <span class="menuItems">All</span> column.
+OpenRefine は内部で一意のキーを割り当てているので、キー列に固有の識別子がなくても構いません。どの行がどのレコードに属しているかは、<span class="menuItems">All</span> 列に表示されるレコード番号で確認できます。
 
-To [split multi-valued cells](transforming#split-multi-valued-cells) and apply other operations that take advantage of records mode, see [Transforming data](transforming). 
+[複数値セルの分割](transforming#split-multi-valued-cells) などレコードモードを活用する操作については [Transforming data](transforming) をご覧ください。
 
-Be careful when in records mode that you do not accidentally delete rows based on being blank in one column where there is a value in another. 
+レコードモードでは、ある列が空白でも別の列に値があれば誤って行を削除しないよう注意してください。
 
-This feature is related to [Column Groups](../technical-reference/architecture-before-4#column-groups), which however is incomplete and deprecated.
+この機能は [Column Groups](../technical-reference/architecture-before-4#column-groups) と関連していますが、そちらは未完成かつ非推奨です。
