@@ -1,16 +1,16 @@
 ---
-id: manual/exporting
+id: exporting
 title: 作業のエクスポート
 sidebar_label: エクスポート
 ---
 
-## Overview {#overview}
+## 概要 {#overview}
 
 データセットの準備が整ったら、OpenRefine から取り出して好きなシステムに移す必要があります。OpenRefine は複数のファイル形式を出力でき、Google Sheets への直接アップロードや Wikidata へのステートメント作成・更新にも対応しています。
 
 また [プロジェクト全体をエクスポート](#export-a-project) して、ほかの OpenRefine ユーザー（あるいは別のマシンの自分）に渡せるようにすることも可能です。
 
-## Export data {#export-data}
+## データをエクスポートする {#export-data}
 
 ![A screenshot of the Export dropdown.](/img/export-menu.png)
 
@@ -33,7 +33,7 @@ sidebar_label: エクスポート
 * [QuickStatements 形式でエクスポート](wikibase/uploading#uploading-with-quickstatements)（v1）
 * [Wikidata スキーマをエクスポート](wikibase/overview#import-and-export-schema)
 
-### Custom tabular exporter {#custom-tabular-exporter}
+### カスタムタブ区切りエクスポーター {#custom-tabular-exporter}
 
 ![A screenshot of the custom tabular content tab.](/img/custom-tabular-exporter.png)
 
@@ -53,7 +53,7 @@ sidebar_label: エクスポート
 
 <span class="tabLabels">Option Code</span> タブでは、現在の設定を JSON としてコピーして別プロジェクトで再利用したり、既存の JSON 設定を貼り付けて現在のプロジェクトに適用できます。
 
-### SQL exporter {#sql-exporter}
+### SQL エクスポーター {#sql-exporter}
 
 エクスポートしたデータを含む SQL ステートメントを生成でき、既存データベースの上書きや追加に使えます。<span class="menuItems">Export</span> → <span class="menuItems">SQL exporter</span> を選ぶと、2 つのタブを持つウィンドウが開き、出力内容を定義するタブと SQL の構成を変更するタブ（プレビュー・ダウンロード付き）に分かれています。
 
@@ -75,7 +75,7 @@ sidebar_label: エクスポート
 
 プレビューでは、データを含む場合は最初の 10 行の内容を表示したステートメントが別ウィンドウで開きます。`.sql` ファイルを保存することもできます。
 
-### Templating exporter {#templating-exporter}
+### テンプレートエクスポーター {#templating-exporter}
 
 <span class="menuItems">Export</span> ドロップダウンで <span class="menuItems">Templating…</span> を選ぶと、自作のエクスポーターを構築できます。サポートされていない形式や今後もサポートしない形式を扱う場合に便利です。テンプレートエクスポーターはデフォルトで JSON を生成します。
 
@@ -114,7 +114,7 @@ sidebar_label: エクスポート
 
 テンプレートエクスポーターを使って [複数の形式を生成するレシピ](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#12-templating-exporter) も公開しています。
 
-## Export a project {#export-a-project}
+## プロジェクトをエクスポートする {#export-a-project}
 
 進行中のプロジェクトを別のマシンや同僚、履歴を確認したい人と共有できます。これによりデータのクリーンアップが内容を劣化させていないことを証明できます。エクスポートしたプロジェクトは別の OpenRefine インストールで [新しいプロジェクトとしてインポート](starting#import-a-project) できます。
 
@@ -130,6 +130,6 @@ OpenRefine は `.tar.gz` 形式でファイルを書き出します。保存時�
 
 Google Drive に保存するには、<span class="menuItems">Export</span> → <span class="menuItems">OpenRefine project archive to Google Drive...</span> を選びます。OpenRefine はリンクを共有せず、アップロード完了を通知するだけです。
 
-## Export operations {#export-operations}
+## 操作履歴をエクスポートする {#export-operations}
 
 Undo/Redo タブに表示されたすべての操作履歴を [保存して別プロジェクトに再適用](running#reusing-operations) できます。これにより JSON が生成され、別の OpenRefine プロジェクトで再利用できます。
