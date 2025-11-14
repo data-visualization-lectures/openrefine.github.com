@@ -246,6 +246,21 @@ return {
   ],
   scripts: [
     {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-MT8FFK05MV',
+      async: true,
+    },
+    {
+      id: 'gtag-init',
+      async: false,
+      defer: false,
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MT8FFK05MV');
+      `,
+    },
+    {
       src: '/js/fix-location.js',
       async: false,
       defer: false,
