@@ -26,7 +26,6 @@ function HeaderSection() {
         </div>
       </div>
             <div>
-      <Link className="button button--primary" to="/2025-fundraising" style={{fontSize: '1.5em'}}>2025 年の資金調達キャンペーンを支援する</Link>
   </div>
       <div className="row">
         <div style={{textAlign: 'center', width: '100%', marginTop: '2em'}}>
