@@ -1,31 +1,29 @@
----
-title: Give to OpenRefine
-description: Your donations help further develop and maintain OpenRefine.
+title: OpenRefine へのご寄付
+description: ご寄付は OpenRefine の開発と維持に活かされます。
 hide_table_of_contents: true
 ---
 
-# Support OpenRefine
-## Why Your Support Matters
+# OpenRefine を支援する
+## ご支援が必要な理由
 
-OpenRefine is a free, power tool for working with messy data and improving it. Our mission is to empower everyone to meaningfully engage with data by providing an accessible, open-source tool and nurturing a diverse, supportive community. Your sponsorship fills the funding gap beyond grants, ensuring the project remains healthy and community-driven. You can make a one-time gift or become a monthly sponsor at any level.
+OpenRefine は散らかったデータを扱い、質を高めるための無償ツールです。誰もがデータに向き合えるよう、オープンソースのツールを提供し、多様で支え合うコミュニティを育むことが使命です。助成金だけでは届かない資金ギャップを皆さんの寄付が埋め、プロジェクトを健全でコミュニティ主導の状態に保ちます。単発寄付でも毎月のスポンサーでも歓迎します。
 
 
-## Funding Tier
-We are funded by **grants and gifts from institutions and individuals** like you. Our annual operating budget is US$140 000 (or appx US$11,500 per month) to support our core team for maintenance, coordination, licensing, and administration. Details on fund usage and other sources of funding are available on our [funding page](/funding).
+## 資金区分
+OpenRefine は **皆さんの寄付と各種助成金** に支えられています。年間の運営予算は 14 万ドル（1 か月およそ 1.15 万ドル）で、保守・調整・ライセンス・事務を担うコアチームを支えています。資金の使いみちとその他の収入源は [funding ページ](/funding) をご覧ください。
 
-Available funding tier are: 
-* **Sustainer:** up to $500 per year. Covers essential day-to-day infrastructure including forum hosting, software licenses, and routine maintenance.
-* **Sponsor:** up to $5,000 per year. Enables us to represent OpenRefine at conferences and expand our community outreach.
-* **Partner:** up to $50,000 per year. Underwrites multiple months of core-team development, feature work, and contributor support.
-* **Patron:** over $50,000 to $200,000 per year. Fully sustains OpenRefine’s annual budget, funding our entire core team for a full year.
+寄付区分は次のとおりです:
+* **Sustainer:** 年額 500 ドルまで。フォーラムやソフトウェアライセンス、日常的な保守といった基盤費用をまかないます。
+* **Sponsor:** 年額 5,000 ドルまで。カンファレンス等での OpenRefine の発信やコミュニティ outreach を可能にします。
+* **Partner:** 年額 50,000 ドルまで。コアチームの開発・機能実装・貢献者支援を複数か月分支えます。
+* **Patron:** 年額 50,000～200,000 ドル。年間予算を丸ごと支え、コアチームを 1 年間維持できます。
 
-See our current [backers](/backers) and [active grants](/funding#active-grants)
+現在の [支援者一覧](/backers) や [進行中の助成金](/funding#active-grants) も公開しています。
 
-You can also support OpenRefine via <a href="https://github.com/sponsors/OpenRefine">GitHub Sponsors</a>.
+<a href="https://github.com/sponsors/OpenRefine">GitHub Sponsors</a> からの支援も可能です。
 <script src="https://donorbox.org/widget.js" paypalExpress="true"></script><iframe src="https://donorbox.org/embed/open-refine" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="yes" width="100%" style={{maxWidth: '500px', minWidth: '250px', minHeight: '750px', maxHeight: 'none!important'}}></iframe>
 
-OpenRefine is a fiscally sponsored project of [Code for Science & Society Inc.](https://codeforscience.org). Donations are tax deductible to the extent allowed by law in the US. Tax ID 81-3791683.
-
+OpenRefine は [Code for Science & Society Inc.](https://codeforscience.org) の財務スポンサーシップのもとで運営されており、米国では法の範囲内で寄付控除が適用されます（Tax ID 81-3791683）。
 
 
 

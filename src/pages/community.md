@@ -1,12 +1,11 @@
----
-title: Community
-description: Join our community of users, trainers and contributors around the world.
+title: コミュニティ
+description: 世界中のユーザー・トレーナー・コントリビューターと一緒にコミュニティへ参加しましょう。
 hide_table_of_contents: true
 ---
 
-# Get involved in the OpenRefine community
+# OpenRefine コミュニティに参加しよう
 
-OpenRefine is made by people like you, looking to create a more informed world where working with data is easy and engaging. You can help us in many ways, including the roles below.
+OpenRefine は、データを扱うことをもっと簡単で楽しいものにしたいという気持ちを持った人たちによって作られています。あなたも以下のような役割を通じてさまざまな形で参加できます。
 
 
 import OpenRefineIsMagicImageUrl from '@site/static/img/openrefine_is_magic.png';
@@ -15,16 +14,16 @@ import OpenRefineIsMagicImageUrl from '@site/static/img/openrefine_is_magic.png'
 import Card from '../card.tsx';
 
 <div className="cardList">
-  <Card href="/docs/technical-reference/code-contributions" title="Developer" description="to maintain OpenRefine or develop a new extensions"/>
-  <Card href="/docs/technical-reference/introduction" title="Designer" description="to improve OpenRefine usability" />
+  <Card href="/docs/technical-reference/code-contributions" title="Developer" description="OpenRefine を保守したり新しい拡張機能を開発したい人へ"/>
+  <Card href="/docs/technical-reference/introduction" title="Designer" description="UI/UX を改善したいデザイナー向け" />
 </div>
 <div className="cardList">
-  <Card href="/docs/technical-reference/documentation-contributions" title="Technical Writer" description="to keep our user documentation up to date and enrich it with more example" />
-  <Card href="https://hosted.weblate.org/engage/openrefine/" title="Translator" description="to translate OpenRefine interface in your language via Weblate." />
+  <Card href="/docs/technical-reference/documentation-contributions" title="Technical Writer" description="ユーザードキュメントを最新に保ち、実例を増やしたい方へ" />
+  <Card href="https://hosted.weblate.org/engage/openrefine/" title="Translator" description="Weblate で OpenRefine のインターフェースを翻訳したい方へ" />
 </div>
 <div className="cardList">
-  <Card href="https://forum.openrefine.org/c/support/12" title="OpenRefine expert" description="by answering OpenRefine-related questions in your community preferred channels (Slack, Telegram, or other form of discussion list), by monitoring social media or our forum. Help us by turn recurring bug report and feature requests and bug reports GitHub issues" />
-  <Card title="Advocate & Trainer" description="by introducing OpenRefine to your community and by providing customed training based on your community workflow and dataset" />
+  <Card href="https://forum.openrefine.org/c/support/12" title="OpenRefine expert" description="Slack や Telegram、フォーラムなど好みのチャンネルで質問に答え、SNS やフォーラムを見守り、繰り返し報告されるバグや要望を GitHub Issue 化して支援してください" />
+  <Card title="Advocate & Trainer" description="コミュニティで OpenRefine を紹介し、ワークフローやデータセットに合わせたトレーニングを提供してください" />
 </div>
 <br />
 
@@ -35,15 +34,15 @@ import Card from '../card.tsx';
 <img src={OpenRefineIsMagicImageUrl} alt="OpenRefine is magic" id="magic"/>
 <p style={{fontSize: '0.7em'}}><a href="https://commons.wikimedia.org/wiki/File:Open_Refine_is_Magic.png">CC-BY-SA Scott Carlson</a></p>
 </div>
-# Connect with us
+# コミュニティとつながる
 
-Join our vibrant community of users and contributors. We listed below the platforms used by the core team, however a lot of great conversation happen directly within our user community preferred channel. 
+活発なユーザー・コントリビューターコミュニティに参加しましょう。以下はコアチームが利用している主なプラットフォームですが、ユーザーコミュニティが選んだチャンネルでも多くの会話が行われています。
 
 
-| Platform | Come here for |
+| プラットフォーム | ここでできること |
 | --------------- | --------------- |
-| **GitHub**  <br></br> <img src="/img/logo/github.png" alt="github" height="95"/>|GitHub is where OpenRefine code live. We maintain two main repositories: <br></br> <li> **[OpenRefine](https://github.com/OpenRefine/OpenRefine)** where you can contribute to OpenRefine development and translation. This is also the place to [file a bug or feature request](https://github.com/OpenRefine/OpenRefine/issues/new/choose)</li>  <li> **[openrefine.org](https://github.com/OpenRefine/openrefine.org)** is where we maintain our documentation and this website.</li> |
- | **Forum**  <br></br> <img src="/img/logo/discourse.png" alt="discourse" height="95"/>|After GitHub this is our main communication platform. Join our forum to ask for [support](https://forum.openrefine.org/c/support/12) when using OpenRefine, discuss [OpenRefine development](https://forum.openrefine.org/c/dev/8) and check the latest [community update](https://forum.openrefine.org/c/news/13).<p></p> You can find here our archived [user](https://groups.google.com/u/2/g/openrefine) and [development](https://groups.google.com/u/2/g/openrefine-dev) mailing list.|
-| **Community Calls** <br></br> <img src="/img/logo/gh-og.png" alt="greenhost" height="95"/>| We are organizing [bi-weekly video call](https://forum.openrefine.org/t/openrefine-community-meetup/1276) where everybody is welcome to chat about OpenRefine, ask questions, share things they do with OpenRefine. It happens every two weeks on alternating times:  07:00 UTC on Friday and 15:00 UTC on Tuesday. |
-| **Chat**   <br></br> <img src="/img/logo/gitter.png" alt="gitter" height="95"/>|You can join us on [gitter chat](https://app.gitter.im/#/room/#OpenRefine_OpenRefine:gitter.im) for real time chat. The room is not always monitored and we invite you to post on our forum if you do not receive an answer.|
-| **Social Media**  <br></br> <img src="/img/logo/x.svg" alt="x" height="35"/> <img src="/img/logo/LinkedIn.png" alt="LinkedIn" height="35"/> <img src="/img/logo/Mastodon.png" alt="Mastodon" height="35"/> | We share project announcements, opportunities, upcoming events, on diverse social media platforms. Follow and tag #OpenRefine on [LinkedIn](https://www.linkedin.com/company/openrefine/), [Twitter/X](https://twitter.com/openrefine) or [Mastodon]( https://fosstodon.org/@OpenRefine).|
+| **GitHub**  <br></br> <img src="/img/logo/github.png" alt="github" height="95"/>|OpenRefine のソースコードは GitHub 上で管理されています。主なリポジトリは 2 つあります。<br></br> <li> **[OpenRefine](https://github.com/OpenRefine/OpenRefine)** – 開発や翻訳に貢献でき、[バグ報告や機能要望](https://github.com/OpenRefine/OpenRefine/issues/new/choose) もここで行います。</li>  <li> **[openrefine.org](https://github.com/OpenRefine/openrefine.org)** – この Web サイトとドキュメントを管理しています。</li> |
+ | **Forum**  <br></br> <img src="/img/logo/discourse.png" alt="discourse" height="95"/>|GitHub に次ぐ主要なコミュニケーションプラットフォームです。OpenRefine を使う際の [サポート](https://forum.openrefine.org/c/support/12) を受けたり、[開発の議論](https://forum.openrefine.org/c/dev/8) に参加したり、最新の [コミュニティニュース](https://forum.openrefine.org/c/news/13) をチェックできます。<p></p> 過去の [ユーザー向け](https://groups.google.com/u/2/g/openrefine)・[開発者向け](https://groups.google.com/u/2/g/openrefine-dev) メーリングリストのアーカイブもここにあります。|
+| **Community Calls** <br></br> <img src="/img/logo/gh-og.png" alt="greenhost" height="95"/>| 2 週間ごとに実施する [オンラインミートアップ](https://forum.openrefine.org/t/openrefine-community-meetup/1276) では、OpenRefine について語り合ったり質問したり、活用事例を共有できます。隔週で時間帯を変え、金曜 07:00 UTC と火曜 15:00 UTC に開催しています。 |
+| **Chat**   <br></br> <img src="/img/logo/gitter.png" alt="gitter" height="95"/>|リアルタイムの会話は [Gitter](https://app.gitter.im/#/room/#OpenRefine_OpenRefine:gitter.im) に参加してください。常時監視できているわけではないため、返答がない場合はフォーラムにも投稿してください。|
+| **Social Media**  <br></br> <img src="/img/logo/x.svg" alt="x" height="35"/> <img src="/img/logo/LinkedIn.png" alt="LinkedIn" height="35"/> <img src="/img/logo/Mastodon.png" alt="Mastodon" height="35"/> | プロジェクトのお知らせやイベント、機会などを各種 SNS で発信しています。[LinkedIn](https://www.linkedin.com/company/openrefine/)、[Twitter/X](https://twitter.com/openrefine)、[Mastodon]( https://fosstodon.org/@OpenRefine) で #OpenRefine をフォローしてください。|

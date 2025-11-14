@@ -1,55 +1,53 @@
----
-title: What's new
-description: Overview of the changes in OpenRefine's latest versions
+title: 新着情報
+description: OpenRefine の最新バージョンでの変更点まとめ
 hide_table_of_contents: false
 ---
 
-# Release notes
+# リリースノート
 
-## Version 3.9
+## バージョン 3.9
 
-See:
-* the [3.9.0 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.9.0)
-* the [3.9-beta1 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.9-beta1)
+詳細:
+* [3.9.0 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.9.0)
+* [3.9-beta1 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.9-beta1)
 
-## Version 3.8
+## バージョン 3.8
 
-See:
-* the [3.8.7 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.7)
-* the [3.8.4 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.4)
-* the [3.8.2 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.2)
-* the [3.8.1 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.1)
-* the [3.8.0 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.0)
-* the [3.8-beta5 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8-beta5) (intermediate version numbers have been skipped)
-* the [3.8-beta1 release page](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8-beta1)
+詳細:
+* [3.8.7 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.7)
+* [3.8.4 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.4)
+* [3.8.2 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.2)
+* [3.8.1 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.1)
+* [3.8.0 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8.0)
+* [3.8-beta5 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8-beta5)（途中の番号はスキップ）
+* [3.8-beta1 リリースページ](https://github.com/OpenRefine/OpenRefine/releases/tag/3.8-beta1)
 
-## Version 3.7
+## バージョン 3.7
 
-## Vulnerabilities
+## 脆弱性
 
-* (from 3.7.8 on) The fix of the vulnerability below was fixed, as it did not prevent the exploit using a particular URL syntax for the JDBC server. The vulnerability was assigned identifier CVE-2024-23833. We thank @l0n3rs for disclosing it to us.
-* (from 3.7.5 on) A moderate vulnerabilities in the database extension was fixed. Connecting to a malicious MySQL server could read files or execute arbitrary code on the machine running OpenRefine. The vulnerabilities were assigned CVE-2023-41886 and CVE-2023-41887
-  identifiers respectively, and were reported by @nbxiglk0.
-* (from 3.7.4 on) A moderate vulnerability in project import was fixed. Importing a maliciously crafted project could execute arbitrary code on the machine running OpenRefine. This vulnerability has been assigned the CVE-2023-37476 identifier. It was reported by Stefan Schiller from SonarSource.
+* （3.7.8 以降）特定の URL 構文を使うことで JDBC サーバーを悪用できた脆弱性の修正を再度実施。CVE-2024-23833。報告者 @l0n3rs に感謝します。
+* （3.7.5 以降）データベース拡張の中程度の脆弱性を修正。悪意ある MySQL サーバーに接続すると任意コード実行やファイル読み取りが可能だった問題（CVE-2023-41886、CVE-2023-41887、報告者 @nbxiglk0）。
+* （3.7.4 以降）プロジェクトインポートの中程度の脆弱性を修正。細工されたプロジェクトのインポートで任意コード実行が可能だった問題（CVE-2023-37476、SonarSource の Stefan Schiller 氏が報告）。
 
-### New features
-* Most text exposed to users in OpenRefine's UI can now be translated. Some strings (generated server-side) were not translatable so far. To help translators catch up on this backlog, do not hesitate to [join us on Weblate](https://hosted.weblate.org/engage/openrefine/). ([#5030](https://github.com/OpenRefine/OpenRefine/pull/5030))
-* New media files can be uploaded to Wikibase instances such as Wikimedia Commons. The wikitext of existing files can also be edited thanks to the new fields introduced. ([#4682](https://github.com/OpenRefine/OpenRefine/issues/4682))
-* A button "Discover Wikibase instances…" was added on the dialog which lists the registered Wikibase instances ([#5007](https://github.com/OpenRefine/OpenRefine/issues/5007)), whose design was improved ([#5009](https://github.com/OpenRefine/OpenRefine/issues/5009))
-* In the Wikibase schema editor, statements with non-standard datatypes (such as EDTF dates or musical notations) are now supported, assuming they use strings as underlying representation ([#3263](https://github.com/OpenRefine/OpenRefine/issues/3263))
-* The Wikibase issues tab now makes it possible to locate which rows are responsible for certain issues, using facets ([#5033](https://github.com/OpenRefine/OpenRefine/issues/5033))
-* The default throttle delay for the "Add column by fetching URLs" operation was reduced to 500ms and the error reporting for this field was improved ([#5188](https://github.com/OpenRefine/OpenRefine/issues/5188))
-* Wikibase templates (incomplete Wikibase schemas) can be saved and shared, as a way of helping contributors use the same way of structuring data in a Wikibase instance ([#5043](https://github.com/OpenRefine/OpenRefine/issues/5043), [#5303](https://github.com/OpenRefine/OpenRefine/pull/5303))
-* The line-based importer now supports a custom delimiter, instead of only newlines ([#4103](https://github.com/OpenRefine/OpenRefine/issues/4103))
-* The Excel importer can be configured to import all cells as text, disabling the use of other datatypes supported by OpenRefine ([#4838](https://github.com/OpenRefine/OpenRefine/issues/4838))
-* The "some value" and "no value" Wikibase values can now be uploaded by OpenRefine ([#5360](https://github.com/OpenRefine/OpenRefine/pull/5360))
-* The Excel importer will also avoid coercing cell values to OpenRefine datatypes which do not fully fit them, such as representing a date as a date with time ([#5389](https://github.com/OpenRefine/OpenRefine/issues/5389), [#5390](https://github.com/OpenRefine/OpenRefine/issues/5390)).
+### 新機能
+* OpenRefine の UI に表示される文字列のほとんどが翻訳可能になり、これまでサーバー側で生成され翻訳できなかった文言も対象になりました。ぜひ [Weblate](https://hosted.weblate.org/engage/openrefine/) で翻訳にご協力ください。([#5030](https://github.com/OpenRefine/OpenRefine/pull/5030))
+* Wikimedia Commons などの Wikibase インスタンスに新規メディアをアップロードできるようになり、既存ファイルのウィキテキスト編集にも対応しました。([#4682](https://github.com/OpenRefine/OpenRefine/issues/4682))
+* 登録済み Wikibase インスタンス一覧ダイアログに「Wikibase インスタンスを探す…」ボタンを追加し、デザインも改善しました。([#5007](https://github.com/OpenRefine/OpenRefine/issues/5007), [#5009](https://github.com/OpenRefine/OpenRefine/issues/5009))
+* Wikibase スキーマエディターで、EDTF 日付や楽譜記法など非標準データ型（文字列を内部表現に使うもの）を扱えるようになりました。([#3263](https://github.com/OpenRefine/OpenRefine/issues/3263))
+* Wikibase の Issues タブで、ファセットを使って問題の原因となっている行を特定できるようになりました。([#5033](https://github.com/OpenRefine/OpenRefine/issues/5033))
+* 「URL の取得による列追加」のデフォルトスロットルを 500ms に短縮し、エラー表示を改善しました。([#5188](https://github.com/OpenRefine/OpenRefine/issues/5188))
+* Wikibase テンプレート（未完成のスキーマ）を保存・共有できるようになり、同じ構造でデータを追加しやすくなりました。([#5043](https://github.com/OpenRefine/OpenRefine/issues/5043), [#5303](https://github.com/OpenRefine/OpenRefine/pull/5303))
+* 行単位インポーターで任意の区切り文字を指定できるようになりました（従来は改行のみ）。([#4103](https://github.com/OpenRefine/OpenRefine/issues/4103))
+* Excel インポーターで、すべてのセルをテキストとして取り込む設定が可能になりました。([#4838](https://github.com/OpenRefine/OpenRefine/issues/4838))
+* Wikibase の「some value」「no value」をアップロードできるようになりました。([#5360](https://github.com/OpenRefine/OpenRefine/pull/5360))
+* Excel インポーターがセルを無理に OpenRefine のデータ型へ変換しないようになり、例えば日付を日付＋時刻へ変換してしまうことを避けます。([#5389](https://github.com/OpenRefine/OpenRefine/issues/5389), [#5390](https://github.com/OpenRefine/OpenRefine/issues/5390))
 
 
-### GREL changes
-* Improved error handling in number formatting with the GREL `toString` function ([#816](https://github.com/OpenRefine/OpenRefine/issues/816))
-* The behaviour of the GREL function `wholeText()` has changed slightly in the way it handles newlines, following [an upstream change in the jsoup library](https://jsoup.org/news/release-1.15.1) (jsoup issue [#1636](https://github.com/jhy/jsoup/issues/1636))
-* A new `parent` GREL function, to obtain the parent element of an XML element, was added ([#5176](https://github.com/OpenRefine/OpenRefine/issues/5176))
+### GREL の変更点
+* `toString` 関数で数値を文字列化する際のエラーハンドリングを改善。([#816](https://github.com/OpenRefine/OpenRefine/issues/816))
+* `wholeText()` 関数の改行の扱いが、jsoup ライブラリのアップデートに合わせて微調整されました。([#1636](https://github.com/jhy/jsoup/issues/1636))
+* XML 要素の親要素を取得する `parent` 関数を追加しました。([#5176](https://github.com/OpenRefine/OpenRefine/issues/5176))
 
 ### Bug fixes
 * The layout of the dialog to select a reconciliation match was improved so that the auto-complete widget does not hide the other options ([#4821](https://github.com/OpenRefine/OpenRefine/issues/4821))

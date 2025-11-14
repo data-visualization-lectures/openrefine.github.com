@@ -1,65 +1,63 @@
----
-title: Friendly Space Policy
+title: フレンドリー・スペース・ポリシー
 hide_table_of_contents: true
 ---
-# Friendly Space Policy
+# フレンドリー・スペース・ポリシー
 
-## 1. Introduction
+## 1. はじめに
 
-OpenRefine wants all its events, activities, platforms, and channels to be accessible, safe, and welcoming for everyone. To achieve this, the Friendly Space Policy (FSP) establishes a minimum set of guidelines for behaviour. This policy is inspired by Wikimedia Netherland’s own policy (CC BY-SA 4.0, [https://nl.wikimedia.org/wiki/Friendly_Space_Policy](https://nl.wikimedia.org/wiki/Friendly_Space_Policy)).
+OpenRefine はあらゆるイベント・活動・プラットフォーム・チャンネルを誰にとってもアクセスしやすく、安全で、歓迎される場にしたいと考えています。そのための最低限の行動指針として、このフレンドリー・スペース・ポリシー（FSP）を定めます。本ポリシーは Wikimedia Nederland のポリシー（CC BY-SA 4.0, [https://nl.wikimedia.org/wiki/Friendly_Space_Policy](https://nl.wikimedia.org/wiki/Friendly_Space_Policy)）を参考にしています。
 
-## 2. Desirable behaviour
+## 2. 望ましい行動
 
-At OpenRefine, we are guided by the principles of friendliness, respect, courtesy, collegiality, and solidarity. Everyone is responsible for their own behaviour. This means, among other things:
+OpenRefine は友好・尊重・礼節・協力・連帯の精神を大切にしています。行動の責任は一人ひとりにあります。具体的には次のとおりです。
 
-- Be friendly. Be considerate of other attendees and participants — give them a hand when they need support and stand up for them when they are treated in a way that does not meet our standards.
-- Put yourself in another person's shoes — show empathy:
-  - Respect the preferences, sensitivities, traditions, and needs of others, including the boundaries set by another person and the way they name and describe themselves[^1].
-  - Respect the right of others to hold opinions or views different from your own.
-  - Respect that others have experiences different from your own.
-- Assume good faith. Give constructive feedback to others and respond favourably when others give you constructive feedback.
-- Take and accept responsibility for your own actions and their unintended consequences; apologise to those you have unintentionally hurt or harmed.
+- 友好的でいてください。参加者同士で思いやりを持ち、助けが必要なときは手を差し伸べ、基準にそぐわない扱いを受けている人がいたら支えてください。
+- 相手の立場になって考え、共感を示してください:
+  - 相手の嗜好・敏感さ・伝統・必要、そしてその人が自分をどう呼び・説明するか（境界線の引き方も含め）を尊重してください[^1]。
+  - 自分とは異なる意見や見解を持つ権利を尊重してください。
+  - 他者には自分とは異なる経験があることを尊重してください。
+- 善意を前提にし、建設的なフィードバックを行い、受け取った際も前向きに応えましょう。
+- 自分の行動と意図しない結果に責任を持ち、誰かを傷つけてしまった場合は謝罪してください。
 
-## 3. Unacceptable behaviour
+## 3. 許容できない行動
 
-We consider the following types of behaviour, among others, to be undesirable, both online and in person:
+オンライン／対面を問わず、以下の行動は好ましくありません。
 
-a. Offensive comments or behaviour, and insults;  
-b. Threats of any kind;  
-c. Obstructing constructive progress, such as continuing to return to decisions that have been made and discussion points that have been settled;  
-d. Doxing: disclosing private information of others without their express permission;  
-e. Physical violence or encouraging violence;  
-f. Sexually oriented language, or the sharing of sexually oriented video, audio or images when this does not directly contribute to the content of the topic being discussed;  
-g. Sexual harassment and unwanted sexual attention;  
-h. Stalking: annoying pursuit of others;  
-i. Trolling: deliberately disrupting conversations, presentations or other activities with the aim of escalating situations and provoking emotional reactions;  
-j. Taking photos, videos and audio recordings of others without permission.
+a. 侮辱的な発言・行動  
+b. あらゆる種類の脅迫  
+c. 決定済みの事項や議論のポイントを繰り返し持ち出して建設的な進行を妨げること  
+d. ドクシング（本人の同意なく個人情報を公開する）  
+e. 暴力または暴力の扇動  
+f. 性的な内容が議論の本題に直接関係しない場での性的発言・動画・音声・画像の共有  
+g. セクハラや望まれない性的な注目  
+h. ストーキング  
+i. トローリング（意図的に議論や発表を妨害し、状況をエスカレートさせ感情的反応を引き起こす行為）  
+j. 許可なく他者を撮影・録音すること
 
-OpenRefine does not condone abuse of power, privilege or influence. This applies to everyone. It applies in particular to people who are considered authoritative based on their position, experience and merit, such as board members, staff members and volunteers representing OpenRefine.
+OpenRefine は権力・特権・影響力の濫用を容認しません。これは全員に適用され、とくに理事・スタッフ・OpenRefine を代表するボランティアなど権限を持つと見なされる人に当てはまります。
 
-## 5. Enforcement
+## 5. 執行
 
-### 5.1 Principles
+### 5.1 原則
 
-Enforcement of the Friendly Space Policy (FSP) is based on the following principles:
+FSP を適用する際は次の原則に従います。
 
-- The primary purpose of the following measures enforcing the FSP is to maintain a safe and pleasant environment, and to restore confidence and a sense of security among all parties involved after an incident.
-- Before any action is taken, the possible offender will first be addressed directly about the undesirable behaviour, with the aim of restoring a safe and pleasant environment through consultation.
-- In case of a possible violation of the FSP, everyone — the injured party, the offender and possibly other parties involved — will be approached respectfully.
-- When someone is allowed to participate again after a temporary exclusion, the organizers will support the offender, the injured party and possible other parties involved in order to increase mutual understanding and prevent repetition.
+- 措置の第一目的は、安全で心地よい環境を維持し、インシデント後に関係者全員の信頼と安心感を取り戻すことです。
+- 実際の措置に入る前に、当事者へ直接連絡し、話し合いによって安全な環境を取り戻すことを目指します。
+- 侵害が疑われる場合は、被害側・加害側・その他関係者すべてに敬意を払って対応します。
+- 一時的な参加停止が解除された際は、主催側が関係者を支援し、相互理解を深め再発を防ぎます。
 
-### 5.2 Reporting
+### 5.2 通報
 
-Any person present on the event may report a (suspected) violation of the FSP to the organizers.
+イベントに参加している人は誰でも、FSP 違反（または疑い）を主催者に報告できます。
 
-### 5.3 Actions
+### 5.3 取れる措置
 
-When a person fails to comply with the provisions of the FSP, the organizers may take such action(s) as it deems appropriate. This includes, but is not limited to, one or more of the following measures:
+FSP に従わない行為があった場合、主催者は状況に応じて以下の措置を取ることがあります。
 
-a. Warnings or reprimands (both verbally and in writing);  
-b. Exclusion of an individual from further participation in the event or activity in question.
+a. 口頭または書面での警告・注意  
+b. 当該イベントや活動からの退場・参加禁止
 
 ---
 
-[^1]: The way someone names and describes themselves includes gender, pronouns, and other personal identifiers.
-
+[^1]: ここでいう「自分をどう呼び・説明するか」には、性別・代名詞・その他の個人識別情報が含まれます。

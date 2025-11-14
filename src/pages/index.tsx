@@ -17,31 +17,31 @@ function HeaderSection() {
       <div className="row" style={{textAlign: 'left', flexWrap: 'wrap-reverse' }}>
         <div className="col" style={{marginTop: '2em' }}>
           <h1>OpenRefine</h1>
-          <p>OpenRefine is a powerful free, open source tool for working with messy data: cleaning it; transforming it from one format into another; and extending it with web services and external data.</p>
-          <p>Our goal is to empower everyone to meaningfully engage with data by providing an accessible open source tool and nurturing a diverse, supportive community.</p>
-          <Link className="button button--primary" to="download" style={{fontSize: '1.5em'}}>Download</Link>
+         <p>OpenRefine は散らかったデータを整え、形式を変換し、外部サービスと連携させるための強力な無償オープンソースツールです。</p>
+         <p>アクセシブルなツールと多様で支え合うコミュニティを通じて、誰もがデータに向き合う力を得られるようにすることが私たちの目標です。</p>
+          <Link className="button button--primary" to="download" style={{fontSize: '1.5em'}}>ダウンロード</Link>
         </div>
         <div className="col" style={{marginTop: '1em', display: 'flex'}}>
           <img src="img/openrefine_logo.svg" alt="OpenRefine logo" style={{maxWidth: "min(250px, 20vw)", display: 'block', margin: 'auto'}}/>
         </div>
       </div>
             <div>
-      <Link className="button button--primary" to="/2025-fundraising" style={{fontSize: '1.5em'}}>Support OpenRefine 2025 Fundraising Campaign</Link>
+      <Link className="button button--primary" to="/2025-fundraising" style={{fontSize: '1.5em'}}>2025 年の資金調達キャンペーンを支援する</Link>
   </div>
       <div className="row">
         <div style={{textAlign: 'center', width: '100%', marginTop: '2em'}}>
-        <h2>Main features</h2>
+        <h2>主な機能</h2>
         </div>
         <div className="featureCardList">
-        <FeatureCard title="Faceting" link="docs/manual/facets" logo="feature_logo_facetting.svg">Drill through large datasets using facets and apply operations on filtered views of your dataset.</FeatureCard>
-        <FeatureCard title="Clustering" link="docs/manual/cellediting#cluster-and-edit" logo="feature_logo_clustering.svg">Fix inconsistencies by merging similar values thanks to powerful heuristics.</FeatureCard>
-        <FeatureCard title="Reconciliation" link="docs/manual/reconciling" logo="feature_logo_reconciliation.svg">Match your dataset to external databases via reconciliation services.</FeatureCard>
-        <FeatureCard title="Infinite undo/redo" link="docs/manual/running#history-undoredo" logo="feature_logo_undo.svg">Rewind to any previous state of your dataset and replay your operation history on a new version of it.</FeatureCard>
-        <FeatureCard title="Privacy" link="privacy" logo="feature_logo_privacy.svg">Your data is cleaned on your machine, not in some dubious data laundering cloud.</FeatureCard>
-        <FeatureCard title="Wikibase" link="docs/manual/wikibase/overview" logo="feature_logo_wikibase.svg">Contribute to Wikidata, the free knowledge base anyone can edit, and other Wikibase instances.</FeatureCard>
+        <FeatureCard title="ファセット" link="docs/manual/facets" logo="feature_logo_facetting.svg">ファセットで大規模データを絞り込み、フィルター結果に対して操作を適用できます。</FeatureCard>
+        <FeatureCard title="クラスタリング" link="docs/manual/cellediting#cluster-and-edit" logo="feature_logo_clustering.svg">強力なヒューリスティックで似た値をまとめ、不整合を解消します。</FeatureCard>
+        <FeatureCard title="リコンシリエーション" link="docs/manual/reconciling" logo="feature_logo_reconciliation.svg">外部データベースと照合してデータを結び付けます。</FeatureCard>
+        <FeatureCard title="無制限の取り消し／やり直し" link="docs/manual/running#history-undoredo" logo="feature_logo_undo.svg">任意の履歴に戻り、操作ログを別のプロジェクトへ再適用できます。</FeatureCard>
+        <FeatureCard title="プライバシー" link="privacy" logo="feature_logo_privacy.svg">データの処理はあなたのマシン上のみで行われ、クラウドに送信されません。</FeatureCard>
+        <FeatureCard title="Wikibase 連携" link="docs/manual/wikibase/overview" logo="feature_logo_wikibase.svg">誰でも編集できるフリー知識ベース Wikidata やその他の Wikibase に貢献できます。</FeatureCard>
         </div>
         <div style={{textAlign: 'center', width: '100%', marginTop: '1em'}}>
-           <p>And much more to discover in <a href="docs">our documentation</a>.</p>
+           <p>詳細は <a href="docs">ドキュメント</a> でご覧ください。</p>
         </div>
       </div>
     </div>);

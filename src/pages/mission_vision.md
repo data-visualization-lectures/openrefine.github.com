@@ -1,43 +1,42 @@
----
-title: OpenRefine Mission and Vision
-description: OpenRefine Mission and Vision
+title: OpenRefine のミッションとビジョン
+description: OpenRefine のミッション・ビジョン・価値観
 hide_table_of_contents: true
 ---
 
-## OpenRefine Vision
+## OpenRefine のビジョン
  
-A more informed world where working with data is easy and engaging.
+データと向き合うことが容易で、誰もが情報に基づいて判断できる世界を目指します。
 
-## OpenRefine Mission
+## OpenRefine のミッション
 
-Empowering everyone to meaningfully engage with data by providing an accessible open source tool and nurturing a diverse, supportive community.
+アクセスしやすいオープンソースツールを提供し、多様で支え合うコミュニティを育むことで、すべての人が意味のある形でデータに関わる力を得られるようにします。
 
-## OpenRefine Values 
+## OpenRefine の価値観
 
-We recognize that building and supporting a tool that meets the important vision and mission of OpenRefine necessitates a values-driven community. The values below refer to the community’s core principles and ethics. These values directly map onto the principles embedded into the tool itself and are reected in how OpenRefine, the tool, is conceptualized, built, maintained, taught, and used.
+このビジョンとミッションを実現するには、価値観に根ざしたコミュニティが不可欠です。以下の価値観は、コミュニティの中核となる原則・倫理であり、ツールの設計・開発・保守・教育・利用のすべてに反映されています。
 
-* Respectful of Diverse Backgrounds & Expertise
-* Approachable
-* Transparent & Open
-* Curious
-* Community-driven
+* 多様な背景と専門性への敬意
+* 近づきやすさ
+* 透明性とオープン性
+* 好奇心
+* コミュニティ主導
 
-### Respectful of Diverse Backgrounds & Expertise
+### 多様な背景と専門性への敬意
 
-We celebrate that people come to the OpenRefine tool and community from varying backgrounds, identities, technical abilities, geographies, privileges, industries, linguistic backgrounds, and more. We honor the experiences of our users and contributors and aim to develop features and training that encourage and nourish diverse engagement with the tool, prioritizing accessibility and usability to broaden reach and impact.
+OpenRefine のツールとコミュニティには、さまざまな背景・アイデンティティ・技術力・地域・特権・産業・言語を持つ人々が集まります。私たちは利用者と貢献者の経験を尊重し、アクセシビリティと使いやすさを重視した機能やトレーニングを提供して、多様な関わりを促進します。
 
-### Approachable
+### 近づきやすさ
 
-We ensure that OpenRefine is inviting and supportive of all participants by providing various on-ramps to engagement with the tool and community, including but not limited to clear documentation, thoughtful mentorship and training, and by prioritizing ease-of-use and participation across backgrounds and skill-levels. We expect everyone to engage with kindness, warmth, patience, and an unwavering commitment to mutual support.
+明快なドキュメント、丁寧なメンタリングやトレーニングなど、ツールやコミュニティに参加するためのさまざまな入口を用意し、あらゆる参加者を歓迎・支援します。背景やスキルを問わず、誰もが親切さ・温かさ・忍耐・相互支援の姿勢で関わることを期待しています。
 
-### Transparent & Open
+### 透明性とオープン性
 
-We create pathways for and encourage clear communication and knowledge-sharing, ranging from regularly-updated documentation to consistent public participation in community forums. We believe that transparent practices are essential to a collaborative community where all participants – including those with limited time and experience – are informed and feel empowered to engage. The tool mirrors this commitment to transparency through prioritizing the use of open and commons-based data, and the privacy of all users.
+最新のドキュメントや公開フォーラムを通じた継続的な情報共有など、明確なコミュニケーションの経路を整備します。透明性は協働コミュニティに不可欠であり、時間や経験が限られている参加者でも状況を把握し、主体的に関わる力を得られます。ツールそのものも、オープン／コモンズ型データの活用やユーザープライバシーの重視を通じて、この姿勢を体現しています。
 
-### Curious
+### 好奇心
 
-We believe in the importance of a learning mindset, where everyone leads with questions and engages with humility. We recognize that we have a lot to learn from one another, and seek opportunities to foster our mutual growth. This includes being thoughtful in how we give and receive feedback, consistently examining our own biases, and providing proactive support to new learners in our community. For the tool itself, we operate with humility and listen to end-users to prioritize their needs and plan for features and iterations that optimize their use of the tool.
+私たちは学び続ける姿勢を大切にし、謙虚さをもって問いを投げかけます。互いから学べることが多いと認識し、成長の機会を探します。建設的なフィードバックや自己のバイアスの点検、初学者への積極支援もその一環です。ツール開発でも利用者の声を聴き、ニーズを優先した改善を計画します。
 
-### Community-driven
+### コミュニティ主導
 
-We seek to facilitate a sense of community among users and contributors, and to prioritize the perspectives of community members in key decisions. We believe that our users and contributors define OpenRefine, and should collaboratively drive our work forward – not as individuals but as members of a supportive and vibrant community. This is reflected in open communication about the future of the community and tool, a sense of agency among community members, and in democratic decision-making around strategic and technical priorities.
+利用者と貢献者のあいだにコミュニティ感覚を育み、重要な意思決定ではコミュニティの視点を優先します。OpenRefine を形作るのはユーザーと貢献者であり、個人ではなく支え合うコミュニティとして前進すべきだと考えています。将来に関するオープンな対話、コミュニティメンバーの主体性、そして戦略・技術的優先事項に関する民主的な意思決定がその姿勢を表しています。

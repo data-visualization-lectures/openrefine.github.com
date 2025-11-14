@@ -1,24 +1,22 @@
 ---
-title: "Help OpenRefine to Remain an Impactful Open Source Tool"
-description: "Support the OpenRefine community and keep powerful data tools free for everyone."
+title: "OpenRefine を支えるご支援をお願いします"
+description: "OpenRefine コミュニティを応援し、誰もが使えるデータツールを無料で維持しましょう。"
 hide_table_of_contents: true
 ---
 
 <div className="alert alert--danger" role="alert" style={{fontWeight:'bold', textAlign:'center'}}>
-  ⏰ Thanks to early support, including a $25,000 contribution from FLOSS/fund. We're halfway to our $50,000 goal! Help us close the gap by December 31 to keep OpenRefine strong in 2026.
+  ⏰ FLOSS/fund からの 25,000 ドルを含む初期支援のおかげで、目標 50,000 ドルのちょうど半分まで到達しました。2025 年 12 月 31 日までに残りを集め、2026 年も OpenRefine を力強く運営できるようご協力ください。
 </div>
 <p></p>
 <section className="hero hero--primary">
   <div className="container text--center">
     <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h2>Transparency You Can Trust: Help OpenRefine to Remain an Impactful Open Source Tool</h2>
+      <h2>信頼できる透明性を守るために — OpenRefine を継続的に支援してください</h2>
       <p>
-        OpenRefine is a free, open-source power tool for working with messy data: cleaning it, 
-        transforming it from one format into another, and extending it with web services and external data.
+        OpenRefine は散らかったデータを扱うための無償オープンソースツールです。クリーニング、変換、外部サービスやデータとの連携まで、この 1 つでこなせます。
       </p>
       <p>
-        **Support independent software that belongs to its community**. Your donation funds more than 
-        software, it funds the principle that essential research tools should be transparent, community-driven, and free.
+        **コミュニティのものとして独立したソフトウェアを支えましょう。** ご寄付は単なるソフトウェアへの投資ではなく、研究や公共のための重要なツールは透明でコミュニティ主導、そして自由であるべきだという理念への投資です。
       </p>
     </div>
   </div>
@@ -26,16 +24,16 @@ hide_table_of_contents: true
 
 ---
 
-## We Need Your Help to Sustain Our Model
+## 持続のために、皆さんの力が必要です
 
-The first half of our campaign was kick-started by a generous **$25,000 donation from FLOSS/fund**. This early support gives us strong momentum, but we still need to raise **another $25,000 by December 31st** to reach our $50,000 goal and sustain OpenRefine's core team in 2026.
+キャンペーン前半は **FLOSS/fund からの 25,000 ドル** という寛大な寄付でスタートしました。勢いはつきましたが、2026 年のコアチームを維持するには **12 月 31 日までに残り 25,000 ドル** が必要です。
 
-For the last seven years OpenRefine has followed a grant-based sustainability model, enabling a small core team to maintain the software, coordinate the community, and handle essential administration. Without raising $25,000 by the end of this year, we will not be able to continue this model in 2026.
+過去 7 年間、OpenRefine は助成金を基盤にした持続モデルで、少人数のコアチームがソフトウェア保守やコミュニティ運営、事務を担ってきました。今年末までに 25,000 ドルを確保できなければ、2026 年にこのモデルを続けられません。
 
-The project itself will continue, but ran purely on volunteer effort before as it did before 2019. Without this community-funded model, we risk slower development, reduced support for contributors, and fewer opportunities to collaborate with partners like Wikimedia, Universities and Research Institutes.
+プロジェクト自体はこれまでもそうだったように志あるボランティアで動き続けますが、コミュニティ資金がなければ開発速度は落ち、コントリビューター支援や Wikimedia・大学・研究機関との連携機会も減ってしまいます。
 <br></br>
 <div style={{textAlign:'center', marginBottom:'0.5rem'}}>
-  <strong>Progress toward goal</strong>
+  <strong>目標達成状況</strong>
 </div>
 <div
   role="progressbar"
@@ -60,24 +58,24 @@ The project itself will continue, but ran purely on volunteer effort before as i
   }}>51%</div>
 </div>
 <div style={{textAlign:'center'}}>
-  <strong>$25,550 raised</strong> of $50,000 goal
+  <strong>25,550 ドル</strong> / 50,000 ドル
 </div>
 
 <div style={{textAlign:'center', marginTop:'0.5rem', marginBottom:'1rem'}}>
-  <a className="button button--danger button--lg" href="/donate">Donate Now</a>
-  <a className="button button--primary button--lg" href="#other-ways" style={{marginLeft:'0.5rem'}}>Other Ways to Help</a>
+  <a className="button button--danger button--lg" href="/donate">今すぐ寄付する</a>
+  <a className="button button--primary button--lg" href="#other-ways" style={{marginLeft:'0.5rem'}}>ほかの支援方法</a>
 </div>
 
 ---
 
-## Your Support Powers Real Impact
+## 皆さんの支援が実際の成果につながります
 
-Over the year OpenRefine grew from a software, to a core part of the today's digital infrastructure for Wikipedian, Libraries, Journalist and Researchers. It allows people in all sectors to explore, clean, and connect data without needing expensive commercial tools. Your support directly enables OpenRefine's independence, ensuring we can focus on what matters most: building exceptional tools for data work. Each contribution helps us:
-* Host annual community events like Barcamp
-* Develop features based on community feedback, and provide frequent releases
-* Maintain rigorous security and privacy standards
-* Provide comprehensive documentation and user support
-* Keep all functionality free and accessible to everyone
+OpenRefine はいまやソフトウェアを超えて、ウィキペディアンや図書館、ジャーナリスト、研究者のデジタルインフラの一部になりました。高価な商用ツールがなくてもデータを探索・クリーンアップ・連携できるようにします。自立した開発を保つことで、「データ作業に必要な優れたツールを作る」という本質に集中し続けられます。ご支援により、次のような活動が可能になります:
+* Barcamp などのコミュニティイベントを毎年開催
+* コミュニティの声を反映した機能開発と頻繁なリリース
+* セキュリティとプライバシー基準の徹底
+* 充実したドキュメントとユーザーサポート
+* すべての機能を誰でも無料で使える状態に維持
 
 
 <div className="row">
@@ -86,8 +84,8 @@ Over the year OpenRefine grew from a software, to a core part of the today's dig
       <div className="card__body" style={{textAlign:'center'}}>
         <div style={{fontSize:'2.25rem'}}>📊</div>
         <div style={{fontSize:'2rem', fontWeight:700, color:'var(--ifm-color-primary)'}}>15,500</div>
-        <div style={{textTransform:'uppercase', letterSpacing:'.04em', fontWeight:600}}>Average downloads per month</div>
-        <div style={{opacity:.7, fontStyle:'italic', marginTop:4}}>Growing steadily</div>
+        <div style={{textTransform:'uppercase', letterSpacing:'.04em', fontWeight:600}}>月間平均ダウンロード数</div>
+        <div style={{opacity:.7, fontStyle:'italic', marginTop:4}}>着実に増加中</div>
       </div>
     </div>
   </div>
@@ -96,8 +94,8 @@ Over the year OpenRefine grew from a software, to a core part of the today's dig
       <div className="card__body" style={{textAlign:'center'}}>
         <div style={{fontSize:'2.25rem'}}>🏢</div>
         <div style={{fontSize:'2rem', fontWeight:700, color:'var(--ifm-color-primary)'}}>8,400+</div>
-        <div style={{textTransform:'uppercase', letterSpacing:'.04em', fontWeight:600}}>Academic Citations</div>
-        <div style={{opacity:.7, fontStyle:'italic', marginTop:4}}>with 800 new each year</div>
+        <div style={{textTransform:'uppercase', letterSpacing:'.04em', fontWeight:600}}>学術論文での引用</div>
+        <div style={{opacity:.7, fontStyle:'italic', marginTop:4}}>毎年 800 件ペースで増加</div>
       </div>
     </div>
   </div>
@@ -107,7 +105,7 @@ Over the year OpenRefine grew from a software, to a core part of the today's dig
         <div style={{fontSize:'2.25rem'}}>💚</div>
         <div style={{fontSize:'2rem', fontWeight:700, color:'var(--ifm-color-primary)'}}>100%</div>
         <div style={{textTransform:'uppercase', letterSpacing:'.04em', fontWeight:600}}>Free & Open Source</div>
-        <div style={{opacity:.7, fontStyle:'italic', marginTop:4}}>Our commitment to you</div>
+        <div style={{opacity:.7, fontStyle:'italic', marginTop:4}}>この姿勢を貫きます</div>
       </div>
     </div>
   </div>
@@ -115,35 +113,35 @@ Over the year OpenRefine grew from a software, to a core part of the today's dig
 
 ---
 
-## Real Stories, Real Impact
+## 現場から届くストーリー
 
-See how OpenRefine is making a difference in the hands of real users:
+実際のユーザーが OpenRefine をどう活かしているかご紹介します:
 
 <div className="row">
   <div className="col col--4">
     <div className="card margin-bottom--lg">
       <div className="card__body">
-        <h3 style={{marginTop:0}}>Uncovering Government Waste</h3>
-        <p><strong>International Consortium of Investigative Journalists</strong></p>
-        <p>Used OpenRefine to clean, parse, and match data for the Panama Papers and other investigations, revealing hidden financial flows.</p>
+        <h3 style={{marginTop:0}}>政府の無駄遣いを暴く</h3>
+        <p><strong>国際調査報道ジャーナリスト連合 (ICIJ)</strong></p>
+        <p>Panama Papers などで OpenRefine を使い、データのクレンジングや整形、照合を行うことで隠れた資金の流れを明らかにしました。</p>
       </div>
     </div>
   </div>
   <div className="col col--4">
     <div className="card margin-bottom--lg">
       <div className="card__body">
-        <h3 style={{marginTop:0}}>Connecting Knowledge at Scale</h3>
-        <p><strong>Wikimedia Community</strong></p>
-        <p>Over 1,900 editors have used OpenRefine to make more than 10 million edits in Wikidata and upload hundreds of thousands of files to Wikimedia Commons.</p>
+        <h3 style={{marginTop:0}}>知識を大規模に結びつける</h3>
+        <p><strong>ウィキメディア・コミュニティ</strong></p>
+        <p>1,900 人以上の編集者が OpenRefine を使って Wikidata に 1,000 万件以上の編集を行い、数十万点のファイルを Wikimedia Commons にアップロードしています。</p>
       </div>
     </div>
   </div>
   <div className="col col--4">
     <div className="card margin-bottom--lg">
       <div className="card__body">
-        <h3 style={{marginTop:0}}>Preserving Cultural Heritage</h3>
-        <p><strong>GLAM Institutions</strong></p>
-        <p>Museums and libraries use OpenRefine to clean and reconcile metadata for digitized collections, making cultural heritage accessible to researchers globally.</p>
+        <h3 style={{marginTop:0}}>文化遺産を守る</h3>
+        <p><strong>GLAM 機関</strong></p>
+        <p>博物館や図書館は OpenRefine でデジタル化したコレクションのメタデータを整備・照合し、世界中の研究者に文化遺産を届けています。</p>
       </div>
     </div>
   </div>
@@ -174,9 +172,7 @@ See how OpenRefine is making a difference in the hands of real users:
         marginBottom: 0,
       }}
     >
-      Transparency and independence have made <strong>OpenRefine</strong> the trusted choice for
-      sensitive work — investigative journalism, academic research, government accountability,
-      and nonprofit advocacy.
+      透明性と独立性があるからこそ、<strong>OpenRefine</strong> は調査報道や学術研究、政府の説明責任、非営利団体のアドボカシーといったセンシティブな場で信頼されてきました。
     </p>
     <p
       style={{
@@ -185,7 +181,7 @@ See how OpenRefine is making a difference in the hands of real users:
         marginTop: '1.5rem',
       }}
     >
-      What story will your support help create next?
+      次にあなたの支援でどんな物語が生まれるでしょうか。
     </p>
   </div>
 </div>
@@ -193,9 +189,9 @@ See how OpenRefine is making a difference in the hands of real users:
 
 ---
 
-## Join Our Community of Supporters {#donate}
+## 支援者コミュニティに加わる {#donate}
 
-Every contribution, no matter the size, makes a difference. Here's how your support directly enables our mission:
+額の大小にかかわらず、すべてのご支援が活動を後押しします。どのように使命が実現するのかをご覧ください。
 
 <div className="row" style={{marginTop:'1rem'}}>
 
@@ -205,8 +201,8 @@ Every contribution, no matter the size, makes a difference. Here's how your supp
         <strong>🏆 Patron</strong>
       </div>
       <div className="card__body">
-        <p><strong>$50,000+ annually</strong></p>
-        <p><strong>Sustain our entire mission.</strong> Your leadership gift funds our core development team for months, ensures stability, and enables growth.</p>
+        <p><strong>年間 50,000 ドル以上</strong></p>
+        <p><strong>ミッション全体を支えます。</strong> このレベルのご支援はコア開発チームの活動を数か月分支え、安定と成長をもたらします。</p>
       </div>
     </div>
   </div>
@@ -217,9 +213,9 @@ Every contribution, no matter the size, makes a difference. Here's how your supp
         <strong>🤝 Partner</strong>
       </div>
       <div className="card__body">
-        <p><strong>$5,000–$49,999 annually</strong></p>
-        <p><strong>Power major feature development.</strong> Your partnership enables us to add new capabilities, improve performance, and maintain compatibility with evolving data standards.</p>
-        <p><strong>Current backers:</strong> FLOSS/fund</p>
+        <p><strong>年間 5,000〜49,999 ドル</strong></p>
+        <p><strong>大きな機能開発を後押し。</strong> 新機能の追加、性能向上、標準への適合維持を可能にします。</p>
+        <p><strong>現在の支援者:</strong> FLOSS/fund</p>
       </div>
     </div>
   </div>
@@ -230,9 +226,9 @@ Every contribution, no matter the size, makes a difference. Here's how your supp
         <strong>🎯 Sponsor</strong>
       </div>
       <div className="card__body">
-        <p><strong>$500–$4,999 annually</strong></p>
-        <p><strong>Keep OpenRefine accessible worldwide.</strong> Your sponsorship covers hosting, infrastructure, and community support systems.</p>
-        <p><strong>Current backers:</strong> Vanguard Charitable</p>
+        <p><strong>年間 500〜4,999 ドル</strong></p>
+        <p><strong>世界中で使える状態を維持。</strong> ホスティングやインフラ、コミュニティ支援に充てられます。</p>
+        <p><strong>現在の支援者:</strong> Vanguard Charitable</p>
       </div>
     </div>
   </div>
@@ -243,9 +239,9 @@ Every contribution, no matter the size, makes a difference. Here's how your supp
         <strong>💪 Sustainer</strong>
       </div>
       <div className="card__body">
-        <p><strong>$25–$499 annually</strong></p>
-        <p><strong>Power our daily operations.</strong> Your consistent support covers essential infrastructure like servers, security updates, and administration.</p>
-        <p><strong>Current backers:</strong> RefinePro, ostephens, DaxServer, alanorth, timtomch, trantor, wetneb, EstebanMH-SiB, btseee</p>
+        <p><strong>年間 25〜499 ドル</strong></p>
+        <p><strong>日々の運用を支えます。</strong> サーバー、セキュリティ更新、管理業務などの基盤を維持します。</p>
+        <p><strong>現在の支援者:</strong> RefinePro, ostephens, DaxServer, alanorth, timtomch, trantor, wetneb, EstebanMH-SiB, btseee</p>
       </div>
     </div>
   </div>
@@ -253,27 +249,27 @@ Every contribution, no matter the size, makes a difference. Here's how your supp
 </div>
 
 <div style={{textAlign:'center', marginTop:'1rem'}}>
-  <a className="button button--danger button--lg" href="/donate">Donate Now</a>
+  <a className="button button--danger button--lg" href="/donate">今すぐ寄付する</a>
 </div>
 
 
 ---
 
-## Other Ways You Can Help {#other-ways}
+## その他の支援方法 {#other-ways}
 
-Not everyone can contribute financially, here are other powerful ways to support OpenRefine:
+金銭的な支援が難しい場合でも、OpenRefine を力強く支える方法はたくさんあります。
 
 
 <div className="row">
   <div className="col col--6">
     <div className="card margin-bottom--lg">
       <div className="card__body">
-        <h3>📢 Spread the Word</h3>
-        <p>Help us reach our $50,000 goal by telling others why OpenRefine matters to you. Share this campaign with colleagues, post about it on social media, or mention it in your presentations and workshops. Every new supporter brings us closer to sustaining our core team in 2026.</p>
+        <h3>📢 広めてください</h3>
+        <p>OpenRefine があなたにとって大切である理由を共有し、50,000 ドルの目標達成に力を貸してください。同僚への声かけ、SNS 投稿、講演やワークショップでの紹介など、1 人でも多くのサポーターが集まるほど 2026 年のコアチーム維持に近づきます。</p>
         <div style={{display:'flex', flexWrap:'wrap', gap:'8px'}}>
-          <a className="button button--primary button--sm" href="https://twitter.com/intent/tweet?text=I%27m%20supporting%20OpenRefine%20%E2%80%94%20a%20free%2C%20open-source%20tool%20for%20working%20with%20messy%20data.%20Join%20me%3A&url=https%3A%2F%2Fopenrefine.org%2F2025-fundraising&hashtags=OpenRefine%2Copenscience%2Copendata" target="_blank" rel="noopener">Share on X</a>
-          <a className="button button--primary button--sm" href="https://www.linkedin.com/feed/?shareActive=true&text=I%27m%20supporting%20OpenRefine%20%E2%80%94%20a%20free%2C%20open-source%20tool%20for%20working%20with%20messy%20data.%20Join%20me%3A%20https%3A%2F%2Fopenrefine.org%2F2025-fundraising" target="_blank" rel="noopener">Share on LinkedIn</a>
-          <a className="button button--primary button--sm" href="https://mastodon.social/share?text=I%27m%20supporting%20OpenRefine%20%E2%80%94%20a%20free%2C%20open-source%20tool%20for%20working%20with%20messy%20data.%20Join%20me%3A%20https%3A%2F%2Fopenrefine.org%2F2025-fundraising" target="_blank" rel="noopener">Share on Mastodon</a>
+          <a className="button button--primary button--sm" href="https://twitter.com/intent/tweet?text=I%27m%20supporting%20OpenRefine%20%E2%80%94%20a%20free%2C%20open-source%20tool%20for%20working%20with%20messy%20data.%20Join%20me%3A&url=https%3A%2F%2Fopenrefine.org%2F2025-fundraising&hashtags=OpenRefine%2Copenscience%2Copendata" target="_blank" rel="noopener">X でシェア</a>
+          <a className="button button--primary button--sm" href="https://www.linkedin.com/feed/?shareActive=true&text=I%27m%20supporting%20OpenRefine%20%E2%80%94%20a%20free%2C%20open-source%20tool%20for%20working%20with%20messy%20data.%20Join%20me%3A%20https%3A%2F%2Fopenrefine.org%2F2025-fundraising" target="_blank" rel="noopener">LinkedIn でシェア</a>
+          <a className="button button--primary button--sm" href="https://mastodon.social/share?text=I%27m%20supporting%20OpenRefine%20%E2%80%94%20a%20free%2C%20open-source%20tool%20for%20working%20with%20messy%20data.%20Join%20me%3A%20https%3A%2F%2Fopenrefine.org%2F2025-fundraising" target="_blank" rel="noopener">Mastodon でシェア</a>
         </div>
       </div>
     </div>
@@ -282,9 +278,9 @@ Not everyone can contribute financially, here are other powerful ways to support
 <div className="col col--6">
   <div className="card margin-bottom--lg">
     <div className="card__body">
-      <h3>🛍️ Get OpenRefine Gear</h3>
-      <p>Show your support and spread the word by wearing OpenRefine merch. Proceeds from every order go directly to sustaining the project.</p>
-      <a className="button button--primary button button---lg" href="https://store.openrefine.org" target="_blank" rel="noopener">Visit the OpenRefine Shop </a>
+      <h3>🛍️ グッズを手に入れる</h3>
+      <p>OpenRefine グッズを身に付けて応援の輪を広げましょう。売り上げはすべてプロジェクトの維持に使われます。</p>
+      <a className="button button--primary button button---lg" href="https://store.openrefine.org" target="_blank" rel="noopener">オンラインストアへ</a>
     </div>
   </div>
 </div>
@@ -292,14 +288,14 @@ Not everyone can contribute financially, here are other powerful ways to support
 <div className="col col--6">
   <div className="card margin-bottom--lg">
     <div className="card__body">
-      <h3>🙌 Become an Institutional Champion</h3>
-      <p>If you use OpenRefine at your workplace, university, or library, you can help us build stronger institutional support.</p>
+      <h3>🙌 組織としてサポート</h3>
+      <p>職場・大学・図書館で OpenRefine を活用しているなら、組織レベルの支援につなげられます。</p>
       <ul>
-      	<li><strong>Employer Matching:</strong> Many employers match charitable donations dollar-for-dollar: your $100 could instantly become $200.</li>
-     	<li><strong>Make the Connection:</strong> Introduce us to your library, department, or procurement contact who can make a <a href="/donate">donation</a> or explore our <em>Institutional Support Program</em>.</li>
-      	<li><strong>Earn a Thank-You Gift:</strong> When your institution contributes, you'll receive a special thank-you item from our merch store, based on their support level.</li>
+      	<li><strong>マッチング寄付:</strong> 多くの企業は寄付額と同額をマッチします。100 ドルが一瞬で 200 ドルになるかもしれません。</li>
+     	<li><strong>紹介してください:</strong> 図書館や部署、購買担当に <a href="/donate">寄付</a> や <em>Institutional Support Program</em> を紹介してください。</li>
+      	<li><strong>お礼のギフト:</strong> 組織からの支援額に応じて、グッズストアから特別なギフトをお届けします。</li>
       </ul>
-      <a className="button button--primary button button--lg" href="mailto:martin@openrefine.org?subject=OpenRefine%20Institutional%20Referral">Refer Your Institution</a>
+      <a className="button button--primary button button--lg" href="mailto:martin@openrefine.org?subject=OpenRefine%20Institutional%20Referral">所属先を紹介する</a>
     </div>
   </div>
 </div>
@@ -307,14 +303,14 @@ Not everyone can contribute financially, here are other powerful ways to support
 <div className="card margin-bottom--lg">
   <div className="card__body">
     <h3>🏢 Institutional Support Program</h3>
-    <p>Help keep OpenRefine sustainable by joining our <strong>Institutional Support Program</strong> or by making a <a href="/donate"><strong>direct donation</strong></a>.</p>
-    <p>In <strong>2025</strong>, we are piloting an Institutional Support Program to offer:</p>
+    <p><strong>Institutional Support Program</strong> に参加するか、<a href="/donate"><strong>直接の寄付</strong></a> で OpenRefine を持続可能にしてください。</p>
+    <p><strong>2025 年</strong> は本プログラムの試行期間で、次の内容を提供します。</p>
     <ul>
-      <li><strong>Visibility:</strong> and recognition on our website and in community reports.</li>
-      <li><strong>Resources:</strong> curated materials to help your staff and contributors use OpenRefine more effectively with curated resources.</li>
-      <li><strong>Merchandising:</strong> thank-you items for your teams.</li>
+      <li><strong>可視性:</strong> Web サイトやコミュニティレポートで紹介。</li>
+      <li><strong>リソース:</strong> 関係者が OpenRefine をより活用できるよう、厳選資料を提供。</li>
+      <li><strong>グッズ:</strong> チームへのお礼アイテム。</li>
     </ul>
-    <a className="button button--primary button button--lg" href="mailto:martin@openrefine.org?subject=OpenRefine%20Institutional%20Support%20Program">Request the Institutional Support Program description</a>
+    <a className="button button--primary button button--lg" href="mailto:martin@openrefine.org?subject=OpenRefine%20Institutional%20Support%20Program">プログラム詳細を問い合わせる</a>
   </div>
 </div>
 </div>
@@ -323,14 +319,13 @@ Not everyone can contribute financially, here are other powerful ways to support
 
 <section className="hero hero--primary" style={{marginTop:'1rem', marginBottom:'1rem'}}>
   <div className="container text--center">
-    <h2>The Choice is Yours</h2>
+    <h2>決めるのはあなたです</h2>
     <p style={{fontSize:'1.1rem'}}>
-      OpenRefine can continue being the free, powerful data tool that millions depend on, but sustaining our core team requires your support. Without it, we risk losing the capacity to release regularly, respond quickly to community needs, and grow partnerships.
+      OpenRefine は今後も無料で強力なデータツールであり続けられますが、コアチームを維持するには皆さんの支援が欠かせません。支援がなければ、定期的なリリースや迅速なサポート、パートナーシップ拡大が難しくなります。
     </p>
-    <p style={{fontSize:'1.1rem'}}><strong>Together we've reached half our goal, now let's finish strong. Will you help us reach $50,000 and keep OpenRefine thriving in 2026?</strong></p>
+    <p style={{fontSize:'1.1rem'}}><strong>すでに目標の半分まで到達しました。最後まで駆け抜けるために、50,000 ドル達成と 2026 年の OpenRefine 維持にぜひ力を貸してください。</strong></p>
     <div style={{marginTop:'0.5rem', textAlign:'center'}}>
-      <a className="button button--danger button--lg" href="/donate">Yes, I'll Support OpenRefine</a>
+      <a className="button button--danger button--lg" href="/donate">OpenRefine を支援する</a>
     </div>
   </div>
 </section>
-

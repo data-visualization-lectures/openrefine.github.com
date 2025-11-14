@@ -1,63 +1,52 @@
 ---
-title: Privacy
-description: Learn how your data is handled when you clean it with OpenRefine.
+title: プライバシー
+description: OpenRefine でデータを処理するときの取り扱いについて
 hide_table_of_contents: true
 ---
 
-# Privacy in OpenRefine
+# OpenRefine のプライバシー
 
-## Where is my data stored?
+## データはどこに保存されますか？
 
-  Data transformed with OpenRefine is stored locally on the computer where OpenRefine is installed.
-  This includes your project data, history and preferences.
-  This data is not replicated on any server.
+  OpenRefine で処理したデータは、OpenRefine をインストールしているコンピューター上にのみ保存されます。
+  プロジェクトデータ・履歴・設定などが含まれ、外部サーバーに複製されることはありません。
 
-  The exact location on your computer where data is stored depends on your operating system.
-  Our documentation provides [instructions to locate your workspace directory](docs/manual/installing#back-up-your-data) on your computer.
+  保存場所は OS によって異なります。ドキュメントの [ワークスペースディレクトリの場所](docs/manual/installing#back-up-your-data) を参照してください。
 
-  It is recommended that you back up your workspace directory regularly, in particular before
-  upgrading to a newer version.
+  とくにアップグレード前など、定期的にワークスペースディレクトリをバックアップすることをおすすめします。
 
-## Can OpenRefine developers access my data?
+## 開発チームは私のデータにアクセスできますか？
 
-No, your data cannot be accessed by OpenRefine developers as it is only stored locally on your
-computer.
+いいえ。データはあなたのコンピューター内にのみ保存されるため、OpenRefine の開発者がアクセスすることはできません。
 
-It is recommended that you back up your workspace directory regularly, in particular before
-upgrading to a newer version.
+（繰り返しになりますが）とくにアップグレード前などは、ワークスペースディレクトリのバックアップを推奨します。
 
-## Which OpenRefine operations transmit data to third parties?
+## どの操作で外部にデータが送信されますか？
 
-Some operations, importers and exporters involve communicating with external services
-and therefore transmit some information to the outside world.
-We aim to make it obvious from the user interface that these operations rely on online
-services. This includes the following:
-- Adding a column by fetching URLs;
-- Reconciling a column via a reconciliation service;
-- Adding columns from a reconciled column via a reconciliation service;
-- Selecting custom reconciliation matches;
-- Importing or exporting data to Google Sheets or Google Drive;
-- Importing or exporting data to a SQL database;
-- Importing a file retrieved from a URL;
-- Uploading data to Wikibase instances.
+一部の操作・インポーター・エクスポーターは外部サービスと通信するため、データが送信されます。
+UI からオンラインサービスを利用していることが分かるようにしています。該当する例:
+- URL 取得による列追加
+- リコンシリエーションサービス経由での照合
+- 照合結果から列を追加
+- リコンシリエーション候補の手動選択
+- Google Sheets / Google Drive とのインポート・エクスポート
+- SQL データベースとのインポート・エクスポート
+- URL から取得したファイルのインポート
+- Wikibase へのアップロード
 
-If you are unsure whether a particular workflow involves communicating with external
-services, [just ask](/community).
+特定のワークフローが外部通信を含むか分からない場合は、[お気軽に質問してください](/community)。
 
-## Is my data encrypted?
+## データは暗号化されていますか？
 
-Data stored by OpenRefine on your computer is not encrypted by default.
-You can make sure data stored by OpenRefine is encrypted by setting up full disk
-encryption in your operating system.
+OpenRefine が保存するデータは既定では暗号化されていません。
+OS のフルディスク暗号化などを有効にすることで暗号化できます。
 
-## Cookie policy
+## Cookie ポリシー
 
-OpenRefine does not store user data in cookies, except for OAuth authentication,
-used when importing or exporting projects to a Google Drive, or for Wikibase authentication.
+OpenRefine は通常 Cookie にユーザーデータを保存しません。例外は、Google Drive や Wikibase との OAuth 認証時のみです。
 
-## Update notifications on OpenRefine's start page
+## スタートページでのアップデート通知
 
-To detect whether a new version is available, OpenRefine versions before v3.6 make web queries to external websites when its start page is opened. For OpenRefine 3.6 and above, this can be disabled by [setting the system property](docs/manual/running#jvm-preferences) `refine.display.new.version.notice` to `false`.
-* Before OpenRefine 3.8, the queries are made to GitHub.com. See [GitHub's privacy policy](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) to find out what information gets stored out of those requests.
-* From OpenRefine 3.8 on, the queries are made, only if the user opts in, to openrefine.org, hosted by Netlify. See [Netlify's data processing agreement](https://www.netlify.com/pdf/netlify-dpa.pdf) for details about data they might store. The OpenRefine project does not have access to analytics for those requests, like the rest of the traffic on openrefine.org.
-
+新しいバージョンの存在を確認するため、v3.6 より前の OpenRefine はスタートページを開く際に外部サイトへアクセスします。3.6 以降では、[システムプロパティ](docs/manual/running#jvm-preferences) `refine.display.new.version.notice` を `false` に設定すると無効化できます。
+* OpenRefine 3.8 以前では GitHub.com に問い合わせます。送信情報については [GitHub のプライバシーポリシー](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) を参照してください。
+* 3.8 以降では、ユーザーが opt-in した場合のみ openrefine.org（Netlify 上）に問い合わせます。保存されうるデータは [Netlify の Data Processing Agreement](https://www.netlify.com/pdf/netlify-dpa.pdf) をご覧ください。OpenRefine プロジェクト側ではこれらのアクセス解析を取得していません。

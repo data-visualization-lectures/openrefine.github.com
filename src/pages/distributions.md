@@ -1,18 +1,16 @@
----
-title: Other distributions
-description: Tweaked versions of OpenRefine distributed by other vendors.
+title: その他のディストリビューション
+description: 他社が配布する、OpenRefine をカスタマイズした派生版。
 hide_table_of_contents: true
 ---
 
-# Other distributions
+# その他のディストリビューション
 
-The following distributions have been customized for a specific usage or integration with other technologies. 
+以下は特定用途や他技術との連携のために調整されたディストリビューションです。
 
-| Distribution | Description |  Authors |
+| Distribution | 説明 |  作者 |
 |--------------|-------------|----------|
-| [OpenDataRise](https://github.com/opendatatrentino/OpenDataRise) | Tool to cleanse and semantify datasets from CKAN repositories. Based on OpenRefine. | Open Data in Trentino  |
-| [p3-batchrefine](https://github.com/fusepoolP3/p3-batchrefine) | BatchRefine adds batch processing capabilities to OpenRefine and support multiple back end including spark | SpazioDati | 
-| [RefineOnSpark](https://github.com/andreybratus/RefineOnSpark) | RefineOnSpark is a driver program to run OpenRefine jobs on the Spark cluster | SpazioDati | 
-| [Reconciliation-and-Matching-Framework](https://github.com/RBGKew/Reconciliation-and-Matching-Framework) | A framework to allow the matching of string entities using customised sets of transformations and matchers, plus a tool to produce the necessary configurations and another to expose them as OpenRefine reconciliation services.  | RBGKew | 
-| [Ontotext Refine](https://www.ontotext.com/products/ontotext-refine/) | Ontotext Refine, previously called OntoRefine, is a closed-source data transformation tool based on OpenRefine. It can be used for converting tabular data to RDF using a visual mapper or SPARQL, exporting it as Turtle or importing it to a GraphDB repository directly, using SPARQL queries against a virtual endpoint of Refine data.  | Ontotext |
-
+| [OpenDataRise](https://github.com/opendatatrentino/OpenDataRise) | CKAN リポジトリ由来のデータセットをクレンジングし、セマンティック化するツール。OpenRefine をベースにしています。 | Open Data in Trentino  |
+| [p3-batchrefine](https://github.com/fusepoolP3/p3-batchrefine) | BatchRefine は OpenRefine にバッチ処理機能を追加し、Spark を含む複数のバックエンドをサポートします。 | SpazioDati | 
+| [RefineOnSpark](https://github.com/andreybratus/RefineOnSpark) | Spark クラスター上で OpenRefine ジョブを実行するためのドライバープログラム。 | SpazioDati | 
+| [Reconciliation-and-Matching-Framework](https://github.com/RBGKew/Reconciliation-and-Matching-Framework) | 変換やマッチャーをカスタム構成して文字列エンティティを照合できるフレームワーク。設定生成ツールと、OpenRefine のリコンシリエーションサービスとして公開するツールが含まれます。  | RBGKew | 
+| [Ontotext Refine](https://www.ontotext.com/products/ontotext-refine/) | 旧称 OntoRefine。OpenRefine をベースにしたクローズドソースのデータ変換ツールで、ビジュアルマッパーや SPARQL を用いて表形式データを RDF に変換し、Turtle で出力したり GraphDB へ直接インポートしたりできます。Refine データの仮想エンドポイントに対して SPARQL クエリを実行することも可能です。  | Ontotext |

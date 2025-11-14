@@ -1,26 +1,25 @@
----
-title: OpenRefine Use Cases
-description: Who uses OpenRefine
+title: OpenRefine の利用例
+description: OpenRefine を利用している人たち
 hide_table_of_contents: false
 ---
-# OpenRefine Usage 
+# OpenRefine の利用状況 
 
-OpenRefine is a free, open source power tool for working with messy data and improving it: cleaning it, transforming it from one format into another, and extending it with web services and external data. Requiring no knowledge of a programming or query language, it lets users find and fix inconsistencies interactively, match their data to external databases, pull additional data from these, and perform many other useful operations. The resulting workflows can be extracted and applied to other datasets.
+OpenRefine は散らかったデータを整え、形式を変換し、外部サービスやデータと連携させるための無償オープンソースツールです。プログラミングやクエリ言語の知識がなくても、インタラクティブに不整合を見つけて修正したり、外部データベースと照合したり、追加データを取得したりできます。作成したワークフローは抽出して別のデータセットにも適用できます。
 
-**OpenRefine is downloaded on average 15,500 times per month** and received about 800 academic citations per year.
+**月平均 15,500 回ダウンロードされ、学術論文では年間約 800 件引用されています。**
 
-## Our Users Community
+## ユーザーコミュニティ
 
-OpenRefine is used by many communities and industries due to its user-friendly interface and flexibility.
-1. **Journalists and Media Professionals** use OpenRefine to clean and prepare data for investigative reporting, analysis, and visualization in news stories.
-2. **GLAM (Galleries, Libraries, Archives, and Museums)** utilizes OpenRefine to clean and enhance catalog records related to artworks and cultural heritage artifacts.
-3. **Wikipedians and Wikimedia Contributors**: OpenRefine is a popular tool within the Wikipedia community, enabling users to manage and improve structured data on Wikimedia projects like Wikidata and Wiki Commons.
-4. **Scientists and Researchers** across various scientific disciplines, including social, natural, and health sciences, use OpenRefine to clean, transform, and organize research data.
-5. **Data Analysts and Scientists** leverage OpenRefine to preprocess and clean data, ensuring high data quality before analysis.
-6. **Educators and Trainers**: OpenRefine is integrated into educational curricula and workshops, allowing educators to teach students data wrangling and cleaning skills effectively.
+使いやすさと柔軟性から、多様なコミュニティや業界で活用されています。
+1. **ジャーナリスト・メディア**: 調査報道や分析、可視化に向けてデータを整備。
+2. **GLAM（美術館・図書館・公文書館・博物館）**: 作品や文化遺産のカタログ情報をクレンジングし、品質を高めます。
+3. **ウィキペディアン／ウィキメディア貢献者**: Wikidata や Wikimedia Commons などの構造化データを管理・改善するための定番ツール。
+4. **研究者**: 社会科学・自然科学・医療分野など幅広い研究データの整形に利用。
+5. **データアナリスト／データサイエンティスト**: 解析前の前処理やクレンジングでデータ品質を確保。
+6. **教育者・トレーナー**: カリキュラムやワークショップに組み込み、データ整形のスキルを教える用途で活躍。
 
 
-The graphic below shows which communities our users identified with most, based on our [2024](/blog/2024/12/20/2024-survey-results) user survey. Please note that each user may identify with multiple communities.
+以下の図は [2024 年のユーザー調査](/blog/2024/12/20/2024-survey-results) で回答者が所属を感じているコミュニティを示したものです（複数回答あり）。
 
 ```mermaid
 %%{init: {'theme':'forest'}}%%
@@ -32,8 +31,8 @@ xychart-beta horizontal
       [6.64, 38.50, 34.07, 22.57, 15.49, 25.66, 25.66, 15.04, 8.85, 12.39, 7.08, 6.64, 17.70]
 ```
 
-## Academic Citations 
-OpenRefine is used by many academics in their research and cited in their publications. OpenRefine is also available on Zenodo with the [DOI-10.5281](https://zenodo.org/records/10689569) if you intend to cite it. The table below track the number of citation per year based by searching the following terms on Google Scholar:
+## 学術論文での引用 
+OpenRefine は研究にも幅広く活用され、論文でも引用されています。引用する際は [Zenodo DOI-10.5281](https://zenodo.org/records/10689569) をご利用ください。下記グラフは Google Scholar で次の語句を検索した結果から、年ごとの引用件数をまとめたものです。
 * [Google Refine](https://scholar.google.ca/scholar?hl=en&as_sdt=0%2C5&as_ylo=2023&as_yhi=2023&q=%22Google+Refine%22+-openrefine&btnG=)
 * [Open Refine](https://scholar.google.ca/scholar?hl=en&as_sdt=0%2C5&as_ylo=2023&as_yhi=2023&q=%22Open+Refine%22+-openrefine&btnG=)
 * [OpenRefine](https://scholar.google.ca/scholar?hl=en&as_sdt=0%2C5&as_ylo=2023&as_yhi=2023&q=%22OpenRefine%22&btnG=)
@@ -48,26 +47,26 @@ xychart-beta
     bar [4, 67, 162, 251, 356, 424, 477, 502, 584, 571, 586, 717, 783, 811, 799, 383]
 ```
 
-(*) 2025 data are up to July 15, 2024.
+（*）2025 年の値は 2024 年 7 月 15 日時点までの集計です。
 
-## Forum Statistics 
+## フォーラム統計 
 
-In November 2022, we moved from email lists hosted by Google Groups to a Discourse forum. 
+2022 年 11 月、Google グループのメーリングリストから Discourse フォーラムへ移行しました。
 
-As of July 15th, 2025, over the last 12 months:
-* 265 new users signed up[^1] on our forum for a total of 720 users[^2].
-* 278 topics[^3] were created for a total of 1,522 messages[^4].
+2025 年 7 月 15 日時点の直近 12 か月では:
+* 新規登録 265 名[^1]、累計ユーザー 720 名[^2]
+* 278 件のトピック[^3]、メッセージ 1,522 件[^4]
 
-## Contribution Statistics
+## コントリビューション統計
 
-The statistics below only track activity on our primary GitHub repository, which includes code, design, and translation contributions. Our documentation is available in a separate repository.
+以下はメインの GitHub リポジトリ（コード・デザイン・翻訳）での活動状況です。ドキュメントは別リポジトリで管理しています。
 
-As of July 15th, 2025, over the last 12 months we had:
-* 22 active GitHub contributors;
-* 163 issues [created](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue%20created%3A2024-07-15..2025-07-15) and 157 [closed](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue%20closed%3A2024-07-15..2025-07-15);
-* [212 PRs merged](https://github.com/OpenRefine/OpenRefine/pulls?q=is%3Amerged+created%3A2024-07-15..2025-07-15+-author%3Aapp%2Fdependabot) (excluding those created by dependabot)
+2025 年 7 月 15 日時点の直近 12 か月では:
+* アクティブな GitHub コントリビューター 22 人
+* Issue は [163 件作成](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue%20created%3A2024-07-15..2025-07-15)、[157 件クローズ](https://github.com/OpenRefine/OpenRefine/issues?q=is%3Aissue%20closed%3A2024-07-15..2025-07-15)
+* [マージされた PR 212 件](https://github.com/OpenRefine/OpenRefine/pulls?q=is%3Amerged+created%3A2024-07-15..2025-07-15+-author%3Aapp%2Fdependabot)（dependabot 由来を除く）
 
-The following graphic represents the average number of active contributors to the main repository each year[^5]. You can also review the [Github pulse](https://github.com/OpenRefine/OpenRefine/pulse) and [Github traffic](https://github.com/OpenRefine/OpenRefine/graphs/traffic) pages for real time insights on the activities on our main repository.
+下図はメインリポジトリの年間平均アクティブ貢献者数[^5]です。リアルタイムの活動状況は [GitHub Pulse](https://github.com/OpenRefine/OpenRefine/pulse) や [GitHub Traffic](https://github.com/OpenRefine/OpenRefine/graphs/traffic) でも確認できます。
 
 ```mermaid 
 %%{init: {'theme':'forest'}}%%
@@ -76,9 +75,9 @@ xychart-beta
     y-axis "Average number of GitHub contributors per month" 0 --> 22
     line [3,2,2,2,3,3,1,6,12,7,18,15,15,10,10,13]
 ```
-(*) 2025 data are up to July 15th, 2025.
-[^1]: From [this page](https://forum.openrefine.org/admin/reports/signups?end_date=2024-12-03&mode=table&start_date=2023-12-03) with discourse admin priviledge
-[^2]: See the count of users on [this page](https://forum.openrefine.org/u?order=likes_received&period=all)
-[^3]: From [this page](https://forum.openrefine.org/admin/reports/topics?end_date=2024-12-03&mode=table&start_date=2023-12-03) with discourse admin priviledge
-[^4]: From [this page](https://forum.openrefine.org/admin/reports/posts?end_date=2024-12-03&mode=table&start_date=2023-12-03) with discourse admin priviledge
-[^5]: We are counting the number of contributor using the following command `git log --all --pretty="%an" | sort | uniq | wc -l`
+（*）2025 年の値は 2025 年 7 月 15 日までの集計です。
+[^1]: [Discourse 管理画面の Signups](https://forum.openrefine.org/admin/reports/signups?end_date=2024-12-03&mode=table&start_date=2023-12-03)
+[^2]: [ユーザー一覧](https://forum.openrefine.org/u?order=likes_received&period=all) の人数
+[^3]: [Topics レポート](https://forum.openrefine.org/admin/reports/topics?end_date=2024-12-03&mode=table&start_date=2023-12-03)
+[^4]: [Posts レポート](https://forum.openrefine.org/admin/reports/posts?end_date=2024-12-03&mode=table&start_date=2023-12-03)
+[^5]: `git log --all --pretty="%an" | sort | uniq | wc -l` で算出

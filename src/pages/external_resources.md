@@ -1,39 +1,36 @@
----
-title: External resources
-description: Tutorials and other materials contributed by the community.
+title: 外部リソース
+description: コミュニティが共有してくれたチュートリアルや教材。
 hide_table_of_contents: true
 ---
 
-# External resources
+# 外部リソース
 
-Many step-by-step tutorials and other learning materials about OpenRefine are available online.
-We list here a few which are known to be especially popular.
+OpenRefine を学ぶための丁寧なチュートリアルや教材がオンラインに多数あります。ここでは特に人気の高いものを紹介します。
 
-## Video tutorials
+## 動画チュートリアル
 - [Google Refine introduction videos](https://www.youtube.com/watch?v=B70J_H_zAWM&list=PL737054C67FCC0741)
 - [OpenRefine Beginners Tutorial](https://media.ed.ac.uk/media/OpenRefine+Beginners+Tutorial/0_y5bxsswq)
 
-## Online courses
-**Carpentries Courses**
-- English:  [Library Carpentry: OpenRefine](https://librarycarpentry.org/lc-open-refine/)
-- English:  [OpenRefine for Social Science Data](https://datacarpentry.org/openrefine-socialsci/)
-- English:  [OpenRefine for Ecology](https://datacarpentry.org/OpenRefine-ecology-lesson/)
+## オンラインコース
+**Carpentries コース**
+- 英語:  [Library Carpentry: OpenRefine](https://librarycarpentry.org/lc-open-refine/)
+- 英語:  [OpenRefine for Social Science Data](https://datacarpentry.org/openrefine-socialsci/)
+- 英語:  [OpenRefine for Ecology](https://datacarpentry.org/OpenRefine-ecology-lesson/)
 
-**Programming Historian:**
-- English: [Cleaning Data with OpenRefine](https://programminghistorian.org/en/lessons/cleaning-data-with-openrefine)
-- English: [Programming Historian: Fetching and Parsing Data from the Web with OpenRefine](https://programminghistorian.org/en/lessons/fetch-and-parse-data-with-openrefine)
-- Spanish / Español: [Limpieza de datos con OpenRefine](https://programminghistorian.org/es/lecciones/limpieza-de-datos-con-OpenRefine)
-- French / Français: [Nettoyer ses données avec OpenRefine](https://programminghistorian.org/fr/lecons/nettoyer-ses-donnees-avec-openrefine)
-- Portuguese / Português: [Limpar dados com o OpenRefine](https://programminghistorian.org/pt/licoes/limpar-dados-openrefine)
+**Programming Historian**
+- 英語: [Cleaning Data with OpenRefine](https://programminghistorian.org/en/lessons/cleaning-data-with-openrefine)
+- 英語: [Programming Historian: Fetching and Parsing Data from the Web with OpenRefine](https://programminghistorian.org/en/lessons/fetch-and-parse-data-with-openrefine)
+- スペイン語: [Limpieza de datos con OpenRefine](https://programminghistorian.org/es/lecciones/limpieza-de-datos-con-OpenRefine)
+- フランス語: [Nettoyer ses données avec OpenRefine](https://programminghistorian.org/fr/lecons/nettoyer-ses-donnees-avec-openrefine)
+- ポルトガル語: [Limpar dados com o OpenRefine](https://programminghistorian.org/pt/licoes/limpar-dados-openrefine)
 
-**OpenRefine for Wikimedia Commons: WikiLearn course**
-- English: [OpenRefine for Wikimedia Commons: the basics](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2023/about)
-- Spanish / Español: [OpenRefine para Wikimedia Commons: conceptos básicos](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2024_es/about)
-- French / Français: [OpenRefine pour Wikimedia Commons : les bases](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2024_fr/about)
-- Italian / Italiano: [Introduzione all'uso di OpenRefine per Wikimedia Commons](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2024_it/about)
+**OpenRefine for Wikimedia Commons: WikiLearn コース**
+- 英語: [OpenRefine for Wikimedia Commons: the basics](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2023/about)
+- スペイン語: [OpenRefine para Wikimedia Commons: conceptos básicos](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2024_es/about)
+- フランス語: [OpenRefine pour Wikimedia Commons : les bases](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2024_fr/about)
+- イタリア語: [Introduzione all'uso di OpenRefine per Wikimedia Commons](https://learn.wiki/courses/course-v1:Wikimedia-Foundation+WMF_GLAM001+2024_it/about)
    
-## On our wiki
+## OpenRefine Wiki で探す
 - [FAQ](https://github.com/OpenRefine/OpenRefine/wiki/FAQ)
-- [Longer list of external resources categorized by language](https://github.com/OpenRefine/OpenRefine/wiki/External-Resources)
-
+- [言語別に整理した外部リソース集](https://github.com/OpenRefine/OpenRefine/wiki/External-Resources)
 

@@ -1,11 +1,10 @@
----
-title: OpenRefine Project History
-description: A brief overview of OpenRefine History
+title: OpenRefine プロジェクトの歩み
+description: OpenRefine の歴史を簡単に紹介します
 hide_table_of_contents: false
 ---
-# OpenRefine History 
+# OpenRefine の歴史 
 
-Over the last ten years, OpenRefine has undergone significant transformations, including changes in its name and development model. It has transitioned from an enterprise-led open source model to a community-based open source model, with later support from occasional grants.
+この 10 年あまりで OpenRefine は名称や開発体制を含む大きな変化を経験しました。企業主導のオープンソースから、コミュニティ主導・助成金併用のモデルへと移行しています。
 
 ```mermaid
 %%{init: { 'theme': 'forest', 'timeline': {'disableMulticolor': true}}}%%
@@ -38,23 +37,23 @@ timeline
 
 ## 2008 - 2010: Freebase Gridworks
 <img src="/img/logo/freebase.png" alt="Freebase Gridworks" height="50"/>
-The history of OpenRefine dates back to May 2010, when Metaweb Technologies, Inc. initiated the development of an open-source data cleansing tool named Freebase Gridworks. Freebase Gridworks, conceived by David Huynh, simplified data cleaning and transformation data to import into Freebase, a large collaborative knowledge base built by Metaweb. Freebase Gridworks offered a user interface for editing and reconciling large datasets.
+OpenRefine の源流は 2010 年 5 月、Metaweb Technologies, Inc. がオープンソースのデータクレンジングツール「Freebase Gridworks」の開発を始めたことにあります。David Huynh によって考案されたこのツールは、大規模な共同知識ベース Freebase へインポートするためのデータ整形を簡素化し、大量データの編集やリコンシリエーション用 UI を提供しました。
 
 ## 2010 - 2012: Google Refine
 <img src="/img/logo/google-refine.png" alt="Google Refine" height="50"/>
-In July 2010, Google acquired Metaweb Technologies and with it, Freebase Gridworks. Following this acquisition, the tool was renamed "Google Refine". Under Google's stewardship, Google Refine 2.0 was released, featuring enhanced data cleaning capabilities. This version established the tool's reputation for handling various data-related tasks, such as cleaning messy data, transforming data formats, and extending data sets with web services.
+2010 年 7 月、Google が Metaweb Technologies を買収し、Freebase Gridworks も Google の手に渡りました。この後「Google Refine」と改名され、Google のもとでデータクレンジング機能を強化したバージョン 2.0 が公開されました。Google Refine は散らかったデータの整備、形式変換、Web サービスによるデータ拡張など多様な用途で評価されました。
 
 ## 2012 - 2019: OpenRefine
 <img src="/img/logo/open-refine.png" alt="OpenRefine" height="50"/>
-In 2012, Google transferred leadership of the project to the open source community, who renamed it "OpenRefine" and moved it to GitHub. The following years saw OpenRefine continuing to gain a diverse user base, including scientists and researchers, journalists, semantic web practitioners, librarians, and cultural heritage specialists.
+2012 年、Google はプロジェクトの主導権をオープンソースコミュニティへ移し、名称を「OpenRefine」に変更して GitHub へ移管しました。それ以降、科学者・研究者・ジャーナリスト・セマンティックウェブ実践者・図書館や文化遺産の専門家など、多様なユーザーに広がっていきました。
 
-In 2017, OpenRefine began integrating with Wikidata thanks to the availability of a reconciliation endpoint and a process to publish data to the Wikimedia project.
+2017 年には Wikidata のリコンシリエーションエンドポイントと Wikimedia プロジェクトへの投稿プロセスが整い、OpenRefine との連携が始まりました。
 
-In December 2018, Google News Initiative donated $100,000 to support OpenRefine development. The same year the project's logo was updated.
+2018 年 12 月には Google News Initiative から 100,000 ドルの寄付を受け、ロゴも刷新されました。
 
 ## 2019 - today: OpenRefine, part of Code for Science & Society
 <img src="/img/logo/OpenRefine.png" alt="OpenRefine" height="50"/>
 
-In the following years, OpenRefine confirmed its grant-based sustainability model by receiving recurring funding from the Chang Zuckerberg Initiative, the Wikimedia Foundation, and NFDI. To help manage funds, OpenRefine became a fiscally sponsored project of Code for Science and Society (CS&S), a 501(c)(3) charitable organization in the USA, in 2020. 
+その後は Chan Zuckerberg Initiative、Wikimedia Foundation、NFDI などから継続的に助成を受けることで、助成金を軸としたサステナブルなモデルを確立しました。資金管理を円滑にするため、2020 年には米国の非営利法人 Code for Science and Society (CS&S) の財務スポンサーシップを受けるプロジェクトとなりました。
 
-During that time, OpenRefine experienced tremendous growth by doubling the number of active contributors (both paid and volunteers), increasing the number of translated languages, adding native integration with Wikimedia Commons and Wikibase, and seeing more users rely on it. The project also became more organized with the creation of an Advisory Committee and participation in internship programs like Google Summer of Code and Outreachy. 
+この期間に OpenRefine は飛躍的な成長を遂げ、アクティブな貢献者（有償・無償）の数が倍増し、対応言語が増え、Wikimedia Commons や Wikibase とのネイティブ連携が追加され、多くのユーザーに頼られる存在になりました。さらにアドバイザリー委員会の設置や Google Summer of Code・Outreachy などのインターンシップへの参加を通じて、組織面でも整備が進みました。

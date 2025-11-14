@@ -26,12 +26,12 @@ function PostDownload() {
                 return <DownloadSection version={urlParams.get('version')} platform={urlParams.get('platform')} autoDownload={true} />
              }}
           </BrowserOnly>
-          <h2>Next steps</h2>
+          <h2>次のステップ</h2>
           <div className="cardList">
-            <Card href="docs" title="Getting Started" description="Check out the Documentation" />
-            <Card href="external_resources" title="Tutorials" description="Access tutorials, online courses and other learning materials about OpenRefine." />
-            <Card href="extensions" title="Extensions" description="Enhance OpenRefine with extensions created by the community." />
-            <Card href="community" title="Join the community" description="Get support, find resources and get involved in the project. OpenRefine is made by people like you!" />
+            <Card href="docs" title="はじめに" description="ドキュメントを読んで使い方を確認しましょう。" />
+            <Card href="external_resources" title="チュートリアル" description="OpenRefine に関するチュートリアルやオンラインコースなどの教材をチェック。" />
+            <Card href="extensions" title="拡張機能" description="コミュニティ製の拡張で OpenRefine をさらに便利に。" />
+            <Card href="community" title="コミュニティに参加" description="サポートやリソースを得て、プロジェクトに貢献しましょう。OpenRefine はあなたのような人々によって作られています。" />
           </div>
         </div>
       </div>
@@ -45,15 +45,15 @@ function DownloadSection(props) {
    let explanations = <div></div>;
    if (details !== undefined && instructions !== undefined) {
         explanations = <div>
-                <h2>Running OpenRefine on {platformDetails[platform].name}</h2>
+                <h2>{platformDetails[platform].name} での OpenRefine 実行方法</h2>
                 {instructions}
            </div>;
    }
    return <div>
         <DownloadLink version={version} platform={platform} autoDownload={autoDownload} />
         {explanations}
-        <p>If you are upgrading from an earlier version, make sure to <Link to="docs/manual/installing#back-up-your-data">back up your workspace directory</Link> first.</p>
-        <p>Check out our detailed guide on <a href="docs/manual/installing#installing-or-upgrading">Installing OpenRefine</a> for detailed instructions.</p>
+        <p>以前のバージョンからアップグレードする場合は、まず <Link to="docs/manual/installing#back-up-your-data">ワークスペースディレクトリをバックアップ</Link> してください。</p>
+        <p>詳しい手順は <a href="docs/manual/installing#installing-or-upgrading">OpenRefine のインストールガイド</a> をご覧ください。</p>
     </div>;
 }
 
@@ -61,7 +61,7 @@ function DownloadLink(props) {
     let {version, platform, autoDownload} = props;
     let matchingReleases = releases.filter(r => r.version === version);
     if (matchingReleases.length !== 1) {
-       return <p>The requested release could not be found. Pick one from <Link to="download">our Download page</Link>.</p>
+       return <p>指定されたリリースが見つかりませんでした。<Link to="download">ダウンロードページ</Link> からお選びください。</p>
     }
     let release = matchingReleases[0];
     let link = getDownloadLink(release, platform);
@@ -70,10 +70,10 @@ function DownloadLink(props) {
        domLink.href = link;
        domLink.click();
        return <div>
-          <p>If your download does not start automatically, use <a href={link}>this direct link</a>.</p>
+          <p>自動的にダウンロードが始まらない場合は <a href={link}>こちらのリンク</a> をクリックしてください。</p>
               </div>;
     } else {
-       return <div><p>Download OpenRefine with <a href={link}>this direct link</a>.</p></div>
+       return <div><p><a href={link}>こちらのリンク</a> から OpenRefine をダウンロードできます。</p></div>
     }
     
 }
@@ -90,22 +90,22 @@ function LatestVersionDownloadSection(props) {
 
 export function getRunningInstructions(platform) {
     if (platform === 'win') {
-       return <p>First, make sure <a href="https://adoptium.net/download/">Java</a> is installed on your computer. Then, unzip the archive, and double-click on <code>openrefine.exe</code> or <code>refine.bat</code> if the former does not work.</p>
+       return <p>まず <a href="https://adoptium.net/download/">Java</a> がインストールされているか確認してください。その後、アーカイブを展開し、<code>openrefine.exe</code>（または動作しない場合は <code>refine.bat</code>）をダブルクリックします。</p>
     } else if (platform === 'win-with-java') {
-       return <p>Unzip the archive, and double-click on <code> openrefine.exe</code> or <code>refine.bat</code> if the former does not work.</p>
+       return <p>アーカイブを展開し、<code>openrefine.exe</code>（または動作しない場合は <code>refine.bat</code>）をダブルクリックしてください。</p>
     } else if (platform === 'mac') {
       return (
-        <p>Open the downloaded DMG file, drag the icon into the <code>Applications</code> folder, and double-click on it. 
+        <p>ダウンロードした DMG を開き、アイコンを <code>Applications</code> フォルダにドラッグしてからダブルクリックします。 
           <Admonition className='margin-top--md' type='info' title='Important'> 
-           See our documentation for {' '}
+           DMG を開く際に表示されるセキュリティ警告の回避方法は{' '}
           <a href="docs/manual/installing#install-or-upgrade-openrefine">
-            how to circumvent security warnings
-          </a> when opening the DMG file.
+            ドキュメント
+          </a> を参照してください。
           </Admonition>
         </p>
       )
     } else if (platform === 'linux') {
-       return <p>Download, extract, then type <code>./refine</code> in a terminal to start. This requires Java to be installed on your computer.</p>
+       return <p>アーカイブをダウンロードして展開し、ターミナルで <code>./refine</code> を実行してください。Java のインストールが必要です。</p>
     }
 }
 
@@ -116,12 +116,12 @@ export default function Home(): JSX.Element {
   } = useDocusaurusContext();
   const {description} = customFields as {description: string};
   return (
-    <Layout title="Thank you" description={description}>
+    <Layout title="ダウンロードありがとうございます" description={description}>
       <main>
         <div className="container text--center margin-top--xl">
           <div className="row" style={{maxWidth: '800px', margin: 'auto', textAlign: 'left'}}>
             <div className="col">
-              <h1>Thank you for downloading OpenRefine</h1>
+              <h1>OpenRefine をダウンロードいただきありがとうございます</h1>
             </div>
           </div>
         </div>

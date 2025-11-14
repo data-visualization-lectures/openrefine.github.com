@@ -1,14 +1,13 @@
----
-title: OpenRefine Ecosystem
-description: OpenRefine Ecosystem
+title: OpenRefine エコシステム
+description: OpenRefine を取り巻くエコシステムの概要
 hide_table_of_contents: true
 ---
-# OpenRefine Ecosystem
+# OpenRefine エコシステム
 
-The OpenRefine ecosystem comprises the OpenRefine project, which maintains the [OpenRefine software](https://github.com/OpenRefine/openrefine), [user forums](https://forum.openrefine.org/), [documentation](/docs) and [translation](/docs/technical-reference/translating-ui), and user groups that contextualize OpenRefine for their communities' usage.
+OpenRefine のエコシステムは、[OpenRefine ソフトウェア](https://github.com/OpenRefine/openrefine)、[ユーザーフォーラム](https://forum.openrefine.org/)、[ドキュメント](/docs)、[翻訳活動](/docs/technical-reference/translating-ui) を維持するプロジェクト本体と、各コミュニティの状況に合わせて OpenRefine を活用するユーザーグループで構成されています。
 
-Those user groups include data journalists, semantic web enthusiasts, Galleries, Libraries, Archives, Museums (GLAM), researchers, or members of the Wikimedia Movement. Each community provides advocacy, training, and support activities via mediums relevant to its members, with little coordination between them. For instance, libraries host training sessions for archivists, librarians, and researchers; workshops are organized during data journalism conferences; and a dedicated Telegram channel is available for Wikimedians seeking support.
+ユーザーグループにはデータジャーナリスト、セマンティックウェブ愛好家、GLAM（美術館・図書館・公文書館・博物館）、研究者、ウィキメディア運動のメンバーなどが含まれます。各コミュニティは、それぞれが馴染みのある媒体で啓発・トレーニング・サポートを提供しており、相互調整は最小限です。たとえば図書館ではアーカイブ担当者や司書、研究者向けの研修を開催し、データジャーナリズムのカンファレンスではワークショップが行われ、ウィキメディアン向けには専用の Telegram チャンネルが用意されています。
 
-Third-party developers create [extensions](/extensions) and [reconciliation services](/extensions#reconciliation-services) compatible with OpenRefine. Reconciliation services allow users to link their datasets with a external data sources, while extensions add domain-specific features or integrate OpenRefine into a particular workflow. These services expand OpenRefine's capabilities, enabling users to accomplish their tasks more efficiently.
+サードパーティの開発者は OpenRefine と互換性のある [拡張機能](/extensions) や [リコンシリエーションサービス](/extensions#reconciliation-services) を作成しています。リコンシリエーションサービスは外部データソースとのリンクを可能にし、拡張機能は特定分野向けの機能を追加したり、特定のワークフローに OpenRefine を組み込んだりします。これらのサービスによって OpenRefine の可能性が広がり、ユーザーはより効率的に作業を進められます。
 
-Finally, the Advisory Committee is responsible for OpenRefine funding and administrative tasks to support the ecosystem. It coordinates with [Code for Science and Society](https://www.codeforsociety.org/), our fiscal host, and OpenRefine [funders](/funding). 
+最後に、アドバイザリーコミッティーが資金調達と事務業務を担い、エコシステム全体を支えています。この委員会は財務ホストである [Code for Science and Society](https://www.codeforsociety.org/) や OpenRefine の [資金提供者](/funding) と連携しています。 

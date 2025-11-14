@@ -1,47 +1,46 @@
----
-title: OpenRefine Backers
-description: Your donations help further develop and maintain OpenRefine.
+title: OpenRefine 支援者一覧
+description: ご寄付は OpenRefine の開発と維持に直接つながります。
 hide_table_of_contents: false
 ---
-# OpenRefine Backers 
+# OpenRefine 支援者の皆さまへ
 
-Thank you for supporting OpenRefine in 2025! We are proud to list your name on this page, which celebrates everyone who made a financial contribution to OpenRefine at any level. 
+2025 年のご支援に心より感謝いたします。ここでは、金額の大小を問わず OpenRefine にご寄付くださったすべての皆さまを称えて掲載します。
 
-This page reflects gifts received after December 1, 2024. 2024 donors are listed in our [2024 Year In Review post](/blog/2024/12/13/year-in-review-2024#2024-donor-shoutouts).
+本ページは 2024 年 12 月 1 日以降に受領した寄付を反映しています。2024 年中のご寄付は [2024 Year In Review](/blog/2024/12/13/year-in-review-2024#2024-donor-shoutouts) で紹介しています。
   
-You can [donate here](/donate)
+寄付は[こちら](/donate)からお申し込みいただけます。
 
 ## Patron
-Over $50,000 donated in 2025. Fully sustains OpenRefine’s annual budget, funding our entire core team for a full year.
+2025 年に 50,000 ドル超をご寄付いただいた方々です。OpenRefine の年間予算を丸ごと支え、コアチームを 1 年間運営できます。
 
 ## Partner
-Between $5,000 and $50,000 donated in 2025. Underwrites multiple months of core-team development, feature work, and contributor support.
+2025 年に 5,000〜50,000 ドルをご寄付いただいた方々です。コアチームの開発・機能追加・貢献者支援を複数か月分後押しします。
 
-* FLOSS/fund (one-time)
+* FLOSS/fund（単発）
 
 ## Sponsor 
-Between $500 and $5,000 donated in 2025. Enables us to represent OpenRefine at conferences and expand our community outreach.
+2025 年に 500〜5,000 ドルをご寄付いただいた方々です。カンファレンス等での発表やコミュニティ活動を広げられます。
 
-* Vanguard Charitable (one-time)
+* Vanguard Charitable（単発）
 
 ## Sustainer
-Up to $500 donated in 2025. Covers essential day-to-day infrastructure including forum hosting, software licenses, and routine maintenance.
+2025 年に 500 ドルまでをご寄付いただいた方々です。フォーラムのホスティング、ソフトウェアライセンス、日常的な保守といった基盤費用を賄えます。
 
-* RefinePro (recurring)
-* ostephens (recurring)
-* DaxServer (recurring)
-* alanorth (recurring)
-* timtomch (recurring)
-* trantor (recurring)
-* wetneb (recurring)
-* EstebanMH-SiB (recurring)
-* btseee  (one-time)
+* RefinePro（継続）
+* ostephens（継続）
+* DaxServer（継続）
+* alanorth（継続）
+* timtomch（継続）
+* trantor（継続）
+* wetneb（継続）
+* EstebanMH-SiB（継続）
+* btseee（単発）
 
-##  Service & Infrastructure Partners
+##  サービス／インフラ提供パートナー
 
-We’re also grateful to the following projects for their in-kind support:
+以下のプロジェクトからの無償支援にも感謝します。
 
-* **Coverall**, **Weblate**, and **GitHub** for providing their infrastructure and software free of charge to OpenRefine.  
-* **Discourse** for offering us a 50 % charity discount on forum hosting.
+* **Coverall**、**Weblate**、**GitHub**: インフラとソフトウェアを無償提供していただいています。  
+* **Discourse**: フォーラムホスティングに 50% の慈善割引を適用していただいています。
  
-Help us reach our funding goal, [donate here](/donate)
+目標達成に向けて、ぜひ[ご支援ください](/donate)。
