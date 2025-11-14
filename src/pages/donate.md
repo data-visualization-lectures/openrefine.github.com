@@ -1,3 +1,4 @@
+---
 title: OpenRefine へのご寄付
 description: ご寄付は OpenRefine の開発と維持に活かされます。
 hide_table_of_contents: true
