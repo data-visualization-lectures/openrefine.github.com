@@ -1,3 +1,4 @@
+---
 title: コミュニティ
 description: 世界中のユーザー・トレーナー・コントリビューターと一緒にコミュニティへ参加しましょう。
 hide_table_of_contents: true
